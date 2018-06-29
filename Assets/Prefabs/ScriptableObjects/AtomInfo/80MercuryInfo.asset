@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 80MercuryInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: d0f1570c012296b40a7024a3b5b8948d, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Dying Low Mass Stars
+  - Merging Neutron Stars
+  isotopes:
+  - Hg<sup>196</sup> (.15%)
+  - Hg<sup>198</sup> (10.04%)
+  - Hg<sup>199</sup> (16.94%)
+  - Hg<sup>200</sup> (23.14%)
+  - Hg<sup>201</sup> (13.17%)
+  - Hg<sup>202</sup> (29.74%)
+  - Hg<sup>204</sup> (6.82%)
+  category: 3
+  group: 12
+  period: 6
+  weight: 200.5
+  density: 13.5336
+  neutrons: 122
+  halfLife: 0
+  isDiscovered: 0

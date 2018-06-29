@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 103LawrenciumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: bfa99f54e3a2efc40a870f759c59b8e6, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound:
+  - Laboratory
+  origins:
+  - Unknown
+  - Man-Made
+  isotopes:
+  - Lr<sup>262</sup> (3 hours - No<sup>262</sup>)
+  - Lr<sup>266</sup> (10 hours - SF)
+  category: 7
+  group: 17
+  period: 9
+  weight: 262
+  density: -1
+  neutrons: 163
+  halfLife: 600
+  isDiscovered: 0

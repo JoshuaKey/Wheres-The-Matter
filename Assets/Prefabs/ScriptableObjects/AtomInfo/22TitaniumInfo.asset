@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 22TitaniumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: 2762bbd2cdbabe247ae2f7c3e2eba3b5, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Exploding White Dwarfs
+  - Exploding Massive Stars
+  isotopes:
+  - T<sup>46</sup> (8.25%)
+  - T<sup>47</sup> (7.44%)
+  - T<sup>48</sup> (73.72%)
+  - T<sup>49</sup> (5.42%)
+  - T<sup>50</sup> (5.18%)
+  category: 3
+  group: 4
+  period: 4
+  weight: 47.88
+  density: 4.506
+  neutrons: 26
+  halfLife: 0
+  isDiscovered: 0

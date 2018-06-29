@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 8OxygenInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: cd16faeb326f0f045b2fb4a9c241d12b, type: 2}
+  description: 'Oxygen is the 3rd most common element in the Universe and the most
+    common on Earth.
+
+    It is highly reactive and will form DiHydrogen, Ozone, and Water easily.'
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Exploding Massive Stars
+  isotopes:
+  - O<sup>16</sup> (99.76%)
+  - O<sup>17</sup> (.04%)
+  - O<sup>18</sup> (.2%)
+  category: 8
+  group: 16
+  period: 2
+  weight: 16
+  density: 0.001308
+  neutrons: 8
+  halfLife: 0
+  isDiscovered: 0

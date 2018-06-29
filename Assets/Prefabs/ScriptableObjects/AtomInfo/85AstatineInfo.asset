@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 85AstatineInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: 05cde04978ad0d243b803cce895a73ea, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound:
+  - Laboratory
+  origins:
+  - Unknown
+  - Man-Made
+  isotopes:
+  - As<sup>209</sup> (5 hours - Bi<sup>205</sup>, Po<sup>209</sup>)
+  - As<sup>210</sup> (8 hours - Bi<sup>206</sup>, Po<sup>210</sup>)
+  - As<sup>211</sup> (7 hours - Bi<sup>207</sup>, Po<sup>211</sup>)
+  category: 9
+  group: 17
+  period: 6
+  weight: 210
+  density: -1
+  neutrons: 125
+  halfLife: 540
+  isDiscovered: 0

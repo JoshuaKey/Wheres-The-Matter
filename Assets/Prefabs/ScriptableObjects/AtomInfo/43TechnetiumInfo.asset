@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 43TechnetiumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: fce699f0fbe11bc4388197cfa1e21e14, type: 2}
+  description: 'Technetium is the lightest material where all its isotopes are radioative.
+    This makes it unstable.
+
+    It was predicted by Dmitri Mendeleev before it was discovered.
+
+    Its name means "Artificial" in Ancient Greek.
+
+'
+  image: {fileID: 0}
+  placesToBeFound:
+  - Laboratory
+  origins:
+  - Unknown
+  - Man-Made
+  isotopes:
+  - Tc<sup>99</sup> (211,000 years - Ru<sup>99</sup>)
+  category: 3
+  group: 7
+  period: 5
+  weight: 98
+  density: 11
+  neutrons: 46
+  halfLife: 1.10376e+11
+  isDiscovered: 0

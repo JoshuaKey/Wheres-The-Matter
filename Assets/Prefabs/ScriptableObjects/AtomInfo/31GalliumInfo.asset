@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 31GalliumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: f966d3ee9fb349f46a7e6b792c5e89bd, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Exploding Massive Stars
+  isotopes:
+  - Ga<sup>69</sup> (60.11%)
+  - Ga<sup>71</sup> (39.89%)
+  category: 4
+  group: 13
+  period: 4
+  weight: 69.72
+  density: 5.91
+  neutrons: 38
+  halfLife: 0
+  isDiscovered: 0

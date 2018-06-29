@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 60NeodymiumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: b85fe7308633a3a4f9bcd5028b68bc11, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Dying Low Mass Stars
+  - Merging Neutron Stars
+  isotopes:
+  - Nd<sup>142</sup> (27.2%)
+  - Nd<sup>143</sup> (12.2%)
+  - Nd<sup>144</sup> (23.8%) (* - Ce<sup>140</sup>)
+  - Nd<sup>145</sup> (8.3%)
+  - Nd<sup>146</sup> (17.2%)
+  - Nd<sup>147</sup> (5.8%)
+  - Nd<sup>148</sup> (5.6%) (* - Sm<sup>150</sup>)
+  category: 6
+  group: 6
+  period: 8
+  weight: 144.2
+  density: 7.01
+  neutrons: 84
+  halfLife: 0
+  isDiscovered: 0

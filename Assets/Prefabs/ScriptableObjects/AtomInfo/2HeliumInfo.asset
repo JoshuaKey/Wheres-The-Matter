@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 2HeliumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: 3854e0b91b24b30478a00a984bde720d, type: 2}
+  description: 'Helium although being light, is rare on Earth. It is lighter than
+    air and will escape the atmosphere.
+
+    It is the first and only element not discovered on Earth. It was discovered on
+    the Sun first. In fact it''s named is derived from ''helios'' meaning Sun.'
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Big Bang Fusion
+  - Dying Low Mass Stars
+  - Exploding Massive Stars
+  isotopes:
+  - He<sup>3</sup> (.01%)
+  - He<sup>4</sup> (99.98%)
+  category: 10
+  group: 18
+  period: 1
+  weight: 4.0026
+  density: 0.000164
+  neutrons: 2
+  halfLife: 0
+  isDiscovered: 0

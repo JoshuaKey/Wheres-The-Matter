@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 76OsmiumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: 2fb40b9ec97aa774384457cbc8b4f9f9, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Merging Neutron Stars
+  - Dying Low Mass Stars
+  isotopes:
+  - Os<sup>184</sup> (.02%)
+  - Os<sup>186</sup> (1.59%) (* - @<sup>182</sup>)
+  - Os<sup>187</sup> (1.96%)
+  - Os<sup>188</sup> (13.24%)
+  - Os<sup>189</sup> (16.15%)
+  - Os<sup>190</sup> (26.26%)
+  - Os<sup>192</sup> (40.78%)
+  category: 3
+  group: 8
+  period: 6
+  weight: 190.2
+  density: 22.5872
+  neutrons: 116
+  halfLife: 0
+  isDiscovered: 0

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 71LutetiumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: 4d106a45b1c9c5641b361972531997d1, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Merging Neutron Stars
+  - Dying Low Mass Stars
+  isotopes:
+  - Lu<sup>175</sup> (97.4%)
+  - Lu<sup>176</sup> (2.6%) (* - Hf<sup>176</sup>)
+  category: 6
+  group: 17
+  period: 8
+  weight: 175
+  density: 9.84
+  neutrons: 104
+  halfLife: 0
+  isDiscovered: 0

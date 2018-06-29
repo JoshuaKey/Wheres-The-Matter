@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 84PoloniumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: 88828ffe428d6ec4bb66eb224eec7aff, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Unknown
+  isotopes:
+  - Po<sup>210</sup> (138 days - Pb<sup>206</sup>)
+  category: 5
+  group: 16
+  period: 6
+  weight: 209
+  density: 9.2
+  neutrons: 126
+  halfLife: 190440
+  isDiscovered: 0

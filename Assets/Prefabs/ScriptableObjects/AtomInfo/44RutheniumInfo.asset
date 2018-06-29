@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 44RutheniumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: 83478d4a9eb5d104ab1787a1c22524a6, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Merging Neutron Stars
+  - Dying Low Mass Stars
+  isotopes:
+  - Ru<sup>96</sup> (5.54%)
+  - Ru<sup>98</sup> (1.87%)
+  - Ru<sup>99</sup> (12.76%)
+  - Ru<sup>100</sup> (12.6%)
+  - Ru<sup>101</sup> (17.06%)
+  - Ru<sup>102</sup> (31.55%)
+  - Ru<sup>104</sup> (18.62%)
+  category: 3
+  group: 8
+  period: 5
+  weight: 101.1
+  density: 12.1
+  neutrons: 58
+  halfLife: 0
+  isDiscovered: 0

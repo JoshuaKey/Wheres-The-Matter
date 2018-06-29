@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 54XenonInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: 2887ca70b1457d64a8ff92479b4d6acb, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Merging Neutron Stars
+  - Dying Low Mass Stars
+  isotopes:
+  - Xe<sup>124</sup> (.1%)
+  - Xe<sup>128</sup> (1.91%)
+  - Xe<sup>129</sup> (26.4%)
+  - Xe<sup>130</sup> (4.07%)
+  - Xe<sup>131</sup> (21.23%)
+  - Xe<sup>132</sup> (26.91%)
+  - Xe<sup>134</sup> (10.44%)
+  - Xe<sup>136</sup> (8.86%) (* - Ba<sup>136</sup>)
+  category: 10
+  group: 18
+  period: 5
+  weight: 131.3
+  density: 0.005366
+  neutrons: 78
+  halfLife: 0
+  isDiscovered: 0

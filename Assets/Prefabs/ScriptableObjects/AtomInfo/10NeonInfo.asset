@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 10NeonInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: ec98e14b64b92bc44992a55517d87da9, type: 2}
+  description: 'Neon is a colorless gas that appears bright red in an electrical field.
+
+    Its name derives from ''neos'' meaning ''New'' in Ancient Greek.
+
+    Due to being a Noble Gas, it does not react easily. Since it is also light than
+    air, it is rare on Earth. Despite this, it is the 5th most common element in the
+    Universe.
+
+'
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Exploding Massive Stars
+  isotopes:
+  - Ne<sup>20</sup> (90.48%)
+  - Ne<sup>21</sup> (.27%)
+  - Ne<sup>22</sup> (9.25%)
+  category: 10
+  group: 18
+  period: 2
+  weight: 20.18
+  density: 0.000825
+  neutrons: 10
+  halfLife: 0
+  isDiscovered: 0

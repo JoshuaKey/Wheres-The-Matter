@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 58CeriumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: 08647d37d072fef42a6cb0f562560f7a, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Dying Low Mass Stars
+  - Merging Neutron Stars
+  isotopes:
+  - Ce<sup>136</sup> (.19%)
+  - Ce<sup>138</sup> (.25%)
+  - Ce<sup>140</sup> (88.45%)
+  - Ce<sup>142</sup> (11.11%)
+  category: 6
+  group: 4
+  period: 8
+  weight: 140.1
+  density: 6.77
+  neutrons: 82
+  halfLife: 0
+  isDiscovered: 0

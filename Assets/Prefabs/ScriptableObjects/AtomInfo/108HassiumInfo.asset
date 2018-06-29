@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 108HassiumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: b3afb9e21d85e7f4e907ba1a0b828d98, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound:
+  - Laboratory
+  origins:
+  - Unknown
+  - Man-Made
+  isotopes:
+  - Hs<sup>269</sup> (9 seconds - Sg<sup>265</sup>)
+  - Hs<sup>270</sup> (10 seconds - Sg<sup>266</sup>)
+  category: 3
+  group: 8
+  period: 7
+  weight: 277
+  density: -1
+  neutrons: 162
+  halfLife: 0.16666667
+  isDiscovered: 0

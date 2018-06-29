@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 14SiliconInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: b1b5ac78b20b51a4c90905f4c12f81eb, type: 2}
+  description: 'Silicon is one of the most useful elements for Mankind being used
+    for Pottery, Glass, Semiconductors, Cosmetics, Sealants, and Alloys.
+
+    It has the second highest boiling and melting point of all Metalloids and NonMetals
+    and is the 8th most common element in the Universe and 2nd on Earth.
+
+    It is named after ''Silicas'''' meaning ''Flint'' in Latin.'
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Exploding Massive Stars
+  - Exploding White Dwarfs
+  isotopes:
+  - Si<sup>28</sup> (92.2%)
+  - Si<sup>29</sup> (4.7%)
+  - Si<sup>30</sup> (3.1%)
+  category: 5
+  group: 14
+  period: 3
+  weight: 28.09
+  density: 2.3296
+  neutrons: 14
+  halfLife: 0
+  isDiscovered: 0

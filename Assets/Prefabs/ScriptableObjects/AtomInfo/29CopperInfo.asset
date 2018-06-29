@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 29CopperInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: ce003a71bfdb83a41ad1e12fc95837f5, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Exploding White Dwarfs
+  - Exploding Massive Stars
+  isotopes:
+  - Cu<sup>63</sup> (69.15%)
+  - Cu<sup>65</sup> (30.85%)
+  category: 3
+  group: 11
+  period: 4
+  weight: 63.55
+  density: 8.96
+  neutrons: 34
+  halfLife: 0
+  isDiscovered: 0

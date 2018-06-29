@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 101MendeleviumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: 446dca103360ede439d17670d84c78ec, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound:
+  - Laboratory
+  origins:
+  - Unknown
+  - Man-Made
+  isotopes:
+  - Md<sup>258</sup> (51 days - Fn<sup>258</sup>)
+  - Md<sup>260</sup> (31 days - Fn<sup>260</sup>, Es<sup>256</sup>, No<sup>260</sup>)
+  category: 7
+  group: 15
+  period: 9
+  weight: 258
+  density: -1
+  neutrons: 157
+  halfLife: 73440
+  isDiscovered: 0

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 72HafniumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: e97dfdeae68841a44920cd3cfdc14894, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Dying Low Mass Stars
+  - Merging Neutron Stars
+  isotopes:
+  - Hf<sup>174</sup> (.16%) (* - Yb<sup>170</sup> (
+  - Hf<sup>176</sup> (5.26%)
+  - Hf<sup>177</sup> (18.6%)
+  - Hf<sup>178</sup> (27.28%)
+  - Hf<sup>179</sup> (13.62%)
+  - Hf<sup>180</sup> (35.08%)
+  category: 3
+  group: 4
+  period: 6
+  weight: 178.5
+  density: 13.3
+  neutrons: 108
+  halfLife: 0
+  isDiscovered: 0

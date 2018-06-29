@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 73TantalumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: c9ee3ed09437d25408223115d9431a1d, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Merging Neutron Stars
+  - Dying Low Mass Stars
+  isotopes:
+  - Ta<sup>180</sup> (.01%)
+  - Ta<sup>181</sup> (99.99%)
+  category: 3
+  group: 5
+  period: 6
+  weight: 180.9
+  density: 16.4
+  neutrons: 108
+  halfLife: 0
+  isDiscovered: 0

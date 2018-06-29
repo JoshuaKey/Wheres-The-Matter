@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 47SilverInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: c1044473522a40140adb097a57309518, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Mergin Neutron Stars
+  - Dying Low Mass Stars
+  isotopes:
+  - Ag<sup>107</sup> (51.84%)
+  - Ag<sup>109</sup> (48.16%)
+  category: 3
+  group: 11
+  period: 5
+  weight: 107.9
+  density: 10.5
+  neutrons: 60
+  halfLife: 0
+  isDiscovered: 0

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 7NitrogenInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: 5342e67613e71f348ab75dac03a3d5df, type: 2}
+  description: 'Nitrogen is one of the most important elements for Life. It is the
+    the 4th most common element in Humans.
+
+    Despite this, it is also known as ''Azote'' meaning ''No Life''. This is because
+    it can cause suffocation if inhaled.'
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Dying Low Mass Stars
+  - Exploding Massive Stars
+  isotopes:
+  - N<sup>14</sup> (99.63%)
+  - N<sup>15</sup> (.06%)
+  category: 8
+  group: 15
+  period: 2
+  weight: 14.01
+  density: 0.001145
+  neutrons: 7
+  halfLife: 0
+  isDiscovered: 0

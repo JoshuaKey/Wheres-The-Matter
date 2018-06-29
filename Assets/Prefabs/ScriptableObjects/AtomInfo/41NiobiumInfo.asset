@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 41NiobiumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: 60ae6acfdf9b9374791837090a1a153f, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Dying Low Mass Stars
+  - Exploding Massive Stars
+  isotopes:
+  - 'Nb<sup>93</sup> '
+  category: 3
+  group: 5
+  period: 5
+  weight: 92.91
+  density: 8.57
+  neutrons: 52
+  halfLife: 0
+  isDiscovered: 0

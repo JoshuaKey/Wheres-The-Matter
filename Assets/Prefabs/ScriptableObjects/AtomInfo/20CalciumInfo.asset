@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 20CalciumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: 85e016d8587c4a1418ac47405139c052, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound:
+  - Beach
+  origins:
+  - Exploding Massive Stars
+  - Exploding White Dwarfs
+  isotopes:
+  - Ca<sup>40</sup> (96.94%)
+  - Ca<sup>42</sup> (.65%)
+  - Ca<sup>43</sup> (.14%)
+  - Ca<sup>44</sup> (2.086%)
+  - Ca<sup>46</sup> (.004%)
+  - Ca<sup>48</sup> (.18%)
+  category: 2
+  group: 2
+  period: 4
+  weight: 40.08
+  density: 1.54
+  neutrons: 20
+  halfLife: 0
+  isDiscovered: 0

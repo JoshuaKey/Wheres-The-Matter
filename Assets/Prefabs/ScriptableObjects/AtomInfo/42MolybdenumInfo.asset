@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 42MolybdenumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: fdb8b95fba15a8644954520a89e07fad, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Dying Low Mass Stars
+  - Exploding Massive Stars
+  isotopes:
+  - Mo<sup>92</sup> (14.65%)
+  - Mo<sup>94</sup> (9.19%)
+  - Mo<sup>95</sup> (15.87%)
+  - Mo<sup>96</sup> (16.67%)
+  - Mo<sup>97</sup> (9.58%)
+  - Mo<sup>98</sup> (24.29%)
+  - Mo<sup>100</sup> (9.74%) (* - Ru<sup>100</sup>)
+  category: 3
+  group: 6
+  period: 5
+  weight: 95.96
+  density: 10.2
+  neutrons: 56
+  halfLife: 0
+  isDiscovered: 0

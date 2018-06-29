@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 96CuriumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: 445a95abc11fc8e458c0250a3e9d912b, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound:
+  - Laboratory
+  origins:
+  - Unknown
+  - Man-Made
+  isotopes:
+  - Cm<sup>245</sup> (8500 years - Pu<sup>241</sup>)
+  - Cm<sup>246</sup> (4730 years - Pu<sup>242</sup>)
+  - Cm<sup>247</sup> (* - Pu<sup>243</sup>)
+  - Cm<sup>248</sup> (340000 years - Pu<sup>244</sup>)
+  - Cm<sup>250</sup> (9000 years - Bk<sup>250</sup>, Pu<sup>246</sup>)
+  category: 7
+  group: 10
+  period: 9
+  weight: 247
+  density: 13.51
+  neutrons: 151
+  halfLife: 8.230896e+13
+  isDiscovered: 0

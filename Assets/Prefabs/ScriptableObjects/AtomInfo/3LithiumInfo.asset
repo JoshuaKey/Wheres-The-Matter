@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 3LithiumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: d1628b7c97c9fb34797c142edd082d46, type: 2}
+  description: 'Lithium is a silvery-white metal. The name comes from ''lithos'' meaning
+    ''stone'' in Ancient Greek.
+
+    It is the lightest metal and is soft enough to be cut by a knife.
+
+    Despite being light, it is one the rarer elements because it is nearly radioctive. '
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Dying Low Mass Stars
+  - Cosmic Ray Fission
+  - Big Bang Fusion
+  isotopes:
+  - Li<sup>6</sup> (7.5%)
+  - Li<sup>7</sup> (92.5%)
+  category: 1
+  group: 1
+  period: 2
+  weight: 6.94
+  density: 0.534
+  neutrons: 4
+  halfLife: 0
+  isDiscovered: 0

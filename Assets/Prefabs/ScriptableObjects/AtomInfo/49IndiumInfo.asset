@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 49IndiumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: 02cfcb5ed377ffe488b77ab2d332bd3c, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Merging Neutron Stars
+  - Dying Low Mass Stars
+  isotopes:
+  - In<sup>113</sup> (4.28%)
+  - In<sup>115</sup> (95.72%) (* - Sn<sup>115</sup>)
+  category: 4
+  group: 13
+  period: 5
+  weight: 114.8
+  density: 7.31
+  neutrons: 66
+  halfLife: 0
+  isDiscovered: 0

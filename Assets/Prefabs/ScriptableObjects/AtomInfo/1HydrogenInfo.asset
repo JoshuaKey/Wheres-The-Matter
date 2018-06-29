@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 1HydrogenInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: 7c7d9be9d678f4149ab8d9af49754487, type: 2}
+  description: "Hydrogen is the first element and makes up 75% of the universe and
+    90% of all atoms. \nMost stars are composed of Hydrogen in the Plasma state."
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Big Bang Fusion
+  isotopes:
+  - Protium (99.98%)
+  - Deuterium (.01%)
+  category: 8
+  group: 1
+  period: 1
+  weight: 1.008
+  density: 0.000082
+  neutrons: 0
+  halfLife: 0
+  isDiscovered: 0

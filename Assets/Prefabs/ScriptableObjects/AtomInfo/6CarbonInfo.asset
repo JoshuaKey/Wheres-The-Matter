@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 6CarbonInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: ad47fa45acc9bd943b26f6dbf891a75d, type: 2}
+  description: 'Carbon is the 15th most common atom on Earth and 4th in the Universe.
+    It has a variety of uses in Life as well as Diamonds and Graphite.
+
+    It is sometimes referred to as, "The King of Elements" because of its many compunds.'
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Dying Low Mass Stars
+  - Exploding Massive Stars
+  isotopes:
+  - C<sup>12</sup> (98.93%)
+  - C<sup>13</sup> (1.07%)
+  - C<sup>14</sup> (5730 years - N<sup>14</sup>)
+  category: 8
+  group: 14
+  period: 2
+  weight: 12.011
+  density: 2.2
+  neutrons: 6
+  halfLife: 0
+  isDiscovered: 0

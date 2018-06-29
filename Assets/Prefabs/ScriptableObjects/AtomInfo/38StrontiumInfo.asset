@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 38StrontiumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: 275d73f42a744c047ad378dfb4e488a8, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Dying Low Mass Stars
+  - Exploding Massive Stars
+  isotopes:
+  - Sr<sup>84</sup> (.56%)
+  - Sr<sup>86</sup> (9.86%)
+  - Sr<sup>87</sup> (7%)
+  - Sr<sup>88</sup> (83.58%)
+  category: 2
+  group: 2
+  period: 5
+  weight: 87.62
+  density: 2.64
+  neutrons: 50
+  halfLife: 0
+  isDiscovered: 0

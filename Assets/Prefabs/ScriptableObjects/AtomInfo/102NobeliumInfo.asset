@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 102NobeliumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: 1a4543cac23da04488422653eb82c07e, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound:
+  - Laboratory
+  origins:
+  - Unknown
+  - Man-Made
+  isotopes:
+  - No<sup>255</sup> (3 minutes - Fn<sup>251</sup>, Md<sup>255</sup>)
+  - No<sup>259</sup> (58 minutes - Fn<sup>255</sup>, Md<sup>259</sup>)
+  category: 7
+  group: 16
+  period: 9
+  weight: 259
+  density: -1
+  neutrons: 157
+  halfLife: 58
+  isDiscovered: 0

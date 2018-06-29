@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 9FluorineInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: 86e6c0aba26723e4ba6e23cdfce0d27a, type: 2}
+  description: 'Flourine is a deadly, toxic, pale yellow gas that reacts explosively
+    with Alkali Metals and causes spontaneous combustions with other elements.
+
+    It is the most reactive element and is used with Uranium for nuclear power.
+
+    Flourine derives from ''fluere'' meaning ''Flow'' in Latin.'
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Exploding Massive Stars
+  isotopes:
+  - F<sup>19</sup>
+  category: 9
+  group: 17
+  period: 2
+  weight: 19
+  density: 0.001553
+  neutrons: 10
+  halfLife: 0
+  isDiscovered: 0

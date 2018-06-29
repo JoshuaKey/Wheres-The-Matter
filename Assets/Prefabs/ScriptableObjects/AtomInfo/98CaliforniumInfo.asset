@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 98CaliforniumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: 16849bc148eb471499fba178dc7ca75e, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound:
+  - Laboratory
+  origins:
+  - Unknown
+  - Man-Made
+  isotopes:
+  - Cf<sup>249</sup> (351 years - Cm<sup>245</sup>)
+  - Cf<sup>250</sup> (13 years - Cm<sup>246</sup>)
+  - Cf<sup>251</sup> (898 years - Cm<sup>247</sup>)
+  - Cf<sup>252</sup> (2 years - Cm<sup>248</sup>)
+  category: 7
+  group: 12
+  period: 9
+  weight: 251
+  density: 15.1
+  neutrons: 153
+  halfLife: 471988800
+  isDiscovered: 0

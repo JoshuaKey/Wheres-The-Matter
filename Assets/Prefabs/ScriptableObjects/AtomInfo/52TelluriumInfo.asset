@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 52TelluriumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: c411763ea495e9c47befdf9de339fea8, type: 2}
+  description: 'Tellurium is a  brittle, mildly toxic, silver-white metal.  Its primary
+    use is in Copper and Steel alloys.
+
+    It is 1 of 3 stable elements that is more common radioactive.
+
+    Tellurium''s atomic mass is greater than Iodine''s, the next element on the Periodic
+    Table.'
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Dying Low Mass Stars
+  - Merging Neutron Stars
+  isotopes:
+  - Te<sup>120</sup> (.09%)
+  - Te<sup>122</sup> (2.55%)
+  - Te<sup>123</sup> (.89%)
+  - Te<sup>124</sup> (4.74%)
+  - Te<sup>125</sup> (7.07%)
+  - Te<sup>126</sup> (18.84%)
+  - Te<sup>128</sup> (31.74%) (* - Xe<sup>128</sup>)
+  - Te<sup>130</sup> (34.08%) (* - Xe<sup>130</sup>
+  category: 5
+  group: 16
+  period: 5
+  weight: 127.6
+  density: 6.232
+  neutrons: 78
+  halfLife: 0
+  isDiscovered: 0

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 45RhodiumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: e3766651d311d7343b002e0081119272, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Merging Neutron Stars
+  - Dying Low Mass Stars
+  isotopes:
+  - 'Rh<sup>103</sup> '
+  category: 3
+  group: 9
+  period: 5
+  weight: 102.9
+  density: 12.4
+  neutrons: 58
+  halfLife: 0
+  isDiscovered: 0

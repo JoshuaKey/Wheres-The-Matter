@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14917fa053ebd0b40869cb02cdf79ad2, type: 3}
+  m_Name: 40ZirconiumInfo
+  m_EditorClassIdentifier: 
+  atom: {fileID: 11400000, guid: 1b61cfb5936469945864bf9bfab11352, type: 2}
+  description: 
+  image: {fileID: 0}
+  placesToBeFound: []
+  origins:
+  - Dying Low Mass Stars
+  - Exploding Massive Stars
+  isotopes:
+  - Zr<sup>90</sup> (51.45%)
+  - Zr<sup>91</sup> (11.22%)
+  - Zr<sup>92</sup> (17.15%)
+  - Zr<sup>94</sup> (17.38%)
+  - Zr<sup>96</sup> (2.8%) (* - Mo<sup>96</sup>)
+  category: 3
+  group: 4
+  period: 5
+  weight: 91.22
+  density: 6.52
+  neutrons: 50
+  halfLife: 0
+  isDiscovered: 0
