@@ -5,21 +5,33 @@ using UnityEngine;
 public class AtomParticlePool : MonoBehaviour {
 
     [SerializeField] AtomParticle atomParticlePrefab;
-    [SerializeField] RectTransform particleDestination;
+    [SerializeField] Transform particleDestination;
 
-    [SerializeField] int particleSize;
+    [SerializeField] int particleMaxAmo;
+    [SerializeField] float particleCollectDistance;
 
     AtomParticle[] atomParticles;
     int currParticle;
 
     private void Start() {
-        atomParticles = new AtomParticle[particleSize];
-        for (int i = 0; i < particleSize; i++) {
-            atomParticles[i] = Instantiate(atomParticlePrefab);
-            atomParticles[i].gameObject.SetActive(false);
-            atomParticles[i].transform.SetParent(this.transform);
+        atomParticles = new AtomParticle[particleMaxAmo];
+        for (int i = 0; i < particleMaxAmo; i++) {
+            atomParticles[i] = InstantiateParticle();
         }
         Disable();
+
+        particleCollectDistance = Mathf.Max(.5f, Game.Instance.playerData.GetAtomCollectorRadius() / 2) * 25;
+        particleCollectDistance *= particleCollectDistance;
+    }
+
+    private AtomParticle InstantiateParticle() {
+        var particle = Instantiate(atomParticlePrefab);
+
+        particle.transform.SetParent(this.transform, false);
+        
+        particle.gameObject.SetActive(false);
+
+        return particle;
     }
 
     // Update is called once per frame
@@ -33,10 +45,7 @@ public class AtomParticlePool : MonoBehaviour {
             var particle = atomParticles[i].rect;
 
             Vector3 distance = particleDestination.position - particle.position;
-            if (distance.sqrMagnitude < 900f) { // 30 squared
-                // Fade?
-                // Another Effect?
-
+            if (distance.sqrMagnitude < particleCollectDistance) { // 30 squared
                 Game.Instance.Absorb(atomParticles[i].atom, atomParticles[i].amo);
                 atomParticles[i].gameObject.SetActive(false);
                 Swap(i, --currParticle);
@@ -52,15 +61,13 @@ public class AtomParticlePool : MonoBehaviour {
     public void AddParticle(Atom a, int amo, Vector2 pos) {
         if(currParticle == 0) { Enable(); }
         if(currParticle == atomParticles.Length) {
-            particleSize = atomParticles.Length + 100;
-            AtomParticle[] tempArray = new AtomParticle[particleSize];
+            particleMaxAmo = atomParticles.Length + 100;
+            AtomParticle[] tempArray = new AtomParticle[particleMaxAmo];
             for(int i = 0; i < atomParticles.Length; i++) {
                 tempArray[i] = atomParticles[i];
             }
-            for (int i = atomParticles.Length; i < particleSize; i++) {
-                tempArray[i] = Instantiate(atomParticlePrefab);
-                tempArray[i].gameObject.SetActive(false);
-                tempArray[i].transform.SetParent(this.transform);
+            for (int i = atomParticles.Length; i < particleMaxAmo; i++) {
+                tempArray[i] = InstantiateParticle();
             }
             atomParticles = tempArray;
         }

@@ -50,7 +50,7 @@ public class ElementPage : MonoBehaviour {
         // Display
         nameText.text = a.GetName();
         atomicNumberText.text = a.GetAtomicNumber() == -1 ? "?" : "" + a.GetAtomicNumber();
-        //atomImage.sprite = info.GetImage();
+        atomImage.sprite = info.GetImage();
 
         // Data
         currAmoText.text = "Current Amo: " + data.GetCurrAmo();

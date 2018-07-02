@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: 25ManganeseInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: f4198d072acc27543889c9672f67d590, type: 2}
-  description: 
+  description: 'Manganese is a hard, brittle, silver metal mainly used in Stainless
+    Steel.
+
+    It is essential for Life and sometimes given to grazing animals
+
+    Manganese may be named after ''Magnes'' meaning Magnet in Latin or the compund
+    Magnesia Nigra'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

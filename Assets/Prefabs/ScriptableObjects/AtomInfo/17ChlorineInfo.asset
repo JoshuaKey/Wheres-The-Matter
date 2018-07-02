@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 17ChlorineInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: a1f03f54e2df30a4594a900188118c7b, type: 2}
-  description: 
+  description: 'Chlorine is a toxic yellowish-green gas used in Chemical Warfare.
+    Its name comes from ''Chloros'' meaning greenish-yellow in Ancient Greek.
+
+    Chlorine is often used in pharmacology and can combine with Sodium to form Sodium
+    Chloride or Table Salt.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

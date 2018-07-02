@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 22TitaniumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 2762bbd2cdbabe247ae2f7c3e2eba3b5, type: 2}
-  description: 
+  description: 'Titanium is a light, corrosive resistant, strong, silver metal. It
+    is as strong as steel, but much lighter and is used in airplanes, missiles, and
+    spacecraft.
+
+    Titanium is named after the Titans in Greek Mythology.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

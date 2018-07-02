@@ -27,7 +27,7 @@ public class CraftUI : MonoBehaviour {
 
     [Header("Craftable List")]
     [SerializeField] RectTransform craftableListRect;
-    [SerializeField] ChoiceOption craftableChoicePrefab;
+    [SerializeField] ChoiceOption choicePrefab;
 
     private List<ChoiceOption> craftableChoices = new List<ChoiceOption>();
 
@@ -35,11 +35,12 @@ public class CraftUI : MonoBehaviour {
 
     private void Start() {
         // Spawn all Craftables
-        float yPos = craftableChoicePrefab.transform.position.y - 5;
+        float startPos = -5;
+        float yPos = startPos;
         for (int i = 0; i < Game.Instance.gameData.GetCraftableAmount(); i++) {
             Craftable c = Game.Instance.gameData.GetCraftable(i);
 
-            var craftablChoice = Instantiate(craftableChoicePrefab);
+            var craftablChoice = Instantiate(choicePrefab);
 
             // Pos
             craftablChoice.transform.SetParent(craftableListRect, false);
@@ -61,9 +62,7 @@ public class CraftUI : MonoBehaviour {
         }
         // Height of ScrollView
         var sizeDelta = craftableListRect.sizeDelta;
-        sizeDelta.y = 
-            (Game.Instance.gameData.GetCraftableAmount() - 1) * 50f + 
-            Game.Instance.gameData.GetCraftableAmount() * -3;
+        sizeDelta.y = startPos - yPos + 10;
         craftableListRect.sizeDelta = sizeDelta;
 
         RemoveCraftable();

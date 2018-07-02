@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: 23VanadiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 17c642a878aa2a948b98b74c1a60c08a, type: 2}
-  description: 
+  description: "Vanadium is a hard, malleable, blue silver metal. Its main use is
+    as a Steel alloy. \nIt has very little use in Life, requiring only .01 milligrams.
+    Even more can be toxic.\nVanadium is named after 'Vanadis' the old Norse name
+    for the Scandanavian Goddess Freyja."
   image: {fileID: 0}
   placesToBeFound: []
   origins:

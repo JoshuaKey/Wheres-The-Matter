@@ -21,18 +21,19 @@ public class SplitUI : MonoBehaviour {
 
     [Header("Atom Choices")]
     [SerializeField] RectTransform atomList;
-    [SerializeField] AtomChoice atomChoicePrefab;
-    private List<AtomChoice> atomChoices = new List<AtomChoice>();
+    [SerializeField] ChoiceOption choicePrefab;
+    [SerializeField] AudioClip choiceClickSound;
+    private List<ChoiceOption> atomChoices = new List<ChoiceOption>();
 
     private Atom atomA;
 
     private void Start() {
+        float startPos = -5;
+        float yPos = startPos;
         for (int i = 0; i < Game.Instance.gameData.GetAtomAmount(); i++) {
             Atom a = Game.Instance.gameData.FindAtom(i + 1);
 
-            var atomChoice = Instantiate(atomChoicePrefab);
-            atomChoice.atom = a;
-            atomChoice.splitUI = this;
+            var atomChoice = Instantiate(choicePrefab);
 
             // Pos
             atomChoice.transform.SetParent(atomList, false);
@@ -40,13 +41,24 @@ public class SplitUI : MonoBehaviour {
             atomChoice.transform.localScale = Vector3.one;
 
             var pos = atomChoice.transform.localPosition;
-            pos.y -= 5 + i * 50f;
+            pos.y = yPos;
             atomChoice.transform.localPosition = pos;
+            yPos -= 50f;
+
+            // Data / Functionality
+            var data = Game.Instance.gameData.FindAtomData(a.GetAtomicNumber());
+            string text = a.GetName() + "\n<size=80%> Atomic Number: " + a.GetAtomicNumber() + " Curr Amo: " + data.GetCurrAmo();
+            atomChoice.SetText(text);
+            atomChoice.SetButtonEvent(() => { // Event should never change
+                SetAtom(a);
+                AudioManager.Instance.PlaySound(choiceClickSound);
+            });
 
             atomChoices.Add(atomChoice);
         }
+        // Height of ScrollView
         var sizeDelta = atomList.sizeDelta;
-        sizeDelta.y = (Game.Instance.gameData.GetAtomAmount() - 1) * 50f + Game.Instance.gameData.GetAtomAmount() * -3;
+        sizeDelta.y = startPos - yPos + 10;
         atomList.sizeDelta = sizeDelta;
     }
 
@@ -67,7 +79,7 @@ public class SplitUI : MonoBehaviour {
 
     public void SetAtomA(Atom atom) {
         atomA = atom;
-        atomChoices[atomA.GetAtomicNumber() - 1].trigger.interactable = false;
+        atomChoices[atomA.GetAtomicNumber() - 1].SetInteractable(false);
 
         AtomInfo info = Game.Instance.gameData.FindAtomInfo(atom.GetAtomicNumber());
         AtomData data = Game.Instance.gameData.FindAtomData(atom.GetAtomicNumber());
@@ -81,7 +93,7 @@ public class SplitUI : MonoBehaviour {
 
     public void RemoveAtomA() {
         if (atomA != null) {
-            atomChoices[atomA.GetAtomicNumber() - 1].trigger.interactable = true;
+            atomChoices[atomA.GetAtomicNumber() - 1].SetInteractable(true);
         }
         atomA = null;
 
@@ -175,7 +187,10 @@ public class SplitUI : MonoBehaviour {
     public void Reset() {
         RemoveAtomA();
         for (int i = 0; i < atomChoices.Count; i++) {
-            atomChoices[i].SetDisplay();
+            Atom a = Game.Instance.gameData.FindAtom(i + 1);
+            var data = Game.Instance.gameData.FindAtomData(a.GetAtomicNumber());
+            string text = a.GetName() + "\n<size=80%> Atomic Number: " + a.GetAtomicNumber() + " Curr Amo: " + data.GetCurrAmo();
+            atomChoices[i].SetText(text);
         }
     }
 }

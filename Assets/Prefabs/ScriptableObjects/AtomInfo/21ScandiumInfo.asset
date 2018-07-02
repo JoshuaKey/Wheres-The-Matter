@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: 21ScandiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: d02a582f4325b1442b5d62740165240f, type: 2}
-  description: 
+  description: 'Scandium is a silver metal  mostly used for research purposes, but
+    can also be used as a replacement for Aluminum.
+
+    Scandium is named after Scandanavia.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

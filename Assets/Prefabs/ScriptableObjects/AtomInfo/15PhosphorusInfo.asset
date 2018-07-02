@@ -19,7 +19,7 @@ MonoBehaviour:
     Red Phosphorus is used on the side of Matchboxes.
 
     The element is named after ''phosphoros'' meaning ''Bringer of Light'' in Ancient
-    Greek because White Phosphorus glows when interacting with Oxygen.'
+    Greek because White Phosphorus glows when reacting with Oxygen.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: 18ArgonInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 4be102781e84eb5449e1975209d138f4, type: 2}
-  description: 
+  description: 'Argon is a colorless gas. It is the 3rd most common gas on earth,
+    even more common than Carbon Dioxide and Water Vapor.
+
+    Argon comes from ''Argos'' meaning Idle or Lazy in Ancient Greek.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

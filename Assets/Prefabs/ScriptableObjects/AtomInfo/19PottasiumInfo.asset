@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Name: 19PottasiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 22df63392692a2d4088f2231af4f2d17, type: 2}
-  description: 
+  description: 'Potassium is a soft, silver metal. It produces a violet light when
+    set on fire.
+
+    Potassium is used in glass, fertilisers, soap and parmaceuticals.
+
+    It''s name comes from the English word ''Potash''.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

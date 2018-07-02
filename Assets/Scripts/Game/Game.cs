@@ -11,23 +11,27 @@ public class Game : MonoBehaviour {
 
     [Header("Game")]
     [SerializeField] public Player player;
+    [SerializeField] public Cursor cursor;
     [SerializeField] public World world;
 
     [Header("Canvas")]
+    [SerializeField] public RectTransform menu;
+    [SerializeField] public Canvas gameCanvas;
     [SerializeField] public Canvas elementCanvas;
     [SerializeField] public Canvas mapCanvas;
     [SerializeField] public Canvas laboratoryCanvas;
-    [SerializeField] public Canvas gameCanvas;
+    [SerializeField] public Canvas saveCanvas;
+    [SerializeField] public Canvas settingCanvas;
 
     [Header("UI")]
     [SerializeField] private Image newElementImage;
     [SerializeField] public AtomParticlePool particlePool;
-    [SerializeField] public float particleRandomness = 1;
+    [SerializeField] public float particleEffectAdditionalDist;
 
     [Header("Music")]
     [SerializeField] private AudioClip[] areaMusic;
 
-    private Canvas previousCanvas;
+    //private Canvas previousCanvas;
     private Canvas currCanvas;
 
     public static Game Instance = null;
@@ -42,13 +46,11 @@ public class Game : MonoBehaviour {
     }
 
     private void Start() {
-        previousCanvas = gameCanvas;
-        currCanvas = gameCanvas;
-
         gameData.Init();
         playerData.Init();
         world.Init(player.transform.position, (int)System.DateTime.Now.Ticks, World.AreaType.FOREST);
 
+        DisplayGame();
         int areaIndex = (int)World.AreaType.FOREST;
         if (areaMusic.Length > areaIndex) {
             AudioManager.Instance.PlayMusic(areaMusic[areaIndex], 1.0f);
@@ -56,6 +58,8 @@ public class Game : MonoBehaviour {
     }
     
     public void LoadArea(World.AreaType area) {
+        if(world.currArea == area) { return; }
+
         player.transform.position = Vector3.back * 10; //Vector3(0, 0, -10);
 
         int areaIndex = (int)area;
@@ -74,7 +78,7 @@ public class Game : MonoBehaviour {
     }
 
     public void PlayEffect(Atom atom, int amo, Vector3 pos) {
-        var temp = Random.insideUnitCircle * particleRandomness;
+        var temp = Random.insideUnitCircle * (cursor.GetSize()/2 + particleEffectAdditionalDist);
         pos.x += temp.x;
         pos.y += temp.y;
         particlePool.AddParticle(atom, amo, pos);
@@ -104,78 +108,107 @@ public class Game : MonoBehaviour {
         AtomData data = gameData.FindAtomData(atom.GetAtomicNumber());
         data.Lose(amo);
     }
-    
-    public void DisplayPreviousUI() {
-        if(previousCanvas == elementCanvas) {
-            DisplayElements();
-        } else if (previousCanvas == mapCanvas) {
-            DisplayMap();
-        } else if (previousCanvas == laboratoryCanvas) {
-            DisplayLaboratory();
-        } else if (previousCanvas == gameCanvas) {
-            DisplayGame();
+
+    public void ToggleMenu() {
+        bool isActive = !menu.gameObject.activeInHierarchy;
+        menu.gameObject.SetActive(isActive);
+
+        player.SetCanCollect(!isActive && currCanvas == gameCanvas);
+    }
+    public void DisplayMenu() {
+        menu.gameObject.SetActive(true);
+        player.SetCanCollect(false);
+    }
+    public void HideMenu() {
+        menu.gameObject.SetActive(false);
+
+        if(currCanvas == gameCanvas) {
+            player.SetCanCollect(true);
         }
     }
 
-    [ContextMenu("Show Elements")]
-    public void DisplayElements() {
-        if (currCanvas == elementCanvas) { DisplayGame(); return; }
-        previousCanvas = currCanvas;
-        currCanvas = elementCanvas;
-
-        elementCanvas.gameObject.SetActive(true);
-        mapCanvas.gameObject.SetActive(false);
-        laboratoryCanvas.gameObject.SetActive(false);
-
-        player.enabled = false;
-        world.gameObject.SetActive(false);
-        gameCanvas.gameObject.SetActive(false);
-
-        newElementImage.gameObject.SetActive(false);
-    }
-
-    [ContextMenu("Show Map")]
-    public void DisplayMap() {
-        if(currCanvas == mapCanvas) { DisplayGame(); return; }
-        previousCanvas = currCanvas;
-        currCanvas = mapCanvas;
-
-        elementCanvas.gameObject.SetActive(false);
-        mapCanvas.gameObject.SetActive(true);
-        laboratoryCanvas.gameObject.SetActive(false);
-
-        player.enabled = false;
-        world.gameObject.SetActive(false);
-        gameCanvas.gameObject.SetActive(true);
-    }
-
-    [ContextMenu("Show Laboratory")]
-    public void DisplayLaboratory() {
-        if (currCanvas == laboratoryCanvas) { DisplayGame(); return; }
-        previousCanvas = currCanvas;
-        currCanvas = laboratoryCanvas;
-
-        elementCanvas.gameObject.SetActive(false);
-        mapCanvas.gameObject.SetActive(false);
-        laboratoryCanvas.gameObject.SetActive(true);
-
-        player.enabled = false;
-        world.gameObject.SetActive(false);
-        gameCanvas.gameObject.SetActive(true);
-    }
-
-    [ContextMenu("Show Game")]
     public void DisplayGame() {
-        previousCanvas = currCanvas;
         currCanvas = gameCanvas;
 
         elementCanvas.gameObject.SetActive(false);
         mapCanvas.gameObject.SetActive(false);
         laboratoryCanvas.gameObject.SetActive(false);
+        menu.gameObject.SetActive(false);
 
-        player.enabled = true;
+        player.SetCanCollect(true);
         world.gameObject.SetActive(true);
         gameCanvas.gameObject.SetActive(true);
+    }
+
+    public void DisplayElements() {
+        //if (currCanvas == elementCanvas) { DisplayGame(); return; }
+        //previousCanvas = currCanvas;
+        currCanvas = elementCanvas;
+
+        elementCanvas.gameObject.SetActive(true);
+        mapCanvas.gameObject.SetActive(false);
+        laboratoryCanvas.gameObject.SetActive(false);
+        gameCanvas.gameObject.SetActive(false);
+        menu.gameObject.SetActive(false);
+
+        //player.enabled = false;
+        player.SetCanCollect(false);
+        world.gameObject.SetActive(false);
+
+        newElementImage.gameObject.SetActive(false);
+    }
+
+    public void DisplayMap() {
+        //if(currCanvas == mapCanvas) { DisplayGame(); return; }
+        //previousCanvas = currCanvas;
+        currCanvas = mapCanvas;
+
+        elementCanvas.gameObject.SetActive(false);
+        mapCanvas.gameObject.SetActive(true);
+        laboratoryCanvas.gameObject.SetActive(false);
+        gameCanvas.gameObject.SetActive(false);
+        menu.gameObject.SetActive(false);
+
+        //player.enabled = false;
+        player.SetCanCollect(false);
+        world.gameObject.SetActive(false);
+    }
+
+    public void DisplayLaboratory() {
+        //if (currCanvas == laboratoryCanvas) { DisplayGame(); return; }
+        //previousCanvas = currCanvas;
+        currCanvas = laboratoryCanvas;
+
+        elementCanvas.gameObject.SetActive(false);
+        mapCanvas.gameObject.SetActive(false);
+        laboratoryCanvas.gameObject.SetActive(true);
+        gameCanvas.gameObject.SetActive(false);
+        menu.gameObject.SetActive(false);
+
+        //player.enabled = false;
+        player.SetCanCollect(false);
+        world.gameObject.SetActive(false);
+        gameCanvas.gameObject.SetActive(true);
+    }
+
+    public void DisplaySave() {
+        print("No Save UI");
+    }
+
+    public void DisplaySettings() {
+        print("No Settings");
+    }
+
+    public void Save() {
+        print("Saving");
+    }
+    public void Load() {
+        print("Loading");
+    }
+
+    public void Exit() {
+        Application.Quit();
+        Debug.Break();
     }
 }
 //RULES:
@@ -192,7 +225,3 @@ public class Game : MonoBehaviour {
 
 // Also, chunks should only be generated if they have not been tampered with. 
 // Afterwards, we should load the new state
-
-//UI:
-// Right now, UI can only keep 'back progression' of up to one. This is fine because only ElementCanvas uses it.
-// In the future it mght be better to make a better system for 'back progression'.

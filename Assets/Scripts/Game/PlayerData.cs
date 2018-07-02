@@ -14,7 +14,6 @@ public class PlayerData  {
         public float success; // How Likely it is to succeed
         public float stability; // How likely it is to be stable
     }
-
     public struct AtomCollisionResult {
         public List<AtomAmo> atomsProduced;
         public List<AtomAmo> atomsUsed;
@@ -27,13 +26,19 @@ public class PlayerData  {
     [SerializeField] private float collectRadius = .3f; // From .3 to Inifinite
     [SerializeField] private float collectSpeed = 0f; // From 1 -  0
     [SerializeField] private float collectEfficiency = 1f; // From 1 to Infinite
+    [SerializeField] private float collectWeight = 1f; // From 1 - 300ish Neutrons + Protons
 
     [SerializeField] private float particleSpeed = 1.5f; // From 1.5 to  100
     [SerializeField] private float particleStability = .6f;
 
+    // Add weight
+    // All values are floats
+    // What is the max, what is the min.
+
     private AtomAmo collectRadiusCost;
     private AtomAmo collectSpeedCost;
     private AtomAmo collectEfficiencyCost;
+    private AtomAmo collectWeightCost;
             
     private AtomAmo particleSpeedCost;
     private AtomAmo particleStablizationCost;
@@ -45,21 +50,24 @@ public class PlayerData  {
     public void Init() {
         var gameData = Game.Instance.gameData;
 
-        Atom Hygrogen = gameData.FindAtom(1);
+        Atom hydrogen = gameData.FindAtom(1);
 
-        collectRadiusCost.atom = Hygrogen;
+        collectRadiusCost.atom = hydrogen;
         collectRadiusCost.amo = 50;
 
-        collectSpeedCost.atom = Hygrogen;
+        collectSpeedCost.atom = hydrogen;
         collectSpeedCost.amo = 50;
 
-        collectEfficiencyCost.atom = Hygrogen;
+        collectEfficiencyCost.atom = hydrogen;
         collectEfficiencyCost.amo = 50;
 
-        particleSpeedCost.atom = Hygrogen;
+        collectWeightCost.atom = hydrogen;
+        collectWeightCost.amo = 50;
+
+        particleSpeedCost.atom = hydrogen;
         particleSpeedCost.amo = 50;
 
-        particleStablizationCost.atom = Hygrogen;
+        particleStablizationCost.atom = hydrogen;
         particleStablizationCost.amo = 50;
     }
 
@@ -404,6 +412,26 @@ public class PlayerData  {
 
         return success;
     }
+    public bool UpgradeAtomCollectorWeight() {
+        bool success = false;
+        var gameData = Game.Instance.gameData;
+
+        AtomData data = gameData.FindAtomData(collectEfficiencyCost.atom.GetAtomicNumber());
+
+        if (data.GetCurrAmo() >= collectEfficiencyCost.amo) {
+            data.Lose(collectEfficiencyCost.amo);
+
+            // Update CollectRadius Cost
+            collectWeightCost.amo *= 2;
+
+            // Increment Collect Radius
+            collectWeight += 2f;
+
+            success = true;
+        }
+
+        return success;
+    }
     public bool UpgradeParticleSpeed() {
         bool success = false;
         var gameData = Game.Instance.gameData;
@@ -449,6 +477,7 @@ public class PlayerData  {
     public float GetAtomCollectorRadius() { return collectRadius; }
     public float GetAtomCollectorSpeed() { return collectSpeed; }
     public float GetAtomCollectorEfficiency() { return collectEfficiency; }
+    public float GetAtomCollectorWeight() { return collectWeight; }
     public float GetParticleSpeed() { return particleSpeed; }
     public float GetParticleStabilization() { return particleStability; }
 
@@ -464,6 +493,7 @@ public class PlayerData  {
     public AtomAmo GetAtomCollectorRadiusCost() { return collectRadiusCost; }
     public AtomAmo GetAtomCollectorSpeedCost() { return collectSpeedCost; }
     public AtomAmo GetAtomCollectorEfficiencyCost() { return collectEfficiencyCost; }
+    public AtomAmo GetAtomCollectorWeightCost() { return collectWeightCost; }
     public AtomAmo GetParticleSpeedCost() { return particleSpeedCost; }
     public AtomAmo GetParticleStabilizationCost() { return particleStablizationCost; }
 

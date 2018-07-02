@@ -8,7 +8,7 @@ public class AtomParticle : MonoBehaviour {
 
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] Image image;
-    [HideInInspector] public RectTransform rect;
+    [SerializeField] public RectTransform rect;
     [HideInInspector] public Atom atom;
     [HideInInspector] public int amo;
 
@@ -19,10 +19,6 @@ public class AtomParticle : MonoBehaviour {
 
         var info = Game.Instance.gameData.FindAtomInfo(a.GetAtomicNumber());
         image.color = info.GetCategoryColor();
-
-        if(rect == null) {
-            rect = GetComponent<RectTransform>();
-        }
 
         rect.position = pos;
 

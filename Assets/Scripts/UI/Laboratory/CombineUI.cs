@@ -7,13 +7,13 @@ using UnityEngine.UI;
 
 public class CombineUI : MonoBehaviour {
 
+    [Header("UI")]
     [SerializeField] Slider atomAAmo;
     [SerializeField] Slider atomBAmo;
     [SerializeField] Image atomAImage;
     [SerializeField] Image atomBImage;
     [SerializeField] Image atomResultImage;
     [SerializeField] Button produceButton;
-    [SerializeField] ResultUI resultUI;
 
     [Header("Text")]
     [SerializeField] TextMeshProUGUI atomAText;
@@ -23,35 +23,49 @@ public class CombineUI : MonoBehaviour {
     [SerializeField] TextMeshProUGUI atomAAmoText;
     [SerializeField] TextMeshProUGUI atomBAmoText;
 
-    [Header("Atom Choices")]
+    [Header("Other")]
     [SerializeField] RectTransform atomList;
-    [SerializeField] AtomChoice atomChoicePrefab;
-    private List<AtomChoice> atomChoices = new List<AtomChoice>();
+    [SerializeField] ChoiceOption choicePrefab;
+    [SerializeField] AudioClip choiceClickSound;
+    [SerializeField] ResultUI resultUI;
+
+    private List<ChoiceOption> atomChoices = new List<ChoiceOption>();
 
     private Atom atomA;
     private Atom atomB;
 
     private void Start() {
-        for(int i = 0; i < Game.Instance.gameData.GetAtomAmount(); i++) {
+        float startPos = -5;
+        float yPos = startPos;
+        for (int i = 0; i < Game.Instance.gameData.GetAtomAmount(); i++) {
             Atom a = Game.Instance.gameData.FindAtom(i + 1);
 
-            var atomChoice = Instantiate(atomChoicePrefab);
-            atomChoice.atom = a;
-            atomChoice.combineUI = this;
+            var atomChoice = Instantiate(choicePrefab);
 
             // Pos
-            atomChoice.transform.SetParent(atomList,false);
+            atomChoice.transform.SetParent(atomList, false);
 
             atomChoice.transform.localScale = Vector3.one;
 
             var pos = atomChoice.transform.localPosition;
-            pos.y -= 5 + i * 50f;
+            pos.y = yPos;
             atomChoice.transform.localPosition = pos;
+            yPos -= 50f;
+
+            // Data / Functionality
+            var data = Game.Instance.gameData.FindAtomData(a.GetAtomicNumber());
+            string text = a.GetName() + "\n<size=80%> Atomic Number: " + a.GetAtomicNumber() + " Curr Amo: " + data.GetCurrAmo();
+            atomChoice.SetText(text);
+            atomChoice.SetButtonEvent(() => { // Event should never change
+                SetAtom(a);
+                AudioManager.Instance.PlaySound(choiceClickSound);
+            });
 
             atomChoices.Add(atomChoice);
         }
+        // Height of ScrollView
         var sizeDelta = atomList.sizeDelta;
-        sizeDelta.y = (Game.Instance.gameData.GetAtomAmount()-1) * 50f + Game.Instance.gameData.GetAtomAmount() * -3;
+        sizeDelta.y = startPos - yPos + 10;
         atomList.sizeDelta = sizeDelta;
     }
 
@@ -83,26 +97,26 @@ public class CombineUI : MonoBehaviour {
 
     public void SetAtomA(Atom atom) {
         atomA = atom;
-        atomChoices[atomA.GetAtomicNumber() - 1].trigger.interactable = false;
+        atomChoices[atomA.GetAtomicNumber() - 1].SetInteractable(false);
 
         AtomInfo info = Game.Instance.gameData.FindAtomInfo(atom.GetAtomicNumber());
         AtomData data = Game.Instance.gameData.FindAtomData(atom.GetAtomicNumber());
 
         atomAText.text = info.GetAtom().GetName();
-        //atomAImage.sprite = info.GetImage();
+        atomAImage.sprite = info.GetImage();
 
         atomAAmo.maxValue = data.GetCurrAmo();
         SetAtomAAmoText();
     }
     public void SetAtomB(Atom atom) {
         atomB = atom;
-        atomChoices[atomB.GetAtomicNumber() - 1].trigger.interactable = false;
+        atomChoices[atomB.GetAtomicNumber() - 1].SetInteractable(false);
 
         AtomInfo info = Game.Instance.gameData.FindAtomInfo(atom.GetAtomicNumber());
         AtomData data = Game.Instance.gameData.FindAtomData(atom.GetAtomicNumber());
 
         atomBText.text = info.GetAtom().GetName();
-        //atomBImage.sprite = info.GetImage();
+        atomBImage.sprite = info.GetImage();
 
         atomBAmo.maxValue = data.GetCurrAmo();
         SetAtomBAmoText();
@@ -110,34 +124,34 @@ public class CombineUI : MonoBehaviour {
 
     public void RemoveAtomA() {
         if (atomA != null) {
-            atomChoices[atomA.GetAtomicNumber() - 1].trigger.interactable = true;
+            atomChoices[atomA.GetAtomicNumber() - 1].SetInteractable(true);
         }
         atomA = null;
 
         AtomInfo info = Game.Instance.gameData.GetUknownInfo();
         atomAText.text = info.GetAtom().GetName();
-        //atomAImage.sprite = info.GetImage();
+        atomAImage.sprite = info.GetImage();
 
         produceButton.interactable = false;
         infoText.text = "";
-        //atomResultImage.sprite = info.GetImage();
+        atomResultImage.sprite = info.GetImage();
         atomResultText.text = info.GetAtom().GetName();
         atomAAmoText.text = "";
         atomAAmo.value = 0;
     }
     public void RemoveAtomB() {
         if (atomB != null) {
-            atomChoices[atomB.GetAtomicNumber() - 1].trigger.interactable = true;
+            atomChoices[atomB.GetAtomicNumber() - 1].SetInteractable(true);
         }
         atomB = null;
 
         AtomInfo info = Game.Instance.gameData.GetUknownInfo();
         atomBText.text = info.GetAtom().GetName();
-        //atomBImage.sprite = info.GetImage();
+        atomBImage.sprite = info.GetImage();
 
         produceButton.interactable = false;
         infoText.text = "";
-        //atomResultImage.sprite = info.GetImage();
+        atomResultImage.sprite = info.GetImage();
         atomResultText.text = info.GetAtom().GetName();
         atomBAmoText.text = "";
         atomBAmo.value = 0;
@@ -153,7 +167,6 @@ public class CombineUI : MonoBehaviour {
     }
 
     public void Produce() {
-        //var info = Game.Instance.playerData.Produce(atomA, atomB);
         var result = Game.Instance.playerData.ProduceCombine(atomA, atomB, (int)atomAAmo.value, (int)atomBAmo.value);
 
         // Display Popup
@@ -173,7 +186,10 @@ public class CombineUI : MonoBehaviour {
         RemoveAtomA();
         RemoveAtomB();
         for(int i = 0; i < atomChoices.Count; i++) {
-            atomChoices[i].SetDisplay();
+            Atom a = Game.Instance.gameData.FindAtom(i + 1);
+            var data = Game.Instance.gameData.FindAtomData(a.GetAtomicNumber());
+            string text = a.GetName() + "\n<size=80%> Atomic Number: " + a.GetAtomicNumber() + " Curr Amo: " + data.GetCurrAmo();
+            atomChoices[i].SetText(text);
         }
     }
 

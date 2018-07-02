@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 20CalciumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 85e016d8587c4a1418ac47405139c052, type: 2}
-  description: 
+  description: 'Calcium is a pale yellow metal. It is the 5th most common element
+    on Earth and is essential to all Life. About 1 kilogram is present in Humans,
+    mostly in the form of bones and teeth.
+
+    Calcium comes from ''Calx'' meaning Lime in Ancient Greek.'
   image: {fileID: 0}
   placesToBeFound:
   - Beach

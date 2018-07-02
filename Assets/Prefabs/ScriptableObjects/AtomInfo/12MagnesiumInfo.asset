@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Name: 12MagnesiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 307678c565737f545884b26f06167e2e, type: 2}
-  description: 'Magnesium is a shiny grey metal essential to all life used in the
-    center of Chlorophyll, in Photosynthesis.
+  description: 'Magnesium is a shiny grey metal essential to all life. Chlorophyll,
+    which is used in Photosynthesis, has a single atom of Magnesium in in the center.
 
     It is the 4th most commone element on Earth and is produced in massive stars from
     3 Helium and 1 Carbon atom coming together.

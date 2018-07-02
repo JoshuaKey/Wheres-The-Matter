@@ -16,7 +16,7 @@ public class World : MonoBehaviour {
     Dictionary<AreaType, Dictionary<Vector2, Chunk>> areas = new Dictionary<AreaType, Dictionary<Vector2, Chunk>>();
 
     Dictionary<Vector2, Chunk> currChunkMap;
-    AreaType currArea;
+    public AreaType currArea { get; private set; }
     public Vector2Int currChunk { get; private set; }
 
     public int seed { get; private set; }

@@ -92,7 +92,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 17.9
+  m_fontSize: 26.85
   m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 114533613618203850}
   image: {fileID: 114591692738177146}
-  rect: {fileID: 0}
+  rect: {fileID: 224012199374492618}
   atom: {fileID: 0}
   amo: 0
 --- !u!222 &222187878870462872
@@ -230,7 +230,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: 20}
+  m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224798599201644582
 RectTransform:

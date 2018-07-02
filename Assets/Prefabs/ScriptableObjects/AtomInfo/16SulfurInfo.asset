@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Name: 16SulfurInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: da05f15b5e283b94e80b207a9a00e4a8, type: 2}
-  description: 'Sulfur is a yellow crystal that reacts with many elements.
+  description: 'Sulfur is a yellow crystal that reacts with many elements. It can
+    form Sulfur Dioxide which can cause acid rain or Sulfuric Acid which us used in
+    fertilisers.
+
+    Sulfur is essential for all living things. It helps produce Amino Acids. Humans
+    take in about 1 gram of Sulfur a day.
 
     It has been used since ancient times and is known in the Bible as Brimstone.'
   image: {fileID: 0}

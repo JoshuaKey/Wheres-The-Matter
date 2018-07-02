@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 24ChromiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: de7552184992aab47ab3915cd4f42715, type: 2}
-  description: 
+  description: 'Chromium is a hard, brittle silver metal. It is mainly used to produce
+    Stainless Steel.
+
+    Chromium is named after ''Chroma'' meaning Color. Thisi s because it forms many
+    colorful compunds.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

@@ -12,13 +12,14 @@ public class Player : MonoBehaviour {
     [SerializeField] AudioSource collectSource;
 
     [Header("Cursor")]
-    [SerializeField] private Texture2D cursorTexture;
-    [SerializeField] private Vector2 cursorOffset;
+    [SerializeField] private Cursor cursor;
 
     private new Camera camera;
 
     private int AtomCollectorLayer;
     private int AtomCollectorLayerMask;
+
+    private bool canCollect = true;
 
     // Use this for initialization
     void Start () {
@@ -27,11 +28,22 @@ public class Player : MonoBehaviour {
         AtomCollectorLayer = LayerMask.NameToLayer("AtomCollector");
         AtomCollectorLayerMask = 1 << AtomCollectorLayer;
 
-        //Cursor.SetCursor(cursorTexture, cursorOffset, CursorMode.Auto);
-        collectSource.clip = collectSound;
+        cursor.SetSize(Game.Instance.playerData.GetAtomCollectorRadius());
     }
 
     private void Update() {
+        if (canCollect) {
+            CheckForCollect();     
+        }
+
+        cursor.UpdatePosition();
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Game.Instance.ToggleMenu();
+        }
+    }
+    
+    public void CheckForCollect() {
         if (Input.GetMouseButton(0)) {
             if (!collectSource.isPlaying) {
                 collectSource.Play();
@@ -44,15 +56,19 @@ public class Player : MonoBehaviour {
 
             Vector3 pos = Input.mousePosition;
 
+            float weightLimit = Game.Instance.playerData.GetAtomCollectorWeight();
             for (int i = 0; i < hit.Length; i++) {
                 AtomCollector collector = hit[i].collider.GetComponent<AtomCollector>();
 
                 var atoms = collector.Absorb();
 
-                for(int y = 0; y < atoms.Count; y++) {
-                    Game.Instance.PlayEffect(atoms[y].atom, atoms[y].amo, pos);
+                for (int y = 0; y < atoms.Count; y++) {
+                    var info = Game.Instance.gameData.FindAtomInfo(atoms[y].atom.GetAtomicNumber());
+                    if(info.GetProtons() + info.GetNeutrons() <= weightLimit ) {
+                        Game.Instance.PlayEffect(atoms[y].atom, atoms[y].amo, pos);
+                    }         
                 }
-                
+
             }
             if (hit.Length == 0) {
                 print("WE aren't collecting anything...");
@@ -73,10 +89,12 @@ public class Player : MonoBehaviour {
             mvmt.x -= 1;
         }
 
-        if(mvmt != Vector2.zero){
+        if (mvmt != Vector2.zero) {
             float speed = this.speed;
             if (Input.GetKey(KeyCode.LeftShift)) { speed *= speed; }
             Game.Instance.Move(mvmt * speed * Time.deltaTime);
         }
     }
+
+    public void SetCanCollect(bool value) { canCollect = value; }
 }
