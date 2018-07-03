@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: 59PraseodymiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: ae0a6d941c65e68498f591d96033a22f, type: 2}
-  description: 
+  description: 'Praseodymium is a soft malleable, siver metal mostly used as an alloy.
+
+    It is named after ''Prasios Didymos'' meaning Green Twin in Ancient Greek, because
+    it was discovered at the same time as Neodymium.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

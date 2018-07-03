@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Name: 111RoentgeniumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: e09006ff64d11e04b93eebacaf9594e3, type: 2}
-  description: 
+  description: 'Roentgenium is created from bombarding Bismuth with Nickel. It is
+    assumed to have properties similar to Copper, Silver and Gold, but no tests have
+    been conducted.
+
+    Rg<sup>286</sup> supposedly has a halflife of 10 minutes.
+
+    Roentgenium is named in honor of German physicist, Wilhelm Conrad Rontgen who
+    discovered X-Rays.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

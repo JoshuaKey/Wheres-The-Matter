@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Name: 38StrontiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 275d73f42a744c047ad378dfb4e488a8, type: 2}
-  description: 
+  description: 'Strontium is a soft, silvery-white metal. It isn''t used too often
+    now but was used in Cathode ray tubes.
+
+    Interestingly enough, Sr<sup>89</sup> is used to treat bone cancer, but Sr<sup>90</sup>
+    can cause bone cancer. In fact Sr<sup>90</sup> is often the result of nuclear
+    fallout and radiation.
+
+    Strontium is named after Strontian, a small town in Scotland.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

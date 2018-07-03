@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Name: 102NobeliumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 1a4543cac23da04488422653eb82c07e, type: 2}
-  description: 
+  description: 'Nobelium is made by bombarding Curium with Carbon atoms.
+
+    It is named after Alfred Nobel who created the Nobel Prize.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

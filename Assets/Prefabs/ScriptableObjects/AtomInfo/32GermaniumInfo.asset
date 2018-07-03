@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: 32GermaniumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 31d2682930632ed42aa7568abbbdaca4, type: 2}
-  description: 
+  description: 'Germanium is a shiny, gray, white metal. It was used as a semiconductor
+    but has been replaced. Now its mainly used for LEDs, Fibre-Optics, and Solar Panels.
+
+    Germanium is the 50th most common element on Earth and was discovered late. In
+    fact, Mendeleev predicted Germanium in his periodic table before it was discovered.
+
+    Germanium is named after the Latin name for Germany, ''Germania'''
   image: {fileID: 0}
   placesToBeFound: []
   origins:

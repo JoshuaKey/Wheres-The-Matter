@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: 49IndiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 02cfcb5ed377ffe488b77ab2d332bd3c, type: 2}
-  description: 
+  description: 'Indium is a soft, malleable, shiny grey metal. It is used in Indium
+    Tin Oxide which is used in  touch screens, flat screen tvs, and solar panels.
+
+    Indium is named after ''Indicium'' meaning Indigo or Violet in Latin.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

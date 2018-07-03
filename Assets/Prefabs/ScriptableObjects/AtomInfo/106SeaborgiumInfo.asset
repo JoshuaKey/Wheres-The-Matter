@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 106SeaborgiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: b8393b57baeef3c42a17fe6468626cab, type: 2}
-  description: 
+  description: 'Seaborgium is produced froom bombarding Californium with Oxygen.
+
+    Seaborgium is named after American Nuclear Chemist, Glenn Seaborg.  At the time
+    of naming, Glenn Seaborg was alive making Seaborgium 1 of 2 elements to be named
+    after a living person.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

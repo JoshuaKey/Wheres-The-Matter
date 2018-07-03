@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: 30ZincInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 3a7bbbc38634dac41aa14372a0ed0f77, type: 2}
-  description: 
+  description: 'Zinc is a silver grey metal used to prevent rusting in other metals.
+    It creates Brass when combined with Copper.
+
+    Zinc is essential for Life. About 2 billion people suffer from Zinc deficiency
+    causing diarrhea or stunting growth.
+
+    Zinc comes from the Persian word ''Sing'' meaning Stone.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

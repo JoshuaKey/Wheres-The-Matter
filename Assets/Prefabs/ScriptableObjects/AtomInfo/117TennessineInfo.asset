@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Name: 117TennessineInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: dfcdfd80bf64dfc47a0e573c77846570, type: 2}
-  description: 
+  description: 'Tennessine is produced from bombarding Berkelium and Calcium and is
+    the 2nd heaviest element known. It was discovered after Oganesson and is the most
+    recent element discovered.
+
+    Althoug it falls in the Group 17 which are all Halogens, Tennessine may not be
+    a Halogen because of its heavy mass. Instead, it is predicted to be a Metal.
+
+    It is named after the US state of Tennessee.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

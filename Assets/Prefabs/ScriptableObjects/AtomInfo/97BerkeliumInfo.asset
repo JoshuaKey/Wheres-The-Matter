@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Name: 97BerkeliumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 988c6a10844a36642b1c9220686188e5, type: 2}
-  description: 
+  description: 'Berkelium is a silver metal which has no commercial value.
+
+    It is named after Berkeley, California where it was discovered.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

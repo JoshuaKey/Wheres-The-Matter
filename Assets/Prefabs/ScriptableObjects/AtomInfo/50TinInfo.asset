@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: 50TinInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 1b362f2fe9317de43ab00593873b1038, type: 2}
-  description: 
+  description: 'Tin appears in 2 distinct forms, referred to as alpha and beta. Alpha
+    Tin is grey and less dense than Beta. Beta Tin is silvery white and malleable.
+
+    Tin''s abbreviation, Sn, comes from the Latin ''Stannum'' an old name for Tin.
+
+    Tin has 10 stable isotopes, the most out of all elements. This is due to various
+    magical numbers such as 50 protons that encourage the formation of atoms.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

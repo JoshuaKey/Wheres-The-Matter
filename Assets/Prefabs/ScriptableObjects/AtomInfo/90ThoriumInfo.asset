@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Name: 90ThoriumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: c651af8871d035f46b5aedeec75ac911, type: 2}
-  description: 
+  description: "Thorium is a hard, malleable silver metal that turns black when exposed
+    to air. Although it is radioactive, Isotope Th<sup>232</sup> has a halflife of
+    14 billion years making it effectively stable and quite abundant, 3x more common
+    than Uranium. \nIt is mainly used as a substitute for Uranium and creates a decay
+    sequence called the Thorium Series which stabilizes to Lead.\nThorium is named
+    after Thor, The Scandanavium God of War."
   image: {fileID: 0}
   placesToBeFound: []
   origins:

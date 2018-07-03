@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: 31GalliumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: f966d3ee9fb349f46a7e6b792c5e89bd, type: 2}
-  description: 
+  description: 'Gallium is a silvery blue metal named after the Latin name for France,
+    ''Gallia''.
+
+    It is 1 of 4 elements that is a liquid at room temperature. In fact Gallium can
+    melt in your hand then freeze when removed.
+
+    It is mainly used in electronics.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

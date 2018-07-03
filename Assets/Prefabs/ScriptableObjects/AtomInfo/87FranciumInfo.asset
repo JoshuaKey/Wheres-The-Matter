@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: 87FranciumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 71636951d43fb754ba11289650e1fc90, type: 2}
-  description: 
+  description: "Francium is the 2nd rarest naturally occuring element, and the most
+    unstable out of the first 101. Despite this, small samples have been made unlike
+    Astatine.\nIt is the last element to be discovered occuring naturally and is named
+    after France.\t"
   image: {fileID: 0}
   placesToBeFound: []
   origins:

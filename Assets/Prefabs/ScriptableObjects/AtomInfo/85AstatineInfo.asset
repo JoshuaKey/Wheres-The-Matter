@@ -12,7 +12,17 @@ MonoBehaviour:
   m_Name: 85AstatineInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 05cde04978ad0d243b803cce895a73ea, type: 2}
-  description: 
+  description: 'Astatine is the rarest naturally ocurring element and the 2nd most
+    unstable element of the first 101. It is so unstable that we have not been able
+    to make a pure sample of Astatine and have no idea what it looks like. If we were
+    to have a pure sample, it would immediately vaporize itself from the heat of its
+    own radiation. Because of this, we do not know is Astatine is a Halogen, Mettaloid,
+    Non Metal or Metal. It is traditionally considered a metalloid.
+
+    Despite not being able to produce a solid sample, Astatine has some use in the
+    medical industry and its properties have been predicted from similar atoms.
+
+    Astatine is named after ''Astatos'' meaning Unstable in Ancient Greek.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

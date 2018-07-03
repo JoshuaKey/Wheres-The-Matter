@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: 103LawrenciumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: bfa99f54e3a2efc40a870f759c59b8e6, type: 2}
-  description: 
+  description: 'Lawrencium is produced from bombarding Califrnium with Boron.
+
+    It is named after Ernest Lawrence who invented the Cylotron, a type of Particle
+    Accelerator.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

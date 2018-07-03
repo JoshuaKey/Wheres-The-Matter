@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: 35BromineInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 16e9e82e64e3e2842b4bdf6f0221e9e3, type: 2}
-  description: 
+  description: 'Bromine is a toxic, red-brown liquid at room temperature. Because
+    of its toxicity, it is not used for many products.
+
+    Bromine comes from ''Bromos'' meaning Stench in Ancient Greek.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

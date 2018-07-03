@@ -12,7 +12,16 @@ MonoBehaviour:
   m_Name: 107BohriumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 6a3bb3cd002ebd941a7b311f30105d0d, type: 2}
-  description: 
+  description: 'Bohrium is produced by bombarding Bismuth with Chromium, supposedly
+    with the ''Cold Fusion'' method, a method where Nuclear Reactions can occur at
+    room temperature or below. Normally Nuclear Reations require immense heat and
+    pressure, typically from a star. It has not been proven, however, and is in fact
+    looked down upon due to its large failure. However, a possible replacement method
+    known as Muon-catalyzed fusion may work.
+
+    Supposedly, the isotope Bh<sup>278</sup> may have aa halflife of 11 miutes.
+
+    Bohrium is named after Danish Physicist, Daniels Bohr.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

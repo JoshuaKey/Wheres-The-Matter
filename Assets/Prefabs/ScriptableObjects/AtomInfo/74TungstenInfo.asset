@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: 74TungstenInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: f1fef6558558b07439d6aff1accabac2, type: 2}
-  description: 
+  description: "Tungsten, also known as Wolfram, is a shiny white metal which has
+    the highest boiling and melting point of any metal.\nIt is the heaviest and only
+    6th period element used in Life. \nTungsten comes from 'Tung Sten' meaning Hard
+    Stone in Swedish and Wolfram comes from 'Wolf rahm' meaning Wolf Soot in German."
   image: {fileID: 0}
   placesToBeFound: []
   origins:

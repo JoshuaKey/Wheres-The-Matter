@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: 56BariumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 87cd71deff0c0684694a8eecb5f4a9ca, type: 2}
-  description: 
+  description: 'Barium is a soft, silvery, grey metal mostly used in paint, glass,
+    and drills for gas and oil.
+
+    The isotope Ba<sup>132</sup> is theoretically radioactive, but its halflife is
+    1000x the age of the Universe.
+
+    Its name comes from ''Barys'' meaning Heavy in Ancient Greek.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

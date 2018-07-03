@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Name: 80MercuryInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: d0f1570c012296b40a7024a3b5b8948d, type: 2}
-  description: 
+  description: 'Mercury, also known as Quicksilver and formerly Hydrargyrum, is the
+    only metal that is a liquid under Standard Conditions and has the lowest boiling
+    and freezing point of any metal. Standard Conditions are defined as 32<sup>o</sup>
+    F and 10<sup>5</sup> Pa pressure.
+
+    Mercury is named after the planet Mercury.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

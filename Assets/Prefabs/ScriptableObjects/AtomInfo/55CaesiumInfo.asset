@@ -12,7 +12,17 @@ MonoBehaviour:
   m_Name: 55CaesiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: e92ada949b320b24dbbf1af5596b1d4f, type: 2}
-  description: 
+  description: 'Caesium, spelled as Cesium in American spelling, is a soft, silvery,
+    gold metal that is liquid at room temperature. It is the most reactive metal and
+    the least electronegative element, meaning it is unlikely to attract electrons
+    towards itself.
+
+    Caesium''s electromagnetic radiation was used to define the meter, second and
+    is now used in atomic clocks.
+
+    The name comes from ''Caesius'' meaning Sky Blue in Latin.
+
+'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

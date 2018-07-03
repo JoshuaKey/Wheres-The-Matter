@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: 83BismuthInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 6fdc8eda0c2d8934a8f496cf4c5e892c, type: 2}
-  description: 
+  description: 'Bismuth is a brittle, white metal that can refract light to make a
+    rainbow. It is the start of the Radioactive elements meaning every element including
+    and after Bismuth is radioactive and has no stable isotopes. Despite this, Bismuth
+    has such a long halflife that it can be considered stable. It is mainly used in
+    cosmetics and pharmaceuticals.
+
+    It was one of the first 10 metals discovered but its name origin is unknown.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

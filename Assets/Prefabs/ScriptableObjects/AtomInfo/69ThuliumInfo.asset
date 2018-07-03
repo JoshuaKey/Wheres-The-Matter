@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Name: 69ThuliumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 3845034a44ce1d24a8da39e36aba2cb5, type: 2}
-  description: 
+  description: "Thulium is a silvery white metal used to produce X-rays and Lasers.\nIt
+    is the least common stable Lanthanide. Only Promethium is rare, but it is radioactive.
+    \nIt is named after 'Thule' the Ancient name for Scandanavia."
   image: {fileID: 0}
   placesToBeFound: []
   origins:

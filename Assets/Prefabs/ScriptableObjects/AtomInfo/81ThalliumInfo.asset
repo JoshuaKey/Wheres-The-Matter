@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Name: 81ThalliumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 762e7ab61726d9844b054833bc9b7491, type: 2}
-  description: 
+  description: 'Thallium is a toxic, soft, grey metal. It has historically been used
+    in rat poison, insectides and murder giving it the name ''The poisoner''s poison''
+    and resulting in being banned in many countries.
+
+    When alloyed with Mercury, it creates a substance with a melting point 20<sup>o</sup>
+    C less than Mercury''s melting point.
+
+    Thallium is derived from ''Thallos'' meaning Green Twig in Ancient Greek.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

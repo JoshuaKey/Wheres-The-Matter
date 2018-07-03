@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: 37RubidiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 7c75fb4196915bb4aba10f5cff40bb08, type: 2}
-  description: 
+  description: 'Rubidium is a soft silvery-white metal that may spontaneously combust
+    and reacts viciously with water.
+
+    Rb<sup>87</sup> has a halflife of 49 billion years, about 3x the age of the Universe.
+    It is commonly used to date rocks.
+
+    Rubidium comes from ''Rubidius'' meaning Deepest Red in Latin.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

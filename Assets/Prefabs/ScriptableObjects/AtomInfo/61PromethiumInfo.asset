@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 61PromethiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 14ae1be478e5e674ba50522e48af5eea, type: 2}
-  description: 
+  description: 'Promethium is the 2nd radioactive element in the periodic table and
+    occurs before Bismuth, the start ot the remaining Radioactive elements. As such
+    it is rare, and only occurs from decaying Uranium or Europium.
+
+    It is named after the Greek God ''Prometheus'' who stole fire and gave it to humans.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

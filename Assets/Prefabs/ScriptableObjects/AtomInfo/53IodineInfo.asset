@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: 53IodineInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 615e554566f648749a3fb9191fecac8a, type: 2}
-  description: 
+  description: "Iodine is a shiny black crystal used in Pharmaceuticals, Dyes, and
+    Catalysts.\nIt is essential for humans and helps keep the Thyroid gland, the area
+    below the Adam's apple, functioning. \nIodine comes from 'Iodes' meaning Violet
+    in Ancient Greek."
   image: {fileID: 0}
   placesToBeFound: []
   origins:

@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Name: 88RadiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 743a0b382e94d7d489fca49ef82fa5e6, type: 2}
-  description: 
+  description: 'Radium is a silvery white metal that turns black when combined with
+    Nitrogen. It produces ionizing radioation which means objects hit by it may glow
+    with radioluminscence.
+
+    Its only uses are in nuclear medicine due to its radioactivity and toxicity and
+    it is named after ''Radius'' meaning Ray in Latin.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

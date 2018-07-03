@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 40ZirconiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 1b61cfb5936469945864bf9bfab11352, type: 2}
-  description: 
+  description: 'Zirconium is a strong, malleable, silvery white metal used for its
+    high strength especially in nuclear fuel, magnetsand ceramics. In fact, Zirconium
+    can''t absorb neutrons once formed making it very useful with nuclear reactors.
+
+    Zirconium comes from ''Zargun'' meaning Gold colored in Arabic.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

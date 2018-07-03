@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: 115MoscoviumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 287d6a6d207e57d44b740428d2859e9e, type: 2}
-  description: 
+  description: 'Moscovium is named after the Moscow Oblast where the JINR team works
+    from.
+
+    It is produced from bombardment of Amercium and Calcium.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: 105DubniumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: d06e8af620df67046bfb026137898888, type: 2}
-  description: 
+  description: 'Dubnium is produced from bombarding Californium with Nitrogen.
+
+    It is named after the town, Dubna, Moscow Oblast, Russia partially to ease the
+    tension between American and Soviet scientists from the Transfermium wars.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

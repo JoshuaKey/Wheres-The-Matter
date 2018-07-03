@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Name: 52TelluriumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: c411763ea495e9c47befdf9de339fea8, type: 2}
-  description: 'Tellurium is a  brittle, mildly toxic, silver-white metal.  Its primary
-    use is in Copper and Steel alloys.
+  description: 'Tellurium is a brittle, toxic, silver-white metal. Its primary use
+    is in Copper and Steel alloys. Interestingly enough, Tellurium''s atomic mass
+    is greater than Iodine''s, the next element on the Periodic Table.
 
-    It is 1 of 3 stable elements that is more common radioactive.
+    It is 1 of 3 stable elements that is more common found radioactive than stable.
 
-    Tellurium''s atomic mass is greater than Iodine''s, the next element on the Periodic
-    Table.'
+    Tellurium comes from ''Tellus'' meaning Earth in Latin'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

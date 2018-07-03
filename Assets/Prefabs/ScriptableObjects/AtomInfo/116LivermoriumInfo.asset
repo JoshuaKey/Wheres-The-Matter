@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: 116LivermoriumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: da01871449bc417488603cce3319b5a5, type: 2}
-  description: 
+  description: 'Livermorium is named after the Lawrence Livermore National Laboratory
+    which is named after Livermore, California which is named after Robert Livermore.
+
+    It is made by bombarding Curium with Calcium.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

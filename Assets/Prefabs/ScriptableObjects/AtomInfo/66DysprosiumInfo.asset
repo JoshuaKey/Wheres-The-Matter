@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: 66DysprosiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 9c224f7b2d4fd194eb58307cf9c2591d, type: 2}
-  description: 
+  description: 'Dysprosium is a silvery, white metal useful in Nuclear reactors and
+    Data storage.
+
+    It is named after ''Dysprositos'' meaning Hard to Get in Ancient Greek.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

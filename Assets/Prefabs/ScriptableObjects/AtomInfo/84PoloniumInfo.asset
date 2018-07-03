@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: 84PoloniumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 88828ffe428d6ec4bb66eb224eec7aff, type: 2}
-  description: 
+  description: 'Polonium is a silver grey semi-metal. It has a short halflife and
+    is rare both naturally and artificially. However, its halflife also makes it a
+    good source of neutron and alpha particles.
+
+    Polonium was the first element discovered because of its radioactivity.
+
+    Polonium is named after Poland.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

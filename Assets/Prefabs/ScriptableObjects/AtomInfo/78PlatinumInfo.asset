@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 78PlatinumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 5a3832bacb37e67429e2274588e83b8b, type: 2}
-  description: 
+  description: 'Platinum is a dense, malleable, silvery white metal considered a Noble
+    Metal because of its low reactivity. It is rare on Earth and is more common on
+    the Moon and in Meteorites.
+
+    Platinum is named after ''Platina'' meaning Little Silver in Spanish.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

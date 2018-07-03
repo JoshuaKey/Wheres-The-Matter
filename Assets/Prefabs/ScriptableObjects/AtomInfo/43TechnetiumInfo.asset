@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Name: 43TechnetiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: fce699f0fbe11bc4388197cfa1e21e14, type: 2}
-  description: 'Technetium is the lightest material where all its isotopes are radioative.
-    This makes it unstable.
+  description: 'Technetium is the lightest material where all its isotopes are radioactive.
+    This makes it unstable and extremely rare. In fact, Technetium does not occur
+    naturally. Its halflifes are too short compared to the age of the Earth.
 
-    It was predicted by Dmitri Mendeleev before it was discovered.
+    It was predicted by Dmitri Mendeleev before it was discovered and its existence
+    puzzled scientists for a while until is was artificially made in 1937.
 
-    Its name means "Artificial" in Ancient Greek.
+    Its name comes from ''Teknetos'' meaning Artificial in Ancient Greek.
 
 '
   image: {fileID: 0}

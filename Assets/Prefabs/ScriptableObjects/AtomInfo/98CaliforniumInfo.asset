@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: 98CaliforniumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 16849bc148eb471499fba178dc7ca75e, type: 2}
-  description: 
+  description: 'Californium is a silvery metal produced from Curium and used for its
+    ability to emit neutrons. It is used to start Nuclear Reactors, in metal detectors,
+    and identifying gold and silver ores.
+
+    It has the 2nd highest atomic mass of any element visible to the naked eye.
+
+    Californium is named after the state and university of California.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

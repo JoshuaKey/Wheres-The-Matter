@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: 63EuropiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 23a8bb3ee2445444091d75b38eab6215, type: 2}
-  description: 
+  description: "Europium is a soft, silvery metal. It is one of the rarest elements
+    in the universe and only about 5 x 10<sup>-8</sup>% of matter is Europium.\nIt
+    has uses in Lights, Lasers, and Nuclear Reactors. \nEuropium is named after the
+    continent Europe, and also used to print euro banknotes."
   image: {fileID: 0}
   placesToBeFound: []
   origins:

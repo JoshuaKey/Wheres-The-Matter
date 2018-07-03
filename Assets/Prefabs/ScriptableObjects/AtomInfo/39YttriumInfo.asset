@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Name: 39YttriumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: b0529966de9cd5b4892cfbdb852aacc6, type: 2}
-  description: 
+  description: 'Yttrium is a soft silver metal used in LEDs, semiconductor, glass,
+    and alluminum alloys.
+
+    Exposure to Yttrium can cause lung cancer but Y<sup>90</sup> can treat liver cancer.
+
+    Yttrium is named after the village Ytterby in Sweden.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

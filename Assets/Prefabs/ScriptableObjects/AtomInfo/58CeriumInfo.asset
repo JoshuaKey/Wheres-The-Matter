@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 58CeriumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 08647d37d072fef42a6cb0f562560f7a, type: 2}
-  description: 
+  description: 'Cerium was the first Lanthanide to be discovered and is the most common
+    Lanthanide. It is used to create sparks in cigarette lighters, flat screen tvs,
+    and lights.
+
+    The name comes from the asteroid Ceres which is named after the Roman God of Agriculture.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

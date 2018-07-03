@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 42MolybdenumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: fdb8b95fba15a8644954520a89e07fad, type: 2}
-  description: 
+  description: 'Molybdenum is a toxic, shiny, silver metal. It is essential for life,
+    but too much can be deadly.
+
+    Molybdenum is named after ''Molybdos'' meaning Lead in Ancient Greek. This is
+    because the two elements were confused for each other.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

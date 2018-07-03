@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 96CuriumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 445a95abc11fc8e458c0250a3e9d912b, type: 2}
-  description: 
+  description: 'Curium is a hard, dense, silvery metal hat glows purple in the dark.
+    It is produced from Uranium and Plutonium and is used in space flight for electrical
+    equipment.
+
+    Curium is named after Pierre and Marie Curie.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

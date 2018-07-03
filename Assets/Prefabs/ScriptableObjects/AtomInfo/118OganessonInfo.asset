@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: 118OganessonInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 185fb07e470cb1249aac65978da14af9, type: 2}
-  description: 
+  description: 'Oganess is produced from bombarding Californium and Calcium is the
+    heaviest known element. Despite being in Group 18 which is filled with Noble Gases,
+    it may be a solid metal at Standard Conditions due to its high atomic weight.
+
+    It was named after Russian nuclear physicist Yuri Oganessian who was alive at
+    the time of naming making it 1 of 2 elements named after a living person, the
+    other being Seaborgium.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

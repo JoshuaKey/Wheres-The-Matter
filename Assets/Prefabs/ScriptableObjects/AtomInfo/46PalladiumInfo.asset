@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Name: 46PalladiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: bdcccbdc25a60fa47bdd2d3f339ce599, type: 2}
-  description: 
+  description: "Palladium is a Corrosion resistant, silvery white metal. It's considered
+    a noble metal, or metal that don't react too often. \nIt is mainly used in cars
+    as a Catalytic Convertor, or to convert toxic gas to less harmful substances,
+    in Exhaust Pipes, but it is also used in Electronics, Dentistry, Medicine and
+    Groundwater treatment.\nPalladium is named after the asteroid Pallas which is
+    named after the Greek Goddess of Wisdom Pallas."
   image: {fileID: 0}
   placesToBeFound: []
   origins:

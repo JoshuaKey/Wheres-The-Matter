@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 51AntimonyInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 7d44e223fe3904248bc243edc0afa90d, type: 2}
-  description: 
+  description: 'Antimony is a hard, brittle silvery semi-metal. It has been known
+    and used since ancient times for cosmetics, but it was thought to be Lead. Currently
+    it is used in semiconductors, alloys, and flame resistant products.
+
+    Antimony comes from ''Anti Monos'' meaning Not Alone in Ancient Greek.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Name: 92UraniumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: e215ba178a5065f4fa0d945f942dda34, type: 2}
-  description: 
+  description: 'Uranium is a silver grey metal which turns black when it contacts
+    air. It reacts with nearly all non metal elements except Noble Gases and is hard
+    enough to cut glass.
+
+    It is the heavest primordial element and is used in nuclear reactors, bullets,
+    and shields protecting against radiation.
+
+    Uranium is named after the planet Uranus.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

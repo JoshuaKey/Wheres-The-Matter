@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: 64GadoliniumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 97b3f07e92f30114a82e3986b6921f37, type: 2}
-  description: 
+  description: 'Gadolinium is a soft, silvery metal mostly used as an Alloy in Iron
+    and Chromium to improve resistance to high temperatures and oxidation.
+
+    It is named in honor of Johan Gadolin'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

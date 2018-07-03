@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: 67HolmiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: aafbb5fa8f06f494a8283691a24c9ba3, type: 2}
-  description: 
+  description: 'Holmium is a soft, malleable, shiny, white metal and has the highest
+    magnetic ability of all elements making it useful in magnets.
+
+    It is named after ''Holmia'', the Latin name for Stockholm.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Name: 99EinsteiniumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 634559b6a12df404b95aeb1e1a2011d8, type: 2}
-  description: 
+  description: 'Einsteinium is a silvery metal that glows blue in the dark. It was
+    discovered in the aftermath of the first Hydrogen Bomb and has no commercial uses.
+
+    It has the highest atomic mass of all elements visible to the naked eye.
+
+    Einsteinium is named after Albert Einstein.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

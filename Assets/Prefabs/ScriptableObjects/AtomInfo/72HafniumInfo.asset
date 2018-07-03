@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 72HafniumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: e97dfdeae68841a44920cd3cfdc14894, type: 2}
-  description: 
+  description: "Hafnium is a steel gray metal very similar to Zirconium. In fact,
+    it can be hard to tell the difference between the elements.\nHafnium was predicted
+    by Dmitri Mendeleev, but wasn\u2019t identified until much later. It is the last
+    stable to be discovered. \nHafnium is named after ''Hafnia' the name Latin for
+    Copenhagen."
   image: {fileID: 0}
   placesToBeFound: []
   origins:

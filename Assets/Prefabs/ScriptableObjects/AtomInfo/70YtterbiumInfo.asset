@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: 70YtterbiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: d7b480eaf071af24cab3b1fdc6c80c42, type: 2}
-  description: 
+  description: 'Ytterbium is a soft, malleable, silver white metal. It is a fire and
+    explosion hazard and can irritate the skin and eye.
+
+    It is named after Ytterby, Sweden. 3 other elements are named after this village.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

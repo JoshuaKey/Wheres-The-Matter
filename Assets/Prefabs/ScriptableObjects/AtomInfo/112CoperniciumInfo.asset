@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: 112CoperniciumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 4ca013b5204b3f942aa79f1566b16ebd, type: 2}
-  description: 
+  description: 'Named after Astronomer Nicholas Copernicus, it is believed to be a
+    gas at standard conditions following the trend of Zinc, Cadmium and Mercury, each
+    having lower melting and boiling points than the last. In fact, because of this
+    distinction, Zinc, Cadmium, Mercury and Copernicium may be considered Post Transition
+    Metals.
+
+    It is produced from bombarding Lead with Zinc.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

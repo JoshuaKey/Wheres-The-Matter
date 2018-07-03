@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: 75RheniumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 6a61a03773dff1d4eacefdf69ae70ae9, type: 2}
-  description: 
+  description: 'Rhenium is a heavy, silver grey metal with the 3rd highest melting
+    point and 2nd highest boiling point mostly used int Jet engines.
+
+    It was the 2nd last stable element discovered and is 1 of 3 elements more commonly
+    found radioactive than stable.
+
+    Rhenium comes from the Latin name for the Rhine river, ''Rhine''.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

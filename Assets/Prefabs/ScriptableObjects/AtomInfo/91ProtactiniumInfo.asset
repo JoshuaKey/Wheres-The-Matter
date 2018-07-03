@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Name: 91ProtactiniumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: b3802e4c399eca04ea123c1148d81001, type: 2}
-  description: 
+  description: 'Protactinium, formerly Protoactinium, is a rare, toxic, bright, silvery
+    metal. Because of its toxicity and rarity, Protactinium is used mainly for Research
+    purposes.
+
+    Its atomic weight is less than its predessecor, Thorium.
+
+    Protactinium''s name comes from ''Protos'' meaning First in Ancient Greek because
+    it produces Actinium through radioactive decay.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

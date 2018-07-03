@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: 71LutetiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 4d106a45b1c9c5641b361972531997d1, type: 2}
-  description: 
+  description: "Lutetium is a hard, dense, silver white metal. It is mainly used for
+    research purposes, but is also used as a Catalyst.\nLutetium is one of the rarest
+    and most expensive rare earth metals, averaging US $10,000 per kilogram. \nIt
+    is named after 'Lutetia', the Roman name for Paris."
   image: {fileID: 0}
   placesToBeFound: []
   origins:

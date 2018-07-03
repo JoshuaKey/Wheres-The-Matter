@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: 36KryptonInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 48eb3aa3743f713408904195231e7728, type: 2}
-  description: 
+  description: 'Krypton is a colorless, odorless, tasteless gas. It is mainly used
+    in lighting and photography.
+
+    From 1960 to 1983, a meter was defined by the wavelength of K<sup>86</sup>. A
+    meter is now defined by the distance light travels in a vacuum.
+
+    Krypton comes from ''Kryptos'' meaning The Hidden One from Ancient Greek.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

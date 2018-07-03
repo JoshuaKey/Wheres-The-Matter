@@ -12,7 +12,15 @@ MonoBehaviour:
   m_Name: 34SeleniumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 658e6126c6456414b9d08b1bc32df58b, type: 2}
-  description: 
+  description: 'Selenium can appear as black beads, red powder, or grey stone depending
+    on its temperature and state. It is mainly used in glass.
+
+    Selenium is essential for some species to live. In Humans, we need an average
+    of about 14 miligrams of Selenium and each cell contains over a million selenium
+    atoms.
+
+    Selenium comes from ''Selene'' meaning Moon in Ancient Greek. It was given this
+    name because it was discovered shortly after Tellurium meaning ''Earth''.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

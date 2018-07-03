@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 48CadmiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 2301a1ad6e714054c8710a443030cbe6, type: 2}
-  description: 
+  description: 'Cadmium is a toxic bluish-grey metal. It was commonly used for steel,
+    pigments, glass, and plastic, but is not used as much anymore because of its toxicity.
+    In fact, Cadmium can cause birth defects and cancer.
+
+    Cadmium is named after ''Cadmia'', the Latin name for Calmine.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

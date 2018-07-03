@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Name: 73TantalumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: c9ee3ed09437d25408223115d9431a1d, type: 2}
-  description: 
+  description: 'Tantalum is a hard, blue grey metal named after the Greek God Tantalus,
+    father of Niobe. Tantalus was punished by standing in knee deep water with perfect
+    fruit above him, both eternally out of his reach. This resembles Tantalum''s inability
+    to absorb acid.
+
+'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

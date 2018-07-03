@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 41NiobiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 60ae6acfdf9b9374791837090a1a153f, type: 2}
-  description: 
+  description: 'Niobium, originally known as Columbium, is a soft, grey crystal used
+    in Stainless Steel and superconductors.
+
+    Niobium is named in reference to Niobe who is the daughter of Tantalus in Greek
+    Mythology. This is due to the similarities in the elements.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

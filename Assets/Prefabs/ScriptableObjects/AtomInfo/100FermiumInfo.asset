@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: 100FermiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 179e685ce4bc39c49b552de65a88a8c4, type: 2}
-  description: 
+  description: 'Fermium has not been synthesized large enough to be visible, although
+    it is possible to do so. It is the last element that can be produced from neutron
+    bombardment of other elements.
+
+    Like Einsteinium, it was discovered during the first Hydrogen Bomb.
+
+    Fermium is named after nuclear physicist Enrico Fermi.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

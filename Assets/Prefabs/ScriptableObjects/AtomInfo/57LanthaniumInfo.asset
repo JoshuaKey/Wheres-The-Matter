@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Name: 57LanthaniumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: f56c1aae5a1fe9d4ea76a3ad3e58be83, type: 2}
-  description: 
+  description: 'Lanthanium is a soft, silvery, white metal, able to be cut by a knife.
+    It starts the Lanthanide Series, however it has also been considered a Transition
+    Metal.
+
+    The name Lanthanium comes from ''Lanthanein'' meaning To Lie Hidden in Ancient
+    Greek.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

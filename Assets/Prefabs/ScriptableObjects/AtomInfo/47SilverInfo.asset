@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: 47SilverInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: c1044473522a40140adb097a57309518, type: 2}
-  description: 
+  description: 'Silver is... silver. It is a soft, shiny, white metal and has the
+    highest electrical conductivity, thermal conductivity, and reflectivity of any
+    metal making it useful for mirrors.
+
+    Its atomic symbol, Ag, comes from Argentum meaning Shiny in Latin.
+
+    It name comes from the Anglo Saxon word ''Siolfur''.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

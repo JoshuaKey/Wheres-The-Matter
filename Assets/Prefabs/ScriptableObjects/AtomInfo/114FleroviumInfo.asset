@@ -12,7 +12,19 @@ MonoBehaviour:
   m_Name: 114FleroviumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: d174ca989ffa52a4e8b0609f5a787eee, type: 2}
-  description: 
+  description: "Flerovium is named after the Flerov Laboratory of Nuclear Reactions
+    of the Joint Institute for Nuclear Research (JINR) in Dubna, Russia.\nIt is produced
+    by bombarding Plutonium with Calcium and studies have shown that it may act similar
+    to Copernicium and be a gas at room temperature. In fact, it might be considered
+    a Noble Gas due to its low reactivity.\nFlerovium is considered to be near the
+    center of the 'Island of Stability' an element with a magic number of protons
+    that reverses of halts some of the radioactive properties of heavy elements making
+    them more stable. In fact, Fl<sup>298</sup> may be doubly magic having a magic
+    number of protons and neutrons.\n \nAlbert Ghiorso, who helped to discover Flerovium,
+    visited Glenn Seaborg to report his discovery. He recalls, \"I wanted Glenn to
+    know, so I went to his bedside and told him. I thought I saw a gleam in his eye,
+    but the next day when I went to visit him he didn't remember seeing me. As a scientist,
+    he had died when he had that stroke.\""
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

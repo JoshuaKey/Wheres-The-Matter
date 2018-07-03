@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: 77IridiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 7aae736ca4430314e995b1f7b861ea10, type: 2}
-  description: 
+  description: 'Iridium is a hard, brittle, silvery white metal. It has the 2nd highest
+    density and is the most corrosion resistant element.
+
+    Iridium is named after the Greek Goddess of the Rainbow, Iris.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

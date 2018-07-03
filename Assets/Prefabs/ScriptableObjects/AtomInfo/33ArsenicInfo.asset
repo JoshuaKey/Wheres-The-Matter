@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Name: 33ArsenicInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 0e67e31460f89314aab266fb22c846bc, type: 2}
-  description: 
+  description: 'Arsenic is toxic, grey semi-metal. It was given the highest priority
+    by United States'' Agency for Toxic Substances and Disease Registry in 2001. It
+    is considered a Group-A carcinogen, a substance that promotes cancer.
+
+    Despite this, Arsenic has many uses. It can be combined with Lead for Ammunition
+    or Car Batteries and Gallium for Gallium Arsenide the second most common semiconductor.
+
+    Arsenic may come from the Greek name ''Arsenikon'' for the mineral Orpiment.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

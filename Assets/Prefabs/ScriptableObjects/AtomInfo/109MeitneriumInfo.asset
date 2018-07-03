@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Name: 109MeitneriumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 1358bbf66ae51f54e947863f46162ad0, type: 2}
-  description: 
+  description: 'Despite falling under Iridium, a Transition Metal, it is uknown wether
+    Meitnerium is a Transition Metal as well.
+
+    It is produced from bombarding Bismuth with Iron
+
+    Meitnerium is named after Austria-Swedish physicist Lise Meitner. It is the only
+    element to be named after a specific, non-mythological female. *Curium was named
+    after both Pierre and Marie Curie.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

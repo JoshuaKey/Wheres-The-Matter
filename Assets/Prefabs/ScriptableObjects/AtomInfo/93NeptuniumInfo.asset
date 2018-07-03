@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Name: 93NeptuniumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 0efcbf136f157ee4fb604b0aa276ae2a, type: 2}
-  description: 
+  description: 'Neptunium is the first transuranium element. These are elements with
+    an atomic number greater than 92 and are partially or entirely created synthetically
+    and/ or rarely occur in nature. It doesn''t have any particular use other than
+    in the formation of Plutonium.
+
+    Neptunium is named after the planet Neptune.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

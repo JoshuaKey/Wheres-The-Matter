@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: 60NeodymiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: b85fe7308633a3a4f9bcd5028b68bc11, type: 2}
-  description: 
+  description: 'Neodymium is a silver white metal mostly used for strong permanent
+    magnets.
+
+    Its name comes from ''Neos Didymos'' meaning New Twin in Ancient Greek.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

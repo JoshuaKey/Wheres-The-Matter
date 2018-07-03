@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Name: 108HassiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: b3afb9e21d85e7f4e907ba1a0b828d98, type: 2}
-  description: 
+  description: "Hassium is created from bombarding Lead with Iron. \nHassium is named
+    after the German state of Hasse where it was first made."
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

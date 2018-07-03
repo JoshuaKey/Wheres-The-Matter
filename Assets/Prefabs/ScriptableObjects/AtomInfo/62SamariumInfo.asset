@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Name: 62SamariumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 77339de904371fa4bac230a9ae3456ed, type: 2}
-  description: 
+  description: 'Samarium is a shiny, white metal primarily used with Cobalt to create
+    the second strongest magnets. Only Neodymium magnets are strongers.
+
+    It is named after the mineral Samarskite which is named after Russian Colonel,
+    Vassili Samarsky-Bykhovets, thereby making him the first person to have an element
+    named after him.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

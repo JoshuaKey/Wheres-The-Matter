@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: 82LeadInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: b1019dccf2b7a8e408f69f3b7d20c34f, type: 2}
-  description: 
+  description: 'Lead is a toxic, soft, malleable, bluish white metal that turns grey
+    when it encounters air. Becuase of it''s toxicity, it has been used less and less.
+    It is now used in batteries, paints, and bullets.
+
+    Lead is the last stable element. Starting with Bismuth, all of its isotopes are
+    radioactive and will eventually decay. Specifically, Pb<sup>208</sup> is the heaviest
+    stable isotope.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

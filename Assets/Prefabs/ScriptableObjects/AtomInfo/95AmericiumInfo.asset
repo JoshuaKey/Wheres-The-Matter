@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 95AmericiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: fd7014c5ac4744f42af3322a221e9514, type: 2}
-  description: 
+  description: 'Americium is the 3rd TransUranium element, however it was discovered
+    4th after Curium. It is mainly produced from decayed Uranium and Plutonium and
+    used in smoke detectors.
+
+    Americium is named after America.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

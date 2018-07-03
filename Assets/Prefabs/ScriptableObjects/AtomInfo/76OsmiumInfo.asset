@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: 76OsmiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 2fb40b9ec97aa774384457cbc8b4f9f9, type: 2}
-  description: 
+  description: 'Osmium is a hard, brittle, bluish-white metal with the highest density
+    of any element.
+
+    It has 6 stable isotopes, however each isotope is predicted to decay, but none
+    have been seen to do so.
+
+    Osmium comes from ''Osme'' meaning Smell in Ancient Greek.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

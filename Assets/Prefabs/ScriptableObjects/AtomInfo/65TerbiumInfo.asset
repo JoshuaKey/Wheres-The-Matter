@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Name: 65TerbiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: eac7b9fa5bdeb154aa2f7386c4436ebe, type: 2}
-  description: 
+  description: 'Terbium is a soft solvery metal used in lightbulbs and lasers.
+
+    It is named after Ytterby, Sweden.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

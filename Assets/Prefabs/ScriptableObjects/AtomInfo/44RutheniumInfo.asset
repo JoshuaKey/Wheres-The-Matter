@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 44RutheniumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 83478d4a9eb5d104ab1787a1c22524a6, type: 2}
-  description: 
+  description: 'Ruthenium is a shiny silver metal. Because it is resistant to corrosion
+    and oxidation, it is considered a ''Noble'' metal, or a metal that doesn''t react
+    too often. It is mainly used in resistors and solar cells.
+
+    Ruthenium is named after ''Ruthenia'' the Latin name for Russia.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 79GoldInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 0ddc15aca2fb3fa498ea296616ed00ab, type: 2}
-  description: 
+  description: 'Gold is a soft, bright gold colored metal. It is the most malleable
+    element and is resistant to acid. This fact has been used to test wether or not
+    Gold exists in a material, known as the Acid Test.
+
+    The atomic symbol, Au, comes from ''Aurum'' meaning Gold in Latin. '
   image: {fileID: 0}
   placesToBeFound: []
   origins:

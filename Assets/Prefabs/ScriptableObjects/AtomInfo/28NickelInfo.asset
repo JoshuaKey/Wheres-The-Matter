@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: 28NickelInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 33088fd42ad1d8d47a66c4271e7024a8, type: 2}
-  description: 
+  description: 'Nickel is a hard silver metal. It is used in Stainless Steel, Coins,
+    and Batteries.
+
+    At room tempurature, Nickel is magnetic.
+
+    Nickel is a shortened version of the German word ''Kupfernickel'' meaning Devil''s
+    Nickel or St Nicholas'' Copper.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

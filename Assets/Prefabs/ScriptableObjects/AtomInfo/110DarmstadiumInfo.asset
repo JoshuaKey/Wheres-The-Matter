@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 110DarmstadiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 0c7ded11145552e428be32f77f7585cb, type: 2}
-  description: 
+  description: 'Darmstadium is produced from bombarding Lead with Nickel. It is assumed
+    to have properties similar to Platinum, Palladium and Nickel, but no tests have
+    been conducted.
+
+    Darmstadium is named after the German city, Darmstadt.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

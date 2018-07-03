@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: 104RutherfordiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 6fd3a5e6637b40944b91fe0df3bcd823, type: 2}
-  description: 
+  description: 'Rutherfordium is produced from bombarding Californium with Carbon.
+    It
+
+    It is named after New Zealand Chemist, Ernest Rutherford, who was one of the first
+    to explain the structure of atoms and started the Transfermium Wars which was
+    a contest between America and Soviet scientists to discover and name the elements
+    of 104 to 106. '
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

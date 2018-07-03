@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Name: 86RadonInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: b880a37c652395644aaf719b6339ffbf, type: 2}
-  description: 
+  description: "Radon is a radioactive, colorless, odorless, tasteless gas. It is
+    considered a health hazard and is responsible for most naturally occuring Radiation
+    and rated the 2nd most frequent cause of Lung Cancer.\r\nDespite its short halflife
+    it is part of the decay chain from Uranium to Lead meaning it has a consistent
+    supply. \nRadon comes from Radium because is was discovered during radioactive
+    decay of Radium. "
   image: {fileID: 0}
   placesToBeFound: []
   origins:

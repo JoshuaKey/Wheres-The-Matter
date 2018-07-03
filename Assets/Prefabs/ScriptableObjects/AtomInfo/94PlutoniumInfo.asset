@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 94PlutoniumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 8a81a0bc5f5c24d49a47ccd4bd165ded, type: 2}
-  description: 
+  description: 'Plutonium is the heaviest naturally ocurring element and has strong
+    uses in Nuclear power. In fact, the Nagasaki and Fat Man bombs used Plutonium
+    cores.
+
+    It is named after the planet Pluto. (Long live Pluto!)'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Name: 113NihoniumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 09ca63f65131eaa49a735705c13f9ba4, type: 2}
-  description: 
+  description: 'Nihonium is named after Japan, which refers to itself as Nihon, or
+    Nippon, meaning Sun Origin. It may be a Post Transition Metal, but no tests have
+    been conducted.
+
+    It is produced from bombarding Bismuth with Zinc and is believed to be in the
+    ''Island of Stability'', an element with a magic number of protons that reverses
+    of halts some of the radioactive properties of heavy elements making them more
+    stable.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

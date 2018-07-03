@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 45RhodiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: e3766651d311d7343b002e0081119272, type: 2}
-  description: 
+  description: "Rhodium is a hard, corrosion resistant, and inert metal. This makes
+    it one of the few noble metals, or metals that don't react too often. \nIt is
+    mainly used in cars as a Catalytic Convertor, or to convert toxic gas to less
+    harmful substances, in Exhaust Pipes.\nRhodium is named after 'Rhodon' meaning
+    Rose colored in Ancient Greek."
   image: {fileID: 0}
   placesToBeFound: []
   origins:

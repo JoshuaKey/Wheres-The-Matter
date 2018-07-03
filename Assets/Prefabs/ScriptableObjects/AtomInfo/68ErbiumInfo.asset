@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: 68ErbiumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: ae012d59f30abca4d859aec2a7c487bf, type: 2}
-  description: 
+  description: 'Erbium is a soft silvery metal used in Alloys, Glass and Fibre optics.
+
+    It is named after Ytterby, Sweden. This town is responsible for discovering and
+    naming the most elements from any place. The town''s name translates to ''Outer
+    Village''.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:

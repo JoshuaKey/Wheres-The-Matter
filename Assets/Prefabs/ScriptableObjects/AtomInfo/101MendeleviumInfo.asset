@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Name: 101MendeleviumInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: 446dca103360ede439d17670d84c78ec, type: 2}
-  description: 
+  description: 'Mendelevium is the first element that can not be produced in large
+    enough quantities to be seen by the naked eye. It is produced from bombarding
+    Einsteinium with alpha particles, or a particle made of 2 neutrons and 2 protons,
+    similar to Helium.
+
+    Mendelevium is named after Dmitri Mendeleev, father of the Periodic Table.'
   image: {fileID: 0}
   placesToBeFound:
   - Laboratory

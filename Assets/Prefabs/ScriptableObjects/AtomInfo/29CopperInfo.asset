@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Name: 29CopperInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: ce003a71bfdb83a41ad1e12fc95837f5, type: 2}
-  description: 
+  description: 'Copper is a soft, malleable, red orange metal. It is mostly used in
+    electrical equipment for its high thermal and electric conductivity.
+
+    Historically, Copper is one of the first elements discovered and used by Humanity,
+    dating back to 5000 B.C.
+
+    Copper comes from the Old English word ''Coper'' which is derived from Latin word
+    ''Cyprium Ares'' meaning metal from Cyprus.'
   image: {fileID: 0}
   placesToBeFound: []
   origins:
