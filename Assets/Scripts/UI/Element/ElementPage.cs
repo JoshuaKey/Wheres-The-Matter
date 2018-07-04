@@ -18,7 +18,9 @@ public class ElementPage : MonoBehaviour {
 
     [Header("Description Info")]
     [SerializeField] RectTransform descriptionInfo;
+    [SerializeField] RectTransform descriptionContent;
     [SerializeField] TextMeshProUGUI descriptionText;
+    [SerializeField] Scrollbar descriptionScroll;
     [SerializeField] TextMeshProUGUI typeText;
     [SerializeField] TextMeshProUGUI weightText;
     [SerializeField] TextMeshProUGUI densityText;
@@ -49,7 +51,7 @@ public class ElementPage : MonoBehaviour {
 
         // Display
         nameText.text = a.GetName();
-        atomicNumberText.text = a.GetAtomicNumber() == -1 ? "?" : "" + a.GetAtomicNumber();
+        atomicNumberText.text = "Atomic Number: \n" + (a.GetAtomicNumber() == -1 ? "?" : "" + a.GetAtomicNumber());
         atomImage.sprite = info.GetImage();
 
         // Data
@@ -58,11 +60,13 @@ public class ElementPage : MonoBehaviour {
 
         // Description
         var size = descriptionText.GetPreferredValues(info.GetDescription(), descriptionText.rectTransform.rect.width, Mathf.Infinity);
-        size.x = descriptionText.rectTransform.sizeDelta.x;
-        size.y += 15f;
-        descriptionText.rectTransform.sizeDelta = size;
+        size.x = descriptionContent.sizeDelta.x;
+        size.y = Mathf.Abs(size.y) + 5;
+        descriptionContent.sizeDelta = size;
+        //descriptionText.rectTransform.sizeDelta = size;
 
         descriptionText.text = info.GetDescription();
+        descriptionScroll.value = 1;
         typeText.text = "Type: " + info.GetCategoryString();
         weightText.text = "Weight: " + (info.GetWeight() == -1 ? "???" : "" +info.GetWeight());
         densityText.text = "Density: " + (info.GetDensity() == -1 ? "???" : 
@@ -74,13 +78,13 @@ public class ElementPage : MonoBehaviour {
         neutronsText.text = "N: " + (info.GetNeutrons() == -1 ? "?" : "" + info.GetNeutrons());
         radioactiveText.text = "Is Radioactive: " + !info.IsStable();// + " " + info.GetHalfLife() + " " + info.GetStability();
 
-        string isotopeString = "Isotopes:\n";
+        string isotopeString = "Isotopes:\n<size=80%>\t";
         var isotopes = info.GetIsotopes();
         if (isotopes.Length > 0) {
-            isotopeString += "  " + isotopes[0] + "\n";
+            isotopeString += isotopes[0] + "\n\t";
         }
-        for (int i = 1; i < isotopes.Length && i < 8; i++) {  // MAximum of 8 isotopes???
-            isotopeString += "  " + isotopes[i] + "\n";
+        for (int i = 1; i < isotopes.Length /*&& i < 7*/; i++) {  // MAximum of 7 isotopes???
+            isotopeString += isotopes[i] + "\n\t";
         }
         isotopeText.text = isotopeString;
 

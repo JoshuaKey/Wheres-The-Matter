@@ -16,7 +16,7 @@ MonoBehaviour:
 
     It is named after Ernest Lawrence who invented the Cylotron, a type of Particle
     Accelerator.'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound:
   - Laboratory
   origins:
@@ -32,4 +32,4 @@ MonoBehaviour:
   density: -1
   neutrons: 163
   halfLife: 600
-  isDiscovered: 0
+  isDiscovered: 1

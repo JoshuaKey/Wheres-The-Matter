@@ -25,7 +25,7 @@ MonoBehaviour:
     know, so I went to his bedside and told him. I thought I saw a gleam in his eye,
     but the next day when I went to visit him he didn't remember seeing me. As a scientist,
     he had died when he had that stroke.\""
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound:
   - Laboratory
   origins:
@@ -41,4 +41,4 @@ MonoBehaviour:
   density: -1
   neutrons: 175
   halfLife: 0.031666666
-  isDiscovered: 0
+  isDiscovered: 1

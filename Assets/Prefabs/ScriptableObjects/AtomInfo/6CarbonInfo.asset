@@ -15,8 +15,8 @@ MonoBehaviour:
   description: 'Carbon is the 15th most common atom on Earth and 4th in the Universe.
     It has a variety of uses in Life as well as Diamonds and Graphite.
 
-    It is sometimes referred to as, "The King of Elements" because of its many compunds.'
-  image: {fileID: 0}
+    It is sometimes referred to as, "The King of Elements" because of its many compounds.'
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Dying Low Mass Stars
@@ -32,4 +32,4 @@ MonoBehaviour:
   density: 2.2
   neutrons: 6
   halfLife: 0
-  isDiscovered: 0
+  isDiscovered: 1

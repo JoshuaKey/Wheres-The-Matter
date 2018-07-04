@@ -7,23 +7,24 @@ using UnityEngine.UI;
 public class ElementHover : MonoBehaviour {
 
     private Atom atom;
-    [SerializeField] Image atomImage;
     [SerializeField] Image background;
+    [SerializeField] Image darkBackground;
     [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] TextMeshProUGUI currAmoText;
     [SerializeField] TextMeshProUGUI passiveGainText;
-    [SerializeField] TextMeshProUGUI atomicNumberText;
 
     [SerializeField] float offsetMultiplier = 1.1f;
 
     private RectTransform rect;
     private RectTransform parentRect;
 
-    // Use this for initialization
-    void Start () {
+    private void Awake() {
         rect = GetComponent<RectTransform>();
         parentRect = this.transform.parent.GetComponent<RectTransform>();
+    }
 
+    // Use this for initialization
+    void Start () {
         Setup(atom);
 	}
 	
@@ -38,27 +39,63 @@ public class ElementHover : MonoBehaviour {
             a = Game.Instance.gameData.GetUknown();
         }
 
-        nameText.text = a.GetName();
-        atomicNumberText.text = "" + a.GetAtomicNumber();
-        //atomImage.sprite = info.GetImage();
+        // Color
+        Color c = info.GetCategoryColor();
+        background.color = c;
+        c *= .6f;
+        c.a = 1f;
+        darkBackground.color = c;
 
-        currAmoText.text = "Current Amount: " + data.GetCurrAmo();
-        passiveGainText.text = "Passive Gain: " + data.GetPassiveGain();
+        var sizeDelta = rect == null ? Vector2.zero : rect.sizeDelta;
 
-        if(rect != null) {
-            Update();
+        // Name Text
+        {
+            var size = nameText.GetPreferredValues(a.GetName(), Mathf.Infinity, nameText.rectTransform.rect.height);
+            size.y = nameText.rectTransform.sizeDelta.y;
+            size.x += 15f;
+            if (size.x > sizeDelta.x) {
+                sizeDelta.x = size.x;
+            }
+
+            nameText.text = a.GetName();
         }
+
+        // Curr Amo Text
+        {
+            string text = "Amount:\n " + data.GetCurrAmo();
+
+            var size = currAmoText.GetPreferredValues(text, Mathf.Infinity, currAmoText.rectTransform.rect.height);
+            size.y = currAmoText.rectTransform.sizeDelta.y;
+            size.x += 15f;
+            if (size.x > sizeDelta.x) {
+                sizeDelta.x = size.x;
+            }
+
+            currAmoText.text = text;
+        }
+
+        // Passive Gain Text
+        {
+            string text = "(+" + data.GetCurrAmo() + ")";
+
+            var size = passiveGainText.GetPreferredValues(text, Mathf.Infinity, passiveGainText.rectTransform.rect.height);
+            size.y = passiveGainText.rectTransform.sizeDelta.y;
+            size.x += 15f;
+            if (size.x > sizeDelta.x) {
+                sizeDelta.x = size.x;
+            }
+
+            passiveGainText.text = text;
+        }
+
+        rect.sizeDelta = sizeDelta;
+        LateUpdate();
     }
 
-    private void Update() {
-        // Right now it sort of works. 
-        // Some of the math is funky and position is incorrect. 
-        // Canvas seems to be offset a little which mmesses with Mouse Position
-        // Pivot doesnt seem to be working
-
+    private void LateUpdate() {
         Vector2 size = rect.rect.size * (rect.lossyScale * offsetMultiplier);
         float xDelta = size.x / 2f;
-       
+
         Vector3 position = Input.mousePosition;
 
         if (position.x + size.x > (parentRect.rect.max.x - parentRect.rect.min.x) * parentRect.lossyScale.x) {
@@ -67,7 +104,7 @@ public class ElementHover : MonoBehaviour {
             position.x += xDelta;
         }
 
-        rect.position = position; // Working
+        rect.position = position;
     }
 
     public Atom GetAtom() {

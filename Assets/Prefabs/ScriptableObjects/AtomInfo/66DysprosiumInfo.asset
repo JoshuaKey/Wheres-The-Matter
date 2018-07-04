@@ -16,7 +16,7 @@ MonoBehaviour:
     Data storage.
 
     It is named after ''Dysprositos'' meaning Hard to Get in Ancient Greek.'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Merging Neutron Stars
@@ -36,4 +36,4 @@ MonoBehaviour:
   density: 8.55
   neutrons: 98
   halfLife: 0
-  isDiscovered: 0
+  isDiscovered: 1

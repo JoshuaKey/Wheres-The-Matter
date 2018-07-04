@@ -20,7 +20,7 @@ MonoBehaviour:
 
     The element is named after ''phosphoros'' meaning ''Bringer of Light'' in Ancient
     Greek because White Phosphorus glows when reacting with Oxygen.'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Exploding Massive Stars
@@ -34,4 +34,4 @@ MonoBehaviour:
   density: 1.823
   neutrons: 16
   halfLife: 0
-  isDiscovered: 0
+  isDiscovered: 1

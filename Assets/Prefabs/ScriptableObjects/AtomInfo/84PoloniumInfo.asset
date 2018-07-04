@@ -19,7 +19,7 @@ MonoBehaviour:
     Polonium was the first element discovered because of its radioactivity.
 
     Polonium is named after Poland.'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Unknown
@@ -32,4 +32,4 @@ MonoBehaviour:
   density: 9.2
   neutrons: 126
   halfLife: 190440
-  isDiscovered: 0
+  isDiscovered: 1

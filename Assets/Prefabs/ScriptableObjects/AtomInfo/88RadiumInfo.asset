@@ -18,7 +18,7 @@ MonoBehaviour:
 
     Its only uses are in nuclear medicine due to its radioactivity and toxicity and
     it is named after ''Radius'' meaning Ray in Latin.'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Unknown
@@ -35,4 +35,4 @@ MonoBehaviour:
   density: 5
   neutrons: 138
   halfLife: 840960000
-  isDiscovered: 0
+  isDiscovered: 1

@@ -16,7 +16,7 @@ MonoBehaviour:
     research purposes, but is also used as a Catalyst.\nLutetium is one of the rarest
     and most expensive rare earth metals, averaging US $10,000 per kilogram. \nIt
     is named after 'Lutetia', the Roman name for Paris."
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Merging Neutron Stars
@@ -31,4 +31,4 @@ MonoBehaviour:
   density: 9.84
   neutrons: 104
   halfLife: 0
-  isDiscovered: 0
+  isDiscovered: 1

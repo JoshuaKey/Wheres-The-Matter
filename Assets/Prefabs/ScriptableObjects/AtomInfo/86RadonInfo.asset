@@ -18,7 +18,7 @@ MonoBehaviour:
     it is part of the decay chain from Uranium to Lead meaning it has a consistent
     supply. \nRadon comes from Radium because is was discovered during radioactive
     decay of Radium. "
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Unknown
@@ -31,4 +31,4 @@ MonoBehaviour:
   density: 0.09074
   neutrons: 136
   halfLife: 4320
-  isDiscovered: 0
+  isDiscovered: 1

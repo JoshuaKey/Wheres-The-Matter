@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Name: 17ChlorineInfo
   m_EditorClassIdentifier: 
   atom: {fileID: 11400000, guid: a1f03f54e2df30a4594a900188118c7b, type: 2}
-  description: 'Chlorine is a toxic yellowish-green gas used in Chemical Warfare.
+  description: 'Chlorine is a toxic, yellowish-green gas used in Chemical Warfare.
     Its name comes from ''Chloros'' meaning greenish-yellow in Ancient Greek.
 
     Chlorine is often used in pharmacology and can combine with Sodium to form Sodium
     Chloride or Table Salt.'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Exploding Massive Stars
@@ -32,4 +32,4 @@ MonoBehaviour:
   density: 0.002898
   neutrons: 18
   halfLife: 0
-  isDiscovered: 0
+  isDiscovered: 1

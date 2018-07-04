@@ -16,7 +16,7 @@ MonoBehaviour:
     as a Steel alloy. \nIt has very little use in Life, requiring only .01 milligrams.
     Even more can be toxic.\nVanadium is named after 'Vanadis' the old Norse name
     for the Scandanavian Goddess Freyja."
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Exploding White Dwarfs
@@ -31,4 +31,4 @@ MonoBehaviour:
   density: 6
   neutrons: 28
   halfLife: 0
-  isDiscovered: 0
+  isDiscovered: 1

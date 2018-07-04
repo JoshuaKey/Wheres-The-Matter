@@ -16,7 +16,7 @@ MonoBehaviour:
     can also be used as a replacement for Aluminum.
 
     Scandium is named after Scandanavia.'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Exploding Massive Stars
@@ -30,4 +30,4 @@ MonoBehaviour:
   density: 2.99
   neutrons: 24
   halfLife: 0
-  isDiscovered: 0
+  isDiscovered: 1

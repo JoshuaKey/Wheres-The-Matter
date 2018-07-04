@@ -20,7 +20,7 @@ MonoBehaviour:
     be poisonous to plants.
 
     Aluminium is named after the Latin word ''Alumen'' meaning ''Bitter Salt''.'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Exploding Massive Stars
@@ -33,4 +33,4 @@ MonoBehaviour:
   density: 2.7
   neutrons: 14
   halfLife: 0
-  isDiscovered: 0
+  isDiscovered: 1

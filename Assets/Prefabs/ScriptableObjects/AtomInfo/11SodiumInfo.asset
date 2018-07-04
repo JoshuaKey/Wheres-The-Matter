@@ -15,7 +15,7 @@ MonoBehaviour:
   description: "Sodium is a silvery-white metal typically associated with Salt.\nIt
     is also known as Natrium which gives it the abbreviation Na. \nSodium itself is
     named for the English word Soda after Sodium Carbonate."
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Exploding Massive Stars
@@ -28,4 +28,4 @@ MonoBehaviour:
   density: 0.97
   neutrons: 12
   halfLife: 0
-  isDiscovered: 0
+  isDiscovered: 1

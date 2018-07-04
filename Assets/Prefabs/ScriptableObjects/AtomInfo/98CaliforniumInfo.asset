@@ -19,7 +19,7 @@ MonoBehaviour:
     It has the 2nd highest atomic mass of any element visible to the naked eye.
 
     Californium is named after the state and university of California.'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound:
   - Laboratory
   origins:
@@ -37,4 +37,4 @@ MonoBehaviour:
   density: 15.1
   neutrons: 153
   halfLife: 471988800
-  isDiscovered: 0
+  isDiscovered: 1

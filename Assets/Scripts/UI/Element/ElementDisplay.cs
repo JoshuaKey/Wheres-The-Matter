@@ -14,7 +14,7 @@ public class ElementDisplay : MonoBehaviour {
 
     [SerializeField] private Image background;
     [SerializeField] private Image lowBackground;
-    [SerializeField] private Image newElementImage;
+    [SerializeField] private Image exclamationImage;
     [SerializeField] private TextMeshProUGUI atomNumber;
     [SerializeField] private TextMeshProUGUI atomAbbreviationText;
 
@@ -36,7 +36,7 @@ public class ElementDisplay : MonoBehaviour {
             info = Game.Instance.gameData.GetUknownInfo();
             display = Game.Instance.gameData.GetUknown();
         } else if(!hasBeenDiscovered) {
-            newElementImage.gameObject.SetActive(true);
+            exclamationImage.gameObject.SetActive(true);
             hasBeenDiscovered = true;
         }
 
@@ -75,7 +75,7 @@ public class ElementDisplay : MonoBehaviour {
     }
 
     public void MakeOld() {
-        newElementImage.gameObject.SetActive(false);
+        exclamationImage.gameObject.SetActive(false);
 
         // Delete stuff to free up Data?
         // Can Change Click Event to stop CPU usage...

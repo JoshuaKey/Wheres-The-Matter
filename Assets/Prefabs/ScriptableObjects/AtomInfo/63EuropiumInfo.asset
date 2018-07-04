@@ -16,7 +16,7 @@ MonoBehaviour:
     in the universe and only about 5 x 10<sup>-8</sup>% of matter is Europium.\nIt
     has uses in Lights, Lasers, and Nuclear Reactors. \nEuropium is named after the
     continent Europe, and also used to print euro banknotes."
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Merging Neutron Stars
@@ -31,4 +31,4 @@ MonoBehaviour:
   density: 5.24
   neutrons: 90
   halfLife: 0
-  isDiscovered: 0
+  isDiscovered: 1

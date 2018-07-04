@@ -17,7 +17,7 @@ MonoBehaviour:
     In fact, Cadmium can cause birth defects and cancer.
 
     Cadmium is named after ''Cadmia'', the Latin name for Calmine.'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Merging Neutron Stars
@@ -38,4 +38,4 @@ MonoBehaviour:
   density: 8.69
   neutrons: 66
   halfLife: 0
-  isDiscovered: 0
+  isDiscovered: 1

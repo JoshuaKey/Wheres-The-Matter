@@ -23,7 +23,7 @@ MonoBehaviour:
     medical industry and its properties have been predicted from similar atoms.
 
     Astatine is named after ''Astatos'' meaning Unstable in Ancient Greek.'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound:
   - Laboratory
   origins:
@@ -40,4 +40,4 @@ MonoBehaviour:
   density: -1
   neutrons: 125
   halfLife: 540
-  isDiscovered: 0
+  isDiscovered: 1

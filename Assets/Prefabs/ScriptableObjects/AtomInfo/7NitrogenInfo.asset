@@ -15,9 +15,9 @@ MonoBehaviour:
   description: 'Nitrogen is one of the most important elements for Life. It is the
     the 4th most common element in Humans.
 
-    Despite this, it is also known as ''Azote'' meaning ''No Life''. This is because
-    it can cause suffocation if inhaled.'
-  image: {fileID: 0}
+    Despite this, it is also known as ''Azote'' meaning ''No Life'' because it can
+    cause suffocation if inhaled.'
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Dying Low Mass Stars
@@ -32,4 +32,4 @@ MonoBehaviour:
   density: 0.001145
   neutrons: 7
   halfLife: 0
-  isDiscovered: 0
+  isDiscovered: 1

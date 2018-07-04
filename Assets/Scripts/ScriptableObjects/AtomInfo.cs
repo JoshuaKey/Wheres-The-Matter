@@ -174,37 +174,35 @@ public class AtomInfo : ScriptableObject, IComparable<AtomInfo> {
                 c = Color.grey;
                 break;
             case AtomCategory.ALKALI_METAL:
-                c = Color.red;
+                c = Color.red; // Dark Red
                 c.g = .2f;
                 c.b = .2f;
                 break;
             case AtomCategory.ALKALINE_EARTH_METAL:
-                c = Color.red;
-                c.g = .2f;
+                c = Color.red; // Pale Red
+                c.g = .5f;
                 c.b = .5f;
                 break;
             case AtomCategory.TRANSITION_METAL:
                 c = Color.cyan;
                 break;
             case AtomCategory.POST_TRANSTION_METAL:
-                c = Color.Lerp(Color.cyan, Color.blue, .5f);
+                c = new Color(0f, .5f, 1f); // Light Blue
                 break;
             case AtomCategory.METALLOID:
-                c = Color.blue; 
-                c.g = .4f;
-                c.r = .4f;
+                c = new Color(.8f, .05f, 1f); // Purple
                 break;
             case AtomCategory.LANTHANIDE:
-                c = Color.magenta;
+                c = new Color(.6f, .61f, 1f); // 151, 161, 255 Pale Blue
                 break;
             case AtomCategory.ACTINIDE:
-                c = Color.green;
+                c = new Color(.3f, 1f, .27f); // 79, 255, 69 Green
                 break;
             case AtomCategory.NON_METAL:
                 c = new Color(.7f, .3f, .3f); // Brown
                 break;
             case AtomCategory.HALOGEN:
-                c = Color.Lerp(Color.red, Color.yellow, .5f);
+                c = Color.Lerp(Color.red, Color.yellow, .5f); // Orange
                 break;
             case AtomCategory.NOBLE_GAS:
                 c = Color.yellow;

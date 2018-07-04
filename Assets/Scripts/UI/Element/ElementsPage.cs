@@ -29,9 +29,9 @@ public class ElementsPage : MonoBehaviour {
         elementHover.Setup(a);
     }
     public void UnHoverAtom(Atom a) {
-        if(a.GetAtomicNumber() == elementHover.GetAtom().GetAtomicNumber()) {
-            elementHover.gameObject.SetActive(false);
-        }
+        //if(a.GetAtomicNumber() == elementHover.GetAtom().GetAtomicNumber()) {
+        //    elementHover.gameObject.SetActive(false);
+        //}
     }
 
     public void ClickInfo() {
@@ -43,6 +43,8 @@ public class ElementsPage : MonoBehaviour {
 
     private void OnEnable() {
         elementSection.Refresh();
+
+        elementHover.gameObject.SetActive(false);
     }
 }
 

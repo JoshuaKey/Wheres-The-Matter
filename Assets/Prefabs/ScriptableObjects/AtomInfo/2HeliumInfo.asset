@@ -17,7 +17,7 @@ MonoBehaviour:
 
     It is the first and only element not discovered on Earth. It was discovered on
     the Sun first. In fact it''s named is derived from ''helios'' meaning Sun.'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Big Bang Fusion
@@ -33,4 +33,4 @@ MonoBehaviour:
   density: 0.000164
   neutrons: 2
   halfLife: 0
-  isDiscovered: 0
+  isDiscovered: 1

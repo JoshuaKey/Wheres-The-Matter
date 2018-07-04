@@ -20,7 +20,7 @@ MonoBehaviour:
     or Car Batteries and Gallium for Gallium Arsenide the second most common semiconductor.
 
     Arsenic may come from the Greek name ''Arsenikon'' for the mineral Orpiment.'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Exploding Massive Stars
@@ -33,4 +33,4 @@ MonoBehaviour:
   density: 5.75
   neutrons: 42
   halfLife: 0
-  isDiscovered: 0
+  isDiscovered: 1

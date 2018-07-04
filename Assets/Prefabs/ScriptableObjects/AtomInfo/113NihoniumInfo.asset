@@ -20,7 +20,7 @@ MonoBehaviour:
     ''Island of Stability'', an element with a magic number of protons that reverses
     of halts some of the radioactive properties of heavy elements making them more
     stable.'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound:
   - Laboratory
   origins:
@@ -36,4 +36,4 @@ MonoBehaviour:
   density: -1
   neutrons: 172
   halfLife: 0.15
-  isDiscovered: 0
+  isDiscovered: 1

@@ -17,13 +17,13 @@ MonoBehaviour:
     by Dmitri Mendeleev, but wasn\u2019t identified until much later. It is the last
     stable to be discovered. \nHafnium is named after ''Hafnia' the name Latin for
     Copenhagen."
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Dying Low Mass Stars
   - Merging Neutron Stars
   isotopes:
-  - Hf<sup>174</sup> (.16%) (* - Yb<sup>170</sup> (
+  - Hf<sup>174</sup> (.16%) (* - Yb<sup>170</sup> )
   - Hf<sup>176</sup> (5.26%)
   - Hf<sup>177</sup> (18.6%)
   - Hf<sup>178</sup> (27.28%)
@@ -36,4 +36,4 @@ MonoBehaviour:
   density: 13.3
   neutrons: 108
   halfLife: 0
-  isDiscovered: 0
+  isDiscovered: 1

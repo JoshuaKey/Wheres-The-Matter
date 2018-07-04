@@ -19,14 +19,14 @@ MonoBehaviour:
     have been seen to do so.
 
     Osmium comes from ''Osme'' meaning Smell in Ancient Greek.'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Merging Neutron Stars
   - Dying Low Mass Stars
   isotopes:
   - Os<sup>184</sup> (.02%)
-  - Os<sup>186</sup> (1.59%) (* - @<sup>182</sup>)
+  - Os<sup>186</sup> (1.59%) (* - W<sup>182</sup>)
   - Os<sup>187</sup> (1.96%)
   - Os<sup>188</sup> (13.24%)
   - Os<sup>189</sup> (16.15%)
@@ -39,4 +39,4 @@ MonoBehaviour:
   density: 22.5872
   neutrons: 116
   halfLife: 0
-  isDiscovered: 0
+  isDiscovered: 1

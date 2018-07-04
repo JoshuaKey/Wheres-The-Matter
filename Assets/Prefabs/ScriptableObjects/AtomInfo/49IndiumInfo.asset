@@ -16,7 +16,7 @@ MonoBehaviour:
     Tin Oxide which is used in  touch screens, flat screen tvs, and solar panels.
 
     Indium is named after ''Indicium'' meaning Indigo or Violet in Latin.'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Merging Neutron Stars
@@ -31,4 +31,4 @@ MonoBehaviour:
   density: 7.31
   neutrons: 66
   halfLife: 0
-  isDiscovered: 0
+  isDiscovered: 1

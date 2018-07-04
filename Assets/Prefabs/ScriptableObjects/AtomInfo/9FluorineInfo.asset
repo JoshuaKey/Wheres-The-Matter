@@ -15,10 +15,11 @@ MonoBehaviour:
   description: 'Flourine is a deadly, toxic, pale yellow gas that reacts explosively
     with Alkali Metals and causes spontaneous combustions with other elements.
 
-    It is the most reactive element and is used with Uranium for nuclear power.
+    It is extremely reactive, reacting with nearly every other element including Noble
+    Gases and is used with Uranium for nuclear power.
 
     Flourine derives from ''fluere'' meaning ''Flow'' in Latin.'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Exploding Massive Stars
@@ -31,4 +32,4 @@ MonoBehaviour:
   density: 0.001553
   neutrons: 10
   halfLife: 0
-  isDiscovered: 0
+  isDiscovered: 1

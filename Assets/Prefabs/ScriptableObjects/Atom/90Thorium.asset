@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaca6f252d39ba64d9a530c79d49bf09, type: 3}
   m_Name: 90Thorium
   m_EditorClassIdentifier: 
-  name: Throium
+  name: Thorium
   abbreviation: Th
   atomicNumber: 90

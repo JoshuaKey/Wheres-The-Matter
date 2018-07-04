@@ -130,7 +130,7 @@ MonoBehaviour:
   trigger: {fileID: 114788011572325972}
   background: {fileID: 114410665275666214}
   lowBackground: {fileID: 114377038219238238}
-  newElementImage: {fileID: 114413407400899670}
+  exclamationImage: {fileID: 114413407400899670}
   atomNumber: {fileID: 114797008900954948}
   atomAbbreviationText: {fileID: 114927331347960270}
   clickSound: {fileID: 8300000, guid: 93907dcb671c6c14e809f548c759cffb, type: 3}

@@ -16,7 +16,7 @@ MonoBehaviour:
     density and is the most corrosion resistant element.
 
     Iridium is named after the Greek Goddess of the Rainbow, Iris.'
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Merging Neutron Stars
@@ -31,4 +31,4 @@ MonoBehaviour:
   density: 22.5622
   neutrons: 116
   halfLife: 0
-  isDiscovered: 0
+  isDiscovered: 1

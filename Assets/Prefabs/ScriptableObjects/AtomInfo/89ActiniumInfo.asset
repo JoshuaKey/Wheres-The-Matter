@@ -17,7 +17,7 @@ MonoBehaviour:
     elements isolated into its pure form. Priomordial means existing since the the
     Earth was created. \nActinium is named after 'Actinos' meaning Ray in Ancient
     Greek."
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound: []
   origins:
   - Unknown
@@ -31,4 +31,4 @@ MonoBehaviour:
   density: 10
   neutrons: 138
   halfLife: 11037600
-  isDiscovered: 0
+  isDiscovered: 1
