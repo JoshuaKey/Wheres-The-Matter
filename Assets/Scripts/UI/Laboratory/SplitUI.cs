@@ -54,6 +54,7 @@ public class SplitUI : MonoBehaviour {
                 SetAtom(a);
                 AudioManager.Instance.PlaySound(choiceClickSound);
             });
+            atomChoice.SetColors(ChoiceOption.defaultNormalColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultPressedColor);
 
             atomChoices.Add(atomChoice);
         }
@@ -79,14 +80,24 @@ public class SplitUI : MonoBehaviour {
     }
 
     public void SetAtomA(Atom atom) {
+        if (atom != null && atomChoices.Count > atom.GetAtomicNumber()) {
+            ChoiceOption choiceOption = atomChoices[atom.GetAtomicNumber()-1];
+            choiceOption.SetButtonEvent(() => {
+                RemoveAtomA();
+                AudioManager.Instance.PlaySound(choiceClickSound);
+            });
+            choiceOption.SetColors(ChoiceOption.defaultPressedColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultNormalColor);
+            choiceOption.SetFocus(false);
+        }
+
         atomA = atom;
-        atomChoices[atomA.GetAtomicNumber() - 1].SetInteractable(false);
+        //atomChoices[atomA.GetAtomicNumber() - 1].SetInteractable(false);
 
         AtomInfo info = Game.Instance.gameData.FindAtomInfo(atom.GetAtomicNumber());
         AtomData data = Game.Instance.gameData.FindAtomData(atom.GetAtomicNumber());
 
         atomAText.text = info.GetAtom().GetName();
-        //atomAImage.sprite = info.GetImage();
+        atomAImage.sprite = info.GetImage();
 
         atomAAmo.maxValue = data.GetCurrAmo();
         SetAtomAAmoText();
@@ -95,9 +106,20 @@ public class SplitUI : MonoBehaviour {
     }
 
     public void RemoveAtomA() {
-        if (atomA != null) {
-            atomChoices[atomA.GetAtomicNumber() - 1].SetInteractable(true);
+        if (atomA != null && atomChoices.Count > atomA.GetAtomicNumber()) {
+            ChoiceOption choiceOption = atomChoices[atomA.GetAtomicNumber()-1];
+            var atom = atomA;
+            choiceOption.SetButtonEvent(() => {
+                SetAtom(atom);
+                AudioManager.Instance.PlaySound(choiceClickSound);
+            });
+            choiceOption.SetColors(ChoiceOption.defaultNormalColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultPressedColor);
+            choiceOption.SetFocus(false);
         }
+
+        //if (atomA != null) {
+        //    atomChoices[atomA.GetAtomicNumber() - 1].SetInteractable(true);
+        //}
         atomA = null;
 
         AtomInfo info = Game.Instance.gameData.GetUknownInfo();

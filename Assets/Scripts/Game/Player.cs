@@ -42,6 +42,9 @@ public class Player : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             Game.Instance.ToggleMenu();
         }
+        if (Input.GetKey(KeyCode.H)) {
+            Game.Instance.Absorb(Game.Instance.gameData.FindAtom(1), 1000);
+        }
     }
     
     public void CheckForCollect() {

@@ -16,6 +16,7 @@ public class CraftUI : MonoBehaviour {
     [SerializeField] TextMeshProUGUI atomsRequiredText;
     [SerializeField] TextMeshProUGUI atomAmountText;
     [SerializeField] TextMeshProUGUI currAtomAmountText;
+    [SerializeField] RectTransform atomNeededRect;
     [SerializeField] Button craftBtn;
     [SerializeField] Button craftBtnx10;
     [SerializeField] Button craftBtnx100;
@@ -32,7 +33,8 @@ public class CraftUI : MonoBehaviour {
     [SerializeField] RectTransform craftableListRect;
     [SerializeField] ChoiceOption choicePrefab;
 
-    private List<ChoiceOption> craftableChoices = new List<ChoiceOption>();
+    private Dictionary<Craftable, ChoiceOption> craftableChoices = new Dictionary<Craftable, ChoiceOption>();
+    //private List<ChoiceOption> craftableChoices = new List<ChoiceOption>();
 
     private Craftable currCraftable;
 
@@ -60,8 +62,10 @@ public class CraftUI : MonoBehaviour {
                 SetCraftable(c);
                 AudioManager.Instance.PlaySound(choiceClickSound);
             });
+            craftablChoice.SetColors(ChoiceOption.defaultNormalColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultPressedColor);
 
-            craftableChoices.Add(craftablChoice);
+            //craftableChoices.Add(craftablChoice);
+            craftableChoices.Add(c, craftablChoice);
         }
         // Height of ScrollView
         var sizeDelta = craftableListRect.sizeDelta;
@@ -72,6 +76,18 @@ public class CraftUI : MonoBehaviour {
     }
 
     public void SetCraftable(Craftable c) {
+        RemoveCraftable();
+
+        ChoiceOption choiceOption;
+        if (craftableChoices.TryGetValue(c, out choiceOption)) {
+            choiceOption.SetButtonEvent(() => {
+                RemoveCraftable();
+                AudioManager.Instance.PlaySound(choiceClickSound);
+            });
+            choiceOption.SetColors(ChoiceOption.defaultPressedColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultNormalColor);
+            choiceOption.SetFocus(false);
+        }
+
         currCraftable = c;
 
         int amo = Game.Instance.playerData.GetCraftableAmount(c);
@@ -99,6 +115,10 @@ public class CraftUI : MonoBehaviour {
         atomAmountText.text = atomAmo.ToString();
         currAtomAmountText.text = atomHave.ToString();
 
+        var size = atomNeededRect.sizeDelta;
+        size.y = atoms.Length * 36;
+        atomNeededRect.sizeDelta = size;
+
         bool canCraft = Game.Instance.playerData.CanCraft(c);
 
         craftBtn.interactable = canCraft;
@@ -112,10 +132,20 @@ public class CraftUI : MonoBehaviour {
         sellBtnx100.interactable = canSell;
     }
     public void RemoveCraftable() {
-        craftableImage.sprite = null;
+        ChoiceOption choiceOption;
+        if (currCraftable != null && craftableChoices.TryGetValue(currCraftable, out choiceOption)) {
+            choiceOption.SetButtonEvent(() => {
+                SetCraftable(currCraftable);
+                AudioManager.Instance.PlaySound(choiceClickSound);
+            });
+            choiceOption.SetColors(ChoiceOption.defaultNormalColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultPressedColor);
+            choiceOption.SetFocus(false);
+        }
+
+        craftableImage.sprite = Game.Instance.gameData.GetUknownInfo().GetImage();
 
         craftableNameText.text = "???";
-        craftableInfoText.text = "Price: $\nCurr Amo: ";
+        craftableInfoText.text = "Price: \nCurr Amo: ";
         atomsRequiredText.text = "";
         atomAmountText.text = "";
         currAtomAmountText.text = "";
@@ -154,10 +184,11 @@ public class CraftUI : MonoBehaviour {
 
     public void Refresh() {
         RemoveCraftable();
+        
         for (int i = 0; i < craftableChoices.Count; i++) {
             Craftable c = Game.Instance.gameData.GetCraftable(i);
 
-            SetCraftableChoice(craftableChoices[i], c);
+            SetCraftableChoice(craftableChoices.Values.ElementAt(i), c);
         }
     }
 

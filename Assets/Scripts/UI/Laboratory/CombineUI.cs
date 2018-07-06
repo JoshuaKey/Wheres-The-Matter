@@ -62,6 +62,7 @@ public class CombineUI : MonoBehaviour {
                 SetAtom(a);
                 AudioManager.Instance.PlaySound(choiceClickSound);
             });
+            atomChoice.SetColors(ChoiceOption.defaultNormalColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultPressedColor);
 
             atomChoices.Add(atomChoice);
         }
@@ -98,8 +99,17 @@ public class CombineUI : MonoBehaviour {
     }
 
     public void SetAtomA(Atom atom) {
+        if (atom != null && atomChoices.Count > atom.GetAtomicNumber()) {
+            ChoiceOption choiceOption = atomChoices[atom.GetAtomicNumber() - 1];
+            choiceOption.SetButtonEvent(() => {
+                RemoveAtomA();
+                AudioManager.Instance.PlaySound(choiceClickSound);
+            });
+            choiceOption.SetColors(ChoiceOption.defaultPressedColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultNormalColor);
+            choiceOption.SetFocus(false);
+        }
         atomA = atom;
-        atomChoices[atomA.GetAtomicNumber() - 1].SetInteractable(false);
+        //atomChoices[atomA.GetAtomicNumber() - 1].SetInteractable(false);
 
         AtomInfo info = Game.Instance.gameData.FindAtomInfo(atom.GetAtomicNumber());
         AtomData data = Game.Instance.gameData.FindAtomData(atom.GetAtomicNumber());
@@ -113,8 +123,17 @@ public class CombineUI : MonoBehaviour {
         atomABtn.interactable = true;
     }
     public void SetAtomB(Atom atom) {
+        if (atom != null && atomChoices.Count > atom.GetAtomicNumber()) {
+            ChoiceOption choiceOption = atomChoices[atom.GetAtomicNumber() - 1];
+            choiceOption.SetButtonEvent(() => {
+                RemoveAtomB();
+                AudioManager.Instance.PlaySound(choiceClickSound);
+            });
+            choiceOption.SetColors(ChoiceOption.defaultPressedColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultNormalColor);
+            choiceOption.SetFocus(false);
+        }
         atomB = atom;
-        atomChoices[atomB.GetAtomicNumber() - 1].SetInteractable(false);
+        //atomChoices[atomB.GetAtomicNumber() - 1].SetInteractable(false);
 
         AtomInfo info = Game.Instance.gameData.FindAtomInfo(atom.GetAtomicNumber());
         AtomData data = Game.Instance.gameData.FindAtomData(atom.GetAtomicNumber());
@@ -129,8 +148,18 @@ public class CombineUI : MonoBehaviour {
     }
 
     public void RemoveAtomA() {
-        if (atomA != null) {
-            atomChoices[atomA.GetAtomicNumber() - 1].SetInteractable(true);
+        //if (atomA != null) {
+        //    atomChoices[atomA.GetAtomicNumber() - 1].SetInteractable(true);
+        //}
+        if (atomA != null && atomChoices.Count > atomA.GetAtomicNumber()) {
+            ChoiceOption choiceOption = atomChoices[atomA.GetAtomicNumber() - 1];
+            var atom = atomA;
+            choiceOption.SetButtonEvent(() => {
+                SetAtom(atom);
+                AudioManager.Instance.PlaySound(choiceClickSound);
+            });
+            choiceOption.SetColors(ChoiceOption.defaultNormalColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultPressedColor);
+            choiceOption.SetFocus(false);
         }
         atomA = null;
 
@@ -148,8 +177,18 @@ public class CombineUI : MonoBehaviour {
         atomABtn.interactable = false;
     }
     public void RemoveAtomB() {
-        if (atomB != null) {
-            atomChoices[atomB.GetAtomicNumber() - 1].SetInteractable(true);
+        //if (atomB != null) {
+        //    atomChoices[atomB.GetAtomicNumber() - 1].SetInteractable(true);
+        //}
+        if (atomB != null && atomChoices.Count > atomB.GetAtomicNumber()) {
+            ChoiceOption choiceOption = atomChoices[atomB.GetAtomicNumber() - 1];
+            var atom = atomB;
+            choiceOption.SetButtonEvent(() => {
+                SetAtom(atom);
+                AudioManager.Instance.PlaySound(choiceClickSound);
+            });
+            choiceOption.SetColors(ChoiceOption.defaultNormalColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultPressedColor);
+            choiceOption.SetFocus(false);
         }
         atomB = null;
 

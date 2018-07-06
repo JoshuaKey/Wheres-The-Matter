@@ -538,7 +538,14 @@ MonoBehaviour:
     - {fileID: 11400000, guid: fec421398b4c25443ab5a94f9fac135e, type: 2}
     - {fileID: 11400000, guid: 648da233cac68ef47aab8e8337dffd6f, type: 2}
     craftables:
+    - {fileID: 11400000, guid: 4d107f18786f19441bfe0cf79d881a4f, type: 2}
+    - {fileID: 11400000, guid: cd143a937565f934580492b0a16ac490, type: 2}
+    - {fileID: 11400000, guid: 63504cd0b722947458ed48831122cd41, type: 2}
+    - {fileID: 11400000, guid: 951218e588a7e204296117f1dfc6b2ab, type: 2}
     - {fileID: 11400000, guid: 34e3b034b0764ee43b0a856f37dad6e3, type: 2}
+    - {fileID: 11400000, guid: 2543ed2f908a2c346b1bc165acad9775, type: 2}
+    - {fileID: 11400000, guid: 9896f06f75a29d749ba272509bcf32ee, type: 2}
+    - {fileID: 11400000, guid: 5af7dee752118b14894196225c1de4db, type: 2}
   playerData:
     collectRadius: 0.3
     collectSpeed: 1

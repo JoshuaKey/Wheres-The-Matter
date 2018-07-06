@@ -29,7 +29,7 @@ public class PlayerData  {
     [SerializeField] private float collectWeight = 1f; // From 1 - 300ish Neutrons + Protons
 
     [SerializeField] private float particleSpeed = 1.5f; // From 1.5 to  100
-    [SerializeField] private float particleStability = 60f;
+    [SerializeField] private float particleStability = 60f; // from 60 to 100
 
     // Add weight
     // All values are floats
@@ -529,13 +529,12 @@ public class PlayerData  {
     public float GetParticleSpeed() { return particleSpeed; }
     public float GetParticleStabilization() { return particleStability; }
 
-
-    public float GetNextAtomCollectorRadius() { return collectRadius += .1f; }
-    public float GetNextAtomCollectorSpeed() { return collectSpeed -= .01f; }
-    public float GetNextAtomCollectorEfficiency() { return collectEfficiency += 1f; }
-    public float GetNextAtomCollectorWeight() { return collectWeight += 2f; }
-    public float GetNextParticleSpeed() { return particleSpeed += 1f; }
-    public float GetNextParticleStabilization() { return particleStability += .01f; }
+    public float GetNextAtomCollectorRadius() { return collectRadius + .1f; }
+    public float GetNextAtomCollectorSpeed() { return collectSpeed - .01f; }
+    public float GetNextAtomCollectorEfficiency() { return collectEfficiency + 1f; }
+    public float GetNextAtomCollectorWeight() { return collectWeight + 2f; }
+    public float GetNextParticleSpeed() { return particleSpeed + 1f; }
+    public float GetNextParticleStabilization() { return particleStability + .01f; }
 
     public int GetCraftableAmount(Craftable c) {
         int amo = 0;

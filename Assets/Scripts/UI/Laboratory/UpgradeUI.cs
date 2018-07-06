@@ -61,6 +61,7 @@ public class UpgradeUI : MonoBehaviour {
                 SetUpgradeInfo((UpgradeType)temp);
                 AudioManager.Instance.PlayUISound(choiceClick);
             });
+            choice.SetColors(ChoiceOption.defaultNormalColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultPressedColor);
             choice.SetTextAlignment(TextAlignmentOptions.Center);
 
             choices.Add(choice);
@@ -98,8 +99,14 @@ public class UpgradeUI : MonoBehaviour {
         RemoveUpgrade();
 
         if((int)type >= choices.Count) { return; }
-        choices[(int)type].SetInteractable(false);
 
+        ChoiceOption choiceOption = choices[(int)type];
+        choiceOption.SetButtonEvent(() => {
+            RemoveUpgrade();
+            AudioManager.Instance.PlaySound(choiceClick);
+        });
+        choiceOption.SetColors(ChoiceOption.defaultPressedColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultNormalColor);
+        choiceOption.SetFocus(false);
         currUpgradeType = type;
 
         string name = "", description = "";
@@ -166,8 +173,18 @@ public class UpgradeUI : MonoBehaviour {
 
     public void RemoveUpgrade() {
         if (choices.Count > (int)currUpgradeType) {
-            choices[(int)currUpgradeType].SetInteractable(true);
+            ChoiceOption choiceOption = choices[(int)currUpgradeType];
+            var type = currUpgradeType;
+            choiceOption.SetButtonEvent(() => {
+                SetUpgradeInfo(type);
+                AudioManager.Instance.PlaySound(choiceClick);
+            });
+            choiceOption.SetColors(ChoiceOption.defaultNormalColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultPressedColor);
+            choiceOption.SetFocus(false);
         }
+        //if (choices.Count > (int)currUpgradeType) {
+        //    choices[(int)currUpgradeType].SetInteractable(true);
+        //}
 
         upgradeName.text = "Upgrade";
         upgradeDesc.text = "";

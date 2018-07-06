@@ -9,7 +9,6 @@ public class LoadGame : MonoBehaviour {
     [SerializeField] int currScene;
     [SerializeField] int gameScene;
     [SerializeField] TextMeshProUGUI percentText;
-    [SerializeField] float maximumLoadTime = 10; // In Secibds
 
     private AsyncOperation operation;
     private float timePercent;
