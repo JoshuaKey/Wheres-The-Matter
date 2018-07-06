@@ -14,11 +14,12 @@ public class AudioManager : MonoBehaviour {
     private List<AudioSource> soundSources = new List<AudioSource>();
 
     private void Awake() {
-        if(Instance == null) {
-            Instance = this;
-        } else {
-            Destroy(this.gameObject);
-        }
+        Instance = this;
+        //if (Instance == null) {
+            
+        //} else {
+        //    Destroy(this.gameObject);
+        //}
 
         // Initial Sounds
         var soundSource = this.gameObject.AddComponent<AudioSource>();
@@ -30,8 +31,10 @@ public class AudioManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        StopMusic(true);
-	}
+        if (defaultMusic != null) {
+            PlayMusic(defaultMusic, defaultVolume);
+        }
+    }
 	
     public void PlayMusic(AudioClip clip, float volume = 1.0f) {
         musicSource.clip = clip;

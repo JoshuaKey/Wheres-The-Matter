@@ -12,6 +12,8 @@ public class CombineUI : MonoBehaviour {
     [SerializeField] Slider atomBAmo;
     [SerializeField] Image atomAImage;
     [SerializeField] Image atomBImage;
+    [SerializeField] Button atomABtn;
+    [SerializeField] Button atomBBtn;
     [SerializeField] Image atomResultImage;
     [SerializeField] Button produceButton;
 
@@ -107,6 +109,8 @@ public class CombineUI : MonoBehaviour {
 
         atomAAmo.maxValue = data.GetCurrAmo();
         SetAtomAAmoText();
+
+        atomABtn.interactable = true;
     }
     public void SetAtomB(Atom atom) {
         atomB = atom;
@@ -120,6 +124,8 @@ public class CombineUI : MonoBehaviour {
 
         atomBAmo.maxValue = data.GetCurrAmo();
         SetAtomBAmoText();
+
+        atomBBtn.interactable = true;
     }
 
     public void RemoveAtomA() {
@@ -138,6 +144,8 @@ public class CombineUI : MonoBehaviour {
         atomResultText.text = info.GetAtom().GetName();
         atomAAmoText.text = "";
         atomAAmo.value = 0;
+
+        atomABtn.interactable = false;
     }
     public void RemoveAtomB() {
         if (atomB != null) {
@@ -155,6 +163,8 @@ public class CombineUI : MonoBehaviour {
         atomResultText.text = info.GetAtom().GetName();
         atomBAmoText.text = "";
         atomBAmo.value = 0;
+
+        atomBBtn.interactable = false;
     }
 
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ResultUI : MonoBehaviour {
 
@@ -9,10 +10,13 @@ public class ResultUI : MonoBehaviour {
     [SerializeField] private RectTransform usedAtoms;
     [SerializeField] private TextMeshProUGUI usedAtomName;
     [SerializeField] private TextMeshProUGUI usedAtomAmo;
+    [SerializeField] private Scrollbar usedScrollbar;
 
     [SerializeField] private RectTransform producedAtoms;
     [SerializeField] private TextMeshProUGUI producedAtomName;
     [SerializeField] private TextMeshProUGUI producedAtomAmo;
+    [SerializeField] private Scrollbar producedScrollbar;
+
 
     [Header("Other")]
     [SerializeField] private AudioClip successClip;
@@ -35,12 +39,22 @@ public class ResultUI : MonoBehaviour {
             var size = usedAtoms.sizeDelta;
             size.y = 36 * used.Count;
             usedAtoms.sizeDelta = size;
-            print("Used: " + size);
+
+            size = usedAtomName.rectTransform.sizeDelta;
+            size.y = 36 * used.Count;
+            usedAtomName.rectTransform.sizeDelta = size;
+
+            size = usedAtomAmo.rectTransform.sizeDelta;
+            size.y = 36 * used.Count;
+            usedAtomAmo.rectTransform.sizeDelta = size;
         } else {
 
             var size = usedAtoms.sizeDelta;
             size.y = 0;
             usedAtoms.sizeDelta = size;
+
+            usedAtomName.text = "";
+            usedAtomAmo.text = "";
         }
 
         // Produced Atoms
@@ -57,12 +71,26 @@ public class ResultUI : MonoBehaviour {
             var size = producedAtoms.sizeDelta;
             size.y = 36 * results.Count;
             producedAtoms.sizeDelta = size;
+
+            size = producedAtomName.rectTransform.sizeDelta;
+            size.y = 36 * results.Count;
+            producedAtomName.rectTransform.sizeDelta = size;
+
+            size = producedAtomAmo.rectTransform.sizeDelta;
+            size.y = 36 * results.Count;
+            producedAtomAmo.rectTransform.sizeDelta = size;
         } else {
             var size = producedAtoms.sizeDelta;
             size.y = 0;
             producedAtoms.sizeDelta = size;
+
+            producedAtomName.text = "";
+            producedAtomAmo.text = "";
         }
-       
+
+        usedScrollbar.value = 1;
+        producedScrollbar.value = 1;
+
         AudioManager.Instance.PlaySound(successClip, .8f);
     }
 

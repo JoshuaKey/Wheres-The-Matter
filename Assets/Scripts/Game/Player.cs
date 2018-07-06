@@ -29,6 +29,7 @@ public class Player : MonoBehaviour {
         AtomCollectorLayerMask = 1 << AtomCollectorLayer;
 
         cursor.SetSize(Game.Instance.playerData.GetAtomCollectorRadius());
+        Game.Instance.playerData.OnCollectRadiusChange += OnRadiusChange;
     }
 
     private void Update() {
@@ -97,4 +98,9 @@ public class Player : MonoBehaviour {
     }
 
     public void SetCanCollect(bool value) { canCollect = value; }
+
+    private void OnRadiusChange(float radius) {
+        cursor.SetSize(radius);
+    }
+
 }

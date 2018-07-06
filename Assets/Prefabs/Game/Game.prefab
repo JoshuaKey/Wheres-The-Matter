@@ -540,11 +540,12 @@ MonoBehaviour:
     craftables:
     - {fileID: 11400000, guid: 34e3b034b0764ee43b0a856f37dad6e3, type: 2}
   playerData:
-    collectRadius: 3
+    collectRadius: 0.3
     collectSpeed: 1
     collectEfficiency: 1
-    particleSpeed: 0.1
-    particleStability: 0.6
+    collectWeight: 1
+    particleSpeed: 1.5
+    particleStability: 60
   player: {fileID: 0}
   cursor: {fileID: 0}
   world: {fileID: 0}
@@ -557,7 +558,7 @@ MonoBehaviour:
   settingCanvas: {fileID: 0}
   newElementImage: {fileID: 0}
   particlePool: {fileID: 0}
-  particleEffectAdditionalDist: 20
+  particleEffectAdditionalDist: 40
   areaMusic:
   - {fileID: 8300000, guid: 5e34d24698a55364392e1db0c4003f81, type: 3}
   - {fileID: 8300000, guid: 3a141cf0db72f6642bed4337146beeea, type: 3}
@@ -565,6 +566,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c4b87dcf78d273640aadaedb5d42c6fd, type: 3}
   - {fileID: 8300000, guid: e9d4ac763c90c4148a26ec462dd3e9e1, type: 3}
   - {fileID: 8300000, guid: 68406f8abd9e80c44bbfa711be0bb28b, type: 3}
+  discoverySound: {fileID: 8300000, guid: 88a37d3cf02c275418defe1ee905d0e1, type: 3}
 --- !u!114 &114838861568036318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -577,5 +579,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSource: {fileID: 82733271661907520}
-  defaultMusic: {fileID: 0}
-  defaultVolume: 0
+  defaultMusic: {fileID: 8300000, guid: 5e34d24698a55364392e1db0c4003f81, type: 3}
+  defaultVolume: 1

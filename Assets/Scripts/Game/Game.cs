@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Game : MonoBehaviour {
@@ -30,19 +31,21 @@ public class Game : MonoBehaviour {
 
     [Header("Music")]
     [SerializeField] private AudioClip[] areaMusic;
+    [SerializeField] private AudioClip discoverySound;
 
     //private Canvas previousCanvas;
     private Canvas currCanvas;
 
     public static Game Instance = null;
     private void Awake() {
-        if(Instance == null) {
-            Instance = this;
-        } else {
-            Destroy(this.gameObject);
-        }
+        Instance = this;
+        //if (Instance == null) {
+        //    Instance = this;
+        //} else {
+        //    Destroy(this.gameObject);
+        //}
 
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
     }
 
     private void Start() {
@@ -93,6 +96,7 @@ public class Game : MonoBehaviour {
         }
         
         if (!info.IsDiscovered()) {
+            AudioManager.Instance.PlaySound(discoverySound);
             print("Discovered " + atom.name);
 
             info.SetIsDiscovered(true);
@@ -207,8 +211,9 @@ public class Game : MonoBehaviour {
     }
 
     public void Exit() {
-        Application.Quit();
-        Debug.Break();
+        menu.gameObject.SetActive(false);
+        cursor.gameObject.SetActive(false);
+        SceneManager.LoadScene(0);
     }
 }
 //RULES:

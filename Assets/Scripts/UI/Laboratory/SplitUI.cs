@@ -8,6 +8,7 @@ public class SplitUI : MonoBehaviour {
 
     [SerializeField] Slider atomAAmo;
     [SerializeField] Image atomAImage;
+    [SerializeField] Button atomABtn;
     [SerializeField] Image atomResultImage;
     [SerializeField] Button splitBtn;
     [SerializeField] ResultUI resultUI;
@@ -89,6 +90,8 @@ public class SplitUI : MonoBehaviour {
 
         atomAAmo.maxValue = data.GetCurrAmo();
         SetAtomAAmoText();
+
+        atomABtn.interactable = true;
     }
 
     public void RemoveAtomA() {
@@ -107,6 +110,8 @@ public class SplitUI : MonoBehaviour {
         atomResultText.text = info.GetAtom().GetName();
         atomAAmoText.text = "";
         atomAAmo.value = 0;
+
+        atomABtn.interactable = false;
     }
 
     private void CalculateInfo() {

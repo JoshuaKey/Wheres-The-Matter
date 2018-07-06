@@ -36,8 +36,8 @@ public class AtomCollector : MonoBehaviour {
     private void Start() {
         renderer = GetComponent<SpriteRenderer>();
 
-        for(int i = 0; i < 88; i++) {
-            if(UnityEngine.Random.value < .1f) {
+        for (int i = 0; i < 88; i++) {
+            if (UnityEngine.Random.value < .1f) {
                 AtomRatio ratio = new AtomRatio();
                 ratio.atom = Game.Instance.gameData.FindAtom(i + 1);
                 ratio.ratio = UnityEngine.Random.value * 100;
@@ -57,32 +57,62 @@ public class AtomCollector : MonoBehaviour {
         var playerData = Game.Instance.playerData;
         int atomCount = 0;
 
+        //float number = UnityEngine.Random.Range(.0f, 100.0f);
+        //float ratio = 0f;
+        //for (int i = 0; i < atoms.Count; i++) {
+        //    AtomRatio atomRatio = atoms[i];
+
+        //    ratio += atomRatio.ratio;
+        //    if(number <= ratio) {
+        //        AtomAmo atomAmo = new AtomAmo();
+        //        atomAmo.atom = atomRatio.atom;
+        //        atomAmo.amo = UnityEngine.Random.Range(1, (int)playerData.GetAtomCollectorEfficiency() + 1);
+
+        //        atomsToBeAbsorbed.Add(atomAmo);
+
+        //        atomCount += atomAmo.amo;
+
+        //        break;
+        //    }
+        //}
+
+        
         for (int i = 0; i < atoms.Count; i++) {
             AtomRatio atomRatio = atoms[i];
 
-            float ratio = UnityEngine.Random.Range(.0f, 100.0f) * playerData.GetAtomCollectorEfficiency();
-            if(ratio < atomRatio.ratio) {
+            float ratio = UnityEngine.Random.Range(.0f, 100.0f);
+            if(ratio <= atomRatio.ratio) {
                 AtomAmo atomAmo = new AtomAmo();
                 atomAmo.atom = atomRatio.atom;
-                atomAmo.amo = 1;
+                //atomAmo.amo = 1;
+                atomAmo.amo = UnityEngine.Random.Range(1, (int)playerData.GetAtomCollectorEfficiency());
+
+                // Lithium is a 30%
+                // Hygrogen is a 70%
+                // Effeciency is 100%
+
+                // Spanning:
+                // If I generate 30 or less, I get Lithium, else I get Hydrogen.
+                // I will always get an Atom, but it will only be 1 atom.
+                // The Efficieny could affect how many of the atom I get.
 
                 atomsToBeAbsorbed.Add(atomAmo);
 
                 atomCount += atomAmo.amo;
             }
         }
-       
+        
+        
         // Time
         nextCollectionTime = Time.time + collectionPause * playerData.GetAtomCollectorSpeed();
-        //print("Time: " + Time.time + " NExt: " + nextCollectionTime);
-
-        // Scale
-        if (canFlash && !isFlashing && atomCount != 0) {
-            StartCoroutine(Flash());
-        }
 
         // Life
         LoseLife(atomCount / 100f);
+
+        // Flash
+        if (canFlash && !isFlashing && atomCount != 0 && !IsDead()) {
+            StartCoroutine(Flash());
+        }
 
         return atomsToBeAbsorbed;
     }

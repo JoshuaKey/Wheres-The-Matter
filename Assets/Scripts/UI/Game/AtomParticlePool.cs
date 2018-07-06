@@ -20,8 +20,8 @@ public class AtomParticlePool : MonoBehaviour {
         }
         Disable();
 
-        particleCollectDistance = Mathf.Max(.5f, Game.Instance.playerData.GetAtomCollectorRadius() / 2) * 25;
-        particleCollectDistance *= particleCollectDistance;
+        Game.Instance.playerData.OnCollectRadiusChange += ChangeRadius;
+        ChangeRadius(Game.Instance.playerData.GetAtomCollectorRadius());
     }
 
     private AtomParticle InstantiateParticle() {
@@ -42,18 +42,11 @@ public class AtomParticlePool : MonoBehaviour {
         }
 
         for(int i = 0; i < currParticle; i++) {
-            var particle = atomParticles[i].rect;
-
-            Vector3 distance = particleDestination.position - particle.position;
-            if (distance.sqrMagnitude < particleCollectDistance) { // 30 squared
+            if (atomParticles[i].UpdateParticle(particleDestination.position, particleCollectDistance, 5f, 1f)) {
                 Game.Instance.Absorb(atomParticles[i].atom, atomParticles[i].amo);
                 atomParticles[i].gameObject.SetActive(false);
                 Swap(i, --currParticle);
                 i--;
-            } else {
-                var position = Vector3.Lerp(particle.position, particleDestination.position, Time.deltaTime);
-
-                particle.position = position;
             }
         }
 	}
@@ -85,5 +78,10 @@ public class AtomParticlePool : MonoBehaviour {
     }
     private void Disable() {
         this.gameObject.SetActive(false);
+    }
+
+    private void ChangeRadius(float radi) {
+        particleCollectDistance = Mathf.Max(.5f, radi / 2) * 25;
+        particleCollectDistance *= particleCollectDistance;
     }
 }

@@ -31,8 +31,8 @@ MonoBehaviour:
   category: 7
   group: 6
   period: 9
-  weight: 238
+  weight: 234
   density: 19.1
   neutrons: 142
   halfLife: 4.468e+9
-  isDiscovered: 1
+  isDiscovered: 0

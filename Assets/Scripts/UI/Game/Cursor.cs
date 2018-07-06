@@ -12,7 +12,7 @@ public class Cursor : MonoBehaviour {
     [SerializeField] private RectTransform thisRect;
 
 	// Use this for initialization
-	void Start () {
+	public void Start () {
         //thisRect = GetComponent<RectTransform>();
         //image = GetComponent<Image>();
 

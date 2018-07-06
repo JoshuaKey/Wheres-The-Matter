@@ -103,50 +103,50 @@ public class UpgradeUI : MonoBehaviour {
         currUpgradeType = type;
 
         string name = "", description = "";
-        float currValue = 0, nextValue = 0;
+        string currValue = "", nextValue ="";
         AtomAmo atomsNeeded = new AtomAmo();
 
         switch (type) {
             case UpgradeType.Collect_Speed:
                 name = "Collect Speed";
-                description = "How quickly the Atom Collector can collect atoms.\nThis is a ratio. Less is better.";
-                currValue = Game.Instance.playerData.GetAtomCollectorSpeed();
-                nextValue = Game.Instance.playerData.GetAtomCollectorSpeed();
+                description = "How quickly the Atom Collector can collect atoms.\nSome objects take longer to collect than others.";
+                currValue = Game.Instance.playerData.GetAtomCollectorSpeed()*100 +"%"; // Measurable?
+                nextValue = Game.Instance.playerData.GetNextAtomCollectorSpeed()*100 + "%";
                 atomsNeeded = Game.Instance.playerData.GetAtomCollectorSpeedCost();
                 break;
             case UpgradeType.Collect_Radius:
                 name = "Collect Radius";
-                description = "How far the Atom Collector can collect atoms.";
-                currValue = Game.Instance.playerData.GetAtomCollectorRadius();
-                nextValue = Game.Instance.playerData.GetAtomCollectorRadius();
+                description = "How far the Atom Collector can collect. Measured in Meters.";
+                currValue = Game.Instance.playerData.GetAtomCollectorRadius() + " m";
+                nextValue = Game.Instance.playerData.GetNextAtomCollectorRadius() + " m";
                 atomsNeeded = Game.Instance.playerData.GetAtomCollectorRadiusCost();
                 break;
             case UpgradeType.Collect_Efficiency:
                 name = "Collect Efficiency";
                 description = "How many atoms the Atom Collector can collect at a time.";
-                currValue = Game.Instance.playerData.GetAtomCollectorEfficiency();
-                nextValue = Game.Instance.playerData.GetAtomCollectorEfficiency();
+                currValue = Game.Instance.playerData.GetAtomCollectorEfficiency() *100 + "%";
+                nextValue = Game.Instance.playerData.GetNextAtomCollectorEfficiency() *100 + "%";
                 atomsNeeded = Game.Instance.playerData.GetAtomCollectorEfficiencyCost();
                 break;
             case UpgradeType.Collect_Weight:
                 name = "Collect Weight";
-                description = "Determines if the Atom Collector can collect a heavy atom.\nAn atom can be collected if it's protons ands neutrons are less than the Collect Weight.\n";
-                currValue = Game.Instance.playerData.GetAtomCollectorWeight();
-                nextValue = Game.Instance.playerData.GetAtomCollectorWeight();
+                description = "Determines if the Atom Collector can collect a heavy atom.\nAn atom can be collected if it's weight (Protons + Neutrons) is less than the Collect Weight.";
+                currValue += Game.Instance.playerData.GetAtomCollectorWeight();
+                nextValue += Game.Instance.playerData.GetNextAtomCollectorWeight();
                 atomsNeeded = Game.Instance.playerData.GetAtomCollectorWeightCost();
                 break;
             case UpgradeType.Particle_Speed:
-                name = "Particle Speed";
-                description = "How fast the Particle Accelerator runs.\nThe faster it is, the more likely splitting and combining will succeedd.\nThis is measured as a percent of the Speed of Light.";
-                currValue = Game.Instance.playerData.GetParticleSpeed();
-                nextValue = Game.Instance.playerData.GetParticleSpeed();
+                name = "Particle Accelerator Speed";
+                description = "How fast the Particle Accelerator runs.\nThe faster it is, the more likely splitting and combining will succeed.\nThis is measured as a percent of the Speed of Light.";
+                currValue = Game.Instance.playerData.GetParticleSpeed() + "%";
+                nextValue = Game.Instance.playerData.GetNextParticleSpeed() + "%";
                 atomsNeeded = Game.Instance.playerData.GetParticleSpeedCost();
                 break;
             case UpgradeType.Particle_Stability:
-                name = "Particle Speed";
-                description = "How effective the Radiation Container is.\nThe faster its speed, the more likely radioactive atoms will become stable.\nThis is measured as a percent of the Speed of Light.";
-                currValue = Game.Instance.playerData.GetParticleStabilization();
-                nextValue = Game.Instance.playerData.GetParticleStabilization();
+                name = "Particle Accelerator Stability";
+                description = "How stable the Particle Accelerator is.\nThe higher it is, the more likely radioactive atoms will become stable.\nThis is measured as a percent of the Speed of Light.";
+                currValue = Game.Instance.playerData.GetParticleStabilization() + "%";
+                nextValue = Game.Instance.playerData.GetNextParticleStabilization() + "%";
                 atomsNeeded = Game.Instance.playerData.GetParticleStabilizationCost();
                 break;
         }
@@ -156,8 +156,8 @@ public class UpgradeUI : MonoBehaviour {
         upgradeCurrValue.text = "Curr Value: " + currValue;
         upgradeNextValue.text = "Next Value: " + nextValue;
 
-        upgradeAtomNeed.text = atomsNeeded.atom.GetName();
-        upgradeAtomName.text = "" + atomsNeeded.amo;
+        upgradeAtomName.text = atomsNeeded.atom.GetName();
+        upgradeAtomNeed.text = "" + atomsNeeded.amo;
         int amoHave = Game.Instance.gameData.FindAtomData(atomsNeeded.atom.GetAtomicNumber()).GetCurrAmo();
         upgradeAtomHave.text = "" + amoHave;
 

@@ -29,11 +29,22 @@ public class PlayerData  {
     [SerializeField] private float collectWeight = 1f; // From 1 - 300ish Neutrons + Protons
 
     [SerializeField] private float particleSpeed = 1.5f; // From 1.5 to  100
-    [SerializeField] private float particleStability = .6f;
+    [SerializeField] private float particleStability = 60f;
 
     // Add weight
     // All values are floats
     // What is the max, what is the min.
+    // LEvel
+
+    public delegate void OnFloatChange(float value);
+
+    public event OnFloatChange OnMoneyChange;
+    public event OnFloatChange OnCollectRadiusChange;
+    public event OnFloatChange OnCollectSpeedChange;
+    public event OnFloatChange OnCollectEfficiencyChange;
+    public event OnFloatChange OnCollectWeightChange;
+    public event OnFloatChange OnParticleSpeedChange;
+    public event OnFloatChange OnParticleStabilityChange;
 
     private AtomAmo collectRadiusCost;
     private AtomAmo collectSpeedCost;
@@ -53,22 +64,22 @@ public class PlayerData  {
         Atom hydrogen = gameData.FindAtom(1);
 
         collectRadiusCost.atom = hydrogen;
-        collectRadiusCost.amo = 50;
+        collectRadiusCost.amo = 5;
 
         collectSpeedCost.atom = hydrogen;
-        collectSpeedCost.amo = 50;
+        collectSpeedCost.amo = 5;
 
         collectEfficiencyCost.atom = hydrogen;
-        collectEfficiencyCost.amo = 50;
+        collectEfficiencyCost.amo = 5;
 
         collectWeightCost.atom = hydrogen;
-        collectWeightCost.amo = 50;
+        collectWeightCost.amo = 5;
 
         particleSpeedCost.atom = hydrogen;
-        particleSpeedCost.amo = 50;
+        particleSpeedCost.amo = 5;
 
         particleStablizationCost.atom = hydrogen;
-        particleStablizationCost.amo = 50;
+        particleStablizationCost.amo = 5;
     }
 
     public AtomCollision EstimateCombine(Atom a, Atom b, int aAmo, int bAmo) {
@@ -259,7 +270,6 @@ public class PlayerData  {
         result.atomsUsed = new List<AtomAmo>();
 
         Atom target = info.targetAtom;
-        //AtomInfo targetInfo = Game.Instance.gameData.FindAtomInfo(target.GetAtomicNumber());
 
         // Split
         int produced = (int)(info.amo * info.success); // Random Loss
@@ -285,6 +295,13 @@ public class PlayerData  {
     }
 
     // Estimate Atom
+    public AtomInfo EstimateAtom(int atomicNumber) {
+        //AtomInfo info = null;        //AtomInfo info = null;
+        return null;
+    }
+    public AtomInfo CreateAtom(int atomicNumber, string name, string abbreviation) {
+        return null;
+    }
 
     public bool CanCraft(Craftable c) {
         int amount = 1;
@@ -344,12 +361,23 @@ public class PlayerData  {
         return result;
     }
 
-    public void Sell(Craftable c, int amo) {
+    public int Sell(Craftable c, int amo) {
         int amoOfCraftables;
         if (craftables.TryGetValue(c, out amoOfCraftables)) {
+            if (amo > amoOfCraftables) {
+                amo = amoOfCraftables;
+            } 
+
             craftables[c] = amoOfCraftables - amo;
             money += c.GetPrice() * amo;
-        } 
+
+            if (OnMoneyChange != null) {
+                OnMoneyChange(money);
+            }
+
+            return amo;
+        }
+        return 0;
     }
 
     public bool UpgradeAtomCollectorRadius() {
@@ -368,6 +396,9 @@ public class PlayerData  {
             collectRadius += .1f;
 
             success = true;
+            if (OnCollectRadiusChange != null) {
+                OnCollectRadiusChange(collectRadius);
+            }
         }
 
         return success;
@@ -388,6 +419,10 @@ public class PlayerData  {
             collectSpeed -= .01f;
 
             success = true;
+
+            if (OnCollectSpeedChange != null) {
+                OnCollectSpeedChange(collectSpeed);
+            }
         }
 
         return success;
@@ -405,9 +440,13 @@ public class PlayerData  {
             collectEfficiencyCost.amo *= 2;
 
             // Increment Collect Radius
-            collectEfficiency += .01f;
+            collectEfficiency += 1f;
 
             success = true;
+
+            if(OnCollectEfficiencyChange != null) {
+                OnCollectEfficiencyChange(collectEfficiency);
+            }
         }
 
         return success;
@@ -416,10 +455,10 @@ public class PlayerData  {
         bool success = false;
         var gameData = Game.Instance.gameData;
 
-        AtomData data = gameData.FindAtomData(collectEfficiencyCost.atom.GetAtomicNumber());
+        AtomData data = gameData.FindAtomData(collectWeightCost.atom.GetAtomicNumber());
 
-        if (data.GetCurrAmo() >= collectEfficiencyCost.amo) {
-            data.Lose(collectEfficiencyCost.amo);
+        if (data.GetCurrAmo() >= collectWeightCost.amo) {
+            data.Lose(collectWeightCost.amo);
 
             // Update CollectRadius Cost
             collectWeightCost.amo *= 2;
@@ -428,6 +467,9 @@ public class PlayerData  {
             collectWeight += 2f;
 
             success = true;
+            if (OnCollectWeightChange != null) {
+                OnCollectWeightChange(collectWeight);
+            }
         }
 
         return success;
@@ -448,6 +490,9 @@ public class PlayerData  {
             particleSpeed += 1f;
 
             success = true;
+            if (OnParticleSpeedChange != null) {
+                OnParticleSpeedChange(particleSpeed);
+            }
         }
 
         return success;
@@ -469,6 +514,9 @@ public class PlayerData  {
             // Logarithmic increment
 
             success = true;
+            if (OnParticleStabilityChange != null) {
+                OnParticleStabilityChange(particleStability);
+            }
         }
 
         return success;
@@ -480,6 +528,14 @@ public class PlayerData  {
     public float GetAtomCollectorWeight() { return collectWeight; }
     public float GetParticleSpeed() { return particleSpeed; }
     public float GetParticleStabilization() { return particleStability; }
+
+
+    public float GetNextAtomCollectorRadius() { return collectRadius += .1f; }
+    public float GetNextAtomCollectorSpeed() { return collectSpeed -= .01f; }
+    public float GetNextAtomCollectorEfficiency() { return collectEfficiency += 1f; }
+    public float GetNextAtomCollectorWeight() { return collectWeight += 2f; }
+    public float GetNextParticleSpeed() { return particleSpeed += 1f; }
+    public float GetNextParticleStabilization() { return particleStability += .01f; }
 
     public int GetCraftableAmount(Craftable c) {
         int amo = 0;

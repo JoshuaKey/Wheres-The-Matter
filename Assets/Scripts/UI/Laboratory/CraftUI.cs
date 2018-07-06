@@ -19,6 +19,9 @@ public class CraftUI : MonoBehaviour {
     [SerializeField] Button craftBtn;
     [SerializeField] Button craftBtnx10;
     [SerializeField] Button craftBtnx100;
+    [SerializeField] Button sellBtn;
+    [SerializeField] Button sellBtnx10;
+    [SerializeField] Button sellBtnx100;
 
     [Header("Other")]
     [SerializeField] ResultUI resultUI;
@@ -101,6 +104,12 @@ public class CraftUI : MonoBehaviour {
         craftBtn.interactable = canCraft;
         craftBtnx10.interactable = canCraft;
         craftBtnx100.interactable = canCraft;
+
+        bool canSell = Game.Instance.playerData.GetCraftableAmount(c) > 0;
+
+        sellBtn.interactable = canSell;
+        sellBtnx10.interactable = canSell;
+        sellBtnx100.interactable = canSell;
     }
     public void RemoveCraftable() {
         craftableImage.sprite = null;
@@ -114,6 +123,10 @@ public class CraftUI : MonoBehaviour {
         craftBtn.interactable = false;
         craftBtnx10.interactable = false;
         craftBtnx100.interactable = false;
+
+        sellBtn.interactable = false;
+        sellBtnx10.interactable = false;
+        sellBtnx100.interactable = false;
     }
     public void SetCraftableChoice(ChoiceOption choice, Craftable c) {
         int amo = Game.Instance.playerData.GetCraftableAmount(c);
@@ -123,9 +136,16 @@ public class CraftUI : MonoBehaviour {
     public void Craft(int amount) {
         var result = Game.Instance.playerData.Craft(currCraftable, amount);
 
-        //if (resultsToggle.isOn) {
-            resultUI.Setup(null, result.atomsUsed);
-        //}
+        resultUI.Setup(null, result.atomsUsed);
+
+        var temp = currCraftable;
+        Refresh();
+        SetCraftable(temp);
+    }
+    public void Sell(int amount) {
+        Game.Instance.playerData.Sell(currCraftable, amount);
+        //int amo = 
+        //resultUI.Setup(null, result.atomsUsed);
 
         var temp = currCraftable;
         Refresh();

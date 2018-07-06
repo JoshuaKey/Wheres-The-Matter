@@ -23,7 +23,7 @@ public class GameData  {
 
         for(int i = 0; i < atomData.Length; i++) {
             atomData[i].Reset();
-            //atomInfo[i].Reset();
+            atomInfo[i].Reset();
         }
         Array.Sort(atoms);
         Array.Sort(atomData);

@@ -81,23 +81,61 @@ public class World : MonoBehaviour {
         Vector2Int currPos = GetChunkIndex(pos);
 
         if (currChunk != currPos) {
-            Vector2Int index = Vector2Int.zero;
-            // UnLoad old Chunks
-            for (int y = -1; y <= 1; y++) {
-                for (int x = -1; x <= 1; x++) {
-                    index.x = x + currChunk.x;
-                    index.y = y + currChunk.y;
+            var diff = currPos - currChunk;
+            // CurrPos = 1,1 CurrChunk = 0,0
+            // Diff = 1,1
+            // Starting from CurrChunk, unload -1,-1 
+            // So -1, 0, 1
+
+            Vector2Int index = Vector2Int.zero; // Doesn't work with Diff >= 2.
+
+            if(diff.x != 0) {
+                // X Chunkss
+                index.x = currChunk.x - diff.x;
+                for (int i = -1; i <= 1; i++) {
+                    index.y = currChunk.y + i;
                     UnloadChunk(index);
                 }
-            }
-            // Load new Chunks
-            for (int y = -1; y <= 1; y++) {
-                for (int x = -1; x <= 1; x++) {
-                    index.x = x + currPos.x;
-                    index.y = y + currPos.y;
+
+                // X Chunks
+                index.x = currPos.x + diff.x;
+                for (int i = -1; i <= 1; i++) {
+                    index.y = currPos.y + i;
                     LoadChunk(index);
                 }
             }
+            if (diff.y != 0) {
+                // Y Chunks
+                index.y = currChunk.y - diff.y;
+                for (int i = -1; i <= 1; i++) {
+                    index.x = currChunk.x + i;
+                    UnloadChunk(index);
+                }
+
+                // Y Chunks
+                index.y = currPos.y + diff.y;
+                for (int i = -1; i <= 1; i++) {
+                    index.x = currPos.x + i;
+                    LoadChunk(index);
+                }
+            }
+
+            //// UnLoad old Chunks
+            //for (int y = -1; y <= 1; y++) {
+            //    for (int x = -1; x <= 1; x++) {
+            //        index.x = x + currChunk.x;
+            //        index.y = y + currChunk.y;
+            //        UnloadChunk(index);
+            //    }
+            //}
+            //// Load new Chunks
+            //for (int y = -1; y <= 1; y++) {
+            //    for (int x = -1; x <= 1; x++) {
+            //        index.x = x + currPos.x;
+            //        index.y = y + currPos.y;
+            //        LoadChunk(index);
+            //    }
+            //}
 
             currChunk = currPos;
         }
@@ -130,8 +168,6 @@ public class World : MonoBehaviour {
     }
 
     private Chunk CreateChunk(Vector2Int index) {
-        //c = Instantiate<Chunk>(chunkPrefab, new Vector3(x, y, 0f), Quaternion.identity);
-
         Chunk c = Chunk.CreateChunk(index.x, index.y, currArea);
         c.transform.SetParent(this.transform);
 
