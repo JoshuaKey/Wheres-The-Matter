@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Name: 96Curium
   m_EditorClassIdentifier: 
   name: Curium
-  abbreviation: Cm
+  abbreviation: Cu
   atomicNumber: 96
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

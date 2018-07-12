@@ -17,9 +17,11 @@ public class ResultUI : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI producedAtomAmo;
     [SerializeField] private Scrollbar producedScrollbar;
 
-
     [Header("Other")]
     [SerializeField] private AudioClip successClip;
+
+    public delegate void OnClick();
+    public event OnClick OnResultUIClick;
 
     public void Setup(List<AtomAmo> results, List<AtomAmo> used) {
         this.gameObject.SetActive(true);
@@ -94,7 +96,11 @@ public class ResultUI : MonoBehaviour {
         AudioManager.Instance.PlaySound(successClip, .8f);
     }
 
-    public void Disable() {
+    public void Click() {
+        if(OnResultUIClick != null) {
+            OnResultUIClick();
+        }
+
         this.gameObject.SetActive(false);
     }
 }

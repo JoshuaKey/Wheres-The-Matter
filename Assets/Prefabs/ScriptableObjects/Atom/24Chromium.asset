@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Chromium
   abbreviation: Cr
   atomicNumber: 24
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

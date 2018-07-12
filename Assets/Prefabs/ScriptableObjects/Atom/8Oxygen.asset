@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Oxygen
   abbreviation: O
   atomicNumber: 8
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Calcium
   abbreviation: Ca
   atomicNumber: 20
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

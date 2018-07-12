@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Francium
   abbreviation: Fr
   atomicNumber: 87
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

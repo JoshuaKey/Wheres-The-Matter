@@ -22,6 +22,19 @@ public class PlayerData  {
         public List<AtomAmo> atomsUsed;
         public int amountCreated;
     }
+    public struct AtomObject {
+        public Atom atom;
+        public AtomInfo info;
+        public AtomData data;
+    }
+
+    public struct UpgradeLevel {
+        public int level;
+        public List<AtomAmo> cost;
+        public AnimationCurve upgradeCurve;
+
+        public float value;
+    } // Anythign More???
 
     [SerializeField] private float collectRadius = .3f; // From .3 to Inifinite
     [SerializeField] private float collectSpeed = 0f; // From 1 -  0
@@ -31,20 +44,12 @@ public class PlayerData  {
     [SerializeField] private float particleSpeed = 1.5f; // From 1.5 to  100
     [SerializeField] private float particleStability = 60f; // from 60 to 100
 
+    [SerializeField] private float timeDilation = 0f;
+
     // Add weight
     // All values are floats
     // What is the max, what is the min.
     // LEvel
-
-    public delegate void OnFloatChange(float value);
-
-    public event OnFloatChange OnMoneyChange;
-    public event OnFloatChange OnCollectRadiusChange;
-    public event OnFloatChange OnCollectSpeedChange;
-    public event OnFloatChange OnCollectEfficiencyChange;
-    public event OnFloatChange OnCollectWeightChange;
-    public event OnFloatChange OnParticleSpeedChange;
-    public event OnFloatChange OnParticleStabilityChange;
 
     private AtomAmo collectRadiusCost;
     private AtomAmo collectSpeedCost;
@@ -54,9 +59,31 @@ public class PlayerData  {
     private AtomAmo particleSpeedCost;
     private AtomAmo particleStablizationCost;
 
+    private AtomAmo timeDilationCost;
+
     private float money;
 
     private Dictionary<Craftable, int> craftables = new Dictionary<Craftable, int>();
+
+    public delegate void OnFloatChange(float value);
+    public delegate void OnAtomChange(Atom atom, float value);
+    public delegate void OnCraftableChange(Craftable atom, float value);
+
+    public event OnFloatChange OnMoneyChange;
+    public event OnFloatChange OnCollectRadiusChange;
+    public event OnFloatChange OnCollectSpeedChange;
+    public event OnFloatChange OnCollectEfficiencyChange;
+    public event OnFloatChange OnCollectWeightChange;
+    public event OnFloatChange OnParticleSpeedChange;
+    public event OnFloatChange OnParticleStabilityChange;
+    public event OnFloatChange OnTimeDilationChange;
+
+    public event OnAtomChange OnAtomSplit;
+    public event OnAtomChange OnAtomCombine;
+    public event OnAtomChange OnAtomRename;
+
+    public event OnCraftableChange OnCraftableProduced;
+    public event OnCraftableChange OnCraftableSold;
 
     public void Init() {
         var gameData = Game.Instance.gameData;
@@ -80,6 +107,9 @@ public class PlayerData  {
 
         particleStablizationCost.atom = hydrogen;
         particleStablizationCost.amo = 5;
+
+        timeDilationCost.atom = hydrogen;
+        timeDilationCost.amo = 5;
     }
 
     public AtomCollision EstimateCombine(Atom a, Atom b, int aAmo, int bAmo) {
@@ -99,9 +129,10 @@ public class PlayerData  {
 
         if (Game.Instance.gameData.GetAtomAmount() >= maxProtons) {
             info.targetAtom = Game.Instance.gameData.FindAtom(maxProtons); // Should Correlate to Atomic number
-        } //else {
-        //    info.targetAtom = Game.Instance.gameData.GetUnknown(); // New Element
-        //}
+        } else {
+            info.targetAtom = null;
+            return info;
+        }
         AtomInfo targetInfo = Game.Instance.gameData.FindAtomInfo(maxProtons);
 
         int minProtons = Mathf.Min(aAmo, bAmo); // Min of Atoms
@@ -128,7 +159,7 @@ public class PlayerData  {
         if (targetInfo.GetHalfLife() == 0f) {
             info.stability = 1.0f;
         } else {
-            float halfLife = targetInfo.GetHalfLife();
+            float halfLife = targetInfo.GetHalfLife() + timeDilation;
             float multiple = 1 / Mathf.Sqrt(1 - (particleStability * particleStability) / (100 * 100));
             info.stability = AtomInfo.GetStability(halfLife * multiple * multiple);
         }
@@ -142,81 +173,40 @@ public class PlayerData  {
         result.atomsProduced = new List<AtomAmo>();
         result.atomsUsed = new List<AtomAmo>();
 
-        //AtomInfo aInfo = Game.Instance.gameData.FindAtomInfo(a.GetAtomicNumber());
-        //AtomInfo bInfo = Game.Instance.gameData.FindAtomInfo(b.GetAtomicNumber());
-        ////AtomData aData = Game.Instance.gameData.FindAtomData(a.GetAtomicNumber());
-        ////AtomData bData = Game.Instance.gameData.FindAtomData(b.GetAtomicNumber());
-
-        //int maxProtons = aInfo.GetProtons() + bInfo.GetProtons();
-        //int minAmo = Mathf.Min(aAmo, bAmo); // Min of Atoms
-        //int totalNeutrons = aAmo * aInfo.GetNeutrons() + bAmo* bInfo.GetNeutrons();
-        //int totalProtons = aAmo * aInfo.GetProtons() + bAmo * bInfo.GetProtons();
-
-        //for (int i = maxProtons; i > 1; i--) {
-        //if(totalNeutrons <= 0 || totalProtons <= 0f) { break; }
-
-        //Atom target = Game.Instance.gameData.FindAtom(maxProtons);
         Atom target = info.targetAtom;
-        //if(target == a || target == b) { break; }
-
-        //AtomInfo targetInfo = Game.Instance.gameData.FindAtomInfo(maxProtons);
-        //AtomInfo targetInfo = Game.Instance.gameData.FindAtomInfo(target.GetAtomicNumber());
-
-        //int minNeutrons = totalNeutrons / targetInfo.GetNeutrons();
-        //int maxAmo = Mathf.Min(minAmo, minNeutrons);
         int maxAmo = info.amo;
-        ////if(maxAmo == 0) { continue; }
 
-        //float estimatedSpeed = maxProtons / 10f;
-        //float successChance = Mathf.Clamp01(1 - estimatedSpeed / particleSpeed);
         float successChance = info.success;
-            //if(successChance == 0f) { continue; }
+        float stabilityChance = 1.0f;
 
-            //int produced = (int)(maxAmo * successChance);
-            //totalNeutrons -= targetInfo.GetNeutrons() * produced;
-            //totalProtons -= targetInfo.GetProtons() * produced;
-
-            float stabilityChance = 1.0f;
-        //if (targetInfo.GetHalfLife() != 0f) {
-        //    float halfLife = targetInfo.GetHalfLife();
-        //    float multiple = 1 / Mathf.Sqrt(1 - (particleStability * particleStability) / (100 * 100));
-        //    stabilityChance = AtomInfo.GetStability(halfLife * multiple * multiple);
-        //}
         stabilityChance = info.stability;
-        //if (stabilityChance == 0f) { continue; }
 
         int produced = (int)(maxAmo * successChance);
-        //totalNeutrons -= targetInfo.GetNeutrons() * produced;
-        //totalProtons -= targetInfo.GetProtons() * produced;
-
         int stabilized = (int)(produced * stabilityChance);
 
-            AtomAmo atomAmo = new AtomAmo();
-            atomAmo.amo = stabilized;
-            atomAmo.atom = target;
-            result.atomsProduced.Add(atomAmo);
+        AtomAmo atomAmo = new AtomAmo();
+        atomAmo.amo = stabilized;
+        atomAmo.atom = target;
+        result.atomsProduced.Add(atomAmo);
 
-            Game.Instance.Absorb(target, stabilized); 
-        //}
+        Game.Instance.Absorb(target, stabilized); 
 
         AtomAmo atomAUsed = new AtomAmo();
         atomAUsed.atom = a;
-        //atomAUsed.amo = minAmo;
         atomAUsed.amo = maxAmo;
         result.atomsUsed.Add(atomAUsed);
 
         AtomAmo atomBUsed = new AtomAmo();
         atomBUsed.atom = b;
-        //atomBUsed.amo = minAmo;
         atomBUsed.amo = maxAmo;
         result.atomsUsed.Add(atomBUsed);
 
-        //Game.Instance.Use(a, minAmo);
-        //Game.Instance.Use(b, minAmo);
         Game.Instance.Use(a, maxAmo);
         Game.Instance.Use(b, maxAmo);
 
-        // Tehcnincally if we fail to combine, theres no reason to create lesser atoms...
+        if(OnAtomCombine != null){
+            OnAtomCombine(target, stabilized);
+        }
 
         return result;
     }
@@ -252,7 +242,7 @@ public class PlayerData  {
         if (targetInfo.GetHalfLife() == 0f) {
             info.stability = 1.0f;
         } else {
-            float halfLife = targetInfo.GetHalfLife();
+            float halfLife = targetInfo.GetHalfLife() + timeDilation;
             float multiple = 1 / Mathf.Sqrt(1 - (particleStability * particleStability) / (100 * 100));
             info.stability = AtomInfo.GetStability(halfLife * multiple * multiple);
         }
@@ -291,16 +281,27 @@ public class PlayerData  {
         result.atomsUsed.Add(atomAUsed);
         Game.Instance.Use(a, aAmo);
 
+
+        if (OnAtomSplit != null) {
+            OnAtomSplit(target, stabilized);
+        }
+
         return result;
     }
 
-    // Estimate Atom
-    public AtomInfo EstimateAtom(int atomicNumber) {
-        //AtomInfo info = null;        //AtomInfo info = null;
-        return null;
-    }
-    public AtomInfo CreateAtom(int atomicNumber, string name, string abbreviation) {
-        return null;
+    public void RenameAtom(int atomicNumber, string name, string abbreviation) {
+        Atom atom = Game.Instance.gameData.FindAtom(atomicNumber);
+
+        if (atom != null && atom.CanBeRenamed()) { // Already Exists, Renames
+            atom.Rename(name, abbreviation);
+
+            if (OnAtomRename != null) {
+                OnAtomRename(atom, 0);
+            }
+
+            var craftable = Craftable.CreateNewBlock(atom);
+            Game.Instance.gameData.AddCraftable(craftable);
+        }
     }
 
     public bool CanCraft(Craftable c) {
@@ -358,6 +359,10 @@ public class PlayerData  {
             craftables[c] = amoOfCraftables + amount;
         }
 
+        if (OnCraftableProduced != null) {
+            OnCraftableProduced(c, amount);
+        }
+
         return result;
     }
 
@@ -373,6 +378,11 @@ public class PlayerData  {
 
             if (OnMoneyChange != null) {
                 OnMoneyChange(money);
+            }
+
+
+            if (OnCraftableSold != null) {
+                OnCraftableSold(c, amo);
             }
 
             return amo;
@@ -521,6 +531,30 @@ public class PlayerData  {
 
         return success;
     }
+    public bool UpgradeTimeDilation() {
+        bool success = false;
+        var gameData = Game.Instance.gameData;
+
+        AtomData data = gameData.FindAtomData(timeDilationCost.atom.GetAtomicNumber());
+
+        if (data.GetCurrAmo() >= timeDilationCost.amo) {
+            data.Lose(timeDilationCost.amo);
+
+            // Update CollectRadius Cost
+            timeDilationCost.amo *= 2;
+
+            // Increment Collect Radius
+            timeDilation += .01f;
+            // Logarithmic increment
+
+            success = true;
+            if (OnTimeDilationChange != null) {
+                OnTimeDilationChange(timeDilation);
+            }
+        }
+
+        return success;
+    }
 
     public float GetAtomCollectorRadius() { return collectRadius; }
     public float GetAtomCollectorSpeed() { return collectSpeed; }
@@ -528,6 +562,7 @@ public class PlayerData  {
     public float GetAtomCollectorWeight() { return collectWeight; }
     public float GetParticleSpeed() { return particleSpeed; }
     public float GetParticleStabilization() { return particleStability; }
+    public float GetTimeDilation() { return timeDilation; }
 
     public float GetNextAtomCollectorRadius() { return collectRadius + .1f; }
     public float GetNextAtomCollectorSpeed() { return collectSpeed - .01f; }
@@ -535,6 +570,7 @@ public class PlayerData  {
     public float GetNextAtomCollectorWeight() { return collectWeight + 2f; }
     public float GetNextParticleSpeed() { return particleSpeed + 1f; }
     public float GetNextParticleStabilization() { return particleStability + .01f; }
+    public float GetNextTimeDilation() { return timeDilation + .01f; }
 
     public int GetCraftableAmount(Craftable c) {
         int amo = 0;
@@ -551,5 +587,6 @@ public class PlayerData  {
     public AtomAmo GetAtomCollectorWeightCost() { return collectWeightCost; }
     public AtomAmo GetParticleSpeedCost() { return particleSpeedCost; }
     public AtomAmo GetParticleStabilizationCost() { return particleStablizationCost; }
+    public AtomAmo GetTimeDilationCost() { return timeDilationCost; }
 
 }

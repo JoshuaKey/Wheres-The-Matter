@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Maganese
   abbreviation: Mn
   atomicNumber: 25
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

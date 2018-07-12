@@ -30,15 +30,21 @@ public class CombineUI : MonoBehaviour {
     [SerializeField] ChoiceOption choicePrefab;
     [SerializeField] AudioClip choiceClickSound;
     [SerializeField] ResultUI resultUI;
+    [SerializeField] RenameUI renameUI;
 
     private List<ChoiceOption> atomChoices = new List<ChoiceOption>();
+    private List<Atom> discoveredAtoms = new List<Atom>();
+
+    private float startPos = 0;
+    private float yPos = 0;
 
     private Atom atomA;
     private Atom atomB;
+    private Atom atomProduced;
 
     private void Start() {
-        float startPos = -5;
-        float yPos = startPos;
+        //float startPos = -5;
+        //float yPos = startPos;
         for (int i = 0; i < Game.Instance.gameData.GetAtomAmount(); i++) {
             Atom a = Game.Instance.gameData.FindAtom(i + 1);
 
@@ -49,10 +55,10 @@ public class CombineUI : MonoBehaviour {
 
             atomChoice.transform.localScale = Vector3.one;
 
-            var pos = atomChoice.transform.localPosition;
-            pos.y = yPos;
-            atomChoice.transform.localPosition = pos;
-            yPos -= 50f;
+            //var pos = atomChoice.transform.localPosition;
+            //pos.y = yPos;
+            //atomChoice.transform.localPosition = pos;
+            //yPos -= 50f;
 
             // Data / Functionality
             var data = Game.Instance.gameData.FindAtomData(a.GetAtomicNumber());
@@ -65,8 +71,50 @@ public class CombineUI : MonoBehaviour {
             atomChoice.SetColors(ChoiceOption.defaultNormalColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultPressedColor);
 
             atomChoices.Add(atomChoice);
+
+            AtomInfo info = Game.Instance.gameData.FindAtomInfo(a.GetAtomicNumber());
+            if (info.IsDiscovered()) {
+                discoveredAtoms.Add(a);
+            } else {
+                atomChoice.gameObject.SetActive(false);
+            }
         }
         // Height of ScrollView
+        //var sizeDelta = atomList.sizeDelta;
+        //sizeDelta.y = startPos - yPos + 10;
+        //atomList.sizeDelta = sizeDelta;
+
+        renameUI.OnRenameClick += Reset;
+        SortElements();
+        Game.Instance.gameData.OnAtomDiscover += OnAtomDiscover;
+    }
+
+    private void OnAtomDiscover(Atom a, float amo) {
+        AddElement(a, atomChoices[a.GetAtomicNumber() - 1]);
+    }
+    private void AddElement(Atom a, ChoiceOption c) {
+        if (discoveredAtoms.Contains(a)) {
+            return;
+        }
+
+        c.gameObject.SetActive(true);
+        discoveredAtoms.Add(a);
+        SortElements();
+    }
+    private void SortElements() {
+        discoveredAtoms.Sort();
+
+        startPos = -5;
+        yPos = startPos;
+        for (int i = 0; i < discoveredAtoms.Count; i++) {
+            ChoiceOption c = atomChoices[discoveredAtoms[i].GetAtomicNumber() - 1];
+
+            var pos = c.transform.localPosition;
+            pos.y = yPos;
+            c.transform.localPosition = pos;
+            yPos -= 50;
+        }
+
         var sizeDelta = atomList.sizeDelta;
         sizeDelta.y = startPos - yPos + 10;
         atomList.sizeDelta = sizeDelta;
@@ -206,10 +254,29 @@ public class CombineUI : MonoBehaviour {
         atomBBtn.interactable = false;
     }
 
-
     private void CalculateInfo() {
         var info = Game.Instance.playerData.EstimateCombine(atomA, atomB, (int)atomAAmo.value, (int)atomBAmo.value);
-        atomResultText.text = info.targetAtom.GetName();
+        if(info.targetAtom == null) {
+            infoText.text = "That atom can not be created.";
+            produceButton.interactable = false;
+            atomResultText.text = Game.Instance.gameData.GetUknown().GetName();
+            return;
+        }
+
+
+        AtomInfo atomInfo = Game.Instance.gameData.FindAtomInfo(info.targetAtom.GetAtomicNumber());
+        if (!atomInfo.IsDiscovered()) {
+            atomResultText.text = Game.Instance.gameData.GetUknown().GetName();
+            atomResultImage.sprite = Game.Instance.gameData.GetUknownInfo().GetImage();
+        } else {
+
+            atomResultText.text = info.targetAtom.GetName();
+            atomResultImage.sprite = Game.Instance.gameData.FindAtomInfo(info.targetAtom.GetAtomicNumber())
+                .GetImage();
+        }
+
+        atomProduced = info.targetAtom;
+
         infoText.text = "Max Production: " + info.amo + "\nSuccess: " + info.success*100 + "% Stability: " + info.stability*100 + "%"; // Max Production, Success, Stability
 
         produceButton.interactable = info.amo > 0;
@@ -218,6 +285,11 @@ public class CombineUI : MonoBehaviour {
     public void Produce() {
         var result = Game.Instance.playerData.ProduceCombine(atomA, atomB, (int)atomAAmo.value, (int)atomBAmo.value);
 
+        if(result.atomsProduced.Count > 0 && result.atomsProduced[0].amo > 0 && result.atomsProduced[0].atom.CanBeRenamed()) {
+            resultUI.OnResultUIClick += DisplayRename;
+            atomProduced = result.atomsProduced[0].atom;
+        }
+
         // Display Popup
         resultUI.Setup(result.atomsProduced, result.atomsUsed);
         Reset();
@@ -225,6 +297,12 @@ public class CombineUI : MonoBehaviour {
         for (int i = 0; i < result.atomsProduced.Count; i++) {
             print("Atoms Produced: " + result.atomsProduced[i].atom.GetName() + " " + result.atomsProduced[i].amo);
         }
+    }
+
+    private void DisplayRename() {
+        renameUI.Setup(atomProduced);
+
+        resultUI.OnResultUIClick -= DisplayRename;
     }
 
     private void OnEnable() {

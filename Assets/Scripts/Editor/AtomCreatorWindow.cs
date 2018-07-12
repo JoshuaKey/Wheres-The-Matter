@@ -34,17 +34,31 @@ public class AtomCreatorWindow : EditorWindow {
     new string name;
     string abbreviation;
     int number;
+    bool numberToggle;
     public void AtomGUI() {
         EditorGUILayout.Separator();
-        name = EditorGUILayout.TextField("Name: ", name);
+        numberToggle = GUILayout.Toggle(numberToggle, "Use Number Only");
+        if (numberToggle) {
+            number = EditorGUILayout.IntField("Atomic Number: ", number);
 
-        abbreviation = EditorGUILayout.TextField("Abbreviation: ", abbreviation);
+            EditorGUILayout.Separator();
+            if (GUILayout.Button("Create")) {
+                AtomCreator.CreateAtom(number);
+                number += 1;
+            }
+        } else {
 
-        number = EditorGUILayout.IntField("Atomic Number: ", number);
+            name = EditorGUILayout.TextField("Name: ", name);
 
-        EditorGUILayout.Separator();
-        if (GUILayout.Button("Create")) {
-            AtomCreator.CreateAtom(name, abbreviation, number);
+            abbreviation = EditorGUILayout.TextField("Abbreviation: ", abbreviation);
+
+            number = EditorGUILayout.IntField("Atomic Number: ", number);
+
+            EditorGUILayout.Separator();
+            if (GUILayout.Button("Create")) {
+                AtomCreator.CreateAtom(name, abbreviation, number);
+                number += 1;
+            }
         }
     }
 

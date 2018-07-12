@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Bromine
   abbreviation: Br
   atomicNumber: 35
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

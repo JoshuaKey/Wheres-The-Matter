@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Zirconium
   abbreviation: Zr
   atomicNumber: 40
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Yttrium
   abbreviation: Y
   atomicNumber: 39
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

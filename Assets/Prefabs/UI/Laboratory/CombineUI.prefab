@@ -1254,7 +1254,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 114376886106966950}
         m_MethodName: RemoveAtomA
         m_Mode: 1
         m_Arguments:
@@ -1559,6 +1559,8 @@ MonoBehaviour:
   atomBAmo: {fileID: 114093117814480596}
   atomAImage: {fileID: 114351703011977450}
   atomBImage: {fileID: 114957864427399710}
+  atomABtn: {fileID: 114175987913509424}
+  atomBBtn: {fileID: 114931341890203902}
   atomResultImage: {fileID: 114122793736429476}
   produceButton: {fileID: 114993571654392000}
   atomAText: {fileID: 114602304404881036}
@@ -1572,6 +1574,7 @@ MonoBehaviour:
     type: 2}
   choiceClickSound: {fileID: 8300000, guid: e700f73e9cb351342b231b2d77a5bd57, type: 3}
   resultUI: {fileID: 0}
+  renameUI: {fileID: 0}
 --- !u!114 &114388741551243186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2528,8 +2531,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: RemoveAtomA
+      - m_Target: {fileID: 114376886106966950}
+        m_MethodName: RemoveAtomB
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

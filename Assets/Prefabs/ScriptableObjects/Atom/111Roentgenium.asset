@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Roentgenium
   abbreviation: Rg
   atomicNumber: 111
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

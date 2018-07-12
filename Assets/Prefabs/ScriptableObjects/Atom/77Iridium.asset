@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Iridium
   abbreviation: Ir
   atomicNumber: 77
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

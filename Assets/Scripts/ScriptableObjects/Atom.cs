@@ -17,10 +17,46 @@ public class Atom : ScriptableObject, IComparable<Atom> {
     [SerializeField] private string abbreviation;
     [SerializeField] private int atomicNumber;
 
+    [Header("Naming")]
+    [SerializeField] private bool canBeRenamed = false;
+    [SerializeField] private bool hasBeenRenamed = false;
+    [SerializeField] private string originalName;
+    [SerializeField] private string originalAbbr;
+
     public Atom(string name, string abbreviation, int atomicNumber) {
         this.name = name;
         this.abbreviation = abbreviation;
         this.atomicNumber = atomicNumber;
+    }
+
+    public void Rename(string name, string abbreviation) {
+        if (canBeRenamed) {
+            originalName = this.name;
+            originalAbbr = this.abbreviation;
+
+            this.name = name;
+            this.abbreviation = abbreviation;
+            hasBeenRenamed = true;
+        }
+    }
+    public void Reset() {
+        if (!canBeRenamed) {
+            originalName = this.name;
+            originalAbbr = this.abbreviation;
+            return;
+        }
+
+        if (originalName != null && originalName != "") {
+            this.name = originalName;
+        } else {
+            originalName = this.name;
+        }
+        if (originalAbbr != null && originalAbbr != "") {
+            this.abbreviation = originalAbbr;
+        } else {
+            originalAbbr = this.abbreviation;
+        }
+        hasBeenRenamed = false;
     }
 
     public int CompareTo(Atom obj) {
@@ -32,5 +68,21 @@ public class Atom : ScriptableObject, IComparable<Atom> {
     public string GetName() { return name; }
     public int GetAtomicNumber() { return atomicNumber; }
     public string GetAbbreviation() { return abbreviation; }
+    public bool CanBeRenamed() { return canBeRenamed && !hasBeenRenamed; }
+
+    public static Atom CreateNewAtom(string name, string abbreviation, int number) {
+        Atom a = ScriptableObject.CreateInstance<Atom>();
+
+        a.name = name;
+        a.abbreviation = abbreviation;
+        a.atomicNumber = number;
+
+        a.originalName = name;
+        a.originalAbbr = abbreviation;
+
+        a.canBeRenamed = true;
+
+        return a;
+    }
 }
 

@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Californium
   abbreviation: Cf
   atomicNumber: 98
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

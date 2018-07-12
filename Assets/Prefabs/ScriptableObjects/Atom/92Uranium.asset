@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Uranium
   abbreviation: U
   atomicNumber: 92
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

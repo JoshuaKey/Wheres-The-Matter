@@ -13,14 +13,14 @@ public class LoadGame : MonoBehaviour {
     private AsyncOperation operation;
     private float timePercent;
 
+    private void Start() {
+        StartCoroutine(LoadScene(gameScene, currScene));
+    }
+
     public void PlayGame() {
         if(operation != null) {
             operation.allowSceneActivation = true;
         }
-    }
-
-    private void OnEnable() {
-        StartCoroutine(LoadScene(gameScene, currScene));
     }
 
     private IEnumerator LoadScene(int newScene, int oldScene) {

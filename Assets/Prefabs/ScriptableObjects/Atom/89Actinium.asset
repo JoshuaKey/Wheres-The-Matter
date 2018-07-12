@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Actinium
   abbreviation: Ac
   atomicNumber: 89
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

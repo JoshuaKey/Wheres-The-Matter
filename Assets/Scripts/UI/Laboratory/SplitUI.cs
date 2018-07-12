@@ -24,13 +24,17 @@ public class SplitUI : MonoBehaviour {
     [SerializeField] RectTransform atomList;
     [SerializeField] ChoiceOption choicePrefab;
     [SerializeField] AudioClip choiceClickSound;
+
     private List<ChoiceOption> atomChoices = new List<ChoiceOption>();
+    private List<Atom> discoveredAtoms = new List<Atom>();
 
     private Atom atomA;
+    private float startPos = 0;
+    private float yPos = 0;
 
     private void Start() {
-        float startPos = -5;
-        float yPos = startPos;
+        //startPos = -5;
+        //yPos = startPos;
         for (int i = 0; i < Game.Instance.gameData.GetAtomAmount(); i++) {
             Atom a = Game.Instance.gameData.FindAtom(i + 1);
 
@@ -38,13 +42,12 @@ public class SplitUI : MonoBehaviour {
 
             // Pos
             atomChoice.transform.SetParent(atomList, false);
-
             atomChoice.transform.localScale = Vector3.one;
 
-            var pos = atomChoice.transform.localPosition;
-            pos.y = yPos;
-            atomChoice.transform.localPosition = pos;
-            yPos -= 50f;
+            //var pos = atomChoice.transform.localPosition;
+            //pos.y = yPos;
+            //atomChoice.transform.localPosition = pos;
+            //yPos -= 50f;
 
             // Data / Functionality
             var data = Game.Instance.gameData.FindAtomData(a.GetAtomicNumber());
@@ -57,8 +60,44 @@ public class SplitUI : MonoBehaviour {
             atomChoice.SetColors(ChoiceOption.defaultNormalColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultPressedColor);
 
             atomChoices.Add(atomChoice);
+
+            AtomInfo info = Game.Instance.gameData.FindAtomInfo(a.GetAtomicNumber());
+            if (info.IsDiscovered()) {
+                discoveredAtoms.Add(a);
+            } else {
+                atomChoice.gameObject.SetActive(false);
+            }
         }
-        // Height of ScrollView
+        SortElements();
+        Game.Instance.gameData.OnAtomDiscover += OnAtomDiscover;
+    }
+
+    private void OnAtomDiscover(Atom a, float amo) {
+        AddElement(a, atomChoices[a.GetAtomicNumber()-1]);
+    }
+    private void AddElement(Atom a, ChoiceOption c) {
+        if (discoveredAtoms.Contains(a)) {
+            return;
+        }
+
+        c.gameObject.SetActive(true);
+        discoveredAtoms.Add(a);
+        SortElements();
+    }
+    private void SortElements() {
+        discoveredAtoms.Sort();
+
+        startPos = -5;
+        yPos = startPos;
+        for (int i = 0; i < discoveredAtoms.Count; i++) {
+            ChoiceOption c = atomChoices[discoveredAtoms[i].GetAtomicNumber() - 1];
+
+            var pos = c.transform.localPosition;
+            pos.y = yPos;
+            c.transform.localPosition = pos;
+            yPos -= 50;
+        }
+
         var sizeDelta = atomList.sizeDelta;
         sizeDelta.y = startPos - yPos + 10;
         atomList.sizeDelta = sizeDelta;
@@ -165,7 +204,18 @@ public class SplitUI : MonoBehaviour {
             info = Game.Instance.playerData.EstimateSplit(atomA, (int)atomAAmo.value);
         }
 
-        atomResultText.text = info.targetAtom.GetName();
+        AtomInfo atomInfo = Game.Instance.gameData.FindAtomInfo(info.targetAtom.GetAtomicNumber());
+        if (!atomInfo.IsDiscovered()) {
+            atomResultText.text = Game.Instance.gameData.GetUknown().GetName();
+            atomResultImage.sprite = Game.Instance.gameData.GetUknownInfo().GetImage();
+        } else {
+
+            atomResultText.text = info.targetAtom.GetName();
+            atomResultImage.sprite = Game.Instance.gameData.FindAtomInfo(info.targetAtom.GetAtomicNumber())
+                .GetImage();
+        }
+
+        //atomResultText.text = info.targetAtom.GetName();
         infoText.text = "Max Production: " + info.amo + "\nSuccess: " + info.success * 100 + "% Stability: " + info.stability * 100 + "%"; // Max Production, Success, Stability
 
         splitBtn.interactable = info.amo > 0;

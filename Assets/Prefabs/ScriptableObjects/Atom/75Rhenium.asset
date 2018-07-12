@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Rhenium
   abbreviation: Re
   atomicNumber: 75
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

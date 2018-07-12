@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Thorium
   abbreviation: Th
   atomicNumber: 90
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

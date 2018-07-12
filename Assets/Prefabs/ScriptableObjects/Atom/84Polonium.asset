@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Polonium
   abbreviation: Po
   atomicNumber: 84
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

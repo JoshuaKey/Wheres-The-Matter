@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Strontium
   abbreviation: Sr
   atomicNumber: 38
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

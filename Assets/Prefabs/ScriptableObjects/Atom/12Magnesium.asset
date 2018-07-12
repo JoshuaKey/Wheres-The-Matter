@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Magnesium
   abbreviation: Mg
   atomicNumber: 12
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

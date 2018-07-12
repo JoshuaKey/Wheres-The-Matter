@@ -42,7 +42,6 @@ public class AtomInfo : ScriptableObject, IComparable<AtomInfo> {
 
     [SerializeField] private bool isDiscovered = false;
 
-
     public AtomInfo(Atom atom) {
         this.atom = atom;
     }
@@ -217,5 +216,23 @@ public class AtomInfo : ScriptableObject, IComparable<AtomInfo> {
 
     public static float GetStability(float halflife) {
         return Mathf.Clamp01((halflife - minStableLife) / (maxStableLife - minStableLife));
+    }
+    public static AtomCategory GetCategoryFromGroup(int group) {
+        AtomCategory category;
+        if(group == 1) { category = AtomCategory.ALKALI_METAL; }
+        else if (group == 2) { category = AtomCategory.ALKALINE_EARTH_METAL; }
+        else if (group == 18) { category = AtomCategory.NOBLE_GAS; }
+        else if (group == 17) { category = AtomCategory.HALOGEN; }
+        else if (group >= 13) { category = AtomCategory.POST_TRANSTION_METAL; }
+        else { category = AtomCategory.TRANSITION_METAL; }
+        return category;
+    }
+
+    public static AtomInfo CreateNewAtomInfo(Atom a) {
+        AtomInfo info = ScriptableObject.CreateInstance<AtomInfo>();
+
+        info.atom = a;
+
+        return info;
     }
 }

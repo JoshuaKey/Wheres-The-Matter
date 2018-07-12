@@ -76,7 +76,7 @@ public class ElementHover : MonoBehaviour {
 
         // Passive Gain Text
         {
-            string text = "(+" + data.GetCurrAmo() + ")";
+            string text = "(+" + data.GetPassiveGain() + ")";
 
             var size = passiveGainText.GetPreferredValues(text, Mathf.Infinity, passiveGainText.rectTransform.rect.height);
             size.y = passiveGainText.rectTransform.sizeDelta.y;

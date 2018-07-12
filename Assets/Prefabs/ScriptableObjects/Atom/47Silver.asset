@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Silver
   abbreviation: Ag
   atomicNumber: 47
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

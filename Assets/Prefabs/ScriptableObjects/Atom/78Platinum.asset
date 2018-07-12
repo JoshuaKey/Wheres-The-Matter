@@ -11,6 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaca6f252d39ba64d9a530c79d49bf09, type: 3}
   m_Name: 78Platinum
   m_EditorClassIdentifier: 
-  name: Platinum
+  name: Plantinum
   abbreviation: Pt
   atomicNumber: 78
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

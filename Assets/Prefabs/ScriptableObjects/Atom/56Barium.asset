@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Barium
   abbreviation: Ba
   atomicNumber: 56
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

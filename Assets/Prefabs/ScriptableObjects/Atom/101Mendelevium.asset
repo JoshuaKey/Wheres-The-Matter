@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Mendelevium
   abbreviation: Md
   atomicNumber: 101
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

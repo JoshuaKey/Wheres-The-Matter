@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class ElementPage : MonoBehaviour {
 
     private Atom atom;
+    [SerializeField] ElementSection elementSection;
+
     [Header("Display Info")]
     [SerializeField] Image atomImage;
     [SerializeField] TextMeshProUGUI nameText;
@@ -15,6 +17,8 @@ public class ElementPage : MonoBehaviour {
     [Header("Data Info")]
     [SerializeField] TextMeshProUGUI currAmoText;
     [SerializeField] TextMeshProUGUI passiveGainText;
+    [SerializeField] TextMeshProUGUI totalCollectedText;
+    [SerializeField] TextMeshProUGUI totalUsedText;
 
     [Header("Description Info")]
     [SerializeField] RectTransform descriptionInfo;
@@ -56,7 +60,9 @@ public class ElementPage : MonoBehaviour {
 
         // Data
         currAmoText.text = "Current Amo: " + data.GetCurrAmo();
-        passiveGainText.text = "Passive Gain: " + data.GetPassiveGain();
+        passiveGainText.text = "Passive Gain: " + data.GetPassiveGain(); // What to do with this???
+        totalCollectedText.text = "Total Atoms: " + data.GetTotalCollected();
+        totalUsedText.text = "Total Used: " + data.GetTotalUsed();
 
         // Description
         var size = descriptionText.GetPreferredValues(info.GetDescription(), descriptionText.rectTransform.rect.width, Mathf.Infinity);
@@ -134,12 +140,12 @@ public class ElementPage : MonoBehaviour {
     public void NextElement() {
         if(this.atom != null) {
             int number = atom.GetAtomicNumber() + 1;
-            //print("Looking for number " + number  + " " + Game.Instance.gameData.GetAtomAmount());
             if(number > Game.Instance.gameData.GetAtomAmount()) {
                 number = 1;
             }
             Atom a = Game.Instance.gameData.FindAtom(number);
-            Setup(a);
+            //Setup(a);
+            ElementsPage.Instance.ClickAtom(a);
         }
     }
     public void PrevElement() {
@@ -149,7 +155,8 @@ public class ElementPage : MonoBehaviour {
                 number = Game.Instance.gameData.GetAtomAmount();
             }
             Atom a = Game.Instance.gameData.FindAtom(number);
-            Setup(a);
+            //Setup(a);
+            ElementsPage.Instance.ClickAtom(a);
         }
     }
 

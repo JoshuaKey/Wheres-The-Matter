@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Neptunium
   abbreviation: Np
   atomicNumber: 93
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

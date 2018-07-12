@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Carbon
   abbreviation: C
   atomicNumber: 6
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

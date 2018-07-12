@@ -43,8 +43,22 @@ public class Player : MonoBehaviour {
             Game.Instance.ToggleMenu();
         }
         if (Input.GetKey(KeyCode.H)) {
-            Game.Instance.Absorb(Game.Instance.gameData.FindAtom(1), 1000);
+            Game.Instance.Absorb(Game.Instance.gameData.FindAtom(1), 1000000);
         }
+        if (Input.GetKey(KeyCode.J)) {
+            Game.Instance.Absorb(Game.Instance.gameData.FindAtom(118), 1);
+        }
+        /*
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            Game.Instance.dialogueSystem.SetCharacterName("Professor Kao");
+            Game.Instance.QueueDialogue("Hello");
+            Game.Instance.QueueDialogue("How are you?");
+            Game.Instance.QueueDialogue("I am Doctor Scientist");
+            Game.Instance.QueueDialogue("You may refer to me as DocSci.\nI am a famous Scientist Doctor who cures Science from all Disease.");
+            Game.Instance.QueueDialogue("Fascinating isn't it?");
+            Game.Instance.QueueDialogue("... Are you listening?", true);
+        }
+        */
     }
     
     public void CheckForCollect() {

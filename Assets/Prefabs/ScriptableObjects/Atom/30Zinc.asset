@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Zinc
   abbreviation: Zn
   atomicNumber: 30
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

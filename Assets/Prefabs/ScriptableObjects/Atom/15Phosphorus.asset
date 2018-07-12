@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Phosphorus
   abbreviation: P
   atomicNumber: 15
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

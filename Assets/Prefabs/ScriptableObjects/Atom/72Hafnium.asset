@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Name: 72Hafnium
   m_EditorClassIdentifier: 
   name: Hafnium
-  abbreviation: Ha
+  abbreviation: Hf
   atomicNumber: 72
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

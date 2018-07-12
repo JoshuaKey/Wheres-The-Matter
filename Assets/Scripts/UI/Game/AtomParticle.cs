@@ -16,6 +16,15 @@ public class AtomParticle : MonoBehaviour {
     private bool appearing = false;
     private bool moving = false;
 
+    private void Start() {
+        // Clamp
+        float scale = Mathf.Clamp(30 / Game.Instance.menuCanvas.scaleFactor, 20, 30);
+        var sizeD = rect.sizeDelta;
+        sizeD.x = scale;
+        sizeD.y = scale;
+        rect.sizeDelta = sizeD;
+    }
+
     public void Setup(Atom a, int amount, Vector3 pos) {
         atom = a;
         amo = amount;

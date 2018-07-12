@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Americium
   abbreviation: Am
   atomicNumber: 95
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

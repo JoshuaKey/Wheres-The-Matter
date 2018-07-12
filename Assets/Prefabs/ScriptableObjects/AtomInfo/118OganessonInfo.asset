@@ -27,7 +27,7 @@ MonoBehaviour:
   - Unknown
   - Man-Made
   isotopes:
-  - Og<sup>294</sup> (.69 ms - Lv<sup>290</sup>)
+  - Og<sup>294</sup> (690 us - Lv<sup>290</sup>)
   category: 0
   group: 18
   period: 7
@@ -35,4 +35,4 @@ MonoBehaviour:
   density: -1
   neutrons: 176
   halfLife: 0.0000115
-  isDiscovered: 1
+  isDiscovered: 0

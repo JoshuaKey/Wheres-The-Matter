@@ -13,4 +13,19 @@ public class Craftable : ScriptableObject {
     public string GetName() { return name; }
     public float GetPrice() { return price; }
 
+    public static Craftable CreateNewBlock(Atom a) {
+        Craftable c = ScriptableObject.CreateInstance<Craftable>();
+
+        c.name = "Block of " + a.GetName();
+        c.price = a.GetAtomicNumber();
+
+        c.atomsForProductions = new AtomAmo[1];
+        c.atomsForProductions[0].atom = a;
+        c.atomsForProductions[0].amo = 1000000000;
+
+        c.sprite = Game.Instance.gameData.GetUknownInfo().GetImage();
+
+        return c;
+    }
+
 }

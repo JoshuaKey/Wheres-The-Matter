@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Neon
   abbreviation: Ne
   atomicNumber: 10
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

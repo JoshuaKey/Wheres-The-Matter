@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Iron
   abbreviation: Fe
   atomicNumber: 26
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

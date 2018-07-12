@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Indium
   abbreviation: In
   atomicNumber: 49
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Xenon
   abbreviation: Xe
   atomicNumber: 54
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

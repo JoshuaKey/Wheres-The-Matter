@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Arsenic
   abbreviation: As
   atomicNumber: 33
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

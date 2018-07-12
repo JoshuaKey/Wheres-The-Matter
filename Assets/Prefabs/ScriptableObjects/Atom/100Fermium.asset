@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Fermium
   abbreviation: Fm
   atomicNumber: 100
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

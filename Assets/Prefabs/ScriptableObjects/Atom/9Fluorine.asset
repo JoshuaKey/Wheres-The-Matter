@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Fluorine
   abbreviation: F
   atomicNumber: 9
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

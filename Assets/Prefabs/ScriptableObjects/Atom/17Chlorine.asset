@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Chlorine
   abbreviation: Cl
   atomicNumber: 17
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

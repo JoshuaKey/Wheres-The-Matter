@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Neodymium
   abbreviation: Nd
   atomicNumber: 60
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

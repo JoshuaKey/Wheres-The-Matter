@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Bismuth
   abbreviation: Bi
   atomicNumber: 83
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

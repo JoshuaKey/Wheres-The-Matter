@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Berylium
   abbreviation: Be
   atomicNumber: 4
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

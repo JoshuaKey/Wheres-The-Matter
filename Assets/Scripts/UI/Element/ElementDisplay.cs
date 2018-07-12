@@ -14,9 +14,10 @@ public class ElementDisplay : MonoBehaviour {
 
     [SerializeField] private Image background;
     [SerializeField] private Image lowBackground;
-    [SerializeField] private Image exclamationImage;
     [SerializeField] private TextMeshProUGUI atomNumber;
     [SerializeField] private TextMeshProUGUI atomAbbreviationText;
+
+    [SerializeField] private RectTransform exclamationImage;
 
     [Header("Other")]
     [SerializeField] private AudioClip clickSound;
@@ -29,15 +30,39 @@ public class ElementDisplay : MonoBehaviour {
         SetEvents();
     }
 
+    public void SetExclamationImage(RectTransform rect) {
+        exclamationImage = rect;
+
+        exclamationImage.gameObject.SetActive(false);
+
+        rect.position = this.transform.position;
+    }
+    public void MakeOld() {
+        exclamationImage.gameObject.SetActive(false);
+
+        clickButton.onClick.RemoveAllListeners();
+        clickButton.onClick.AddListener(() => {
+            ElementsPage.Instance.ClickAtom(atom);
+            AudioManager.Instance.PlaySound(clickSound);
+        });
+    }
+
     public void SetDisplay() {
         AtomInfo info = Game.Instance.gameData.FindAtomInfo(atom.GetAtomicNumber());
         Atom display = atom;
         if (!info.IsDiscovered()) {
             info = Game.Instance.gameData.GetUknownInfo();
             display = Game.Instance.gameData.GetUknown();
-        } else if(!hasBeenDiscovered) {
+        } else if (!hasBeenDiscovered) {
             exclamationImage.gameObject.SetActive(true);
             hasBeenDiscovered = true;
+
+            clickButton.onClick.RemoveAllListeners();
+            clickButton.onClick.AddListener(() => {
+                MakeOld();
+                ElementsPage.Instance.ClickAtom(atom);
+                AudioManager.Instance.PlaySound(clickSound);
+            });
         }
 
         // Display Stuff
@@ -52,12 +77,9 @@ public class ElementDisplay : MonoBehaviour {
     }
 
     public void SetEvents() {
-        SetDisplay();
-
         // Event Stuff
         clickButton.onClick.RemoveAllListeners();
         clickButton.onClick.AddListener(() => {
-            MakeOld();
             ElementsPage.Instance.ClickAtom(atom);
             AudioManager.Instance.PlaySound(clickSound);
         });
@@ -73,12 +95,4 @@ public class ElementDisplay : MonoBehaviour {
         trigger.triggers.Add(pointerEnterEvent);
         trigger.triggers.Add(pointerExitEvent);
     }
-
-    public void MakeOld() {
-        exclamationImage.gameObject.SetActive(false);
-
-        // Delete stuff to free up Data?
-        // Can Change Click Event to stop CPU usage...
-    }
-
 }

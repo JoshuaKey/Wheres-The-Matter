@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Vanadium
   abbreviation: V
   atomicNumber: 23
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

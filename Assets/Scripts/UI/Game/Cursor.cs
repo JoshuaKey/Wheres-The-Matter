@@ -10,12 +10,10 @@ public class Cursor : MonoBehaviour {
     [Header("Components")]
     [SerializeField] private Image image;
     [SerializeField] private RectTransform thisRect;
+    [SerializeField] private Camera mainCamera;
 
-	// Use this for initialization
-	public void Start () {
-        //thisRect = GetComponent<RectTransform>();
-        //image = GetComponent<Image>();
-
+    // Use this for initialization
+    public void Start () {
         UnityEngine.Cursor.visible = false;
         UnityEngine.Cursor.lockState = CursorLockMode.Confined;
 	}
@@ -24,6 +22,9 @@ public class Cursor : MonoBehaviour {
         image.sprite = s;
     }
 
+    public Vector3 GetWorldPosition() {
+        return mainCamera.ScreenToWorldPoint(thisRect.position);
+    }
     public void UpdatePosition() {
         thisRect.position = Input.mousePosition;
     }

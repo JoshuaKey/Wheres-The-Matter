@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Nitrogen
   abbreviation: N
   atomicNumber: 7
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

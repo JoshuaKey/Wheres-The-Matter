@@ -14,3 +14,7 @@ MonoBehaviour:
   name: ???
   abbreviation: '?'
   atomicNumber: -1
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: ???
+  originalAbbr: '?'

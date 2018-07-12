@@ -11,8 +11,16 @@ public class ElementsPage : MonoBehaviour {
     [SerializeField] private ElementPage elementPage;
     [SerializeField] private RectTransform infoPage;
 
+    [Header("Button")]
+    [SerializeField] private Button nextPageBtn;
+
+    int currPage = 1;
+    bool moving = false;
+    bool hasInited = false;
+
     public static ElementsPage Instance = null;
-    public void Start() {
+
+    private void Awake() {
         if (Instance == null) {
             Instance = this;
         } else {
@@ -20,7 +28,17 @@ public class ElementsPage : MonoBehaviour {
         }
     }
 
+    public void Start() {
+        if (!Game.Instance.gameData.FindAtomInfo(119).IsDiscovered() &&
+                !Game.Instance.gameData.FindAtomInfo(120).IsDiscovered() &&
+                !Game.Instance.gameData.FindAtomInfo(121).IsDiscovered()) {
+            nextPageBtn.gameObject.SetActive(false);
+            Game.Instance.gameData.OnAtomDiscover += UnlockNextPage;
+        }
+    }
+
     public void ClickAtom(Atom a) {
+        elementSection.ElementClick(a);
         elementPage.Setup(a);
         elementPage.Display();
     }
@@ -41,29 +59,58 @@ public class ElementsPage : MonoBehaviour {
         infoPage.gameObject.SetActive(false);
     }
 
+    public void UnlockNextPage(Atom a, float amo) {
+        if(a.GetAtomicNumber() > 118) {
+            nextPageBtn.gameObject.SetActive(true);
+            Game.Instance.gameData.OnAtomDiscover -= UnlockNextPage;
+        }
+    }
+    public void NextPage() {
+        if (currPage == 1 && !moving) {
+            currPage = 2;
+            var newPos = this.transform.position;
+            newPos.y += Screen.height;
+            StartCoroutine(Move(this.transform, newPos, .5f));
+        }
+    }
+    public void PrevPage() {
+        if(currPage == 2 && !moving) {
+            currPage = 1;
+            var newPos = this.transform.position;
+            newPos.y -= Screen.height;
+            StartCoroutine(Move(this.transform, newPos, .5f));
+        }
+    }
+
+    private IEnumerator Move(Transform rect, Vector3 newPos, float time) {
+        moving = true;
+
+        Vector3 currPos = rect.position;
+        float endTime = Time.time + time;
+        while(Time.time < endTime) {
+            float t = 1 - (endTime - Time.time) / time;
+
+            Vector3 pos = Vector3.Lerp(currPos, newPos, t);
+
+            rect.position = pos;
+
+            yield return null;
+        }
+
+        //rect.position = newPos;
+        moving = false;
+    }
+
     private void OnEnable() {
         elementSection.Refresh();
 
         elementHover.gameObject.SetActive(false);
     }
+
+    private void OnDisable() {
+        if (!hasInited && Game.Instance != null) {
+            Game.Instance.gameData.OnAtomDiscover += UnlockNextPage;
+            hasInited = true;
+        }
+    }
 }
-
-// 18 columns, 9 Rows
-// 924 x 519
-// Width = 51
-// Height = 57 -> 51 (Even)
-
-// The elementsPage will have an ElementSection and a MenuSection
-
-// The MenuSection will self organize the Menu with buttons
-
-// The ElementSection will self organize and Elements with ElementDisplays. It will also use ElementHover
-// ElementDisplay should show the Element Image, Name and Curr Amo AT LEAST. It also functions as a button.
-// ElementHover should show more AtomData about the atom. It should activate when hovering over the Atom.
-
-// Clicking an ElementDisplay brings up ElementPage.
-// ElementPage should showcase all information of an Atom.
-
-// Right now, it's hard to fit all the bare information. Maybe it's better if we put it on elemenetHover?
-// Get rid of Atomic Number? Name is important...
-// What if instead of hover, We expanded the 

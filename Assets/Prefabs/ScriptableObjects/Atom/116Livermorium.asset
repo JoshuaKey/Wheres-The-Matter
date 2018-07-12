@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Name: 116Livermorium
   m_EditorClassIdentifier: 
   name: Livermorium
-  abbreviation: Lv
+  abbreviation: 'Lv '
   atomicNumber: 116
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

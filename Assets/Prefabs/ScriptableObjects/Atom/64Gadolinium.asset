@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Gadolinium
   abbreviation: Gd
   atomicNumber: 64
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

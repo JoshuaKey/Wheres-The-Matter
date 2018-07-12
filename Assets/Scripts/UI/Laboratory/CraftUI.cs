@@ -34,45 +34,135 @@ public class CraftUI : MonoBehaviour {
     [SerializeField] ChoiceOption choicePrefab;
 
     private Dictionary<Craftable, ChoiceOption> craftableChoices = new Dictionary<Craftable, ChoiceOption>();
-    //private List<ChoiceOption> craftableChoices = new List<ChoiceOption>();
+    private List<Craftable> undiscoveredOptions = new List<Craftable>();
 
     private Craftable currCraftable;
 
+    private float startPos = 0;
+    private float yPos = 0;
+
     private void Start() {
         // Spawn all Craftables
-        float startPos = -5;
-        float yPos = startPos;
+        startPos = -5;
+        yPos = startPos;
         for (int i = 0; i < Game.Instance.gameData.GetCraftableAmount(); i++) {
             Craftable c = Game.Instance.gameData.GetCraftable(i);
 
-            var craftablChoice = Instantiate(choicePrefab);
+            OnCraftableDiscover(c, 0);
+            //var craftablChoice = Instantiate(choicePrefab);
 
-            // Pos
-            craftablChoice.transform.SetParent(craftableListRect, false);
-            craftablChoice.transform.localScale = Vector3.one;
+            //// Pos
+            //craftablChoice.transform.SetParent(craftableListRect, false);
+            //craftablChoice.transform.localScale = Vector3.one;
 
-            var pos = craftablChoice.transform.localPosition;
-            pos.y = yPos;
-            craftablChoice.transform.localPosition = pos;
-            yPos -= 50;
+            //// Data / Functionality
+            //SetCraftableChoice(craftablChoice, c);
+            //craftablChoice.SetButtonEvent(() => { // Event should never change
+            //    SetCraftable(c);
+            //    AudioManager.Instance.PlaySound(choiceClickSound);
+            //});
+            //craftablChoice.SetColors(ChoiceOption.defaultNormalColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultPressedColor);
 
-            // Data / Functionality
-            SetCraftableChoice(craftablChoice, c);
-            craftablChoice.SetButtonEvent(() => { // Event should never change
-                SetCraftable(c);
-                AudioManager.Instance.PlaySound(choiceClickSound);
-            });
-            craftablChoice.SetColors(ChoiceOption.defaultNormalColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultPressedColor);
+            //craftableChoices.Add(c, craftablChoice);
 
-            //craftableChoices.Add(craftablChoice);
-            craftableChoices.Add(c, craftablChoice);
+            //bool canCraft = true;
+            //var atomsForCraft = c.GetAtomsForProduction();
+            //for(int y = 0; y < atomsForCraft.Length; y++) {
+            //    var atomAmo = atomsForCraft[y];
+            //    if (!Game.Instance.gameData.FindAtomInfo(atomAmo.atom.GetAtomicNumber()).IsDiscovered()) {
+            //        canCraft = false;
+            //        break;
+            //    }
+            //}
+            //if (canCraft) {
+            //    AddCraftable(craftablChoice);
+            //} else {
+            //    undiscoveredOptions.Add(c);
+            //    craftablChoice.gameObject.SetActive(false);
+            //}
         }
-        // Height of ScrollView
+        //// Height of ScrollView
+        //var sizeDelta = craftableListRect.sizeDelta;
+        //sizeDelta.y = startPos - yPos + 10;
+        //craftableListRect.sizeDelta = sizeDelta;
+
+        RemoveCraftable();
+
+        Game.Instance.gameData.OnAtomDiscover += OnAtomDiscover;
+        Game.Instance.gameData.OnCraftableDiscover += OnCraftableDiscover;
+    }
+
+    private void OnAtomDiscover(Atom a, float amo) {
+        if(undiscoveredOptions.Count == 0) {
+            Game.Instance.gameData.OnAtomDiscover -= OnAtomDiscover;
+            return;
+        }
+
+        for (int i = 0; i < undiscoveredOptions.Count; i++) {
+            Craftable c = undiscoveredOptions[i];
+
+            bool canCraft = true;
+            var atomsForCraft = c.GetAtomsForProduction();
+            for (int y = 0; y < atomsForCraft.Length; y++) {
+                var atomAmo = atomsForCraft[y];
+                if (!Game.Instance.gameData.FindAtomInfo(atomAmo.atom.GetAtomicNumber()).IsDiscovered()) {
+                    canCraft = false;
+                    break;
+                }
+            }
+            if (canCraft) {
+                AddCraftable(craftableChoices[c]);
+                undiscoveredOptions.RemoveAt(i);
+                i--;
+            } 
+        }
+    }
+    private void OnCraftableDiscover(Craftable c, float amo) {
+        var craftablChoice = Instantiate(choicePrefab);
+
+        // Pos
+        craftablChoice.transform.SetParent(craftableListRect, false);
+        craftablChoice.transform.localScale = Vector3.one;
+
+        // Data / Functionality
+        SetCraftableChoice(craftablChoice, c);
+        craftablChoice.SetButtonEvent(() => { // Event should never change
+            SetCraftable(c);
+            AudioManager.Instance.PlaySound(choiceClickSound);
+        });
+        craftablChoice.SetColors(ChoiceOption.defaultNormalColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultPressedColor);
+
+        craftableChoices.Add(c, craftablChoice);
+
+        bool canCraft = true;
+        var atomsForCraft = c.GetAtomsForProduction();
+        for (int y = 0; y < atomsForCraft.Length; y++) {
+            var atomAmo = atomsForCraft[y];
+            if (!Game.Instance.gameData.FindAtomInfo(atomAmo.atom.GetAtomicNumber()).IsDiscovered()) {
+                canCraft = false;
+                break;
+            }
+        }
+        if (canCraft) {
+            AddCraftable(craftablChoice);
+        } else {
+            undiscoveredOptions.Add(c);
+            craftablChoice.gameObject.SetActive(false);
+        }
+    }
+
+    private void AddCraftable(ChoiceOption c) {
+        var pos = c.transform.localPosition;
+        pos.y = yPos;
+        c.transform.localPosition = pos;
+        yPos -= 50;
+
+
         var sizeDelta = craftableListRect.sizeDelta;
         sizeDelta.y = startPos - yPos + 10;
         craftableListRect.sizeDelta = sizeDelta;
 
-        RemoveCraftable();
+        c.gameObject.SetActive(true);
     }
 
     public void SetCraftable(Craftable c) {
@@ -134,13 +224,14 @@ public class CraftUI : MonoBehaviour {
     public void RemoveCraftable() {
         ChoiceOption choiceOption;
         if (currCraftable != null && craftableChoices.TryGetValue(currCraftable, out choiceOption)) {
+            var craftable = currCraftable;
             choiceOption.SetButtonEvent(() => {
-                SetCraftable(currCraftable);
+                SetCraftable(craftable);
                 AudioManager.Instance.PlaySound(choiceClickSound);
             });
             choiceOption.SetColors(ChoiceOption.defaultNormalColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultPressedColor);
             choiceOption.SetFocus(false);
-        }
+        } 
 
         craftableImage.sprite = Game.Instance.gameData.GetUknownInfo().GetImage();
 
@@ -157,6 +248,8 @@ public class CraftUI : MonoBehaviour {
         sellBtn.interactable = false;
         sellBtnx10.interactable = false;
         sellBtnx100.interactable = false;
+
+        currCraftable = null;
     }
     public void SetCraftableChoice(ChoiceOption choice, Craftable c) {
         int amo = Game.Instance.playerData.GetCraftableAmount(c);

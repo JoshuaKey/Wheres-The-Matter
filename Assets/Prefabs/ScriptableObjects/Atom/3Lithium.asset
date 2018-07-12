@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Lithium
   abbreviation: Li
   atomicNumber: 3
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

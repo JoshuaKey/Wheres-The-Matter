@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Rutherfordium
   abbreviation: Rf
   atomicNumber: 104
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

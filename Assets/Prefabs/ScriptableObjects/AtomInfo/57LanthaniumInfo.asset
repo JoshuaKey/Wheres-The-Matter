@@ -31,6 +31,6 @@ MonoBehaviour:
   period: 6
   weight: 138.9
   density: 6.15
-  neutrons: 0
+  neutrons: 82
   halfLife: 0
-  isDiscovered: 1
+  isDiscovered: 0

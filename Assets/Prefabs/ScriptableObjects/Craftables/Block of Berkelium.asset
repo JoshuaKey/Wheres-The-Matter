@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e5b6c1dfb92db4a9ef70d0e277653b, type: 3}
+  m_Name: Block of Berkelium
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
+  name: Block of Berkelium
+  price: 0
+  atomsForProductions:
+  - atom: {fileID: 11400000, guid: 988c6a10844a36642b1c9220686188e5, type: 2}
+    amo: 1000000000

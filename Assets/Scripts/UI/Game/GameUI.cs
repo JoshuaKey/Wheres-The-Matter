@@ -14,7 +14,6 @@ public class GameUI : MonoBehaviour {
     }
 
     private void OnMoneyChange(float value) {
-        print("Here");
         string text = "$" + value;
 
         var size = moneyText.GetPreferredValues(text, Mathf.Infinity, moneyRect.rect.height);

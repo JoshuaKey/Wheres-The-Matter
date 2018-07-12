@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Argon
   abbreviation: Ar
   atomicNumber: 18
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

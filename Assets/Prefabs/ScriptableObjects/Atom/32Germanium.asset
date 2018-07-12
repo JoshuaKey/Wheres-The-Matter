@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Germanium
   abbreviation: Ge
   atomicNumber: 32
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

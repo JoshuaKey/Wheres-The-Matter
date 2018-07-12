@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Boron
   abbreviation: B
   atomicNumber: 5
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

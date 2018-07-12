@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Radium
   abbreviation: Ra
   atomicNumber: 88
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

@@ -14,3 +14,7 @@ MonoBehaviour:
   name: Gold
   abbreviation: Au
   atomicNumber: 79
+  canBeRenamed: 0
+  hasBeenRenamed: 0
+  originalName: 
+  originalAbbr: 

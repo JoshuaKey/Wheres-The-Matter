@@ -14,9 +14,13 @@ public class Game : MonoBehaviour {
     [SerializeField] public Player player;
     [SerializeField] public Cursor cursor;
     [SerializeField] public World world;
+    [SerializeField] public DialogueSystem dialogueSystem;
+    [SerializeField] public Story story;
+    //[SerializeField] public ElementsPage elementsPage;
 
     [Header("Canvas")]
     [SerializeField] public RectTransform menu;
+    [SerializeField] public Canvas menuCanvas;
     [SerializeField] public Canvas gameCanvas;
     [SerializeField] public Canvas elementCanvas;
     [SerializeField] public Canvas mapCanvas;
@@ -33,31 +37,29 @@ public class Game : MonoBehaviour {
     [SerializeField] private AudioClip[] areaMusic;
     [SerializeField] private AudioClip discoverySound;
 
-    //private Canvas previousCanvas;
     private Canvas currCanvas;
 
     public static Game Instance = null;
     private void Awake() {
         Instance = this;
-        //if (Instance == null) {
-        //    Instance = this;
-        //} else {
-        //    Destroy(this.gameObject);
-        //}
-
-        //DontDestroyOnLoad(this.gameObject);
     }
 
     private void Start() {
+        //elementsPage.Start(); // Because Dumb...
+        // Basically start doesnt get called if game object is disabled. therefore it cant subscribe to Events
+        // Basically manual Init ourself.
+
         gameData.Init();
         playerData.Init();
-        world.Init(player.transform.position, (int)System.DateTime.Now.Ticks, World.AreaType.FOREST);
+        world.Init(player.transform.position, /*(int)System.DateTime.Now.Ticks*/0, World.AreaType.FOREST);
 
         DisplayGame();
         int areaIndex = (int)World.AreaType.FOREST;
         if (areaMusic.Length > areaIndex) {
             AudioManager.Instance.PlayMusic(areaMusic[areaIndex], 1.0f);
         }
+
+        gameData.OnAtomDiscover += (x, y) => { AudioManager.Instance.PlaySound(discoverySound); newElementImage.gameObject.SetActive(true); };
     }
     
     public void LoadArea(World.AreaType area) {
@@ -81,36 +83,18 @@ public class Game : MonoBehaviour {
     }
 
     public void PlayEffect(Atom atom, int amo, Vector3 pos) {
-        var temp = Random.insideUnitCircle * (cursor.GetSize()/2 + particleEffectAdditionalDist);
+        var temp = Random.insideUnitCircle * (cursor.GetSize()) * menuCanvas.scaleFactor;
         pos.x += temp.x;
         pos.y += temp.y;
         particlePool.AddParticle(atom, amo, pos);
     }
     public void Absorb(Atom atom, int amo) {
         print("Absorbing " + amo + " " + atom);
-
-        AtomData data = gameData.FindAtomData(atom.GetAtomicNumber());
-        AtomInfo info = gameData.FindAtomInfo(atom.GetAtomicNumber());
-        if (data == null) {
-            return;
-        }
-        
-        if (!info.IsDiscovered()) {
-            AudioManager.Instance.PlaySound(discoverySound);
-            print("Discovered " + atom.name);
-
-            info.SetIsDiscovered(true);
-            if (ElementsPage.Instance != null) {
-                ElementsPage.Instance.elementSection.Refresh();
-            }
-            newElementImage.gameObject.SetActive(true);
-        }
-        data.Gain(amo);
+        gameData.Absorb(atom, amo);
     }
     public void Use(Atom atom, int amo) {
         print("Using " + amo + " " + atom);
-        AtomData data = gameData.FindAtomData(atom.GetAtomicNumber());
-        data.Lose(amo);
+        gameData.Use(atom, amo);
     }
 
     public void ToggleMenu() {
@@ -129,6 +113,21 @@ public class Game : MonoBehaviour {
         if(currCanvas == gameCanvas) {
             player.SetCanCollect(true);
         }
+    }
+
+    public void QueueDialogue(string text, bool display = false) {
+        dialogueSystem.QueueDialogue(text, display);
+        player.SetCanCollect(!display);
+        dialogueSystem.OnDialogueEnd += FinishDialogue;
+    }
+    public void QueueDialogue(string[] text, bool display = false) {
+        dialogueSystem.QueueDialogue(text, display);
+        player.SetCanCollect(!display);
+        dialogueSystem.OnDialogueEnd += FinishDialogue;
+    }
+    private void FinishDialogue() {
+        player.SetCanCollect(!menu.gameObject.activeInHierarchy && currCanvas == gameCanvas);
+        dialogueSystem.OnDialogueEnd -= FinishDialogue;
     }
 
     public void DisplayGame() {
