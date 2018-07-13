@@ -13,10 +13,11 @@ public class ElementsPage : MonoBehaviour {
 
     [Header("Button")]
     [SerializeField] private Button nextPageBtn;
+    private bool nextPageUnlocked = false;
 
     int currPage = 1;
     bool moving = false;
-    bool hasInited = false;
+    //bool hasInited = false;
 
     public static ElementsPage Instance = null;
 
@@ -38,6 +39,22 @@ public class ElementsPage : MonoBehaviour {
     }
 
     public void ClickAtom(Atom a) {
+        //if (a.GetAtomicNumber() >= 119) {
+        //    if(nextPageUnlocked) {
+        //        elementSection.ElementClick(a);
+        //        elementPage.Setup(a);
+        //        elementPage.Display();
+        //    } else {
+        //        a = Game.Instance.gameData.FindAtom(1);
+        //        elementSection.ElementClick(a);
+        //        elementPage.Setup(a);
+        //        elementPage.Display();
+        //    }
+        //}  else {
+        //    elementSection.ElementClick(a);
+        //    elementPage.Setup(a);
+        //    elementPage.Display();
+        //}
         elementSection.ElementClick(a);
         elementPage.Setup(a);
         elementPage.Display();
@@ -63,6 +80,7 @@ public class ElementsPage : MonoBehaviour {
         if(a.GetAtomicNumber() > 118) {
             nextPageBtn.gameObject.SetActive(true);
             Game.Instance.gameData.OnAtomDiscover -= UnlockNextPage;
+            nextPageUnlocked = true;
         }
     }
     public void NextPage() {
@@ -105,12 +123,16 @@ public class ElementsPage : MonoBehaviour {
         elementSection.Refresh();
 
         elementHover.gameObject.SetActive(false);
+        elementPage.gameObject.SetActive(false);
+        infoPage.gameObject.SetActive(false);
     }
 
     private void OnDisable() {
-        if (!hasInited && Game.Instance != null) {
-            Game.Instance.gameData.OnAtomDiscover += UnlockNextPage;
-            hasInited = true;
-        }
+        //if (!hasInited && Game.Instance != null) {
+        //    Game.Instance.gameData.OnAtomDiscover += UnlockNextPage;
+        //    hasInited = true;
+        //}
     }
+
+    public bool IsNextPageUnlocked() { return nextPageUnlocked; }
 }

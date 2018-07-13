@@ -25,25 +25,14 @@ public class UpgradeUI : MonoBehaviour {
 
     private List<ChoiceOption> choices = new List<ChoiceOption>();
 
-    public enum UpgradeType {
-        Collect_Speed = 0,
-        Collect_Radius = 1,
-        Collect_Efficiency = 2,
-        Collect_Weight = 3,
-        Particle_Speed = 4,
-        Particle_Stability = 5,
-        Time_Dilation = 6,                                                                                
-    }
-    public static readonly int UpgradeTypeAmount = 7;
-
-    private UpgradeType currUpgradeType;
+    private PlayerData.UpgradeType currUpgradeType;
     private ChoiceOption timeDilationChoice;
 
     private void Start() {
         float startPos = -5;
         float yPos = startPos;
 
-        for(int i = 0; i < UpgradeTypeAmount; i++) {
+        for(int i = 0; i < PlayerData.UpgradeTypeAmount; i++) {
             // Instantiate
             var choice = Instantiate(choicePrefab);
 
@@ -57,10 +46,10 @@ public class UpgradeUI : MonoBehaviour {
             yPos -= 50;
 
             //Data
-            SetChoiceDisplay(choice, (UpgradeType)i);
+            SetChoiceDisplay(choice, (PlayerData.UpgradeType)i);
             int temp = i;
             choice.SetButtonEvent(() => {
-                SetUpgradeInfo((UpgradeType)temp);
+                SetUpgradeInfo((PlayerData.UpgradeType)temp);
                 AudioManager.Instance.PlayUISound(choiceClick);
             });
             choice.SetColors(ChoiceOption.defaultNormalColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultPressedColor);
@@ -68,7 +57,7 @@ public class UpgradeUI : MonoBehaviour {
 
             choices.Add(choice);
 
-            if(i == (int)UpgradeType.Time_Dilation) {
+            if(i == (int)PlayerData.UpgradeType.Time_Dilation) {
                 timeDilationChoice = choice;
 
                 if (!Game.Instance.gameData.FindAtomInfo(119).IsDiscovered() && 
@@ -88,40 +77,50 @@ public class UpgradeUI : MonoBehaviour {
     public void CheckUpgradeUnlock(Atom a, float amo) {
         if(a.GetAtomicNumber() > 118) {
             timeDilationChoice.gameObject.SetActive(true);
+
+            Game.Instance.gameData.OnAtomDiscover -= CheckUpgradeUnlock;
         }
     }
 
-    public void SetChoiceDisplay(ChoiceOption choice, UpgradeType type) {
+    public void SetChoiceDisplay(ChoiceOption choice, PlayerData.UpgradeType type) {
+        string text = "";
         switch (type) {
-            case UpgradeType.Collect_Speed:
-                choice.SetText("Collect Speed Lv. " + 1);
+            case PlayerData.UpgradeType.Collect_Speed:
+                text = "Collect Speed Lv. ";
                 break;
-            case UpgradeType.Collect_Radius:
-                choice.SetText("Collect Radius Lv. " + 1);
+            case PlayerData.UpgradeType.Collect_Radius:
+                text = "Collect Radius Lv. ";
                 break;
-            case UpgradeType.Collect_Efficiency:
-                choice.SetText("Collect Efficiency Lv. " + 1);
+            case PlayerData.UpgradeType.Collect_Efficiency:
+                text = "Collect Efficiency Lv. ";
                 break;
-            case UpgradeType.Collect_Weight:
-                choice.SetText("Collect Weight Lv. " + 1);
+            case PlayerData.UpgradeType.Collect_Weight:
+                text = "Collect Weight Lv. ";
                 break;
-            case UpgradeType.Particle_Speed:
-                choice.SetText("Particle Speed Lv. " + 1);
+            case PlayerData.UpgradeType.Particle_Speed:
+                text = "Particle Speed Lv. ";
                 break;
-            case UpgradeType.Particle_Stability:
-                choice.SetText("Particle Stability Lv. " + 1);
+            case PlayerData.UpgradeType.Particle_Stability:
+                text = "Particle Stability Lv. ";
                 break;
-            case UpgradeType.Time_Dilation:
-                choice.SetText("Time Dilation Lv. " + 1);
+            case PlayerData.UpgradeType.Time_Dilation:
+                text = "Time Dilation Lv. ";
                 break;
         }
+
+        if (Game.Instance.playerData.IsMaxLevel(type)) {
+            choice.SetText(text + "MAX");
+        } else {
+            choice.SetText(text + Game.Instance.playerData.GetUpgradeLevel(type));
+        }
+
     }
 
-    public void SetUpgradeInfo(UpgradeType type) {
+    public void SetUpgradeInfo(PlayerData.UpgradeType type) {
         RemoveUpgrade();
-
         if((int)type >= choices.Count) { return; }
 
+        // Button Stuff
         ChoiceOption choiceOption = choices[(int)type];
         choiceOption.SetButtonEvent(() => {
             RemoveUpgrade();
@@ -131,73 +130,34 @@ public class UpgradeUI : MonoBehaviour {
         choiceOption.SetFocus(false);
         currUpgradeType = type;
 
-        string name = "", description = "";
-        string currValue = "", nextValue ="";
-        AtomAmo atomsNeeded = new AtomAmo();
+        // Display Stuff
+        List<AtomAmo> atomsNeeded = Game.Instance.playerData.GetCost(type);
 
-        switch (type) {
-            case UpgradeType.Collect_Speed:
-                name = "Collect Speed";
-                description = "How quickly the Atom Collector can collect atoms.\nSome objects take longer to collect than others.";
-                currValue = System.Math.Round(Game.Instance.playerData.GetAtomCollectorSpeed()*100,3) +"%";
-                nextValue = System.Math.Round(Game.Instance.playerData.GetNextAtomCollectorSpeed()*100, 3) + "%";
-                atomsNeeded = Game.Instance.playerData.GetAtomCollectorSpeedCost();
-                break;
-            case UpgradeType.Collect_Radius:
-                name = "Collect Radius";
-                description = "How far the Atom Collector can collect. Measured in Meters.";
-                currValue = System.Math.Round(Game.Instance.playerData.GetAtomCollectorRadius(), 3) + " m";
-                nextValue = System.Math.Round(Game.Instance.playerData.GetNextAtomCollectorRadius(), 3) + " m";
-                atomsNeeded = Game.Instance.playerData.GetAtomCollectorRadiusCost();
-                break;
-            case UpgradeType.Collect_Efficiency:
-                name = "Collect Efficiency";
-                description = "How many atoms the Atom Collector can collect at a time.";
-                currValue = System.Math.Round(Game.Instance.playerData.GetAtomCollectorEfficiency() *100, 3) + "%";
-                nextValue = System.Math.Round(Game.Instance.playerData.GetNextAtomCollectorEfficiency() *100, 3) + "%";
-                atomsNeeded = Game.Instance.playerData.GetAtomCollectorEfficiencyCost();
-                break;
-            case UpgradeType.Collect_Weight:
-                name = "Collect Weight";
-                description = "Determines if the Atom Collector can collect a heavy atom.\nAn atom can be collected if it's weight (Protons + Neutrons) is less than the Collect Weight.";
-                currValue += System.Math.Round(Game.Instance.playerData.GetAtomCollectorWeight(), 3);
-                nextValue += System.Math.Round(Game.Instance.playerData.GetNextAtomCollectorWeight(), 3);
-                atomsNeeded = Game.Instance.playerData.GetAtomCollectorWeightCost();
-                break;
-            case UpgradeType.Particle_Speed:
-                name = "Particle Accelerator Speed";
-                description = "How fast the Particle Accelerator runs.\nThe faster it is, the more likely splitting and combining will succeed.\nThis is measured as a percent of the Speed of Light.";
-                currValue = System.Math.Round(Game.Instance.playerData.GetParticleSpeed(), 3) + "%";
-                nextValue = System.Math.Round(Game.Instance.playerData.GetNextParticleSpeed(), 3) + "%";
-                atomsNeeded = Game.Instance.playerData.GetParticleSpeedCost();
-                break;
-            case UpgradeType.Particle_Stability:
-                name = "Particle Accelerator Stability";
-                description = "How stable the Particle Accelerator is.\nThe higher it is, the more likely radioactive atoms will become stable.\nThis is measured as a percent of the Speed of Light.";
-                currValue = System.Math.Round(Game.Instance.playerData.GetParticleStabilization(), 3) + "%";
-                nextValue = System.Math.Round(Game.Instance.playerData.GetNextParticleStabilization(), 3) + "%";
-                atomsNeeded = Game.Instance.playerData.GetParticleStabilizationCost();
-                break;
-            case UpgradeType.Time_Dilation:
-                name = "Time Dilation";
-                description = "Affects the longevity of unstable atoms. This allows very heavy atoms to be preserved longer.\nNessecary for elements 122 and above.\nMeasured in seconds.";
-                currValue = System.Math.Round(Game.Instance.playerData.GetTimeDilation(), 3) + " s";
-                nextValue = System.Math.Round(Game.Instance.playerData.GetNextTimeDilation(), 3) + " s";
-                atomsNeeded = Game.Instance.playerData.GetTimeDilationCost();
-                break;
+        upgradeName.text = Game.Instance.playerData.GetName(type);
+        upgradeDesc.text = Game.Instance.playerData.GetDescription(type);
+        upgradeCurrValue.text = "Curr Value: " + System.Math.Round(Game.Instance.playerData.GetValue(type), 3)
+            + " " + Game.Instance.playerData.GetMeasurementAbbr(type);//currValue;
+        upgradeNextValue.text = "Next Value: " + System.Math.Round(Game.Instance.playerData.GetNextValue(type), 3)
+            + " " + Game.Instance.playerData.GetMeasurementAbbr(type);//nextValue;
+
+        bool canCraft = true;
+        for(int i = 0; i < atomsNeeded.Count; i++) {
+            AtomAmo cost = atomsNeeded[i];
+            if(cost.atom == null) { continue; }
+            
+            int amoHave = Game.Instance.gameData.FindAtomData(cost.atom.GetAtomicNumber()).GetCurrAmo();
+            if (amoHave >= cost.amo) {
+                upgradeAtomName.text = cost.atom.GetName() + "\n";
+                upgradeAtomNeed.text = cost.amo + "\n";
+                upgradeAtomHave.text = amoHave + "\n";
+            } else {
+                upgradeAtomName.text = "<color=#ff8080>" + cost.atom.GetName() + "\n</color>";
+                upgradeAtomNeed.text = "<color=#ff8080>" + cost.amo + "\n</color>";
+                upgradeAtomHave.text = "<color=#ff8080>" + amoHave + "\n</color>";
+                canCraft = false;
+            }
         }
-
-        upgradeName.text = name;
-        upgradeDesc.text = description;
-        upgradeCurrValue.text = "Curr Value: " + currValue;
-        upgradeNextValue.text = "Next Value: " + nextValue;
-
-        upgradeAtomName.text = atomsNeeded.atom.GetName();
-        upgradeAtomNeed.text = "" + atomsNeeded.amo;
-        int amoHave = Game.Instance.gameData.FindAtomData(atomsNeeded.atom.GetAtomicNumber()).GetCurrAmo();
-        upgradeAtomHave.text = "" + amoHave;
-
-        upgradeBtn.interactable = amoHave >= atomsNeeded.amo;
+        upgradeBtn.interactable = canCraft;
     }
 
     public void RemoveUpgrade() {
@@ -211,9 +171,6 @@ public class UpgradeUI : MonoBehaviour {
             choiceOption.SetColors(ChoiceOption.defaultNormalColor, ChoiceOption.defaultHoverColor, ChoiceOption.defaultPressedColor);
             choiceOption.SetFocus(false);
         }
-        //if (choices.Count > (int)currUpgradeType) {
-        //    choices[(int)currUpgradeType].SetInteractable(true);
-        //}
 
         upgradeName.text = "Upgrade";
         upgradeDesc.text = "";
@@ -228,42 +185,11 @@ public class UpgradeUI : MonoBehaviour {
     }
 
     public void Upgrade() {
-        AtomAmo used = new AtomAmo();
-        bool success = false;
-
-        switch (currUpgradeType) {
-            case UpgradeType.Collect_Speed:
-                used = Game.Instance.playerData.GetAtomCollectorSpeedCost();
-                success = Game.Instance.playerData.UpgradeAtomCollectorSpeed();
-                break;
-            case UpgradeType.Collect_Radius:
-                used = Game.Instance.playerData.GetAtomCollectorRadiusCost();
-                success = Game.Instance.playerData.UpgradeAtomCollectorRadius();
-                break;
-            case UpgradeType.Collect_Efficiency:
-                used = Game.Instance.playerData.GetAtomCollectorEfficiencyCost();
-                success = Game.Instance.playerData.UpgradeAtomCollectorEfficiency();
-                break;
-            case UpgradeType.Collect_Weight:
-                used = Game.Instance.playerData.GetAtomCollectorWeightCost();
-                success = Game.Instance.playerData.UpgradeAtomCollectorWeight();
-                break;
-            case UpgradeType.Particle_Speed:
-                used = Game.Instance.playerData.GetParticleSpeedCost();
-                success = Game.Instance.playerData.UpgradeParticleSpeed();
-                break;
-            case UpgradeType.Particle_Stability:
-                used = Game.Instance.playerData.GetParticleStabilizationCost();
-                success = Game.Instance.playerData.UpgradeParticleStabilization();
-                break;
-            case UpgradeType.Time_Dilation:
-                used = Game.Instance.playerData.GetTimeDilationCost();
-                success = Game.Instance.playerData.UpgradeTimeDilation();
-                break;
-        }
+        List<AtomAmo> used = Game.Instance.playerData.GetCost(currUpgradeType);
+        bool success = Game.Instance.playerData.Upgrade(currUpgradeType);
 
         if (success) {
-            resultUI.Setup(null, new List<AtomAmo>() { used });
+            resultUI.Setup(null, used);
         }
 
         var type = currUpgradeType;
@@ -281,8 +207,8 @@ public class UpgradeUI : MonoBehaviour {
 
     public void Reset() {
         RemoveUpgrade();
-        for(int i = 0; i < UpgradeTypeAmount && i < choices.Count; i++) {
-            SetChoiceDisplay(choices[i], (UpgradeType)i);
+        for(int i = 0; i < PlayerData.UpgradeTypeAmount && i < choices.Count; i++) {
+            SetChoiceDisplay(choices[i], (PlayerData.UpgradeType)i);
         }
     }
 

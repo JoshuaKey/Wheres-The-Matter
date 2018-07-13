@@ -60,6 +60,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1902499086302288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4341215177175402}
+  - component: {fileID: 114071267308193882}
+  m_Layer: 0
+  m_Name: Achievements
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4341215177175402
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1902499086302288}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4557625978834796}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4557625978834796
 Transform:
   m_ObjectHideFlags: 1
@@ -72,6 +101,7 @@ Transform:
   m_Children:
   - {fileID: 4889813367065356}
   - {fileID: 4565598192335568}
+  - {fileID: 4341215177175402}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -196,6 +226,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114071267308193882
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1902499086302288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9179a2436dcdc864f9bbb8b533e5256b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114427351225909604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -759,27 +800,590 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 186f867dfcfb7f04583ebc31fb681b13, type: 2}
     - {fileID: 11400000, guid: 0a2ff749fd16f6348bc29399fb64b413, type: 2}
     - {fileID: 11400000, guid: 192215628263536429425bb623c30a6a, type: 2}
+    - {fileID: 11400000, guid: a3868a39c5fa91a46b5c6f7d12aa1b4f, type: 2}
+    - {fileID: 11400000, guid: df723ebd0cb917946a9de394d072c171, type: 2}
     - {fileID: 11400000, guid: 4d107f18786f19441bfe0cf79d881a4f, type: 2}
+    - {fileID: 11400000, guid: 1345b690a918b5346863fbb9d1cdc4af, type: 2}
     - {fileID: 11400000, guid: cd143a937565f934580492b0a16ac490, type: 2}
+    - {fileID: 11400000, guid: 141e3873ee5daf948be89b64e9643e08, type: 2}
     - {fileID: 11400000, guid: 63504cd0b722947458ed48831122cd41, type: 2}
     - {fileID: 11400000, guid: 951218e588a7e204296117f1dfc6b2ab, type: 2}
     - {fileID: 11400000, guid: 34e3b034b0764ee43b0a856f37dad6e3, type: 2}
     - {fileID: 11400000, guid: 2543ed2f908a2c346b1bc165acad9775, type: 2}
     - {fileID: 11400000, guid: 9896f06f75a29d749ba272509bcf32ee, type: 2}
+    - {fileID: 11400000, guid: cdfcc2ffacb98d840a34a37091cb7156, type: 2}
     - {fileID: 11400000, guid: 5af7dee752118b14894196225c1de4db, type: 2}
   playerData:
-    collectRadius: 0.3
-    collectSpeed: 1
-    collectEfficiency: 1
-    collectWeight: 1
-    particleSpeed: 1.5
-    particleStability: 60
-    timeDilation: 0
+    radiusUpgrade:
+      value: 0
+      maxLevel: 5
+      name: Collect Radius
+      desc: How far the Atom Collector can collect. Measured in Meters.
+      measurementAbbr: m
+      atomProgression:
+      - serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 65
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 5
+          value: 6
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 5
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      - serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 4
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 5
+          value: 12
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      amoProgression:
+      - serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 65
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 5
+          value: 6
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 5
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      - serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 4
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 5
+          value: 20
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      valueProgression:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0.3
+          inSlope: 0
+          outSlope: 0.54
+          tangentMode: 65
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 5
+          value: 3
+          inSlope: 0.54
+          outSlope: 0
+          tangentMode: 5
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    speedUpgrade:
+      value: 0
+      maxLevel: 100
+      name: Collect Speed
+      desc: 'How quickly the Atom Collector can collect atoms.
+
+        Some objects take longer to collect than others.'
+      measurementAbbr: '%'
+      atomProgression:
+      - serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 136
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 100
+          value: 5
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 136
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      amoProgression:
+      - serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 136
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 100
+          value: 100
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 136
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      valueProgression:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 136
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 100
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 136
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    efficiencyUpgrade:
+      value: 0
+      maxLevel: 100
+      name: Collect Efficiency
+      desc: How many atoms the Atom Collector can collect at a time.
+      measurementAbbr: '%'
+      atomProgression:
+      - serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 100
+          value: 100
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      amoProgression:
+      - serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 100
+          value: 1000000
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      valueProgression:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 136
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 100
+          value: 1000
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 136
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    weightUpgrade:
+      value: 0
+      maxLevel: 100
+      name: Collect Weight
+      desc: 'Determines if the Atom Collector can collect a heavy atom.
+
+        An atom can be collected if it''s weight (Protons + Neutrons) is less than
+        the Collect Weight.'
+      measurementAbbr: 
+      atomProgression:
+      - serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      amoProgression:
+      - serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 5
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 100
+          value: 5
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      valueProgression:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 136
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 100
+          value: 118
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 136
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    accelerationUpgrade:
+      value: 0
+      maxLevel: 100
+      name: Particle Speed
+      desc: 'How fast the Particle Accelerator runs.
+
+        The faster it is, the more likely splitting and combining will succeed.
+
+        This is measured as a percent of the Speed of Light.'
+      measurementAbbr: '%'
+      atomProgression:
+      - serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 100
+          value: 36
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      amoProgression:
+      - serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 100
+          value: 100000
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      valueProgression:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1.5
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 136
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 100
+          value: 99.9999
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 136
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    stabilityUpgrade:
+      value: 0
+      maxLevel: 100
+      name: Particle Stability
+      desc: 'How stable the Particle Accelerator is.
+
+        The higher it is, the more likely radioactive atoms will become stable.
+
+        This is measured as a percent of the Speed of Light.'
+      measurementAbbr: '%'
+      atomProgression:
+      - serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 100
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      amoProgression:
+      - serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 100
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      valueProgression:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 60
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 136
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 100
+          value: 99.9999
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 136
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    timeUpgrade:
+      value: 0
+      maxLevel: 100
+      name: Time Dilation
+      desc: 'Affects the longevity of unstable atoms. This allows very heavy atoms
+        to be preserved longer.
+
+        Nessecary for elements 122 and above.
+
+        Measured in seconds.'
+      measurementAbbr: s
+      atomProgression: []
+      amoProgression: []
+      valueProgression:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
   player: {fileID: 0}
   cursor: {fileID: 0}
   world: {fileID: 0}
   dialogueSystem: {fileID: 0}
   story: {fileID: 114463922153669246}
+  logSystem: {fileID: 0}
   menu: {fileID: 0}
   menuCanvas: {fileID: 0}
   gameCanvas: {fileID: 0}
@@ -788,6 +1392,7 @@ MonoBehaviour:
   laboratoryCanvas: {fileID: 0}
   saveCanvas: {fileID: 0}
   settingCanvas: {fileID: 0}
+  background: {fileID: 0}
   newElementImage: {fileID: 0}
   particlePool: {fileID: 0}
   particleEffectAdditionalDist: 40
@@ -810,6 +1415,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7746edc1408a4a418184a79ca6fbbf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chapter: 0
+  introImage: {fileID: 0}
+  letterImage: {fileID: 0}
+  letterText: 
+  letterHeight: 0
+  letterAnimateTime: 0
+  professorName: Doctor Scientist
+  professorImage: {fileID: 21300000, guid: d1afcbf05aca79c4dafcc5aae5985d6e, type: 3}
+  mapUI: {fileID: 0}
+  mineUnlockable: {fileID: 11400000, guid: 141e3873ee5daf948be89b64e9643e08, type: 2}
+  beachUnlockable: {fileID: 11400000, guid: cdfcc2ffacb98d840a34a37091cb7156, type: 2}
+  oceanUnlockable: {fileID: 11400000, guid: a3868a39c5fa91a46b5c6f7d12aa1b4f, type: 2}
+  desertUnlockable: {fileID: 11400000, guid: df723ebd0cb917946a9de394d072c171, type: 2}
+  townUnlockable: {fileID: 11400000, guid: 1345b690a918b5346863fbb9d1cdc4af, type: 2}
 --- !u!114 &114838861568036318
 MonoBehaviour:
   m_ObjectHideFlags: 1

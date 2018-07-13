@@ -22,7 +22,7 @@ public class AtomParticlePool : MonoBehaviour {
         Disable();
 
         Game.Instance.playerData.OnCollectRadiusChange += ChangeRadius;
-        ChangeRadius(Game.Instance.playerData.GetAtomCollectorRadius());
+        ChangeRadius(Game.Instance.playerData.GetValue(PlayerData.UpgradeType.Collect_Radius));
     }
 
     private AtomParticle InstantiateParticle() {

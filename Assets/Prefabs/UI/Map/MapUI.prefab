@@ -930,6 +930,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f81d475ae0c10040b50c6f7543147e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forestButton: {fileID: 114151582540684862}
+  beachButton: {fileID: 114563536411832376}
+  mineButton: {fileID: 114155646074059504}
+  oceanButton: {fileID: 114777057450418796}
+  desertButton: {fileID: 114971954637310040}
+  townButton: {fileID: 114769687342440740}
 --- !u!114 &114551854023252178
 MonoBehaviour:
   m_ObjectHideFlags: 1

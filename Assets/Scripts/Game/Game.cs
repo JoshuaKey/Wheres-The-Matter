@@ -16,7 +16,7 @@ public class Game : MonoBehaviour {
     [SerializeField] public World world;
     [SerializeField] public DialogueSystem dialogueSystem;
     [SerializeField] public Story story;
-    //[SerializeField] public ElementsPage elementsPage;
+    [SerializeField] public LogSystem logSystem;
 
     [Header("Canvas")]
     [SerializeField] public RectTransform menu;
@@ -29,6 +29,7 @@ public class Game : MonoBehaviour {
     [SerializeField] public Canvas settingCanvas;
 
     [Header("UI")]
+    [SerializeField] public Background background;
     [SerializeField] private Image newElementImage;
     [SerializeField] public AtomParticlePool particlePool;
     [SerializeField] public float particleEffectAdditionalDist;
@@ -45,10 +46,6 @@ public class Game : MonoBehaviour {
     }
 
     private void Start() {
-        //elementsPage.Start(); // Because Dumb...
-        // Basically start doesnt get called if game object is disabled. therefore it cant subscribe to Events
-        // Basically manual Init ourself.
-
         gameData.Init();
         playerData.Init();
         world.Init(player.transform.position, /*(int)System.DateTime.Now.Ticks*/0, World.AreaType.FOREST);
@@ -91,6 +88,8 @@ public class Game : MonoBehaviour {
     public void Absorb(Atom atom, int amo) {
         print("Absorbing " + amo + " " + atom);
         gameData.Absorb(atom, amo);
+
+
     }
     public void Use(Atom atom, int amo) {
         print("Using " + amo + " " + atom);
@@ -101,32 +100,32 @@ public class Game : MonoBehaviour {
         bool isActive = !menu.gameObject.activeInHierarchy;
         menu.gameObject.SetActive(isActive);
 
-        player.SetCanCollect(!isActive && currCanvas == gameCanvas);
+        player.CanCollect(!isActive && currCanvas == gameCanvas);
     }
     public void DisplayMenu() {
         menu.gameObject.SetActive(true);
-        player.SetCanCollect(false);
+        player.CanCollect(false);
     }
     public void HideMenu() {
         menu.gameObject.SetActive(false);
 
         if(currCanvas == gameCanvas) {
-            player.SetCanCollect(true);
+            player.CanCollect(true);
         }
     }
 
     public void QueueDialogue(string text, bool display = false) {
         dialogueSystem.QueueDialogue(text, display);
-        player.SetCanCollect(!display);
+        player.CanCollect(!display);
         dialogueSystem.OnDialogueEnd += FinishDialogue;
     }
     public void QueueDialogue(string[] text, bool display = false) {
         dialogueSystem.QueueDialogue(text, display);
-        player.SetCanCollect(!display);
+        player.CanCollect(!display);
         dialogueSystem.OnDialogueEnd += FinishDialogue;
     }
     private void FinishDialogue() {
-        player.SetCanCollect(!menu.gameObject.activeInHierarchy && currCanvas == gameCanvas);
+        player.CanCollect(!menu.gameObject.activeInHierarchy && currCanvas == gameCanvas);
         dialogueSystem.OnDialogueEnd -= FinishDialogue;
     }
 
@@ -138,9 +137,10 @@ public class Game : MonoBehaviour {
         laboratoryCanvas.gameObject.SetActive(false);
         menu.gameObject.SetActive(false);
 
-        player.SetCanCollect(true);
+        player.CanCollect(true);
         world.gameObject.SetActive(true);
         gameCanvas.gameObject.SetActive(true);
+        background.gameObject.SetActive(false);
     }
 
     public void DisplayElements() {
@@ -155,10 +155,12 @@ public class Game : MonoBehaviour {
         menu.gameObject.SetActive(false);
 
         //player.enabled = false;
-        player.SetCanCollect(false);
+        player.CanCollect(false);
         world.gameObject.SetActive(false);
+        background.gameObject.SetActive(false);
 
         newElementImage.gameObject.SetActive(false);
+
     }
 
     public void DisplayMap() {
@@ -173,8 +175,9 @@ public class Game : MonoBehaviour {
         menu.gameObject.SetActive(false);
 
         //player.enabled = false;
-        player.SetCanCollect(false);
+        player.CanCollect(false);
         world.gameObject.SetActive(false);
+        background.gameObject.SetActive(false);
     }
 
     public void DisplayLaboratory() {
@@ -189,9 +192,10 @@ public class Game : MonoBehaviour {
         menu.gameObject.SetActive(false);
 
         //player.enabled = false;
-        player.SetCanCollect(false);
+        player.CanCollect(false);
         world.gameObject.SetActive(false);
         gameCanvas.gameObject.SetActive(true);
+        background.gameObject.SetActive(false);
     }
 
     public void DisplaySave() {
@@ -200,6 +204,18 @@ public class Game : MonoBehaviour {
 
     public void DisplaySettings() {
         print("No Settings");
+    }
+
+    public void DisplayBackground() {
+        elementCanvas.gameObject.SetActive(false);
+        mapCanvas.gameObject.SetActive(false);
+        laboratoryCanvas.gameObject.SetActive(false);
+        gameCanvas.gameObject.SetActive(false);
+        menu.gameObject.SetActive(false);
+
+        world.gameObject.SetActive(false);
+
+        background.gameObject.SetActive(true);
     }
 
     public void Save() {

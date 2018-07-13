@@ -29,7 +29,7 @@ public class MovingObject : MonoBehaviour {
 
         spriteRenderer.sprite = upSprite;
 
-        chunkIndex = Game.Instance.world.GetChunkIndex(transform.position);
+        //chunkIndex = Game.Instance.world.GetChunkIndex(transform.position);
     }
 
     // Update is called once per frame
@@ -54,7 +54,37 @@ public class MovingObject : MonoBehaviour {
         spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
 
         World world = Game.Instance.world;
-        chunkIndex = world.CheckChunk(this.gameObject, chunkIndex);
+
+        var newChunkIndex = world.GetChunkIndex(transform.position);
+        if (newChunkIndex != chunkIndex) {
+            Chunk c = world.GetChunk(chunkIndex);
+            Chunk newChunk = world.GetChunk(newChunkIndex);
+
+            if (newChunk == null || !newChunk.IsLoaded()) {
+                Vector3 pos = transform.position;             
+
+                if (direction.x > 0) {
+                    pos.x = c.GetRightBound() - .1f;
+                } else if (direction.x < 0) {
+                    pos.x = c.GetLeftBound() + .1f;
+                }
+
+                if (direction.y > 0) {
+                    pos.y = c.GetUpBound() - .1f;
+                } else if (direction.y < 0) {
+                    pos.y = c.GetDownBound() + .1f;
+                }
+
+                direction.x = -direction.x;
+                direction.y = -direction.y;
+
+                transform.position = pos;
+            } else {
+                chunkIndex = newChunkIndex;  
+                this.transform.SetParent(newChunk.transform, true);
+            }
+        }
+
     }
 
     public void StartMoving() {

@@ -29,13 +29,15 @@ public class ResultUI : MonoBehaviour {
         // Used Atoms
         if (used != null) {
              
-            if (used.Count > 0) {
+            if (used.Count > 0 && used[0].atom != null) {
                 usedAtomName.text = used[0].atom.GetName()+"\n";
                 usedAtomAmo.text = "" + used[0].amo + "\n";
             }
             for (int i = 1; i < used.Count; i++) {
-                usedAtomName.text += used[i].atom.GetName() + "\n";
-                usedAtomAmo.text += used[i].amo + "\n";
+                if (used[i].atom != null) {
+                    usedAtomName.text += used[i].atom.GetName() + "\n";
+                    usedAtomAmo.text += used[i].amo + "\n";
+                }
             }
 
             var size = usedAtoms.sizeDelta;
@@ -61,13 +63,15 @@ public class ResultUI : MonoBehaviour {
 
         // Produced Atoms
         if (results != null) {
-            if (results.Count > 0) {
+            if (results.Count > 0 && results[0].atom != null) {
                 producedAtomName.text = results[0].atom.GetName() + "\n";
                 producedAtomAmo.text = "" + results[0].amo + "\n";
             }
             for (int i = 1; i < results.Count; i++) {
-                producedAtomName.text += results[i].atom.GetName()+"\n";
-                producedAtomAmo.text += results[i].amo+"\n";
+                if (results[i].atom != null) {
+                    producedAtomName.text += results[i].atom.GetName() + "\n";
+                    producedAtomAmo.text += results[i].amo + "\n";
+                }
             }
 
             var size = producedAtoms.sizeDelta;

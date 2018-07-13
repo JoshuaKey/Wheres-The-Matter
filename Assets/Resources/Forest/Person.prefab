@@ -89,6 +89,8 @@ MonoBehaviour:
     ratio: 0.2
   - atom: {fileID: 11400000, guid: 307678c565737f545884b26f06167e2e, type: 2}
     ratio: 0.1
+  - atom: {fileID: 11400000, guid: 4835c7c1cf928414f881db7504257734, type: 2}
+    ratio: 0.001
   collectionPause: 0.5
   hasLife: 1
   life: 10

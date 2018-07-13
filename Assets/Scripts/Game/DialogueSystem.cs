@@ -21,7 +21,8 @@ public class DialogueSystem : MonoBehaviour {
 
     private bool displaying = false;
     private bool skip = false;
-    private Queue<string> dialogueQueue = new Queue<string>();
+    private List<string> dialogueQueue = new List<string>();
+    private int currDialogue = 0;
 
     public delegate void Event();
 
@@ -33,11 +34,13 @@ public class DialogueSystem : MonoBehaviour {
     //}
 
     private void Start() {
-        this.gameObject.SetActive(false);
+        if (!displaying) {
+            this.gameObject.SetActive(false);
+        }
     }
 
     public void QueueDialogue(string text, bool display = false) {
-        dialogueQueue.Enqueue(text);
+        dialogueQueue.Add(text);
 
         if (display) {
             StartDialogue();
@@ -45,7 +48,7 @@ public class DialogueSystem : MonoBehaviour {
     }
     public void QueueDialogue(string[] text, bool display = false) {
         for(int i = 0; i < text.Length; i++) {
-            dialogueQueue.Enqueue(text[i]);
+            dialogueQueue.Add(text[i]);
         }
 
         if (display) {
@@ -69,7 +72,8 @@ public class DialogueSystem : MonoBehaviour {
         this.gameObject.SetActive(true);
 
         if (!displaying) {
-            StartCoroutine(DisplayDialogue());
+            currDialogue = 0;
+            StartCoroutine(DisplayDialogue(currDialogue));
         }
     }
 
@@ -77,10 +81,21 @@ public class DialogueSystem : MonoBehaviour {
     public void ContinueDialogue() {
         if (displaying) { // Skip
             skip = true;
-        }  else if (dialogueQueue.Count <= 0) { // End Dialogue
+        }  else if (currDialogue + 1 >= dialogueQueue.Count) { // End Dialogue
             EndDialogue();
         } else {
-            StartCoroutine(DisplayDialogue()); // Continue
+            currDialogue++;
+            StartCoroutine(DisplayDialogue(currDialogue)); // Continue
+        }
+    }
+    public void BackDialogue() {
+        if (displaying) { // Skip
+            skip = true;
+        } else if (currDialogue - 1 < 0) { // Nothing
+            //EndDialogue();
+        } else {
+            currDialogue--;
+            StartCoroutine(DisplayDialogue(currDialogue)); // Continue
         }
     }
     
@@ -89,14 +104,13 @@ public class DialogueSystem : MonoBehaviour {
             OnDialogueEnd();
         }
         this.gameObject.SetActive(false);
-        print("Dialogue End");
 
         dialogueText.text = "";
+        dialogueQueue.Clear();
     }
 
-    private IEnumerator DisplayDialogue() {
-        if (dialogueQueue.Count <= 0) { yield break; }
-
+    private IEnumerator DisplayDialogue(int index) {
+        //if (dialogueQueue.Count <= 0) { yield break; }
 
         skip = false;
         displaying = true;
@@ -104,7 +118,7 @@ public class DialogueSystem : MonoBehaviour {
         dialogueSource.Play();
 
         float nextDisplayTime = 0f;
-        string text = dialogueQueue.Dequeue();
+        string text = dialogueQueue[index];
 
         for (int y = 0; y < text.Length; y++) {
             while (!skip && nextDisplayTime > Time.time) {

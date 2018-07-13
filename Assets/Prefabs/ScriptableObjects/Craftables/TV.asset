@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e5b6c1dfb92db4a9ef70d0e277653b, type: 3}
+  m_Name: TV
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
+  name: TV
+  price: 0
+  atomsForProductions:
+  - atom: {fileID: 11400000, guid: 7c7d9be9d678f4149ab8d9af49754487, type: 2}
+    amo: 10000000
+  - atom: {fileID: 11400000, guid: ad47fa45acc9bd943b26f6dbf891a75d, type: 2}
+    amo: 10000000
+  - atom: {fileID: 11400000, guid: f966d3ee9fb349f46a7e6b792c5e89bd, type: 2}
+    amo: 1000000
+  - atom: {fileID: 11400000, guid: 02cfcb5ed377ffe488b77ab2d332bd3c, type: 2}
+    amo: 500000
+  - atom: {fileID: 11400000, guid: 5342e67613e71f348ab75dac03a3d5df, type: 2}
+    amo: 500000
+  - atom: {fileID: 11400000, guid: 0e67e31460f89314aab266fb22c846bc, type: 2}
+    amo: 500000
+  - atom: {fileID: 11400000, guid: 027cdb000ec525c48aa1abab3f4d1afe, type: 2}
+    amo: 500000
+  - atom: {fileID: 11400000, guid: ce003a71bfdb83a41ad1e12fc95837f5, type: 2}
+    amo: 30000
+  - atom: {fileID: 11400000, guid: 4835c7c1cf928414f881db7504257734, type: 2}
+    amo: 30000

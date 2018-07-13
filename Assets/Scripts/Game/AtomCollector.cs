@@ -85,7 +85,7 @@ public class AtomCollector : MonoBehaviour {
                 AtomAmo atomAmo = new AtomAmo();
                 atomAmo.atom = atomRatio.atom;
                 //atomAmo.amo = 1;
-                atomAmo.amo = UnityEngine.Random.Range(1, (int)playerData.GetAtomCollectorEfficiency());
+                atomAmo.amo = UnityEngine.Random.Range(1, (int)playerData.GetValue(PlayerData.UpgradeType.Collect_Efficiency));
 
                 // Lithium is a 30%
                 // Hygrogen is a 70%
@@ -104,7 +104,7 @@ public class AtomCollector : MonoBehaviour {
         
         
         // Time
-        nextCollectionTime = Time.time + collectionPause * playerData.GetAtomCollectorSpeed();
+        nextCollectionTime = Time.time + collectionPause * playerData.GetValue(PlayerData.UpgradeType.Collect_Speed);
 
         // Life
         LoseLife(atomCount / 100f);

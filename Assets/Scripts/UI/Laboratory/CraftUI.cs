@@ -194,11 +194,16 @@ public class CraftUI : MonoBehaviour {
         for (int i = 0; i < atoms.Length; i++) {
             Atom a = atoms[i].atom;
 
-            atomName.Append(a.GetName() + "\n");
-            atomAmo.Append(atoms[i].amo + "\n");
-
             AtomData data = Game.Instance.gameData.FindAtomData(a.GetAtomicNumber());
-            atomHave.Append(data.GetCurrAmo() + "\n");
+            if (data.GetCurrAmo() >= atoms[i].amo) {
+                atomName.Append( a.GetName() + "\n");
+                atomAmo.Append(  atoms[i].amo + "\n");
+                atomHave.Append( data.GetCurrAmo() + "\n");
+            } else {
+                atomName.Append("<color=#ff8080>" + a.GetName() + "\n</color>");
+                atomAmo.Append( "<color=#ff8080>" + atoms[i].amo + "\n</color>");
+                atomHave.Append("<color=#ff8080>" + data.GetCurrAmo() + "\n</color>");
+            }
         }
 
         atomsRequiredText.text = atomName.ToString();

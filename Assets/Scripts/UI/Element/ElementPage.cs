@@ -140,7 +140,9 @@ public class ElementPage : MonoBehaviour {
     public void NextElement() {
         if(this.atom != null) {
             int number = atom.GetAtomicNumber() + 1;
-            if(number > Game.Instance.gameData.GetAtomAmount()) {
+            if(!ElementsPage.Instance.IsNextPageUnlocked() && number >= 119 ) {
+                number = 1;
+            } else if (number > Game.Instance.gameData.GetAtomAmount()) {
                 number = 1;
             }
             Atom a = Game.Instance.gameData.FindAtom(number);
@@ -151,9 +153,11 @@ public class ElementPage : MonoBehaviour {
     public void PrevElement() {
         if (this.atom != null) {
             int number = atom.GetAtomicNumber() - 1;
-            if (number < 1) {
+            if (!ElementsPage.Instance.IsNextPageUnlocked() && number < 1) {
+                number = 118;
+            } else if (number < 1) {
                 number = Game.Instance.gameData.GetAtomAmount();
-            }
+            } 
             Atom a = Game.Instance.gameData.FindAtom(number);
             //Setup(a);
             ElementsPage.Instance.ClickAtom(a);

@@ -8,6 +8,8 @@ public class LaboratoryUI : MonoBehaviour {
     [SerializeField] RectTransform combineUI;
     [SerializeField] RectTransform splitUI;
     [SerializeField] RectTransform craftUI;
+    [SerializeField] ResultUI resultUI;
+    [SerializeField] RenameUI renameUI;
 
     public void DisplayUpgrades() {
         upgradeUI.gameObject.SetActive(true);
@@ -31,5 +33,8 @@ public class LaboratoryUI : MonoBehaviour {
         splitUI.gameObject.SetActive(false);
         upgradeUI.gameObject.SetActive(false);
         craftUI.gameObject.SetActive(false);
+
+        resultUI.gameObject.SetActive(false);
+        renameUI.gameObject.SetActive(false); 
     }
 }

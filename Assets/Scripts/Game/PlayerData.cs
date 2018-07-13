@@ -28,38 +28,121 @@ public class PlayerData  {
         public AtomData data;
     }
 
-    public struct UpgradeLevel {
-        public int level;
-        public List<AtomAmo> cost;
-        public AnimationCurve upgradeCurve;
+    [Serializable]
+    public class UpgradeLevel {
+        [SerializeField] public int level;
+        [SerializeField] public List<AtomAmo> cost;
+        [SerializeField] public float value;
 
-        public float value;
-    } // Anythign More???
+        [Header("Info")]
+        [SerializeField] private int maxLevel;
+        [SerializeField] private string name;
+        [SerializeField] [TextArea(1, 3)] private string desc;
+        [SerializeField] private string measurementAbbr;
 
-    [SerializeField] private float collectRadius = .3f; // From .3 to Inifinite
-    [SerializeField] private float collectSpeed = 0f; // From 1 -  0
-    [SerializeField] private float collectEfficiency = 1f; // From 1 to Infinite
-    [SerializeField] private float collectWeight = 1f; // From 1 - 300ish Neutrons + Protons
+        [Header("Progression")]
+        public List<AnimationCurve> atomProgression;
+        public List<AnimationCurve> amoProgression;
+        public AnimationCurve valueProgression;
 
-    [SerializeField] private float particleSpeed = 1.5f; // From 1.5 to  100
-    [SerializeField] private float particleStability = 60f; // from 60 to 100
+        public void Init() {
+            level = 0;
+            value = valueProgression.Evaluate(level);
 
-    [SerializeField] private float timeDilation = 0f;
+            AtomAmo amo = new AtomAmo();
+            cost = new List<AtomAmo>();
+            for (int i = 0; i < atomProgression.Count; i++) {
+                amo.amo = (int)amoProgression[i].Evaluate(level);
 
-    // Add weight
-    // All values are floats
-    // What is the max, what is the min.
-    // LEvel
+                int index = (int)atomProgression[i].Evaluate(level);
+                if (index == 0) {
+                    amo.atom = null;
+                } else {
+                    amo.atom = Game.Instance.gameData.FindAtom(index);
+                }
+                cost.Add(amo);
+            }
+        }
+        public bool Upgrade() {
+            bool success = CanUpgrade();
+            if (success) {
+                for (int i = 0; i < cost.Count; i++) { // Use
+                    AtomAmo atomCost = cost[i];
+                    if (atomCost.atom == null) { continue; }
 
-    private AtomAmo collectRadiusCost;
-    private AtomAmo collectSpeedCost;
-    private AtomAmo collectEfficiencyCost;
-    private AtomAmo collectWeightCost;
-            
-    private AtomAmo particleSpeedCost;
-    private AtomAmo particleStablizationCost;
+                    AtomData data = Game.Instance.gameData.FindAtomData(cost[i].atom.GetAtomicNumber());
+                    data.Lose(cost[i].amo);
+                }
 
-    private AtomAmo timeDilationCost;
+                level++;
+                value = valueProgression.Evaluate(level);
+
+                cost.Clear();
+                if (!IsMaxLevel()) {
+                    AtomAmo amo = new AtomAmo();
+                    for (int i = 0; i < atomProgression.Count; i++) {
+                        amo.amo = (int)amoProgression[i].Evaluate(level);
+
+                        int index = (int)atomProgression[i].Evaluate(level);
+                        if (index == 0) {
+                            amo.atom = null;
+                        } else {
+                            amo.atom = Game.Instance.gameData.FindAtom(index);
+                        }
+
+                        cost.Add(amo);
+                    }
+                }
+            }
+
+            return success;
+        }
+        public bool CanUpgrade() {
+            if(IsMaxLevel()) { return false; }
+
+            for (int i = 0; i < cost.Count; i++) { // Validation
+                AtomAmo atomCost = cost[i];
+                if (atomCost.atom == null) { continue; }
+
+                AtomData data = Game.Instance.gameData.FindAtomData(atomCost.atom.GetAtomicNumber());
+                if (data.GetCurrAmo() < atomCost.amo) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool IsMaxLevel() { return level == maxLevel;}
+        public string GetName() { return name; }
+        public string GetDesc() { return desc; }
+        public string GetMeasurement() { return measurementAbbr; }
+
+        public int GetLevel() { return level; }
+        public float GetValue() { return value; }
+        public List<AtomAmo> GetCost() { return cost; }
+
+        public float GetNextValue() { return valueProgression.Evaluate(level + 1); }
+
+    } 
+
+    public enum UpgradeType {
+        Collect_Speed = 0,
+        Collect_Radius = 1,
+        Collect_Efficiency = 2,
+        Collect_Weight = 3,
+        Particle_Speed = 4,
+        Particle_Stability = 5,
+        Time_Dilation = 6,
+    }
+    public static readonly int UpgradeTypeAmount = 7;
+
+    [SerializeField] private UpgradeLevel radiusUpgrade;
+    [SerializeField] private UpgradeLevel speedUpgrade;
+    [SerializeField] private UpgradeLevel efficiencyUpgrade;
+    [SerializeField] private UpgradeLevel weightUpgrade;
+    [SerializeField] private UpgradeLevel accelerationUpgrade;
+    [SerializeField] private UpgradeLevel stabilityUpgrade;
+    [SerializeField] private UpgradeLevel timeUpgrade;
 
     private float money;
 
@@ -86,30 +169,13 @@ public class PlayerData  {
     public event OnCraftableChange OnCraftableSold;
 
     public void Init() {
-        var gameData = Game.Instance.gameData;
-
-        Atom hydrogen = gameData.FindAtom(1);
-
-        collectRadiusCost.atom = hydrogen;
-        collectRadiusCost.amo = 5;
-
-        collectSpeedCost.atom = hydrogen;
-        collectSpeedCost.amo = 5;
-
-        collectEfficiencyCost.atom = hydrogen;
-        collectEfficiencyCost.amo = 5;
-
-        collectWeightCost.atom = hydrogen;
-        collectWeightCost.amo = 5;
-
-        particleSpeedCost.atom = hydrogen;
-        particleSpeedCost.amo = 5;
-
-        particleStablizationCost.atom = hydrogen;
-        particleStablizationCost.amo = 5;
-
-        timeDilationCost.atom = hydrogen;
-        timeDilationCost.amo = 5;
+        radiusUpgrade.Init();
+        speedUpgrade.Init();
+        efficiencyUpgrade.Init();
+        weightUpgrade.Init();
+        accelerationUpgrade.Init();
+        stabilityUpgrade.Init();
+        timeUpgrade.Init();
     }
 
     public AtomCollision EstimateCombine(Atom a, Atom b, int aAmo, int bAmo) {
@@ -144,7 +210,7 @@ public class PlayerData  {
         // 
         // At 10% speed of light, Titanium -> Berkelium produces an estimated 1 / 1 billion atoms of Element 119
         float estimatedSpeed = maxProtons / 10f;
-        info.success = Mathf.Clamp01(1 - estimatedSpeed / particleSpeed);
+        info.success = Mathf.Clamp01(1 - estimatedSpeed / accelerationUpgrade.GetValue());
 
         // Apparently the half life of atoms can be changed by Time Dialation, Gravity, and External Radiation
         // There is no known way to accurately predict the half-life of atoms. There are two many variables
@@ -159,8 +225,8 @@ public class PlayerData  {
         if (targetInfo.GetHalfLife() == 0f) {
             info.stability = 1.0f;
         } else {
-            float halfLife = targetInfo.GetHalfLife() + timeDilation;
-            float multiple = 1 / Mathf.Sqrt(1 - (particleStability * particleStability) / (100 * 100));
+            float halfLife = targetInfo.GetHalfLife() + timeUpgrade.GetValue();
+            float multiple = 1 / Mathf.Sqrt(1 - (stabilityUpgrade.GetValue() * stabilityUpgrade.GetValue()) / (100 * 100));
             info.stability = AtomInfo.GetStability(halfLife * multiple * multiple);
         }
 
@@ -172,6 +238,10 @@ public class PlayerData  {
         AtomCollisionResult result = new AtomCollisionResult();
         result.atomsProduced = new List<AtomAmo>();
         result.atomsUsed = new List<AtomAmo>();
+
+        AtomData aData = Game.Instance.gameData.FindAtomData(a.GetAtomicNumber());
+        AtomData bData = Game.Instance.gameData.FindAtomData(b.GetAtomicNumber());
+        int usedAmo = Mathf.Min(Mathf.Min(aAmo, aData.GetCurrAmo()), Mathf.Min(bAmo, bData.GetCurrAmo()));
 
         Atom target = info.targetAtom;
         int maxAmo = info.amo;
@@ -193,16 +263,16 @@ public class PlayerData  {
 
         AtomAmo atomAUsed = new AtomAmo();
         atomAUsed.atom = a;
-        atomAUsed.amo = maxAmo;
+        atomAUsed.amo = usedAmo;
         result.atomsUsed.Add(atomAUsed);
 
         AtomAmo atomBUsed = new AtomAmo();
         atomBUsed.atom = b;
-        atomBUsed.amo = maxAmo;
+        atomBUsed.amo = usedAmo;
         result.atomsUsed.Add(atomBUsed);
 
-        Game.Instance.Use(a, maxAmo);
-        Game.Instance.Use(b, maxAmo);
+        Game.Instance.Use(a, usedAmo);
+        Game.Instance.Use(b, usedAmo);
 
         if(OnAtomCombine != null){
             OnAtomCombine(target, stabilized);
@@ -236,14 +306,14 @@ public class PlayerData  {
         
         // Success
         float estimatedSpeed = aInfo.GetProtons() / 10f;
-        info.success = Mathf.Clamp01(1 - estimatedSpeed / particleSpeed);
+        info.success = Mathf.Clamp01(1 - estimatedSpeed / accelerationUpgrade.GetValue());
 
          // Stability
         if (targetInfo.GetHalfLife() == 0f) {
             info.stability = 1.0f;
         } else {
-            float halfLife = targetInfo.GetHalfLife() + timeDilation;
-            float multiple = 1 / Mathf.Sqrt(1 - (particleStability * particleStability) / (100 * 100));
+            float halfLife = targetInfo.GetHalfLife() + timeUpgrade.GetValue();
+            float multiple = 1 / Mathf.Sqrt(1 - (stabilityUpgrade.GetValue() * stabilityUpgrade.GetValue()) / (100 * 100));
             info.stability = AtomInfo.GetStability(halfLife * multiple * multiple);
         }
 
@@ -390,187 +460,330 @@ public class PlayerData  {
         return 0;
     }
 
-    public bool UpgradeAtomCollectorRadius() {
-        bool success = false;
-        var gameData = Game.Instance.gameData;
+    public bool Upgrade(UpgradeType type) {
+        UpgradeLevel upgrade;
+        OnFloatChange upgradeChange;   
 
-        AtomData data = gameData.FindAtomData(collectRadiusCost.atom.GetAtomicNumber());
-
-        if(data.GetCurrAmo() >= collectRadiusCost.amo) {
-            data.Lose(collectRadiusCost.amo);
-
-            // Update CollectRadius Cost
-            collectRadiusCost.amo *= 2;
-
-            // Increment Collect Radius
-            collectRadius += .1f;
-
-            success = true;
-            if (OnCollectRadiusChange != null) {
-                OnCollectRadiusChange(collectRadius);
-            }
+        switch (type) {
+            case UpgradeType.Collect_Speed:
+                upgrade = speedUpgrade;
+                upgradeChange = OnCollectSpeedChange;
+                break;
+            case UpgradeType.Collect_Radius:
+                upgrade = radiusUpgrade;
+                upgradeChange = OnCollectRadiusChange;
+                break;
+            case UpgradeType.Collect_Efficiency:
+                upgrade = efficiencyUpgrade;
+                upgradeChange = OnCollectEfficiencyChange;
+                break;
+            case UpgradeType.Collect_Weight:
+                upgrade = weightUpgrade;
+                upgradeChange = OnCollectWeightChange;
+                break;
+            case UpgradeType.Particle_Speed:
+                upgrade = accelerationUpgrade;
+                upgradeChange = OnParticleSpeedChange;
+                break;
+            case UpgradeType.Particle_Stability:
+                upgrade = stabilityUpgrade;
+                upgradeChange = OnParticleStabilityChange;
+                break;
+            case UpgradeType.Time_Dilation:
+                upgrade = timeUpgrade;
+                upgradeChange = OnTimeDilationChange;
+                break;
+            default:
+                return false;
         }
 
-        return success;
-    }
-    public bool UpgradeAtomCollectorSpeed() {
-        bool success = false;
-        var gameData = Game.Instance.gameData;
-
-        AtomData data = gameData.FindAtomData(collectSpeedCost.atom.GetAtomicNumber());
-
-        if (data.GetCurrAmo() >= collectSpeedCost.amo) {
-            data.Lose(collectSpeedCost.amo);
-
-            // Update CollectRadius Cost
-            collectSpeedCost.amo *= 2;
-
-            // Increment Collect Radius
-            collectSpeed -= .01f;
-
-            success = true;
-
-            if (OnCollectSpeedChange != null) {
-                OnCollectSpeedChange(collectSpeed);
+        if (upgrade.Upgrade()) {
+            if(upgradeChange != null) {
+                upgradeChange(upgrade.GetValue());
             }
+            return true;
+        }
+        return false;
+    }
+    public bool CanUpgrade(UpgradeType type) {
+        UpgradeLevel upgrade;
+
+        switch (type) {
+            case UpgradeType.Collect_Speed:
+                upgrade = speedUpgrade;
+                break;
+            case UpgradeType.Collect_Radius:
+                upgrade = radiusUpgrade;
+                break;
+            case UpgradeType.Collect_Efficiency:
+                upgrade = efficiencyUpgrade;
+                break;
+            case UpgradeType.Collect_Weight:
+                upgrade = weightUpgrade;
+                break;
+            case UpgradeType.Particle_Speed:
+                upgrade = accelerationUpgrade;
+                break;
+            case UpgradeType.Particle_Stability:
+                upgrade = stabilityUpgrade;
+                break;
+            case UpgradeType.Time_Dilation:
+                upgrade = timeUpgrade;
+                break;
+            default:
+                return false;
         }
 
-        return success;
+        return upgrade.CanUpgrade();
     }
-    public bool UpgradeAtomCollectorEfficiency() {
-        bool success = false;
-        var gameData = Game.Instance.gameData;
+    public int GetUpgradeLevel(UpgradeType type) {
+        UpgradeLevel upgrade;
 
-        AtomData data = gameData.FindAtomData(collectEfficiencyCost.atom.GetAtomicNumber());
-
-        if (data.GetCurrAmo() >= collectEfficiencyCost.amo) {
-            data.Lose(collectEfficiencyCost.amo);
-
-            // Update CollectRadius Cost
-            collectEfficiencyCost.amo *= 2;
-
-            // Increment Collect Radius
-            collectEfficiency += 1f;
-
-            success = true;
-
-            if(OnCollectEfficiencyChange != null) {
-                OnCollectEfficiencyChange(collectEfficiency);
-            }
+        switch (type) {
+            case UpgradeType.Collect_Speed:
+                upgrade = speedUpgrade;
+                break;
+            case UpgradeType.Collect_Radius:
+                upgrade = radiusUpgrade;
+                break;
+            case UpgradeType.Collect_Efficiency:
+                upgrade = efficiencyUpgrade;
+                break;
+            case UpgradeType.Collect_Weight:
+                upgrade = weightUpgrade;
+                break;
+            case UpgradeType.Particle_Speed:
+                upgrade = accelerationUpgrade;
+                break;
+            case UpgradeType.Particle_Stability:
+                upgrade = stabilityUpgrade;
+                break;
+            case UpgradeType.Time_Dilation:
+                upgrade = timeUpgrade;
+                break;
+            default:
+                return 0;
         }
 
-        return success;
+        return upgrade.GetLevel();
     }
-    public bool UpgradeAtomCollectorWeight() {
-        bool success = false;
-        var gameData = Game.Instance.gameData;
+    public float GetValue(UpgradeType type) {
+        UpgradeLevel upgrade;
 
-        AtomData data = gameData.FindAtomData(collectWeightCost.atom.GetAtomicNumber());
-
-        if (data.GetCurrAmo() >= collectWeightCost.amo) {
-            data.Lose(collectWeightCost.amo);
-
-            // Update CollectRadius Cost
-            collectWeightCost.amo *= 2;
-
-            // Increment Collect Radius
-            collectWeight += 2f;
-
-            success = true;
-            if (OnCollectWeightChange != null) {
-                OnCollectWeightChange(collectWeight);
-            }
+        switch (type) {
+            case UpgradeType.Collect_Speed:
+                upgrade = speedUpgrade;
+                break;
+            case UpgradeType.Collect_Radius:
+                upgrade = radiusUpgrade;
+                break;
+            case UpgradeType.Collect_Efficiency:
+                upgrade = efficiencyUpgrade;
+                break;
+            case UpgradeType.Collect_Weight:
+                upgrade = weightUpgrade;
+                break;
+            case UpgradeType.Particle_Speed:
+                upgrade = accelerationUpgrade;
+                break;
+            case UpgradeType.Particle_Stability:
+                upgrade = stabilityUpgrade;
+                break;
+            case UpgradeType.Time_Dilation:
+                upgrade = timeUpgrade;
+                break;
+            default:
+                return 0f;
         }
 
-        return success;
+        return upgrade.GetValue();
     }
-    public bool UpgradeParticleSpeed() {
-        bool success = false;
-        var gameData = Game.Instance.gameData;
+    public float GetNextValue(UpgradeType type) {
+        UpgradeLevel upgrade;
 
-        AtomData data = gameData.FindAtomData(particleSpeedCost.atom.GetAtomicNumber());
-
-        if (data.GetCurrAmo() >= particleSpeedCost.amo) {
-            data.Lose(particleSpeedCost.amo);
-
-            // Update CollectRadius Cost
-            particleSpeedCost.amo *= 2;
-
-            // Increment Collect Radius
-            particleSpeed += 1f;
-
-            success = true;
-            if (OnParticleSpeedChange != null) {
-                OnParticleSpeedChange(particleSpeed);
-            }
+        switch (type) {
+            case UpgradeType.Collect_Speed:
+                upgrade = speedUpgrade;
+                break;
+            case UpgradeType.Collect_Radius:
+                upgrade = radiusUpgrade;
+                break;
+            case UpgradeType.Collect_Efficiency:
+                upgrade = efficiencyUpgrade;
+                break;
+            case UpgradeType.Collect_Weight:
+                upgrade = weightUpgrade;
+                break;
+            case UpgradeType.Particle_Speed:
+                upgrade = accelerationUpgrade;
+                break;
+            case UpgradeType.Particle_Stability:
+                upgrade = stabilityUpgrade;
+                break;
+            case UpgradeType.Time_Dilation:
+                upgrade = timeUpgrade;
+                break;
+            default:
+                return 0f;
         }
 
-        return success;
+        return upgrade.GetNextValue();
     }
-    public bool UpgradeParticleStabilization() {
-        bool success = false;
-        var gameData = Game.Instance.gameData;
+    public List<AtomAmo> GetCost(UpgradeType type) {
+        UpgradeLevel upgrade;
 
-        AtomData data = gameData.FindAtomData(particleStablizationCost.atom.GetAtomicNumber());
-
-        if (data.GetCurrAmo() >= particleStablizationCost.amo) {
-            data.Lose(particleStablizationCost.amo);
-
-            // Update CollectRadius Cost
-            particleStablizationCost.amo *= 2;
-
-            // Increment Collect Radius
-            particleStability += .01f;
-            // Logarithmic increment
-
-            success = true;
-            if (OnParticleStabilityChange != null) {
-                OnParticleStabilityChange(particleStability);
-            }
+        switch (type) {
+            case UpgradeType.Collect_Speed:
+                upgrade = speedUpgrade;
+                break;
+            case UpgradeType.Collect_Radius:
+                upgrade = radiusUpgrade;
+                break;
+            case UpgradeType.Collect_Efficiency:
+                upgrade = efficiencyUpgrade;
+                break;
+            case UpgradeType.Collect_Weight:
+                upgrade = weightUpgrade;
+                break;
+            case UpgradeType.Particle_Speed:
+                upgrade = accelerationUpgrade;
+                break;
+            case UpgradeType.Particle_Stability:
+                upgrade = stabilityUpgrade;
+                break;
+            case UpgradeType.Time_Dilation:
+                upgrade = timeUpgrade;
+                break;
+            default:
+                return null;
         }
 
-        return success;
+        return upgrade.GetCost();
     }
-    public bool UpgradeTimeDilation() {
-        bool success = false;
-        var gameData = Game.Instance.gameData;
+    public bool IsMaxLevel(UpgradeType type) {
+        UpgradeLevel upgrade;
 
-        AtomData data = gameData.FindAtomData(timeDilationCost.atom.GetAtomicNumber());
-
-        if (data.GetCurrAmo() >= timeDilationCost.amo) {
-            data.Lose(timeDilationCost.amo);
-
-            // Update CollectRadius Cost
-            timeDilationCost.amo *= 2;
-
-            // Increment Collect Radius
-            timeDilation += .01f;
-            // Logarithmic increment
-
-            success = true;
-            if (OnTimeDilationChange != null) {
-                OnTimeDilationChange(timeDilation);
-            }
+        switch (type) {
+            case UpgradeType.Collect_Speed:
+                upgrade = speedUpgrade;
+                break;
+            case UpgradeType.Collect_Radius:
+                upgrade = radiusUpgrade;
+                break;
+            case UpgradeType.Collect_Efficiency:
+                upgrade = efficiencyUpgrade;
+                break;
+            case UpgradeType.Collect_Weight:
+                upgrade = weightUpgrade;
+                break;
+            case UpgradeType.Particle_Speed:
+                upgrade = accelerationUpgrade;
+                break;
+            case UpgradeType.Particle_Stability:
+                upgrade = stabilityUpgrade;
+                break;
+            case UpgradeType.Time_Dilation:
+                upgrade = timeUpgrade;
+                break;
+            default:
+                return false;
         }
 
-        return success;
+        return upgrade.IsMaxLevel();
     }
+    public string GetName(UpgradeType type) {
+        UpgradeLevel upgrade;
 
-    public float GetAtomCollectorRadius() { return collectRadius; }
-    public float GetAtomCollectorSpeed() { return collectSpeed; }
-    public float GetAtomCollectorEfficiency() { return collectEfficiency; }
-    public float GetAtomCollectorWeight() { return collectWeight; }
-    public float GetParticleSpeed() { return particleSpeed; }
-    public float GetParticleStabilization() { return particleStability; }
-    public float GetTimeDilation() { return timeDilation; }
+        switch (type) {
+            case UpgradeType.Collect_Speed:
+                upgrade = speedUpgrade;
+                break;
+            case UpgradeType.Collect_Radius:
+                upgrade = radiusUpgrade;
+                break;
+            case UpgradeType.Collect_Efficiency:
+                upgrade = efficiencyUpgrade;
+                break;
+            case UpgradeType.Collect_Weight:
+                upgrade = weightUpgrade;
+                break;
+            case UpgradeType.Particle_Speed:
+                upgrade = accelerationUpgrade;
+                break;
+            case UpgradeType.Particle_Stability:
+                upgrade = stabilityUpgrade;
+                break;
+            case UpgradeType.Time_Dilation:
+                upgrade = timeUpgrade;
+                break;
+            default:
+                return "";
+        }
 
-    public float GetNextAtomCollectorRadius() { return collectRadius + .1f; }
-    public float GetNextAtomCollectorSpeed() { return collectSpeed - .01f; }
-    public float GetNextAtomCollectorEfficiency() { return collectEfficiency + 1f; }
-    public float GetNextAtomCollectorWeight() { return collectWeight + 2f; }
-    public float GetNextParticleSpeed() { return particleSpeed + 1f; }
-    public float GetNextParticleStabilization() { return particleStability + .01f; }
-    public float GetNextTimeDilation() { return timeDilation + .01f; }
+        return upgrade.GetName();
+    }
+    public string GetDescription(UpgradeType type) {
+        UpgradeLevel upgrade;
+
+        switch (type) {
+            case UpgradeType.Collect_Speed:
+                upgrade = speedUpgrade;
+                break;
+            case UpgradeType.Collect_Radius:
+                upgrade = radiusUpgrade;
+                break;
+            case UpgradeType.Collect_Efficiency:
+                upgrade = efficiencyUpgrade;
+                break;
+            case UpgradeType.Collect_Weight:
+                upgrade = weightUpgrade;
+                break;
+            case UpgradeType.Particle_Speed:
+                upgrade = accelerationUpgrade;
+                break;
+            case UpgradeType.Particle_Stability:
+                upgrade = stabilityUpgrade;
+                break;
+            case UpgradeType.Time_Dilation:
+                upgrade = timeUpgrade;
+                break;
+            default:
+                return "";
+        }
+
+        return upgrade.GetDesc();
+    }
+    public string GetMeasurementAbbr(UpgradeType type) {
+        UpgradeLevel upgrade;
+
+        switch (type) {
+            case UpgradeType.Collect_Speed:
+                upgrade = speedUpgrade;
+                break;
+            case UpgradeType.Collect_Radius:
+                upgrade = radiusUpgrade;
+                break;
+            case UpgradeType.Collect_Efficiency:
+                upgrade = efficiencyUpgrade;
+                break;
+            case UpgradeType.Collect_Weight:
+                upgrade = weightUpgrade;
+                break;
+            case UpgradeType.Particle_Speed:
+                upgrade = accelerationUpgrade;
+                break;
+            case UpgradeType.Particle_Stability:
+                upgrade = stabilityUpgrade;
+                break;
+            case UpgradeType.Time_Dilation:
+                upgrade = timeUpgrade;
+                break;
+            default:
+                return "";
+        }
+
+        return upgrade.GetMeasurement();
+    }
 
     public int GetCraftableAmount(Craftable c) {
         int amo = 0;
@@ -580,13 +793,4 @@ public class PlayerData  {
         return amo;
     }
     public float GetMoney() { return money; }
-
-    public AtomAmo GetAtomCollectorRadiusCost() { return collectRadiusCost; }
-    public AtomAmo GetAtomCollectorSpeedCost() { return collectSpeedCost; }
-    public AtomAmo GetAtomCollectorEfficiencyCost() { return collectEfficiencyCost; }
-    public AtomAmo GetAtomCollectorWeightCost() { return collectWeightCost; }
-    public AtomAmo GetParticleSpeedCost() { return particleSpeedCost; }
-    public AtomAmo GetParticleStabilizationCost() { return particleStablizationCost; }
-    public AtomAmo GetTimeDilationCost() { return timeDilationCost; }
-
 }

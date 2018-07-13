@@ -159,4 +159,20 @@ public class Chunk : MonoBehaviour {
         //}
     }
 
+    public bool IsLoaded() {
+        return gameObject.activeInHierarchy;
+    }
+    public float GetLeftBound() {
+        return this.transform.position.x - size * .5f;
+    }
+    public float GetRightBound() {
+        return this.transform.position.x + size * .5f;
+    }
+    public float GetUpBound() {
+        return this.transform.position.y + size * .5f;
+    }
+    public float GetDownBound() {
+        return this.transform.position.y - size * .5f;
+    }
+
 }

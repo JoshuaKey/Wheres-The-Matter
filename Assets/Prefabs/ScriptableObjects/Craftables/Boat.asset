@@ -9,17 +9,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79e5b6c1dfb92db4a9ef70d0e277653b, type: 3}
-  m_Name: Chair
+  m_Name: Boat
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
-  name: Chair
-  price: 2
+  name: Boat
+  price: 0
   atomsForProductions:
   - atom: {fileID: 11400000, guid: ad47fa45acc9bd943b26f6dbf891a75d, type: 2}
-    amo: 500000
+    amo: 500000000
   - atom: {fileID: 11400000, guid: 7c7d9be9d678f4149ab8d9af49754487, type: 2}
-    amo: 60000
+    amo: 60000000
   - atom: {fileID: 11400000, guid: cd16faeb326f0f045b2fb4a9c241d12b, type: 2}
-    amo: 420000
+    amo: 420000000
+  - atom: {fileID: 11400000, guid: 4835c7c1cf928414f881db7504257734, type: 2}
+    amo: 300000
   - atom: {fileID: 11400000, guid: 5342e67613e71f348ab75dac03a3d5df, type: 2}
-    amo: 10000
+    amo: 10000000

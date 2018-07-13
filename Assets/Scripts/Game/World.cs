@@ -21,6 +21,9 @@ public class World : MonoBehaviour {
 
     public int seed { get; private set; }
 
+    public delegate void OnAreaChange();
+    public event OnAreaChange onAreaChange;
+
     public void Init(Vector2 pos, int seed, AreaType area) {
         this.seed = seed;
         print("World Seed is " + seed);
@@ -74,6 +77,10 @@ public class World : MonoBehaviour {
                 index.y = y + currChunk.y;
                 LoadChunk(index);
             }
+        }
+
+        if(onAreaChange != null) {
+            onAreaChange();
         }
     }
 
@@ -176,26 +183,16 @@ public class World : MonoBehaviour {
         return c;
     }
 
-    public Vector2Int CheckChunk(GameObject obj, Vector2Int oldIndex) {
-        Vector2Int currIndex = GetChunkIndex(obj.transform.position);
-
-        if(oldIndex != currChunk) {
-            Chunk currChunk = null;
-            if(!currChunkMap.TryGetValue(currIndex, out currChunk)) {
-                currChunk = CreateChunk(currIndex);
-                UnloadChunk(currIndex);
-            }
-
-            obj.transform.SetParent(currChunk.transform, true);
-        }
-
-        return currIndex;
-    }
-
     public Vector2Int GetChunkIndex(Vector2 pos) {
         Vector2Int currPos = Vector2Int.zero;
         currPos.x = Mathf.FloorToInt((pos.x + 10f) / Chunk.size);
         currPos.y = Mathf.FloorToInt((pos.y + 10f) / Chunk.size);
         return currPos;
+    }
+
+    public Chunk GetChunk(Vector2Int index) {
+        Chunk currChunk = null;
+        currChunkMap.TryGetValue(index, out currChunk);
+        return currChunk;
     }
 }
