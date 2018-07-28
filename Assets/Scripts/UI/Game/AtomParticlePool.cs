@@ -35,6 +35,49 @@ public class AtomParticlePool : MonoBehaviour {
         return particle;
     }
 
+    public void Story() {
+        switch (Game.Instance.story.GetChapter()) {
+            case 3:
+                this.gameObject.SetActive(true);
+                this.enabled = false;
+                StartCoroutine(AtomExplosion());
+                break;
+            default:
+                StopCoroutine(AtomExplosion());
+                this.enabled = true;
+                this.gameObject.SetActive(true);
+                for (int i = 0; i < 50; i++) {
+                    atomParticles[i].gameObject.SetActive(false);
+                }
+                break;
+        }
+    }
+    public IEnumerator AtomExplosion() {
+        Atom hydrogen = Game.Instance.gameData.FindAtom(1);
+        Vector3[] dir = new Vector3[50];
+        for(int i = 0; i < 50; i++) {
+            float angle = Random.Range(0, 360f);
+
+            dir[i] = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), .0f) * Random.Range(100, 500);
+
+            atomParticles[i].Setup(hydrogen, 0, cursor.transform.position);
+        }
+
+        float endTime = Time.time + 5f;
+        while(Time.time < endTime) {
+            //float t = 1 - (endTime - Time.time) / 5f;
+
+            for (int i = 0; i < 50; i++) {
+                var pos = atomParticles[i].transform.position;
+                atomParticles[i].UpdateParticle(pos + dir[i], 0f, 15f, 2f);
+            }
+            yield return null;
+        }
+
+        this.gameObject.SetActive(false);
+        this.enabled = true;
+    }
+
     // Update is called once per frame
     void Update () {
 		if(currParticle == 0) {
@@ -43,7 +86,7 @@ public class AtomParticlePool : MonoBehaviour {
         }
 
         for(int i = 0; i < currParticle; i++) {
-            if (atomParticles[i].UpdateParticle(cursor.transform.position, particleCollectDistance, 5f, 1f)) {
+            if (atomParticles[i].UpdateParticle(cursor.transform.position, particleCollectDistance, 15f, 1f)) {
                 Game.Instance.Absorb(atomParticles[i].atom, atomParticles[i].amo);
                 atomParticles[i].gameObject.SetActive(false);
                 Swap(i, --currParticle);

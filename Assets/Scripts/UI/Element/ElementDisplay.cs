@@ -49,8 +49,11 @@ public class ElementDisplay : MonoBehaviour {
 
     public void SetDisplay() {
         AtomInfo info = Game.Instance.gameData.FindAtomInfo(atom.GetAtomicNumber());
+        AtomData data = Game.Instance.gameData.FindAtomData(atom.GetAtomicNumber());
+
         Atom display = atom;
-        if (!info.IsDiscovered()) {
+
+        if (!data.IsDiscovered()) {
             info = Game.Instance.gameData.GetUknownInfo();
             display = Game.Instance.gameData.GetUknown();
         } else if (!hasBeenDiscovered) {

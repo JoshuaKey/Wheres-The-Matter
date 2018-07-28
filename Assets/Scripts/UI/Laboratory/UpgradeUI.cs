@@ -26,6 +26,12 @@ public class UpgradeUI : MonoBehaviour {
     private List<ChoiceOption> choices = new List<ChoiceOption>();
 
     private PlayerData.UpgradeType currUpgradeType;
+    private ChoiceOption speedChoice;
+    private ChoiceOption radiusChoice;
+    private ChoiceOption efficiencyChoice;
+    private ChoiceOption weightChoice;
+    private ChoiceOption accelerationChoice;
+    private ChoiceOption stabilityChoice;
     private ChoiceOption timeDilationChoice;
 
     private void Start() {
@@ -57,15 +63,40 @@ public class UpgradeUI : MonoBehaviour {
 
             choices.Add(choice);
 
-            if(i == (int)PlayerData.UpgradeType.Time_Dilation) {
-                timeDilationChoice = choice;
+            switch (i) {
+                case 0:
+                    speedChoice = choice;
+                    speedChoice.SetInteractable(Game.Instance.story.GetChapter() > 4);
+                    break;
+                case 1:
+                    radiusChoice = choice;
+                    radiusChoice.SetInteractable(Game.Instance.story.GetChapter() > 4);
+                    break;
+                case 2:
+                    efficiencyChoice = choice;
+                    efficiencyChoice.SetInteractable(Game.Instance.story.GetChapter() > 4);
+                    break;
+                case 3:
+                    //weightChoice = choice;
+                    break;
+                case 4:
+                    accelerationChoice = choice;
+                    accelerationChoice.gameObject.SetActive(Game.Instance.story.GetChapter() > 4);
+                    break;
+                case 5:
+                    stabilityChoice = choice;
+                    stabilityChoice.gameObject.SetActive(Game.Instance.story.GetChapter() > 4);
+                    break;
+                case 6:
+                    timeDilationChoice = choice;
 
-                if (!Game.Instance.gameData.FindAtomInfo(119).IsDiscovered() && 
-                    !Game.Instance.gameData.FindAtomInfo(120).IsDiscovered() &&
-                    !Game.Instance.gameData.FindAtomInfo(121).IsDiscovered()) { 
-                    timeDilationChoice.gameObject.SetActive(false);
-                    Game.Instance.gameData.OnAtomDiscover += CheckUpgradeUnlock;
-                }
+                    if (!Game.Instance.gameData.FindAtomData(119).IsDiscovered() &&
+                        !Game.Instance.gameData.FindAtomData(120).IsDiscovered() &&
+                        !Game.Instance.gameData.FindAtomData(121).IsDiscovered()) {
+                        timeDilationChoice.gameObject.SetActive(false);
+                        Game.Instance.gameData.OnAtomDiscover += CheckUpgradeUnlock;
+                    }
+                    break;
             }
         }
 
@@ -74,12 +105,26 @@ public class UpgradeUI : MonoBehaviour {
         upgradeListContent.sizeDelta = sizeD;
     }
 
+    public void Story() {
+        switch (Game.Instance.story.GetChapter()) {
+            default:
+                if(speedChoice != null) {
+                    speedChoice.SetInteractable(true);
+                    radiusChoice.SetInteractable(true);
+                    efficiencyChoice.SetInteractable(true);
+                    accelerationChoice.gameObject.SetActive(true);
+                    stabilityChoice.gameObject.SetActive(true);
+                }               
+                break;
+        }
+    }
+
     public void CheckUpgradeUnlock(Atom a, float amo) {
         if(a.GetAtomicNumber() > 118) {
             timeDilationChoice.gameObject.SetActive(true);
 
             Game.Instance.gameData.OnAtomDiscover -= CheckUpgradeUnlock;
-        }
+        } 
     }
 
     public void SetChoiceDisplay(ChoiceOption choice, PlayerData.UpgradeType type) {
@@ -185,11 +230,16 @@ public class UpgradeUI : MonoBehaviour {
     }
 
     public void Upgrade() {
-        List<AtomAmo> used = Game.Instance.playerData.GetCost(currUpgradeType);
+        List<AtomAmo> oldUsedAtoms = new List<AtomAmo>();
+        List<AtomAmo> temp = Game.Instance.playerData.GetCost(currUpgradeType);
+        for(int i = 0; i < temp.Count; i++) {
+            oldUsedAtoms.Add(temp[i]);
+        }
+
         bool success = Game.Instance.playerData.Upgrade(currUpgradeType);
 
         if (success) {
-            resultUI.Setup(null, used);
+            resultUI.Setup(null, oldUsedAtoms);
         }
 
         var type = currUpgradeType;

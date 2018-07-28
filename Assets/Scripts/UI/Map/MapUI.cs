@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class MapUI : MonoBehaviour {
 
+    [SerializeField] public RectTransform rect;
     [SerializeField] private Button forestButton;
     [SerializeField] private Button beachButton;
     [SerializeField] private Button mineButton;
@@ -27,7 +28,7 @@ public class MapUI : MonoBehaviour {
             case World.AreaType.MINE:
                 mineButton.interactable = unlocked;
                 break;
-            case World.AreaType.COAST:
+            case World.AreaType.BEACH:
                 beachButton.interactable = unlocked;
                 break;
             case World.AreaType.OCEAN:

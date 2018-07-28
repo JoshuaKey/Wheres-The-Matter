@@ -22,33 +22,125 @@ public class Chunk : MonoBehaviour {
 
         switch (type) {
             case World.AreaType.FOREST:
-                c.SetupForest();
+                c.SetupArea(World.AreaType.FOREST);
+                //c.SetupForest();
                 break;
             case World.AreaType.DESERT:
-                c.SetupDesert();
+                c.SetupArea(World.AreaType.DESERT);
+                //c.SetupDesert();
                 break;
-            case World.AreaType.COAST:
-                c.SetupCoast();
+            case World.AreaType.BEACH:
+                c.SetupArea(World.AreaType.BEACH);
+                //c.SetupCoast();
                 break;
             case World.AreaType.MINE:
-                c.SetupMine();
+                c.SetupArea(World.AreaType.MINE);
+                //c.SetupMine();
                 break;
             case World.AreaType.OCEAN:
-                c.SetupOcean();
+                c.SetupArea(World.AreaType.OCEAN);
+                //c.SetupOcean();
                 break;
             case World.AreaType.TOWN:
-                c.SetupTown();
+                c.SetupArea(World.AreaType.TOWN);
+                //c.SetupTown();
                 break;
         }
 
         return c;
     }
 
+    private GameObject LoadBackground(World.AreaType type) {
+        string baseStr = "";
+        switch (type) {
+            case World.AreaType.FOREST:
+                baseStr += "Forest";
+                break;
+            case World.AreaType.MINE:
+                baseStr += "Mine";
+                break;
+            case World.AreaType.BEACH:
+                baseStr += "Beach";
+                break;
+            case World.AreaType.OCEAN:
+                baseStr += "Ocean";
+                break;
+            case World.AreaType.DESERT:
+                baseStr += "Desert";
+                break;
+            case World.AreaType.TOWN:
+                baseStr += "Town";
+                break;
+        }
+        baseStr += "Background";
+        //Instantiate(Resources.Load("ForestBackground", typeof(GameObject))) as GameObject
+        GameObject background = Instantiate(Resources.Load(baseStr, typeof(GameObject))) as GameObject;
+        return background;
+    }
+    private Object[] LoadObjects(World.AreaType type) {
+        string baseStr = "";
+        switch (type) {
+            case World.AreaType.FOREST:
+                baseStr += "Forest";
+                break;
+            case World.AreaType.MINE:
+                baseStr += "Mine";
+                break;
+            case World.AreaType.BEACH:
+                baseStr += "Beach";
+                break;
+            case World.AreaType.OCEAN:
+                baseStr += "Ocean";
+                break;
+            case World.AreaType.DESERT:
+                baseStr += "Desert";
+                break;
+            case World.AreaType.TOWN:
+                baseStr += "Town";
+                break;
+        }
+        var objects = Resources.LoadAll(baseStr, typeof(GameObject));
+        return objects;
+    }
+
+    private void SetupArea( World.AreaType type) {
+        var randState = Random.state;
+        SetSeed();
+
+        GameObject background = LoadBackground(type);
+        Object[] objects = LoadObjects(type);
+
+        background.transform.SetParent(this.transform, false);
+
+        int objectAmo = Random.Range(10, 100);
+        Vector3 startPos = this.transform.position - new Vector3(size * .5f, size * .5f, 0f);
+
+        for (int i = 0; i < objectAmo; i++) {
+            int objIndex = Random.Range(0, objects.Length);
+            GameObject obj = Instantiate(objects[objIndex]) as GameObject;
+            obj.transform.SetParent(this.transform, false);
+
+            float width = Random.value;
+            float height = Random.value;
+            var pos = startPos;
+            pos.x += width * size;
+            pos.y += height * size;
+            obj.transform.position = pos;
+
+            obj.GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(obj.transform.position.y * 100f) * -1;
+        }
+
+        Random.state = randState;
+    }
+
     private void SetupForest() {
         var randState = Random.state;
         SetSeed();
 
-        GameObject background = Instantiate(Resources.Load("ForestBackground", typeof(GameObject))) as GameObject;
+        GameObject background = LoadBackground(World.AreaType.FOREST);
+        background.transform.SetParent(this.transform, false);
+
+        //GameObject background = Instantiate(Resources.Load("ForestBackground", typeof(GameObject))) as GameObject;
         background.transform.SetParent(this.transform, false);
 
         var forestObjects = Resources.LoadAll("Forest", typeof(GameObject));
@@ -138,6 +230,8 @@ public class Chunk : MonoBehaviour {
     private void SetSeed() {
         int worldSeed = Game.Instance.world.seed;
 
+        Random.InitState((int)Game.Instance.world.currArea);
+        float chunkSeed = Random.value;
         Random.InitState(xIndex + worldSeed);
         float xLoc = Random.value;
         Random.InitState(yIndex + worldSeed);
@@ -148,7 +242,7 @@ public class Chunk : MonoBehaviour {
             Mathf.PerlinNoise(xLoc / 10000f, yLoc / 10000f) * .5 +
             Mathf.PerlinNoise(xLoc / 100000f, yLoc / 100000f) * .5;
 
-        int seed = (int)(noise * int.MaxValue);
+        int seed = (int)(noise * int.MaxValue * chunkSeed);
         Random.InitState(seed);
 
         //print(name + " Seed: " + seed + " Noise: " + noise + " Loc: (" + xLoc + "," + yLoc + ")");

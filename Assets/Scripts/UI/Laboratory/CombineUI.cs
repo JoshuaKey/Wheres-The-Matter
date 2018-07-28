@@ -72,8 +72,8 @@ public class CombineUI : MonoBehaviour {
 
             atomChoices.Add(atomChoice);
 
-            AtomInfo info = Game.Instance.gameData.FindAtomInfo(a.GetAtomicNumber());
-            if (info.IsDiscovered()) {
+            //AtomData data = Game.Instance.gameData.FindAtomData(a.GetAtomicNumber());
+            if (data.IsDiscovered()) {
                 discoveredAtoms.Add(a);
             } else {
                 atomChoice.gameObject.SetActive(false);
@@ -264,8 +264,9 @@ public class CombineUI : MonoBehaviour {
         }
 
 
-        AtomInfo atomInfo = Game.Instance.gameData.FindAtomInfo(info.targetAtom.GetAtomicNumber());
-        if (!atomInfo.IsDiscovered()) {
+        //AtomInfo atomInfo = Game.Instance.gameData.FindAtomInfo(info.targetAtom.GetAtomicNumber());
+        AtomData atomData = Game.Instance.gameData.FindAtomData(info.targetAtom.GetAtomicNumber());
+        if (!atomData.IsDiscovered()) {
             atomResultText.text = Game.Instance.gameData.GetUknown().GetName();
             atomResultImage.sprite = Game.Instance.gameData.GetUknownInfo().GetImage();
         } else {

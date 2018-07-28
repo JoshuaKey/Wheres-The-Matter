@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour {
 
@@ -9,23 +10,26 @@ public class AudioManager : MonoBehaviour {
     [SerializeField] AudioClip defaultMusic;
     [SerializeField] float defaultVolume;
 
+    [Header("Mixer")]
+    [SerializeField] AudioMixerGroup musicGroup;
+    [SerializeField] AudioMixerGroup soundGroup;
+
     public static AudioManager Instance;
 
     private List<AudioSource> soundSources = new List<AudioSource>();
 
     private void Awake() {
         Instance = this;
-        //if (Instance == null) {
-            
-        //} else {
-        //    Destroy(this.gameObject);
-        //}
+
+        musicSource.outputAudioMixerGroup = musicGroup;
 
         // Initial Sounds
         var soundSource = this.gameObject.AddComponent<AudioSource>();
+        soundSource.outputAudioMixerGroup = soundGroup;
         soundSources.Add(soundSource);
 
         soundSource = this.gameObject.AddComponent<AudioSource>();
+        soundSource.outputAudioMixerGroup = soundGroup;
         soundSources.Add(soundSource);
     }
 
@@ -41,6 +45,9 @@ public class AudioManager : MonoBehaviour {
         musicSource.volume = volume;
         musicSource.Play();
     }
+    public AudioClip GetMusic() { return musicSource.clip; }
+    public bool IsMusicPlaying() { return musicSource.isPlaying; }
+
     public void StopMusic(bool playDefault = false) {
         musicSource.Stop();
         if (playDefault && defaultMusic != null) {
@@ -92,6 +99,7 @@ public class AudioManager : MonoBehaviour {
             }
             if (soundSource == null) {
                 soundSource = this.gameObject.AddComponent<AudioSource>();
+                soundSource.outputAudioMixerGroup = soundGroup;
                 soundSources.Add(soundSource);
             }
 

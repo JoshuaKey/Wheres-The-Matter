@@ -19,6 +19,7 @@ public class DialogueSystem : MonoBehaviour {
     [Header("Values")]
     [SerializeField] float characterDisplayTime;
 
+    private bool isFinished = true;
     private bool displaying = false;
     private bool skip = false;
     private List<string> dialogueQueue = new List<string>();
@@ -72,6 +73,7 @@ public class DialogueSystem : MonoBehaviour {
         this.gameObject.SetActive(true);
 
         if (!displaying) {
+            isFinished = false;
             currDialogue = 0;
             StartCoroutine(DisplayDialogue(currDialogue));
         }
@@ -107,6 +109,7 @@ public class DialogueSystem : MonoBehaviour {
 
         dialogueText.text = "";
         dialogueQueue.Clear();
+        isFinished = true;
     }
 
     private IEnumerator DisplayDialogue(int index) {
@@ -132,5 +135,7 @@ public class DialogueSystem : MonoBehaviour {
         displaying = false;
         dialogueSource.Stop();
     }
+
+    public bool IsFinished() { return isFinished; }
 
 }

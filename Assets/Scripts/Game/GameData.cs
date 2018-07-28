@@ -14,6 +14,7 @@ public class GameData  {
     [SerializeField] private List<Atom> atoms;
     [SerializeField] private List<AtomData> atomData;
     [SerializeField] private List<AtomInfo> atomInfo;
+    public Atom maxAtom;
 
     [SerializeField] private List<Craftable> craftables;
 
@@ -26,12 +27,9 @@ public class GameData  {
     public event OnCraftableChange OnCraftableDiscover;
 
     // Should this be a Struct?
-    public void Init() {
-        // Check for Load???
-
+    public void Init() { 
         for(int i = 0; i < atomData.Count; i++) {
             atomData[i].Reset();
-            atomInfo[i].Reset();
             atoms[i].Reset();
         }
         atoms.Sort();
@@ -39,18 +37,49 @@ public class GameData  {
         atomInfo.Sort();
     }
 
+    public void Save(SaveData s) {
+        SerializeableAtom atomName = new SerializeableAtom();
+
+        for (int i = 0; i < atomData.Count; i++) {
+            atomName.abbr = atoms[i].GetAbbreviation();
+            atomName.name = atoms[i].GetName();
+            atomName.hasBeenRenamed = atoms[i].HasBeRenamed();
+
+            s.atomNames.Add(atomName);
+
+            s.atomData.Add(atomData[i].data);
+        }
+        s.maxAtom = maxAtom;
+    }
+    public void Load(SaveData s) {
+        for (int i = 0; i < atomData.Count; i++) {
+            atoms[i].Init(s.atomNames[i]);
+            atomData[i].Init(s.atomData[i]);
+        }
+        maxAtom = s.maxAtom;
+
+        for (int i = 118; i < atomData.Count; i++) {
+            if (atomData[i].IsDiscovered()) {
+                var craftable = Craftable.CreateNewBlock(atomData[i].GetAtom());
+                Game.Instance.gameData.AddCraftable(craftable);
+            }
+        }
+    }
+
     public void Absorb(Atom atom, int amo) {
         if (amo == 0) { return; }
 
         AtomData data = FindAtomData(atom.GetAtomicNumber());
-        AtomInfo info = FindAtomInfo(atom.GetAtomicNumber());
         if (data == null) { return; }
 
-
-        if (!info.IsDiscovered()) {
-            info.SetIsDiscovered(true);
+        if (!data.IsDiscovered()) {
+            data.SetIsDiscovered(true);
             if(OnAtomDiscover != null) {
                 OnAtomDiscover(atom, amo);
+            }
+
+            if(maxAtom == null || atom.GetAtomicNumber() > maxAtom.GetAtomicNumber()) {
+                maxAtom = atom;
             }
         }
 
@@ -132,6 +161,12 @@ public class GameData  {
         return null;
     }
 
+    public Craftable FindCraftable(string name) {
+        return craftables.Find((x) => {
+            return x.GetName() == name;
+        });
+    }
+
     public Craftable GetCraftable(int i) { return craftables[i]; }
 
     public int GetAtomAmount() { return atomData.Count; }
@@ -140,5 +175,9 @@ public class GameData  {
     public Atom GetUknown() { return unknownInfo.GetAtom(); }
     public AtomInfo GetUknownInfo() { return unknownInfo; }
     public AtomData GetUknownData() { return unknownData; }
+
+    public Atom GetMaxAtom() {
+        return maxAtom;
+    }
 
 }

@@ -29,5 +29,4 @@ MonoBehaviour:
   weight: 299
   density: -1
   neutrons: 179
-  halfLife: 0
-  isDiscovered: 0
+  halfLife: 0.000000742

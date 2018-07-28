@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ElementsPage : MonoBehaviour {
 
+    [SerializeField] public RectTransform rect;
     [SerializeField] private Image background;
     [SerializeField] public ElementSection elementSection;
     [SerializeField] private ElementHover elementHover;
@@ -30,31 +31,15 @@ public class ElementsPage : MonoBehaviour {
     }
 
     public void Start() {
-        if (!Game.Instance.gameData.FindAtomInfo(119).IsDiscovered() &&
-                !Game.Instance.gameData.FindAtomInfo(120).IsDiscovered() &&
-                !Game.Instance.gameData.FindAtomInfo(121).IsDiscovered()) {
+        if (!Game.Instance.gameData.FindAtomData(119).IsDiscovered() &&
+                !Game.Instance.gameData.FindAtomData(120).IsDiscovered() &&
+                !Game.Instance.gameData.FindAtomData(121).IsDiscovered()) {
             nextPageBtn.gameObject.SetActive(false);
             Game.Instance.gameData.OnAtomDiscover += UnlockNextPage;
         }
     }
 
     public void ClickAtom(Atom a) {
-        //if (a.GetAtomicNumber() >= 119) {
-        //    if(nextPageUnlocked) {
-        //        elementSection.ElementClick(a);
-        //        elementPage.Setup(a);
-        //        elementPage.Display();
-        //    } else {
-        //        a = Game.Instance.gameData.FindAtom(1);
-        //        elementSection.ElementClick(a);
-        //        elementPage.Setup(a);
-        //        elementPage.Display();
-        //    }
-        //}  else {
-        //    elementSection.ElementClick(a);
-        //    elementPage.Setup(a);
-        //    elementPage.Display();
-        //}
         elementSection.ElementClick(a);
         elementPage.Setup(a);
         elementPage.Display();
@@ -64,9 +49,21 @@ public class ElementsPage : MonoBehaviour {
         elementHover.Setup(a);
     }
     public void UnHoverAtom(Atom a) {
-        //if(a.GetAtomicNumber() == elementHover.GetAtom().GetAtomicNumber()) {
-        //    elementHover.gameObject.SetActive(false);
-        //}
+        StopCoroutine("CheckForHover");
+        StartCoroutine(CheckForHover(a));
+    }
+    private IEnumerator CheckForHover(Atom a) {
+        float endTime = Time.time + .1f;
+        while(Time.time < endTime) {
+            if(elementHover.GetAtom() != a) {
+                yield break;
+            }
+            yield return null;
+        }
+        if (elementHover.GetAtom() != a) {
+            yield break;
+        }
+        elementHover.gameObject.SetActive(false);
     }
 
     public void ClickInfo() {
@@ -128,10 +125,9 @@ public class ElementsPage : MonoBehaviour {
     }
 
     private void OnDisable() {
-        //if (!hasInited && Game.Instance != null) {
-        //    Game.Instance.gameData.OnAtomDiscover += UnlockNextPage;
-        //    hasInited = true;
-        //}
+        elementHover.gameObject.SetActive(false);
+        elementPage.gameObject.SetActive(false);
+        infoPage.gameObject.SetActive(false);
     }
 
     public bool IsNextPageUnlocked() { return nextPageUnlocked; }

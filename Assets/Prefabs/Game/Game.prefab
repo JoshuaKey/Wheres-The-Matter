@@ -770,6 +770,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3567cf92d86a40e418dcb663e6355cd3, type: 2}
     - {fileID: 11400000, guid: 607d299aebd7a2448805a569bd124295, type: 2}
     - {fileID: 11400000, guid: 3488854a4809f234fad37d6344517b7c, type: 2}
+    maxAtom: {fileID: 0}
     craftables:
     - {fileID: 11400000, guid: ac92d6ca8d84939429e65f7306960b7f, type: 2}
     - {fileID: 11400000, guid: 53ebf3763c8bb04499a8a9f77e3fc53d, type: 2}
@@ -815,7 +816,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5af7dee752118b14894196225c1de4db, type: 2}
   playerData:
     radiusUpgrade:
-      value: 0
+      data:
+        level: 0
+        cost: []
+        value: 0
       maxLevel: 5
       name: Collect Radius
       desc: How far the Atom Collector can collect. Measured in Meters.
@@ -957,7 +961,10 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     speedUpgrade:
-      value: 0
+      data:
+        level: 0
+        cost: []
+        value: 0
       maxLevel: 100
       name: Collect Speed
       desc: 'How quickly the Atom Collector can collect atoms.
@@ -1037,7 +1044,10 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     efficiencyUpgrade:
-      value: 0
+      data:
+        level: 0
+        cost: []
+        value: 0
       maxLevel: 100
       name: Collect Efficiency
       desc: How many atoms the Atom Collector can collect at a time.
@@ -1096,12 +1106,12 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 0
           value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 136
+          inSlope: 22.522923
+          outSlope: 22.522923
+          tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.33333334
+          outWeight: 0.048387095
         - serializedVersion: 3
           time: 100
           value: 1000
@@ -1115,8 +1125,11 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     weightUpgrade:
-      value: 0
-      maxLevel: 100
+      data:
+        level: 0
+        cost: []
+        value: 0
+      maxLevel: 94
       name: Collect Weight
       desc: 'Determines if the Atom Collector can collect a heavy atom.
 
@@ -1130,17 +1143,17 @@ MonoBehaviour:
           time: 0
           value: 1
           inSlope: 0
-          outSlope: 0
-          tangentMode: 0
+          outSlope: 0.9893617
+          tangentMode: 65
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 0
+          time: 94
+          value: 94
+          inSlope: 0.9893617
           outSlope: 0
-          tangentMode: 0
+          tangentMode: 5
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
@@ -1152,7 +1165,7 @@ MonoBehaviour:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 5
+          value: 100
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1160,8 +1173,8 @@ MonoBehaviour:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 100
-          value: 5
+          time: 94
+          value: 500000
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1178,25 +1191,28 @@ MonoBehaviour:
           time: 0
           value: 1
           inSlope: 0
-          outSlope: 0
-          tangentMode: 136
+          outSlope: 6.7584414
+          tangentMode: 1
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.33333334
+          outWeight: 0.05963066
         - serializedVersion: 3
-          time: 100
-          value: 118
-          inSlope: 0
+          time: 94
+          value: 245
+          inSlope: 2.5957446
           outSlope: 0
-          tangentMode: 136
+          tangentMode: 5
           weightedMode: 0
-          inWeight: 0.33333334
+          inWeight: 0.09122694
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
     accelerationUpgrade:
-      value: 0
+      data:
+        level: 0
+        cost: []
+        value: 0
       maxLevel: 100
       name: Particle Speed
       desc: 'How fast the Particle Accelerator runs.
@@ -1278,7 +1294,10 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     stabilityUpgrade:
-      value: 0
+      data:
+        level: 0
+        cost: []
+        value: 0
       maxLevel: 100
       name: Particle Stability
       desc: 'How stable the Particle Accelerator is.
@@ -1360,8 +1379,11 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     timeUpgrade:
-      value: 0
-      maxLevel: 100
+      data:
+        level: 0
+        cost: []
+        value: 0
+      maxLevel: 0
       name: Time Dilation
       desc: 'Affects the longevity of unstable atoms. This allows very heavy atoms
         to be preserved longer.
@@ -1381,10 +1403,12 @@ MonoBehaviour:
   player: {fileID: 0}
   cursor: {fileID: 0}
   world: {fileID: 0}
+  room: {fileID: 0}
   dialogueSystem: {fileID: 0}
   story: {fileID: 114463922153669246}
   logSystem: {fileID: 0}
   menu: {fileID: 0}
+  worldCanvas: {fileID: 0}
   menuCanvas: {fileID: 0}
   gameCanvas: {fileID: 0}
   elementCanvas: {fileID: 0}
@@ -1416,11 +1440,71 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chapter: 0
-  introImage: {fileID: 0}
-  letterImage: {fileID: 0}
-  letterText: 
-  letterHeight: 0
-  letterAnimateTime: 0
+  introImage: {fileID: 21300000, guid: 282f76b0e4995794684377a3706296f3, type: 3}
+  letterImage: {fileID: 21300000, guid: 5a807e0c886e0d347ba212646130c64e, type: 3}
+  letterText: "Dear Doctor Scientist,\n\nThe EGW Act of 2018 was a governing moment
+    for all humanity and gave guidance to the blind. \nUnder the Government's new
+    Act, Experiments were subject to scientific scrutiny and peer review. It gave
+    way to a new scientific method. \nWe uphold these values in the government from
+    the people, by the people and have supported the broad access to scientific laws
+    and followings.\n\nAccording to the EGW Act of 2018, we have determined your experiments
+    to be wrong and horrifying.\n\nYou will be billed $1,000,000,000,000.\n\nThanks,\nYour
+    Friendly IRS Agent"
+  letterStartPos: 0
+  letterTextHeight: 300
+  letterImageHeight: 373
+  letterAnimateTime: 5
+  doctorChapter0LetterText:
+  - "A trillion dollars! What would they even use it for? \nPaying off the U.S. government\u2019s
+    debt?"
+  - "Hmm, and I thought they\u2019d be ok with the experiment\u2026"
+  - 'Oh well, Science stops for no one!
+
+    Onto the Lab!'
+  doctorChapter1RoomIntroText:
+  - "Heh, a miracle of science! A tree made only out of Hydrogen! \nQuite impressive
+    if I do say so myself."
+  - Now, time to collect it!
+  doctorChapter1EndCollectText:
+  - "Heh, works like a charm. \nNow let\u2019s make it again because I can!"
+  doctorChapter2CraftText:
+  - "Man, I feel bad for anyone who doesn\u2019t have their own Atom Collector. I
+    can make anything I want.\nI bet if I sold these I\u2019d be a millionaire!"
+  - "Wait a second, Why don\u2019t I just do that!\nI\u2019m a genius!"
+  - 'If I mass produce Hydrogen Trees, I''ll make millions, no billions!
+
+    It''s perfect!'
+  - To the Forest!
+  doctorChapter3ForestText:
+  - "With the forest outside, there\u2019ll be plenty of Hydrogen to collect! \nI\u2019ll
+    be rich in no time!"
+  - Plus if I discover some other atoms every now and then, maybe I can make even
+    better trees! Imagine an Iron Tree!
+  - "I\u2019m excited just thinking about it!"
+  doctorChapter3CollectText:
+  - "Hmm, I haven\u2019t found any other atoms."
+  - Could it be! The world has been replaced with Hydrogen! How marvelous!
+  - "No no no! I would have noticed something like that. \nHmm, maybe something\u2019s
+    wrong with the the Atom collector."
+  - Haha! I forgot to set the weight limit for collecting atoms!
+  - "Silly me. I\u2019ll set this to\u2026 how many elements are there? Let\u2019s
+    see, Hydrogen, Helium, Carbon, Oxygen, Iron \u2026 5 Elements?"
+  - "Ah, let\u2019s just see how high it will go. For Science!"
+  doctorChapter3ExplosionText:
+  - Note to Self, Atom Collector can not collect atoms with a weight of 1000
+  - Luckily I have the mini Atom Collector! You should always be prepared for these
+    situations!
+  - "It\u2019s not upgraded as much as the original but it has much more potential!\nI\u2019ll
+    just have to get the atoms necessary to upgrade it!"
+  - For now, I should work on collecting new atoms. Back to the Lab!
+  doctorChapter4WorldText:
+  - 'Now off to explore the world! '
+  - "Find buried treasure! \nDiscover Mountains! \nAnd pay off my tax debt!"
+  firstCraft: {fileID: 11400000, guid: 34e3b034b0764ee43b0a856f37dad6e3, type: 2}
+  knockSound: {fileID: 8300000, guid: 2e01dce8804a78a43a3402e9db7bf220, type: 3}
+  paperSound: {fileID: 8300000, guid: 4659587e3679b3c4a885c2c864e5ddd2, type: 3}
+  explosionSound: {fileID: 8300000, guid: 7bb00d7e75e95c0489a17469754783bb, type: 3}
+  music: {fileID: 8300000, guid: 9b50a9c5590f59a4abba58397b0e84ac, type: 3}
   professorName: Doctor Scientist
   professorImage: {fileID: 21300000, guid: d1afcbf05aca79c4dafcc5aae5985d6e, type: 3}
   mapUI: {fileID: 0}
@@ -1443,3 +1527,7 @@ MonoBehaviour:
   musicSource: {fileID: 82733271661907520}
   defaultMusic: {fileID: 8300000, guid: 5e34d24698a55364392e1db0c4003f81, type: 3}
   defaultVolume: 1
+  musicGroup: {fileID: 243637845219264554, guid: 92475e77ba0b9394ea72e62177f361b9,
+    type: 2}
+  soundGroup: {fileID: 243584223214152812, guid: 92475e77ba0b9394ea72e62177f361b9,
+    type: 2}

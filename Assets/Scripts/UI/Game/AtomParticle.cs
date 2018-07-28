@@ -18,11 +18,13 @@ public class AtomParticle : MonoBehaviour {
 
     private void Start() {
         // Clamp
-        float scale = Mathf.Clamp(30 / Game.Instance.menuCanvas.scaleFactor, 20, 30);
-        var sizeD = rect.sizeDelta;
-        sizeD.x = scale;
-        sizeD.y = scale;
-        rect.sizeDelta = sizeD;
+        if (Game.Instance != null && Game.Instance.worldCanvas != null) {
+            float scale = Mathf.Clamp(30 / Game.Instance.worldCanvas.scaleFactor, 20, 30);
+            var sizeD = rect.sizeDelta;
+            sizeD.x = scale;
+            sizeD.y = scale;
+            rect.sizeDelta = sizeD;
+        }
     }
 
     public void Setup(Atom a, int amount, Vector3 pos) {
@@ -48,7 +50,7 @@ public class AtomParticle : MonoBehaviour {
         life += Time.deltaTime;
 
         if (appearing) {
-            var scale = Vector3.Lerp(this.transform.localScale, Vector3.one, 15 * Time.deltaTime);
+            var scale = Vector3.Lerp(this.transform.localScale, Vector3.one, scaleSpeed * Time.deltaTime);
 
             this.transform.localScale = scale;
 
@@ -67,7 +69,7 @@ public class AtomParticle : MonoBehaviour {
                 moving = false;
             }
         } else {
-            var scale = Vector3.Lerp(this.transform.localScale, Vector3.zero, 15 * Time.deltaTime);
+            var scale = Vector3.Lerp(this.transform.localScale, Vector3.zero, scaleSpeed * Time.deltaTime);
 
             this.transform.localScale = scale;
 

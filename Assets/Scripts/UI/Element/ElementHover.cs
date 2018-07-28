@@ -33,7 +33,7 @@ public class ElementHover : MonoBehaviour {
 
         AtomData data = Game.Instance.gameData.FindAtomData(atom.GetAtomicNumber());
         AtomInfo info = Game.Instance.gameData.FindAtomInfo(atom.GetAtomicNumber());
-        if (!info.IsDiscovered()) {
+        if (!data.IsDiscovered()) {
             info = Game.Instance.gameData.GetUknownInfo();
             data = Game.Instance.gameData.GetUknownData();
             a = Game.Instance.gameData.GetUknown();

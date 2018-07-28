@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour {
 
-    [SerializeField] RectTransform moneyRect;
-    [SerializeField] TextMeshProUGUI moneyText;
-
+    [SerializeField] public RectTransform rect;
+    [SerializeField] public RectTransform moneyRect;
+    [SerializeField] public TextMeshProUGUI moneyText;
+    [SerializeField] public Button menuButton;
 
     private void Start() {
         Game.Instance.playerData.OnMoneyChange += OnMoneyChange;

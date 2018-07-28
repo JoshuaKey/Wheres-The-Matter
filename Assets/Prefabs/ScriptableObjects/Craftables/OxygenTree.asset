@@ -16,4 +16,4 @@ MonoBehaviour:
   price: 0.06
   atomsForProductions:
   - atom: {fileID: 11400000, guid: cd16faeb326f0f045b2fb4a9c241d12b, type: 2}
-    amo: 100000
+    amo: 10000

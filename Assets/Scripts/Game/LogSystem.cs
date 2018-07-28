@@ -36,15 +36,21 @@ public class LogSystem : MonoBehaviour {
     }
 
     public void Log(string line) {
+        //if (!this.gameObject.activeInHierarchy) { return; }
+
         this.gameObject.SetActive(true);
 
         float lastTime = Time.time - lastFadeTime;
         if(lastTime > comboTime) { lines.Clear(); }
 
-        lines.Add(line);
-        if(lines.Count > lineCap) {
-            lines.RemoveRange(lineCap, lines.Count - lineCap);
+        while(lines.Count >= lineCap) {
+            lines.RemoveAt(0);
         }
+
+        lines.Add(line);
+        //if(lines.Count > lineCap) {
+        //    lines.RemoveRange(lineCap, lines.Count - lineCap);
+        //}
 
         string text = "";
         //for (int i = lines.Count - 1; i >= 0; i--) {

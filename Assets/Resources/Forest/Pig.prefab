@@ -84,6 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c11d006d638f30418634d8ed1a2eabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalAtomAmo: 2147483647
   atoms:
   - atom: {fileID: 11400000, guid: cd16faeb326f0f045b2fb4a9c241d12b, type: 2}
     ratio: 65
@@ -107,16 +108,37 @@ MonoBehaviour:
     ratio: 0.2
   - atom: {fileID: 11400000, guid: 307678c565737f545884b26f06167e2e, type: 2}
     ratio: 0.1
+  - atom: {fileID: 11400000, guid: 86e6c0aba26723e4ba6e23cdfce0d27a, type: 2}
+    ratio: 0.01
+  - atom: {fileID: 11400000, guid: eff6bd9173a7d5646a9aafb70fa48583, type: 2}
+    ratio: 0.01
+  - atom: {fileID: 11400000, guid: ce003a71bfdb83a41ad1e12fc95837f5, type: 2}
+    ratio: 0.01
+  - atom: {fileID: 11400000, guid: 615e554566f648749a3fb9191fecac8a, type: 2}
+    ratio: 0.01
+  - atom: {fileID: 11400000, guid: f4198d072acc27543889c9672f67d590, type: 2}
+    ratio: 0.01
+  - atom: {fileID: 11400000, guid: 1b362f2fe9317de43ab00593873b1038, type: 2}
+    ratio: 0.01
+  - atom: {fileID: 11400000, guid: 3a7bbbc38634dac41aa14372a0ed0f77, type: 2}
+    ratio: 0.01
+  - atom: {fileID: 11400000, guid: b1b5ac78b20b51a4c90905f4c12f81eb, type: 2}
+    ratio: 0.01
+  - atom: {fileID: 11400000, guid: 45ea0ee768d21774d8b3b29bec9e05d2, type: 2}
+    ratio: 0.01
   - atom: {fileID: 11400000, guid: 4835c7c1cf928414f881db7504257734, type: 2}
-    ratio: 0.001
+    ratio: 0.01
   collectionPause: 0.3
   hasLife: 1
-  life: 10
-  maxLife: 10
   aliveColor: {r: 1, g: 1, b: 1, a: 1}
   deadColor: {r: 0, g: 0, b: 0, a: 0.015686275}
   canFlash: 1
   flashAlphaMultiple: 0.3
+  currAtoms: []
+  currAtomAmo: 0
+  nextCollectionTime: 0
+  currColor: {r: 0, g: 0, b: 0, a: 0}
+  isFlashing: 0
 --- !u!212 &212322617634196796
 SpriteRenderer:
   m_ObjectHideFlags: 1

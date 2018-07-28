@@ -105,7 +105,7 @@ public class AtomCreator : MonoBehaviour {
         EditorUtility.FocusProjectWindow();
     }
     public static void CreateAtomInfo(Atom a) {
-        AtomInfo aI = new AtomInfo(a);
+        AtomInfo aI = AtomInfo.CreateNewAtomInfo(a);
 
         string atomInfoPathName = AssetDatabase.GenerateUniqueAssetPath("Assets/Prefabs/ScriptableObjects/AtomInfo/" + a.GetAtomicNumber() + a.GetName() + "Info.asset");
 
@@ -116,7 +116,7 @@ public class AtomCreator : MonoBehaviour {
         EditorUtility.FocusProjectWindow();
     }
     public static void CreateAtomData(Atom a) {
-        AtomData aD = new AtomData(a);
+        AtomData aD = AtomData.CreateNewAtomData(a);
 
         string atomDataPathName = AssetDatabase.GenerateUniqueAssetPath("Assets/Prefabs/ScriptableObjects/AtomData/" + a.GetAtomicNumber() + a.GetName() + "Data.asset");
         AssetDatabase.CreateAsset(aD, atomDataPathName);

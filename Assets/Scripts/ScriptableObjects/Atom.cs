@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
+public struct SerializeableAtom {
+    public bool hasBeenRenamed;
+    public string name;
+    public string abbr;
+}
+
 /// <summary>
 /// Atom is a simple object containing the bare minimums of an Atom.
 /// <para></para>
@@ -39,6 +46,16 @@ public class Atom : ScriptableObject, IComparable<Atom> {
             hasBeenRenamed = true;
         }
     }
+    public void Init(SerializeableAtom atomName) {
+        if (canBeRenamed) {
+            originalName = this.name;
+            originalAbbr = this.abbreviation;
+
+            this.name = atomName.name;
+            this.abbreviation = atomName.abbr;
+            hasBeenRenamed = atomName.hasBeenRenamed;
+        }
+    }
     public void Reset() {
         if (!canBeRenamed) {
             originalName = this.name;
@@ -69,6 +86,7 @@ public class Atom : ScriptableObject, IComparable<Atom> {
     public int GetAtomicNumber() { return atomicNumber; }
     public string GetAbbreviation() { return abbreviation; }
     public bool CanBeRenamed() { return canBeRenamed && !hasBeenRenamed; }
+    public bool HasBeRenamed() { return hasBeenRenamed; }
 
     public static Atom CreateNewAtom(string name, string abbreviation, int number) {
         Atom a = ScriptableObject.CreateInstance<Atom>();

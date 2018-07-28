@@ -40,8 +40,6 @@ public class AtomInfo : ScriptableObject, IComparable<AtomInfo> {
     private static readonly float minStableLife = 525600f; // 1 year
     private static readonly float maxStableLife = 525600000f; // 1000 years
 
-    [SerializeField] private bool isDiscovered = false;
-
     public AtomInfo(Atom atom) {
         this.atom = atom;
     }
@@ -96,12 +94,6 @@ public class AtomInfo : ScriptableObject, IComparable<AtomInfo> {
         this.halfLife = halfLife;
     }
 
-    public void Reset() {
-        isDiscovered = false;
-    }
-
-    public void SetIsDiscovered(bool value) { isDiscovered = value; }
-
     public Atom GetAtom() {  return atom;}
     public Sprite GetImage() { return image; }
 
@@ -125,7 +117,6 @@ public class AtomInfo : ScriptableObject, IComparable<AtomInfo> {
     public bool IsStable() { return halfLife == 0f; }
 
     public bool IsMetal() { return !(category == AtomCategory.HALOGEN || category == AtomCategory.NOBLE_GAS || category == AtomCategory.NON_METAL); }
-    public bool IsDiscovered() { return isDiscovered; }
 
     public string GetCategoryString() {
         string rtnStr = "";

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Cursor : MonoBehaviour {
@@ -39,5 +40,12 @@ public class Cursor : MonoBehaviour {
     }
     public float GetSize() {
         return thisRect.sizeDelta.x;
+    }
+
+    public bool IsOverUIElement() {
+        return EventSystem.current.IsPointerOverGameObject();
+    }
+    public bool HasSellectedUIElement() {
+        return EventSystem.current.currentSelectedGameObject != null;
     }
 }

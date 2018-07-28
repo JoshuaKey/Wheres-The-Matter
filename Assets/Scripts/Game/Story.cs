@@ -38,16 +38,38 @@ public class Story : MonoBehaviour {
         }
     }
 
+
     [SerializeField] private int chapter = 0;
 
-    [Header("Chapter 0")]
+    [Header("Intro Info")]
     [SerializeField] private Sprite introImage;
 
-    [Header("Chapter 1")]
+    [Header("Letter Info")]
     [SerializeField] private Sprite letterImage;
-    [SerializeField] private string letterText;
-    [SerializeField] private float letterHeight;
+    [SerializeField][TextArea(1, 5)] private string letterText;
+    [SerializeField] private float letterStartPos;
+    [SerializeField] private float letterTextHeight;
+    [SerializeField] private float letterImageHeight;
     [SerializeField] private float letterAnimateTime;
+
+    [Header("Dialogue")]
+    [SerializeField] [TextArea(1, 5)] private string[] doctorChapter0LetterText; // Chapter 0
+    [SerializeField] [TextArea(1, 5)] private string[] doctorChapter1RoomIntroText;
+    [SerializeField] [TextArea(1, 5)] private string[] doctorChapter1EndCollectText;
+    [SerializeField] [TextArea(1, 5)] private string[] doctorChapter2CraftText;
+    [SerializeField] [TextArea(1, 5)] private string[] doctorChapter3ForestText;
+    [SerializeField] [TextArea(1, 5)] private string[] doctorChapter3CollectText;
+    [SerializeField] [TextArea(1, 5)] private string[] doctorChapter3ExplosionText;
+    [SerializeField] [TextArea(1, 5)] private string[] doctorChapter4WorldText;
+
+    [Header("Progression")]
+    [SerializeField] private Craftable firstCraft;
+
+    [Header("Sounds")]
+    [SerializeField] private AudioClip knockSound;
+    [SerializeField] private AudioClip paperSound;
+    [SerializeField] private AudioClip explosionSound;
+    [SerializeField] private AudioClip music;
 
     [Header("Professor Info")]
     [SerializeField] private string professorName;
@@ -55,11 +77,14 @@ public class Story : MonoBehaviour {
 
     [Header("Map Unlockables")]
     [SerializeField] private MapUI mapUI;
-    [SerializeField] private Craftable mineUnlockable;
-    [SerializeField] private Craftable beachUnlockable;
-    [SerializeField] private Craftable oceanUnlockable;
-    [SerializeField] private Craftable desertUnlockable;
-    [SerializeField] private Craftable townUnlockable;
+    [SerializeField] public Craftable mineUnlockable;
+    [SerializeField] public Craftable beachUnlockable;
+    [SerializeField] public Craftable oceanUnlockable;
+    [SerializeField] public Craftable desertUnlockable;
+    [SerializeField] public Craftable townUnlockable;
+
+    public delegate void OnMapDiscover(World.AreaType type);
+    public event OnMapDiscover onMapDiscover;
 
     private void Start() {
         ProgressStory();
@@ -68,18 +93,53 @@ public class Story : MonoBehaviour {
         Game.Instance.playerData.OnCraftableSold += CheckMap;
         Game.Instance.playerData.OnMoneyChange += CheckWin;
     }
+    
+    public void Save(SaveData s) {
+        s.storyChapter = chapter;
+    }
+    public void Load(SaveData s) {
+        chapter = s.storyChapter;
+        StopAllCoroutines();
+        //ProgressStory();
+
+        mapUI.UnlockArea(World.AreaType.MINE, Game.Instance.playerData.GetCraftableAmount(mineUnlockable) > 0);
+        mapUI.UnlockArea(World.AreaType.BEACH, Game.Instance.playerData.GetCraftableAmount(beachUnlockable) > 0);
+        mapUI.UnlockArea(World.AreaType.DESERT, Game.Instance.playerData.GetCraftableAmount(desertUnlockable) > 0);
+        mapUI.UnlockArea(World.AreaType.OCEAN, Game.Instance.playerData.GetCraftableAmount(oceanUnlockable) > 0);
+        mapUI.UnlockArea(World.AreaType.TOWN, Game.Instance.playerData.GetCraftableAmount(townUnlockable) > 0);   
+    }
 
     public void CheckMap(Craftable c, float amo) {
         if(c == mineUnlockable) {
+            Game.Instance.logSystem.Log("Discovered Mine");
             mapUI.UnlockArea(World.AreaType.MINE, Game.Instance.playerData.GetCraftableAmount(c) > 0);
+            if(onMapDiscover != null) {
+                onMapDiscover(World.AreaType.MINE);
+            }
         } else if(c == beachUnlockable) {
-            mapUI.UnlockArea(World.AreaType.COAST, Game.Instance.playerData.GetCraftableAmount(c) > 0);
+            Game.Instance.logSystem.Log("Discovered Beach");
+            mapUI.UnlockArea(World.AreaType.BEACH, Game.Instance.playerData.GetCraftableAmount(c) > 0);
+            if (onMapDiscover != null) {
+                onMapDiscover(World.AreaType.BEACH);
+            }
         } else if (c == desertUnlockable) {
+            Game.Instance.logSystem.Log("Discovered Desert");
             mapUI.UnlockArea(World.AreaType.DESERT, Game.Instance.playerData.GetCraftableAmount(c) > 0);
+            if (onMapDiscover != null) {
+                onMapDiscover(World.AreaType.DESERT);
+            }
         } else if (c == oceanUnlockable) {
+            Game.Instance.logSystem.Log("Discovered Ocean");
             mapUI.UnlockArea(World.AreaType.OCEAN, Game.Instance.playerData.GetCraftableAmount(c) > 0);
+            if (onMapDiscover != null) {
+                onMapDiscover(World.AreaType.OCEAN);
+            }
         } else if (c == townUnlockable) {
+            Game.Instance.logSystem.Log("Discovered Town");
             mapUI.UnlockArea(World.AreaType.TOWN, Game.Instance.playerData.GetCraftableAmount(c) > 0);
+            if (onMapDiscover != null) {
+                onMapDiscover(World.AreaType.TOWN);
+            }
         }
     }
 
@@ -96,158 +156,320 @@ public class Story : MonoBehaviour {
                 Chapter1();
                 break;
             case 2:
+                Chapter2();
                 break;
             case 3:
+                Chapter3();
                 break;
             case 4:
+                Chapter4();
                 break;
-            case 5:
-                break;
-            case 6:
-                break;
-            case 7:
+            default:
+                Game.Instance.particlePool.Story();
+                Game.Instance.playerData.Story();
+                Game.Instance.laboratoryCanvas.craftUI.Story();
+                Game.Instance.laboratoryCanvas.upgradeUI.Story();
+                Game.Instance.room.Story();
                 break;
         }
     }
 
     private void Chapter0() {
-        // Like a chain of events
+        StartCoroutine(Chain(
+            Do(() => {
+                AudioManager.Instance.PlayMusic(music);
 
-        // Disable all UI buttons, Menu, Laboratory
-        // Display Background
-        // Animate a little
-        // Some sounds
-        // Delay
+                // Disable UI
+                Game.Instance.background.cozyImage.sprite = introImage;
+                Game.Instance.background.cozyImage.gameObject.SetActive(true);
+                Game.Instance.background.letterImage.gameObject.SetActive(false);
+                Game.Instance.background.text.gameObject.SetActive(false);
+                Game.Instance.DisplayBackground();
 
-        // Display Knock Dialogue
-        // Play Knock sound
-        // Wait
+                Game.Instance.player.CanCollect(false);
+                Game.Instance.player.CanMove(false);
+                Game.Instance.player.CanEscape(false);
+            }),
+            Wait(3.0f),
+            Do(() => {
+                 AudioManager.Instance.PlaySound(knockSound);
+            }),
+            Wait(.8f),
+            Do(() => {
+                AudioManager.Instance.PlaySound(paperSound);
+                Game.Instance.background.letterImage.sprite = letterImage;
+                Game.Instance.background.text.text = letterText;
 
-        // Play paper slip sound
-        // Delay
+                var letterPos = Game.Instance.background.letterImage.rectTransform.position;
+                letterPos.y = 0;
+                Game.Instance.background.letterImage.rectTransform.position = letterPos;
 
-        // Display Letter
-        // Animate down
-        // Wait
+                var imageSize = Game.Instance.background.letterImage.rectTransform.sizeDelta;
+                imageSize.y = letterImageHeight;
+                Game.Instance.background.letterImage.rectTransform.sizeDelta = imageSize;
 
-        // Display Letter Dialogue
-        // Wait
-
-        // Fade out
-        // Fade in Personal Room
-        // Set stats to max, Weight to 1.
-        // Activate player controls
-        // Display Hydogren Tree Dialogue
-        // Wait
-
-        // Wait for Player actions to finish (Collect)
-
-        // Display end Hydrogen Tree Dialogue
-        // Wait
-
-        // Unlock Menu and Crafting
-        // Wait for players actions, (Crafting and Placing)
-
-        // Display Tree Craft Dialogue
-        // Wait
-
-        // Unlock forest, Map and Resume
-        // Wait for players actions (To Forest) -> Add event for changing location
-
-
-
-
-        //Game.Instance.background.image.sprite = introImage;
-        //Game.Instance.DisplayBackground();
-
-        //StartCoroutine(DelayAction(5.0f, () => {
-        //    Game.Instance.player.CanCollect(false); // Disable Players
-        //    Game.Instance.player.CanEscape(false);
-        //    var dialogue = Game.Instance.dialogueSystem;
-        //    dialogue.SetCharacterName("???");
-        //    dialogue.SetCharacterImage(Game.Instance.gameData.GetUknownInfo().GetImage());
-        //    dialogue.QueueDialogue("*Knock, knock*", true);
-        //    // Play Knock Noise
-        //    // Then play paper noise...
-        //    dialogue.OnDialogueEnd += ProgressStory;
-        //}));
-        //chapter = 1;
+                Game.Instance.background.letterImage.gameObject.SetActive(true);
+                Game.Instance.background.text.gameObject.SetActive(true);
+                Game.Instance.DisplayBackground();
+            }),
+            AnimatePosition(letterAnimateTime, new Vector3(0f, 2.175f*Screen.height, 0f), 
+                Game.Instance.background.letterImage.transform),
+            Do(() => {
+                Game.Instance.QueueDialogue(doctorChapter0LetterText, true);
+            }),
+            Wait(() => {
+                return Game.Instance.dialogueSystem.IsFinished();
+            }),
+            Do(() => {
+                chapter++;
+                ProgressStory();
+            })
+            ));
     }
     private void Chapter1() {
+        StartCoroutine(Chain(
+            Do(() => {
+                if(AudioManager.Instance.GetMusic() != music || !AudioManager.Instance.IsMusicPlaying()) {
+                    AudioManager.Instance.PlayMusic(music);
+                }
 
+                Game.Instance.DisplayRoom();
 
-        //var dialogue = Game.Instance.dialogueSystem;
-        //dialogue.OnDialogueEnd -= ProgressStory;
+                Game.Instance.gameCanvas.moneyRect.gameObject.SetActive(false);
+                Game.Instance.gameCanvas.menuButton.gameObject.SetActive(false);
+                Game.Instance.playerData.Story();
+                Game.Instance.player.CanEscape(false);
+                Game.Instance.player.CanCollect(false);
+                Game.Instance.player.CanMove(false);
+            }),
+            Wait(.75f),
+            Do(() => {
+                Game.Instance.QueueDialogue(doctorChapter1RoomIntroText, true);
+            }),
+            Wait(() => {
+                return Game.Instance.dialogueSystem.IsFinished();
+            }),
+            Do(() => {
+                Game.Instance.player.CanEscape(false);
+                Game.Instance.player.CanMove(false);
+                Game.Instance.player.CanCollect(true);
+            }),
+            Wait(() => {
+                return Game.Instance.gameData.FindAtomData(1).GetCurrAmo() >= 10000;
+            }),
+            Do(() => {
+                Game.Instance.QueueDialogue(doctorChapter1EndCollectText, true);
+            }),
+            Wait(() => {
+                return Game.Instance.dialogueSystem.IsFinished();
+            }),
+            Do(() => {
+                chapter++;
+                ProgressStory();
+            })
+            ));
+    }
+    public void Chapter2() {
+        StartCoroutine(Chain(
+            Do(() => {
+                if (AudioManager.Instance.GetMusic() != music || !AudioManager.Instance.IsMusicPlaying()) {
+                    AudioManager.Instance.PlayMusic(music);
+                }
 
-        //// Display Letter
-        //Game.Instance.background.image.sprite = letterImage;
-        //Game.Instance.background.text.text = letterText;
-        //Game.Instance.DisplayBackground();
+                if(Game.Instance.gameData.FindAtomData(1).GetCurrAmo() < 10000) {
+                    var data = Game.Instance.gameData.FindAtomData(1);
+                    Game.Instance.gameData.Absorb(data.GetAtom(), 10000 - data.GetCurrAmo());
+                }
 
-        // Animate Letter...
-        //Event event1 = new Event();
-        //event1.onAction += () => {
-        //    var pos = Game.Instance.background.transform.position;
-        //    pos.y += letterHeight;
+                Game.Instance.room.Story();
+                Game.Instance.DisplayRoom();
 
-        //    Chain(
-        //        AnimatePosition(10f, pos, Game.Instance.background.transform),
-                
-        //        );
+                Game.Instance.player.CanCollect(false);
+                Game.Instance.player.CanMove(false);
+                Game.Instance.player.CanEscape(true);
+                Game.Instance.gameCanvas.gameObject.SetActive(true);
+                Game.Instance.gameCanvas.moneyRect.gameObject.SetActive(true);
+                Game.Instance.gameCanvas.menuButton.gameObject.SetActive(true);
 
-        //    //StartCoroutine(AnimatePosition(10f, pos, Game.Instance.background.transform));
-        //};
+                Game.Instance.menuCanvas.elementBtn.interactable = false;
+                Game.Instance.menuCanvas.resumeBtn.interactable = false;
+                Game.Instance.menuCanvas.mapBtn.interactable = false;
+                Game.Instance.menuCanvas.labBtn.interactable = true;
+                Game.Instance.menuCanvas.exitBtn.interactable = true;
+                Game.Instance.menuCanvas.saveBtn.interactable = true;
+                //Game.Instance.menuCanvas.settingBtn.interactable = true;
 
-        //Event event2 = new Event();
-        //event2.
+                Game.Instance.laboratoryCanvas.backBtn.gameObject.SetActive(false);
+                Game.Instance.laboratoryCanvas.upgradeBtn.interactable = false;
+                Game.Instance.laboratoryCanvas.combineBtn.interactable = false;
+                Game.Instance.laboratoryCanvas.splitBtn.interactable = false;
+                Game.Instance.laboratoryCanvas.craftBtn.interactable = true;
 
+                Game.Instance.saveCanvas.backBtn.gameObject.SetActive(false);
 
+                Game.Instance.laboratoryCanvas.craftUI.Story();
+                Game.Instance.playerData.Story();
+            }),
+            Wait(() => {
+                return Game.Instance.playerData.GetCraftableAmount(firstCraft) > 0;
+            }),
+            Wait(() => {
+                return !Game.Instance.laboratoryCanvas.resultUI.gameObject.activeInHierarchy;
+            }),
+            Wait(.2f),
+            Do(() => {
+                Game.Instance.QueueDialogue(doctorChapter2CraftText, true);
+            }),
+            Wait(() => {
+                return Game.Instance.dialogueSystem.IsFinished();
+            }),           
+            Do(() => {
+                chapter++;
+                ProgressStory();
+            })
+            ));
+    }
+    public void Chapter3() {
+        StartCoroutine(Chain(
+            Do(() => {
+                if (AudioManager.Instance.GetMusic() != music || !AudioManager.Instance.IsMusicPlaying()) {
+                    AudioManager.Instance.PlayMusic(music);
+                }
+
+                Game.Instance.DisplayLaboratory();
+                Game.Instance.laboratoryCanvas.DisplayCraft();
+
+                Game.Instance.player.CanCollect(false);
+                Game.Instance.player.CanMove(false);
+                Game.Instance.player.CanEscape(true);
+
+                Game.Instance.menuCanvas.resumeBtn.interactable = true;
+                Game.Instance.menuCanvas.elementBtn.interactable = false;
+                Game.Instance.menuCanvas.mapBtn.interactable = false;
+                Game.Instance.menuCanvas.labBtn.interactable = true;
+                Game.Instance.menuCanvas.exitBtn.interactable = true;
+                Game.Instance.menuCanvas.saveBtn.interactable = true;
+                //Game.Instance.menuCanvas.settingBtn.interactable = true;
+
+                Game.Instance.laboratoryCanvas.backBtn.gameObject.SetActive(true);
+                Game.Instance.laboratoryCanvas.upgradeBtn.interactable = false;
+                Game.Instance.laboratoryCanvas.combineBtn.interactable = false;
+                Game.Instance.laboratoryCanvas.splitBtn.interactable = false;
+                Game.Instance.laboratoryCanvas.craftBtn.interactable = true;
+
+                Game.Instance.saveCanvas.backBtn.gameObject.SetActive(true);
+                Game.Instance.playerData.Story();
+            }),
+            Wait(() => {
+                return Game.Instance.world.gameObject.activeInHierarchy;
+            }),
+            Do(() => {
+                Game.Instance.PlayAreaMusic();
+                Game.Instance.QueueDialogue(doctorChapter3ForestText, true);
+            }),
+            Wait(() => {
+                return Game.Instance.dialogueSystem.IsFinished();
+            }),
+            Wait(() => {
+                return Game.Instance.gameData.FindAtomData(1).GetCurrAmo() >= 100000;
+            }),
+            Do(() => {
+                Game.Instance.QueueDialogue(doctorChapter3CollectText, true);
+            }),
+            Wait(() => {
+                return Game.Instance.dialogueSystem.IsFinished();
+            }),
+            Do(() => {
+                Game.Instance.player.ScreenShake(4, 2.5f);
+                AudioManager.Instance.PlaySound(explosionSound);
+                Game.Instance.particlePool.Story();
+
+                Atom a = Game.Instance.gameData.FindAtom(1);
+                int amo = Game.Instance.gameData.FindAtomData(1).GetCurrAmo();
+                Game.Instance.gameData.Use(a, amo);
+                Game.Instance.gameData.Absorb(a, 100);
+
+                Game.Instance.playerData.Reset();
+            }),
+            Wait(1.0f),
+            Do(() => {
+                Game.Instance.QueueDialogue(doctorChapter3ExplosionText, true);
+            }),
+            Wait(() => {
+                return Game.Instance.dialogueSystem.IsFinished();
+            }),
+           Do(() => {
+               chapter++;
+               ProgressStory();
+           })
+           ));
+    }
+    public void Chapter4() {
+        StartCoroutine(Chain(
+            Do(() => {
+                Game.Instance.player.CanCollect(true);
+                Game.Instance.player.CanMove(true);
+                Game.Instance.player.CanEscape(true);
+
+                Game.Instance.menuCanvas.elementBtn.interactable = true;
+                Game.Instance.menuCanvas.mapBtn.interactable = false;
+                Game.Instance.menuCanvas.labBtn.interactable = true;
+                Game.Instance.menuCanvas.exitBtn.interactable = true;
+                Game.Instance.menuCanvas.saveBtn.interactable = true;
+                //Game.Instance.menuCanvas.settingBtn.interactable = true;
+
+                Game.Instance.laboratoryCanvas.backBtn.gameObject.SetActive(true);
+                Game.Instance.laboratoryCanvas.upgradeBtn.interactable = true;
+                Game.Instance.laboratoryCanvas.combineBtn.interactable = false;
+                Game.Instance.laboratoryCanvas.splitBtn.interactable = false;
+                Game.Instance.laboratoryCanvas.craftBtn.interactable = true;
+
+                Game.Instance.playerData.Story();
+                Game.Instance.particlePool.Story();
+            }),
+            Wait(() => {
+                return Game.Instance.playerData.GetUpgradeLevel(PlayerData.UpgradeType.Collect_Weight) > 0;
+            }),
+            Wait(() => {
+                return !Game.Instance.laboratoryCanvas.resultUI.gameObject.activeInHierarchy;
+            }),
+            Wait(.2f),
+            Do(() => {
+                Game.Instance.QueueDialogue(doctorChapter4WorldText, true);
+            }),
+            Wait(() => {
+                return Game.Instance.dialogueSystem.IsFinished();
+            }),
+           Do(() => {
+               Game.Instance.laboratoryCanvas.combineBtn.interactable = true;
+               Game.Instance.laboratoryCanvas.splitBtn.interactable = true;
+
+               Game.Instance.menuCanvas.mapBtn.interactable = true;
+
+               Game.Instance.laboratoryCanvas.craftUI.Story();
+               Game.Instance.laboratoryCanvas.upgradeUI.Story();
+
+               chapter++;
+               ProgressStory();
+           })
+           ));
     }
 
-    //private void OnCompareFloat(float value) { // Compares 
-    //    if (value >= comparisionCondition) {
-    //        ProgressStory();
-    //    }
-    //}
-    //private void OnCompareAtom(Atom a, float value) {
-    //    if (value >= comparisionCondition) {
-    //        ProgressStory();
-    //    }
-    //}
-    //private void OnCompareAtom(Craftable c, float value) {
-    //    if (value >= comparisionCondition) {
-    //        ProgressStory();
-    //    }
-    //}
-    //private void OnEvent() {
-
-    //}
-
-    // Make these into like little structs with bools and evaluations...
-
-    private IEnumerator DelayAction(float time, System.Action actionDelegate) {
-        float endTime = Time.time + time;
-        while(Time.time < endTime) {
-            yield return null;
-        }
-
-        actionDelegate.Invoke();
-    }
-
-    private IEnumerator AnimatePosition(float time, Vector3 pos, Transform trans) {
+    private IEnumerator AnimatePosition(float time, Vector3 posAdd, Transform trans) {
         float endTime = Time.time + time;
         Vector3 startPos = trans.position;
+        Vector3 endPos = startPos + posAdd;
 
         while (Time.time < endTime) {
             float t = 1 - (endTime - Time.time) / time;
 
-            var newPos = Vector3.Lerp(startPos, pos, t);
+            var newPos = Vector3.Lerp(startPos, endPos, t);
             trans.position = newPos;
 
             yield return null;
         }
 
-        trans.position = pos;
+        trans.position = endPos;
     }
 
     /**
@@ -264,19 +486,7 @@ public class Story : MonoBehaviour {
         }
     }
 
-    /**
-     * Usage: StartCoroutine(CoroutineUtils.DelaySeconds(action, delay))
-     * For example:
-     *     StartCoroutine(CoroutineUtils.DelaySeconds(
-     *         () => DebugUtils.Log("2 seconds past"),
-     *         2);
-     */
-    public IEnumerator DelaySeconds(Action action, float delay) {
-        yield return new WaitForSeconds(delay);
-        action();
-    }
-
-    public IEnumerator WaitForSeconds(float time) {
+    public IEnumerator Wait(float time) {
         yield return new WaitForSeconds(time);
     }
 
@@ -284,4 +494,15 @@ public class Story : MonoBehaviour {
         action();
         yield return 0;
     }
+
+    public IEnumerator Wait(OnCondition checkCondition) {
+        if(checkCondition == null) { yield break; }
+
+        while (!checkCondition()) {
+            yield return null;
+        }
+    }
+
+    public int GetChapter() { return chapter; }
+
 }

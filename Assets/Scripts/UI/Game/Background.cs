@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Background : MonoBehaviour {
 
-    [SerializeField] public Image image;
+    [SerializeField] public RectTransform rect;
+    [SerializeField] public Image cozyImage;
+    [SerializeField] public Image letterImage;
     [SerializeField] public TextMeshProUGUI text;
 }

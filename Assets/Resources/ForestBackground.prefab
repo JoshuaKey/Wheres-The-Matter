@@ -65,6 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c11d006d638f30418634d8ed1a2eabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalAtomAmo: 2147483647
   atoms:
   - atom: {fileID: 11400000, guid: 7c7d9be9d678f4149ab8d9af49754487, type: 2}
     ratio: 11.25
@@ -95,14 +96,11 @@ MonoBehaviour:
   - atom: {fileID: 11400000, guid: 4835c7c1cf928414f881db7504257734, type: 2}
     ratio: 0.63
   collectionPause: 3
-  canBounce: 0
-  timeToBounce: 2
-  bounceScale: {x: 0, y: 0, z: 0}
   hasLife: 1
-  life: 100000
-  maxLife: 100000
   aliveColor: {r: 1, g: 1, b: 1, a: 1}
   deadColor: {r: 0, g: 0, b: 0, a: 0}
+  canFlash: 0
+  flashAlphaMultiple: 0.6
 --- !u!212 &212045628541228744
 SpriteRenderer:
   m_ObjectHideFlags: 1

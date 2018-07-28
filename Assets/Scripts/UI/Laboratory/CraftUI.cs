@@ -28,6 +28,7 @@ public class CraftUI : MonoBehaviour {
     [SerializeField] ResultUI resultUI;
     [SerializeField] Toggle resultsToggle;
     [SerializeField] AudioClip choiceClickSound;
+    [SerializeField] Button backBtn;
 
     [Header("Craftable List")]
     [SerializeField] RectTransform craftableListRect;
@@ -105,7 +106,7 @@ public class CraftUI : MonoBehaviour {
             var atomsForCraft = c.GetAtomsForProduction();
             for (int y = 0; y < atomsForCraft.Length; y++) {
                 var atomAmo = atomsForCraft[y];
-                if (!Game.Instance.gameData.FindAtomInfo(atomAmo.atom.GetAtomicNumber()).IsDiscovered()) {
+                if (!Game.Instance.gameData.FindAtomData(atomAmo.atom.GetAtomicNumber()).IsDiscovered()) {
                     canCraft = false;
                     break;
                 }
@@ -138,7 +139,7 @@ public class CraftUI : MonoBehaviour {
         var atomsForCraft = c.GetAtomsForProduction();
         for (int y = 0; y < atomsForCraft.Length; y++) {
             var atomAmo = atomsForCraft[y];
-            if (!Game.Instance.gameData.FindAtomInfo(atomAmo.atom.GetAtomicNumber()).IsDiscovered()) {
+            if (!Game.Instance.gameData.FindAtomData(atomAmo.atom.GetAtomicNumber()).IsDiscovered()) {
                 canCraft = false;
                 break;
             }
@@ -163,6 +164,23 @@ public class CraftUI : MonoBehaviour {
         craftableListRect.sizeDelta = sizeDelta;
 
         c.gameObject.SetActive(true);
+    }
+
+    public void Story() {
+        switch (Game.Instance.story.GetChapter()) {
+            case 2:
+                //backBtn.gameObject.SetActive(false);
+                sellBtn.gameObject.SetActive(false);
+                sellBtnx10.gameObject.SetActive(false);
+                sellBtnx100.gameObject.SetActive(false);
+                break;
+            default:
+                //backBtn.gameObject.SetActive(true);
+                sellBtn.gameObject.SetActive(true);
+                sellBtnx10.gameObject.SetActive(true);
+                sellBtnx100.gameObject.SetActive(true);
+                break;
+        }
     }
 
     public void SetCraftable(Craftable c) {

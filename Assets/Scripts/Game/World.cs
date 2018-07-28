@@ -7,7 +7,7 @@ public class World : MonoBehaviour {
     public enum AreaType {
         FOREST,
         MINE,
-        COAST,
+        BEACH,
         OCEAN,
         DESERT,
         TOWN,
@@ -25,6 +25,17 @@ public class World : MonoBehaviour {
     public event OnAreaChange onAreaChange;
 
     public void Init(Vector2 pos, int seed, AreaType area) {
+        var areaEnumerator = areas.Values.GetEnumerator();
+        while (areaEnumerator.MoveNext()) {
+            var curr = areaEnumerator.Current;
+
+            var chunkEnumerator = curr.Values.GetEnumerator();
+            while (chunkEnumerator.MoveNext()) {
+                var currChunk = chunkEnumerator.Current;
+                Destroy(currChunk.gameObject);
+            }
+        }
+
         this.seed = seed;
         print("World Seed is " + seed);
 
@@ -43,6 +54,16 @@ public class World : MonoBehaviour {
                 LoadChunk(index);
             }
         }
+    }
+
+    public void Save(SaveData s) {
+        s.worldArea = currArea;
+        s.worldSeed = seed;
+    }
+    public void Load(SaveData s) {
+        currArea = s.worldArea;
+        seed = s.worldSeed;
+        Init(s.playerPosition, seed, currArea);
     }
 
     public void LoadArea(Vector2 pos, World.AreaType area) {

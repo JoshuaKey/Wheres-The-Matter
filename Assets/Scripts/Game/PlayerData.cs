@@ -8,6 +8,13 @@ using UnityEngine;
 public class PlayerData  {
     // Player Data is responsible for holding and calculating data relevant to the player. Their current progression
 
+    //[Serializable]
+    //public class SerializableDictionary<T, U> {
+    //    public Dictionary<T, U> dictionary;
+    //}
+    //[Serializable]
+    //public class CraftableDictionary : SerializableDictionary<Craftable, int> { }
+
     public struct AtomCollision {
         public Atom targetAtom; // What Atom will we be creating
         public int amo; // Max Amount
@@ -29,68 +36,96 @@ public class PlayerData  {
     }
 
     [Serializable]
+    public struct UpgradeData {
+        public int level;
+        public List<AtomAmo> cost;
+        public float value;
+    }
+
+    [Serializable]
     public class UpgradeLevel {
-        [SerializeField] public int level;
-        [SerializeField] public List<AtomAmo> cost;
-        [SerializeField] public float value;
+        //[SerializeField] public int level;
+        //[SerializeField] public List<AtomAmo> cost;
+        //[SerializeField] public float value;
+        public UpgradeData data;
 
         [Header("Info")]
         [SerializeField] private int maxLevel;
         [SerializeField] private string name;
         [SerializeField] [TextArea(1, 3)] private string desc;
         [SerializeField] private string measurementAbbr;
-
+        
         [Header("Progression")]
-        public List<AnimationCurve> atomProgression;
-        public List<AnimationCurve> amoProgression;
-        public AnimationCurve valueProgression;
+        [SerializeField] private List<AnimationCurve> atomProgression;
+        [SerializeField] private List<AnimationCurve> amoProgression;
+        [SerializeField] private AnimationCurve valueProgression;
 
         public void Init() {
-            level = 0;
-            value = valueProgression.Evaluate(level);
+            data.level = 0;
+            data.value = valueProgression.Evaluate(data.level);
 
             AtomAmo amo = new AtomAmo();
-            cost = new List<AtomAmo>();
+            data.cost = new List<AtomAmo>();
             for (int i = 0; i < atomProgression.Count; i++) {
-                amo.amo = (int)amoProgression[i].Evaluate(level);
+                amo.amo = (int)amoProgression[i].Evaluate(data.level);
 
-                int index = (int)atomProgression[i].Evaluate(level);
+                int index = (int)atomProgression[i].Evaluate(data.level);
                 if (index == 0) {
                     amo.atom = null;
                 } else {
                     amo.atom = Game.Instance.gameData.FindAtom(index);
                 }
-                cost.Add(amo);
+                data.cost.Add(amo);
+            }
+        }
+        public void Update() {
+            data.value = valueProgression.Evaluate(data.level);
+
+            data.cost.Clear();
+            if (!IsMaxLevel()) {
+                AtomAmo amo = new AtomAmo();
+                for (int i = 0; i < atomProgression.Count; i++) {
+                    amo.amo = (int)amoProgression[i].Evaluate(data.level);
+
+                    int index = (int)atomProgression[i].Evaluate(data.level);
+                    if (index == 0) {
+                        amo.atom = null;
+                    } else {
+                        amo.atom = Game.Instance.gameData.FindAtom(index);
+                    }
+
+                    data.cost.Add(amo);
+                }
             }
         }
         public bool Upgrade() {
             bool success = CanUpgrade();
             if (success) {
-                for (int i = 0; i < cost.Count; i++) { // Use
-                    AtomAmo atomCost = cost[i];
+                for (int i = 0; i < data.cost.Count; i++) { // Use
+                    AtomAmo atomCost = data.cost[i];
                     if (atomCost.atom == null) { continue; }
 
-                    AtomData data = Game.Instance.gameData.FindAtomData(cost[i].atom.GetAtomicNumber());
-                    data.Lose(cost[i].amo);
+                    AtomData atomData = Game.Instance.gameData.FindAtomData(data.cost[i].atom.GetAtomicNumber());
+                    atomData.Lose(data.cost[i].amo);
                 }
 
-                level++;
-                value = valueProgression.Evaluate(level);
+                data.level++;
+                data.value = valueProgression.Evaluate(data.level);
 
-                cost.Clear();
+                data.cost.Clear();
                 if (!IsMaxLevel()) {
                     AtomAmo amo = new AtomAmo();
                     for (int i = 0; i < atomProgression.Count; i++) {
-                        amo.amo = (int)amoProgression[i].Evaluate(level);
+                        amo.amo = (int)amoProgression[i].Evaluate(data.level);
 
-                        int index = (int)atomProgression[i].Evaluate(level);
+                        int index = (int)atomProgression[i].Evaluate(data.level);
                         if (index == 0) {
                             amo.atom = null;
                         } else {
                             amo.atom = Game.Instance.gameData.FindAtom(index);
                         }
 
-                        cost.Add(amo);
+                        data.cost.Add(amo);
                     }
                 }
             }
@@ -100,31 +135,31 @@ public class PlayerData  {
         public bool CanUpgrade() {
             if(IsMaxLevel()) { return false; }
 
-            for (int i = 0; i < cost.Count; i++) { // Validation
-                AtomAmo atomCost = cost[i];
+            for (int i = 0; i < data.cost.Count; i++) { // Validation
+                AtomAmo atomCost = data.cost[i];
                 if (atomCost.atom == null) { continue; }
 
-                AtomData data = Game.Instance.gameData.FindAtomData(atomCost.atom.GetAtomicNumber());
-                if (data.GetCurrAmo() < atomCost.amo) {
+                AtomData atomData = Game.Instance.gameData.FindAtomData(atomCost.atom.GetAtomicNumber());
+                if (atomData.GetCurrAmo() < atomCost.amo) {
                     return false;
                 }
             }
             return true;
         }
 
-        public bool IsMaxLevel() { return level == maxLevel;}
+        public bool IsMaxLevel() { return data.level == maxLevel;}
+        public int GetMaxLevel() { return maxLevel; }
         public string GetName() { return name; }
         public string GetDesc() { return desc; }
         public string GetMeasurement() { return measurementAbbr; }
 
-        public int GetLevel() { return level; }
-        public float GetValue() { return value; }
-        public List<AtomAmo> GetCost() { return cost; }
+        public int GetLevel() { return data.level; }
+        public float GetValue() { return data.value; }
+        public List<AtomAmo> GetCost() { return data.cost; }
 
-        public float GetNextValue() { return valueProgression.Evaluate(level + 1); }
-
+        public float GetNextValue() { return valueProgression.Evaluate(data.level + 1); }
+        
     } 
-
     public enum UpgradeType {
         Collect_Speed = 0,
         Collect_Radius = 1,
@@ -176,6 +211,79 @@ public class PlayerData  {
         accelerationUpgrade.Init();
         stabilityUpgrade.Init();
         timeUpgrade.Init();
+
+        if (OnCollectRadiusChange != null) {
+            OnCollectRadiusChange(radiusUpgrade.GetValue());
+        }
+        if (OnCollectSpeedChange != null) {
+            OnCollectSpeedChange(speedUpgrade.GetValue());
+        }
+        if (OnCollectEfficiencyChange != null) {
+            OnCollectEfficiencyChange(efficiencyUpgrade.GetValue());
+        }
+        if (OnCollectWeightChange != null) {
+            OnCollectWeightChange(weightUpgrade.GetValue());
+        }
+        if (OnParticleSpeedChange != null) {
+            OnParticleSpeedChange(accelerationUpgrade.GetValue());
+        }
+        if (OnParticleStabilityChange != null) {
+            OnParticleStabilityChange(stabilityUpgrade.GetValue());
+        }
+        if (OnTimeDilationChange != null) {
+            OnTimeDilationChange(timeUpgrade.GetValue());
+        }
+    }
+
+    public void Load(float money, UpgradeData[] upgradeData, Dictionary<string, int> craftableAmo) {
+
+        this.money = money;
+        if (OnMoneyChange != null) {
+            OnMoneyChange(money);
+        }
+
+        speedUpgrade.data = upgradeData[0];
+        if (OnCollectSpeedChange != null) {
+            OnCollectSpeedChange(upgradeData[0].value);
+        }
+
+        radiusUpgrade.data = upgradeData[1];
+        if (OnCollectRadiusChange != null) {
+            OnCollectRadiusChange(upgradeData[1].value);
+        }
+
+        efficiencyUpgrade.data = upgradeData[2];
+        if (OnCollectEfficiencyChange != null) {
+            OnCollectEfficiencyChange(upgradeData[2].value);
+        }
+
+        weightUpgrade.data = upgradeData[3];
+        if (OnCollectWeightChange != null) {
+            OnCollectWeightChange(upgradeData[3].value);
+        }
+
+        accelerationUpgrade.data = upgradeData[4];
+        if (OnParticleSpeedChange != null) {
+            OnParticleSpeedChange(upgradeData[4].value);
+        }
+
+        stabilityUpgrade.data = upgradeData[5];
+        if (OnParticleStabilityChange != null) {
+            OnParticleStabilityChange(upgradeData[5].value);
+        }
+
+        timeUpgrade.data = upgradeData[6];
+        if (OnTimeDilationChange != null) {
+            OnTimeDilationChange(upgradeData[6].value);
+        }
+
+        var craftEnum = craftableAmo.GetEnumerator();
+        while (craftEnum.MoveNext()) {
+            var craft = craftEnum.Current;
+
+            Craftable c = Game.Instance.gameData.FindCraftable(craft.Key);
+            craftables[c] = craft.Value;
+        }
     }
 
     public AtomCollision EstimateCombine(Atom a, Atom b, int aAmo, int bAmo) {
@@ -225,9 +333,26 @@ public class PlayerData  {
         if (targetInfo.GetHalfLife() == 0f) {
             info.stability = 1.0f;
         } else {
-            float halfLife = targetInfo.GetHalfLife() + timeUpgrade.GetValue();
-            float multiple = 1 / Mathf.Sqrt(1 - (stabilityUpgrade.GetValue() * stabilityUpgrade.GetValue()) / (100 * 100));
-            info.stability = AtomInfo.GetStability(halfLife * multiple * multiple);
+            //float halfLife = targetInfo.GetHalfLife() + timeUpgrade.GetValue();
+            //float multiple = 1 / Mathf.Sqrt(1 - (stabilityUpgrade.GetValue() * stabilityUpgrade.GetValue()) / (100 * 100));
+            //info.stability = AtomInfo.GetStability(halfLife * multiple * multiple);
+
+            //\frac{\left(\left(t\cdot\left(a-v\right)+v\right)^{\sqrt{\frac{x}{30}}}\right)}{525600}
+            float halflife = targetInfo.GetHalfLife() + timeUpgrade.GetValue();
+            if(halflife < 0) {
+                info.stability = 0f;
+            } else {
+
+                float yearPercentage = 5256000; // 10 years ish
+                float t = .001f;
+
+                float stableValue = stabilityUpgrade.GetValue();
+
+                float lerp = Mathf.Lerp(halflife, yearPercentage, t);
+                float power = Mathf.Sqrt(stableValue / 30);
+                float stability = Mathf.Pow(lerp, power);
+                info.stability = Mathf.Clamp01(stability / yearPercentage);
+            }
         }
 
         return info;
@@ -312,9 +437,25 @@ public class PlayerData  {
         if (targetInfo.GetHalfLife() == 0f) {
             info.stability = 1.0f;
         } else {
-            float halfLife = targetInfo.GetHalfLife() + timeUpgrade.GetValue();
-            float multiple = 1 / Mathf.Sqrt(1 - (stabilityUpgrade.GetValue() * stabilityUpgrade.GetValue()) / (100 * 100));
-            info.stability = AtomInfo.GetStability(halfLife * multiple * multiple);
+            //float halfLife = targetInfo.GetHalfLife() + timeUpgrade.GetValue();
+            //float multiple = 1 / Mathf.Sqrt(1 - (stabilityUpgrade.GetValue() * stabilityUpgrade.GetValue()) / (100 * 100));
+            //info.stability = AtomInfo.GetStability(halfLife * multiple * multiple);
+
+            float halflife = targetInfo.GetHalfLife() + timeUpgrade.GetValue();
+            if (halflife < 0) {
+                info.stability = 0f;
+            } else {
+
+                float yearPercentage = 5256000; // 10 years ish
+                float t = .001f;
+
+                float stableValue = stabilityUpgrade.GetValue();
+
+                float lerp = Mathf.Lerp(halflife, yearPercentage, t);
+                float power = Mathf.Sqrt(stableValue / 30);
+                float stability = Mathf.Pow(lerp, power);
+                info.stability = Mathf.Clamp01(stability / yearPercentage);
+            }
         }
 
         return info;
@@ -458,6 +599,94 @@ public class PlayerData  {
             return amo;
         }
         return 0;
+    }
+
+    public void Story() {
+        switch (Game.Instance.story.GetChapter()) {
+            case 3:
+                goto case 1;
+            case 2:
+                goto case 1;
+            case 1:
+                radiusUpgrade.data.level = 2;
+                speedUpgrade.data.level = speedUpgrade.GetMaxLevel() / 2;
+                efficiencyUpgrade.data.level = efficiencyUpgrade.GetMaxLevel() / 2;
+                weightUpgrade.data.level = 0;
+                accelerationUpgrade.data.level = 0;
+                stabilityUpgrade.data.level = 0;
+                timeUpgrade.data.level = 0;
+
+                radiusUpgrade.Update();
+                if (OnCollectRadiusChange != null) {
+                    OnCollectRadiusChange(radiusUpgrade.GetValue());
+                }
+                speedUpgrade.Update();
+                if (OnCollectSpeedChange != null) {
+                    OnCollectSpeedChange(speedUpgrade.GetValue());
+                }
+                efficiencyUpgrade.Update();
+                if (OnCollectEfficiencyChange != null) {
+                    OnCollectEfficiencyChange(efficiencyUpgrade.GetValue());
+                }
+                weightUpgrade.Update();
+                if (OnCollectWeightChange != null) {
+                    OnCollectWeightChange(weightUpgrade.GetValue());
+                }
+                accelerationUpgrade.Update();
+                if (OnParticleSpeedChange != null) {
+                    OnParticleSpeedChange(accelerationUpgrade.GetValue());
+                }
+                stabilityUpgrade.Update();
+                if (OnParticleStabilityChange != null) {
+                    OnParticleStabilityChange(stabilityUpgrade.GetValue());
+                }
+                timeUpgrade.Update();
+                if (OnTimeDilationChange != null) {
+                    OnTimeDilationChange(timeUpgrade.GetValue());
+                }
+                break;
+            default:
+                Reset();
+                break;
+        }
+    }
+    public void Reset() {
+        radiusUpgrade.data.level = 0;
+        speedUpgrade.data.level = 0;
+        efficiencyUpgrade.data.level = 0;
+        weightUpgrade.data.level = 0;
+        accelerationUpgrade.data.level = 0;
+        stabilityUpgrade.data.level = 0;
+        timeUpgrade.data.level = 0;
+
+        radiusUpgrade.Update();
+        if (OnCollectRadiusChange != null) {
+            OnCollectRadiusChange(radiusUpgrade.GetValue());
+        }
+        speedUpgrade.Update();
+        if (OnCollectSpeedChange != null) {
+            OnCollectSpeedChange(speedUpgrade.GetValue());
+        }
+        efficiencyUpgrade.Update();
+        if (OnCollectEfficiencyChange != null) {
+            OnCollectEfficiencyChange(efficiencyUpgrade.GetValue());
+        }
+        weightUpgrade.Update();
+        if (OnCollectWeightChange != null) {
+            OnCollectWeightChange(weightUpgrade.GetValue());
+        }
+        accelerationUpgrade.Update();
+        if (OnParticleSpeedChange != null) {
+            OnParticleSpeedChange(accelerationUpgrade.GetValue());
+        }
+        stabilityUpgrade.Update();
+        if (OnParticleStabilityChange != null) {
+            OnParticleStabilityChange(stabilityUpgrade.GetValue());
+        }
+        timeUpgrade.Update();
+        if (OnTimeDilationChange != null) {
+            OnTimeDilationChange(timeUpgrade.GetValue());
+        }
     }
 
     public bool Upgrade(UpgradeType type) {
@@ -784,6 +1013,65 @@ public class PlayerData  {
 
         return upgrade.GetMeasurement();
     }
+    public UpgradeLevel GetUpgrade(UpgradeType type) {
+        UpgradeLevel upgrade = null;
+
+        switch (type) {
+            case UpgradeType.Collect_Speed:
+                upgrade = speedUpgrade;
+                break;
+            case UpgradeType.Collect_Radius:
+                upgrade = radiusUpgrade;
+                break;
+            case UpgradeType.Collect_Efficiency:
+                upgrade = efficiencyUpgrade;
+                break;
+            case UpgradeType.Collect_Weight:
+                upgrade = weightUpgrade;
+                break;
+            case UpgradeType.Particle_Speed:
+                upgrade = accelerationUpgrade;
+                break;
+            case UpgradeType.Particle_Stability:
+                upgrade = stabilityUpgrade;
+                break;
+            case UpgradeType.Time_Dilation:
+                upgrade = timeUpgrade;
+                break;
+        }
+
+        return upgrade;
+    }
+    public OnFloatChange GetUpgradeDelegate(UpgradeType type) {
+        OnFloatChange upgradeChange;
+
+        switch (type) {
+            case UpgradeType.Collect_Speed:
+                upgradeChange = OnCollectSpeedChange;
+                break;
+            case UpgradeType.Collect_Radius:
+                upgradeChange = OnCollectRadiusChange;
+                break;
+            case UpgradeType.Collect_Efficiency:
+                upgradeChange = OnCollectEfficiencyChange;
+                break;
+            case UpgradeType.Collect_Weight:
+                upgradeChange = OnCollectWeightChange;
+                break;
+            case UpgradeType.Particle_Speed:
+                upgradeChange = OnParticleSpeedChange;
+                break;
+            case UpgradeType.Particle_Stability:
+                upgradeChange = OnParticleStabilityChange;
+                break;
+            case UpgradeType.Time_Dilation:
+                upgradeChange = OnTimeDilationChange;
+                break;
+            default:
+                return null;
+        }
+        return upgradeChange;
+    }
 
     public int GetCraftableAmount(Craftable c) {
         int amo = 0;
@@ -793,4 +1081,51 @@ public class PlayerData  {
         return amo;
     }
     public float GetMoney() { return money; }
+
+    public void Save(SaveData s) {
+        s.money = money;
+
+        //s.craftables = craftables;
+        var enumerator = craftables.GetEnumerator();
+        while (enumerator.MoveNext()) {
+            var c = enumerator.Current;
+            s.craftables.Add(c.Key);
+            s.craftableAmo.Add(c.Value);
+        }
+
+        //s.craftableAmo = craftables;
+
+        for(int i = 0; i < UpgradeTypeAmount; i++) {
+            s.upgradeData.Add(GetUpgrade((UpgradeType) i).data);
+        }
+       
+    }
+    public void Load(SaveData s) {
+        money = s.money;
+        if(OnMoneyChange != null) {
+            OnMoneyChange(money);
+        }
+
+        craftables = new Dictionary<Craftable, int>();
+        for(int i = 0; i < s.craftableAmo.Count; i++) {
+            Craftable c = s.craftables[i];
+            int amo = s.craftableAmo[i];
+            craftables[c] = amo;
+        }
+
+        //craftables = s.craftables ?? new SerializableDictionary<Craftable, int>();
+
+        for (int i = 0; i < UpgradeTypeAmount; i++) {
+
+            var data = s.upgradeData[i];
+            var upgrade = GetUpgrade((UpgradeType)i);
+
+            upgrade.data = data;
+
+            var upgradeDelegate = GetUpgradeDelegate((UpgradeType)i);
+            if(upgradeDelegate != null) {
+                upgradeDelegate(upgrade.data.value);
+            }
+        }
+    }
 }

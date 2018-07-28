@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class AtomCollector : MonoBehaviour {
 
@@ -11,16 +12,15 @@ public class AtomCollector : MonoBehaviour {
         public float ratio;
     }
 
-    [Header("Collection")]
-    public List<AtomRatio> atoms;
-    public float collectionPause = .2f;
+    [Header("Atoms")]
+    public int totalAtomAmo; // Total Max Amount of Atoms in this object
+    public List<AtomRatio> atoms; // Ratios of Atoms
 
-    private float nextCollectionTime;
+    [Header("Collect")]
+    public float collectionPause = .2f;
 
     [Header("Life")]
     public bool hasLife = true;
-    public float life = 100.0f;
-    public float maxLife = 100.0f; //Amount of Atoms in Object * 100. An atom is .001
     public Color aliveColor = Color.white;
     public Color deadColor = new Color(.0f, .0f, .0f, .0f);
     // Make several Waypoionts of color for certain objects? Like brown, gray, black, fade for Tree?
@@ -29,85 +29,100 @@ public class AtomCollector : MonoBehaviour {
     public bool canFlash = false;
     public float flashAlphaMultiple = .6f;
 
-    private bool isFlashing = false;
+    [Header("Other")]
+    [SerializeField] private List<AtomAmo> currAtoms = new List<AtomAmo>(); // Current atoms and their amount in  this Object
+    [SerializeField] private int currAtomAmo;
+
+    [SerializeField] private float nextCollectionTime;
+
+    [SerializeField] private Color currColor;
+    [SerializeField] private bool isFlashing = false;
 
     private new SpriteRenderer renderer;
 
     private void Start() {
         renderer = GetComponent<SpriteRenderer>();
 
-        for (int i = 0; i < 88; i++) {
-            if (UnityEngine.Random.value < .1f) {
-                AtomRatio ratio = new AtomRatio();
-                ratio.atom = Game.Instance.gameData.FindAtom(i + 1);
-                ratio.ratio = UnityEngine.Random.value * 100;
+        this.gameObject.layer = LayerMask.NameToLayer("AtomCollector");
 
-                atoms.Add(ratio);
-                break;
-            }
+        AtomAmo amo = new AtomAmo();
+        float totalRatio = 0f;
+
+        for (int i = 0; i < atoms.Count; i++) {
+            amo.atom = atoms[i].atom;
+            double ratio = atoms[i].ratio / 100d;
+            amo.amo = (int)(ratio * totalAtomAmo);
+            currAtoms.Add(amo);
+
+            totalRatio += atoms[i].ratio;
+        }
+        if(Mathf.Abs(totalRatio - 100.0f) > .001f) {
+            print(name + " has Ratio of " + totalRatio);
         }
 
-        this.gameObject.layer = LayerMask.NameToLayer("AtomCollector");
-     }
+        currAtomAmo = totalAtomAmo;
+        currColor = aliveColor;
+    }
+
+    public void AddAtom(AtomRatio a) {
+        atoms.Add(a);
+
+        currAtoms.Clear();
+        AtomAmo amo = new AtomAmo();
+        for (int i = 0; i < atoms.Count; i++) {
+            amo.atom = atoms[i].atom;
+            double ratio = atoms[i].ratio / 100d;
+            amo.amo = (int)(ratio * totalAtomAmo);
+            currAtoms.Add(amo);
+        }
+    }
 
     public List<AtomAmo> Absorb() {
         List<AtomAmo> atomsToBeAbsorbed = new List<AtomAmo>();
         if(Time.time < nextCollectionTime) { return atomsToBeAbsorbed; }
 
-        var playerData = Game.Instance.playerData;
+        PlayerData playerData = Game.Instance.playerData;
+        AtomAmo amoToCollect = new AtomAmo();
         int atomCount = 0;
+        float weightLimit = playerData.GetValue(PlayerData.UpgradeType.Collect_Weight);
+        float speedRatio = playerData.GetValue(PlayerData.UpgradeType.Collect_Speed);
+        int efficiencyAmo = (int)playerData.GetValue(PlayerData.UpgradeType.Collect_Efficiency);
 
-        //float number = UnityEngine.Random.Range(.0f, 100.0f);
-        //float ratio = 0f;
-        //for (int i = 0; i < atoms.Count; i++) {
-        //    AtomRatio atomRatio = atoms[i];
+        for (int i = 0; i < currAtoms.Count; i++) {
+            AtomAmo atomAmo = currAtoms[i];
+            if(atomAmo.amo <= 0) { continue; }
 
-        //    ratio += atomRatio.ratio;
-        //    if(number <= ratio) {
-        //        AtomAmo atomAmo = new AtomAmo();
-        //        atomAmo.atom = atomRatio.atom;
-        //        atomAmo.amo = UnityEngine.Random.Range(1, (int)playerData.GetAtomCollectorEfficiency() + 1);
+            AtomInfo info = Game.Instance.gameData.FindAtomInfo(atomAmo.atom.GetAtomicNumber());
+            if (info.GetProtons() + info.GetNeutrons() > weightLimit) { continue; }
 
-        //        atomsToBeAbsorbed.Add(atomAmo);
+            int maxAmo = efficiencyAmo / info.GetProtons();
+            if(maxAmo < 2) { maxAmo = 2; }
 
-        //        atomCount += atomAmo.amo;
+            int randAmo = UnityEngine.Random.Range(0, maxAmo);
+            if(randAmo == 0) { continue; }
 
-        //        break;
-        //    }
-        //}
+            amoToCollect.atom = atomAmo.atom;
+            amoToCollect.amo = randAmo > atomAmo.amo ? atomAmo.amo : randAmo;
+            
+            atomsToBeAbsorbed.Add(amoToCollect);
+            atomCount += amoToCollect.amo;
 
-        
-        for (int i = 0; i < atoms.Count; i++) {
-            AtomRatio atomRatio = atoms[i];
-
-            float ratio = UnityEngine.Random.Range(.0f, 100.0f);
-            if(ratio <= atomRatio.ratio) {
-                AtomAmo atomAmo = new AtomAmo();
-                atomAmo.atom = atomRatio.atom;
-                //atomAmo.amo = 1;
-                atomAmo.amo = UnityEngine.Random.Range(1, (int)playerData.GetValue(PlayerData.UpgradeType.Collect_Efficiency));
-
-                // Lithium is a 30%
-                // Hygrogen is a 70%
-                // Effeciency is 100%
-
-                // Spanning:
-                // If I generate 30 or less, I get Lithium, else I get Hydrogen.
-                // I will always get an Atom, but it will only be 1 atom.
-                // The Efficieny could affect how many of the atom I get.
-
-                atomsToBeAbsorbed.Add(atomAmo);
-
-                atomCount += atomAmo.amo;
+            if (hasLife) {
+                atomAmo.amo -= amoToCollect.amo; // Because Dumb
+                currAtomAmo -= amoToCollect.amo;
+                currAtoms[i] = atomAmo;
             }
         }
-        
-        
+
         // Time
-        nextCollectionTime = Time.time + collectionPause * playerData.GetValue(PlayerData.UpgradeType.Collect_Speed);
+        if(atomCount != 0) {
+            nextCollectionTime = Time.time + collectionPause * speedRatio;
+        }
 
         // Life
-        LoseLife(atomCount / 100f);
+        if (hasLife) {
+            CheckLife();
+        }
 
         // Flash
         if (canFlash && !isFlashing && atomCount != 0 && !IsDead()) {
@@ -117,33 +132,33 @@ public class AtomCollector : MonoBehaviour {
         return atomsToBeAbsorbed;
     }
 
-    public void LoseLife(float damage) {
+    public void CheckLife() {
         if (!hasLife) { return; }
 
-        life -= damage;
-        Color c = deadColor;
-
         if (IsDead()) {
-            life = .0f;
             this.gameObject.SetActive(false);
-        } else {
-
-            float t = 1 - life / maxLife;
-            c =  Color.Lerp(aliveColor, deadColor, t);
+            return;
         }
 
+        float t = 1 - (float)currAtomAmo / totalAtomAmo;
+
+        currColor = Color.Lerp(aliveColor, deadColor, t);
         if (renderer != null) {
-            renderer.color = c;
+            renderer.color = currColor;
         }
     }
+
     public bool IsDead() {
-        return life <= 0f;
+        return currAtomAmo <= 0f;
+    }
+    public bool CanBeCollected() {
+        return Time.time > nextCollectionTime;
     }
 
     private IEnumerator Flash() {
         isFlashing = true;
 
-        Color startColor = renderer.color;
+        Color startColor = currColor;
         Color endColor = startColor;
         endColor.a *= flashAlphaMultiple;
 
@@ -151,6 +166,10 @@ public class AtomCollector : MonoBehaviour {
         float startTime = Time.time;
         while (Time.time < startTime + collectionPause) {
             float t = (Time.time - startTime) / collectionPause;
+
+            startColor = currColor;
+            endColor = startColor;
+            endColor.a *= flashAlphaMultiple;
 
             Color c = Color.Lerp(startColor, endColor, t);
             renderer.color = c;
@@ -164,6 +183,10 @@ public class AtomCollector : MonoBehaviour {
         while (Time.time < startTime + collectionPause) {
             float t = (Time.time - startTime) / collectionPause;
 
+            startColor = currColor;
+            endColor = startColor;
+            endColor.a *= flashAlphaMultiple;
+
             Color c = Color.Lerp(endColor, startColor, t);
             renderer.color = c;
 
@@ -176,6 +199,7 @@ public class AtomCollector : MonoBehaviour {
 
     private void OnDisable() {
         isFlashing = false;
+        //renderer.color = currColor;
     }
 
 }

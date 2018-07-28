@@ -28,13 +28,15 @@ public class ResultUI : MonoBehaviour {
 
         // Used Atoms
         if (used != null) {
-             
-            if (used.Count > 0 && used[0].atom != null) {
-                usedAtomName.text = used[0].atom.GetName()+"\n";
-                usedAtomAmo.text = "" + used[0].amo + "\n";
-            }
-            for (int i = 1; i < used.Count; i++) {
-                if (used[i].atom != null) {
+
+            //if (used.Count > 0 && used[0].atom != null) {
+            //    usedAtomName.text = used[0].atom.GetName()+"\n";
+            //    usedAtomAmo.text = "" + used[0].amo + "\n";
+            //}
+            usedAtomName.text = "";
+            usedAtomAmo.text = "";
+            for (int i = 0; i < used.Count; i++) {
+                if (used[i].atom != null && used[i].amo > 0) {
                     usedAtomName.text += used[i].atom.GetName() + "\n";
                     usedAtomAmo.text += used[i].amo + "\n";
                 }
@@ -63,12 +65,14 @@ public class ResultUI : MonoBehaviour {
 
         // Produced Atoms
         if (results != null) {
-            if (results.Count > 0 && results[0].atom != null) {
-                producedAtomName.text = results[0].atom.GetName() + "\n";
-                producedAtomAmo.text = "" + results[0].amo + "\n";
-            }
-            for (int i = 1; i < results.Count; i++) {
-                if (results[i].atom != null) {
+            //if (results.Count > 0 && results[0].atom != null) {
+            //    producedAtomName.text = results[0].atom.GetName() + "\n";
+            //    producedAtomAmo.text = "" + results[0].amo + "\n";
+            //}
+            producedAtomName.text = "";
+            producedAtomAmo.text = "";
+            for (int i = 0; i < results.Count; i++) {
+                if (results[i].atom != null && results[i].amo > 0) {
                     producedAtomName.text += results[i].atom.GetName() + "\n";
                     producedAtomAmo.text += results[i].amo + "\n";
                 }

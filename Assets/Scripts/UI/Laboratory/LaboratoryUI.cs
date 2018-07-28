@@ -1,15 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LaboratoryUI : MonoBehaviour {
 
-    [SerializeField] RectTransform upgradeUI; // Turn into Scroll with Info...
-    [SerializeField] RectTransform combineUI;
-    [SerializeField] RectTransform splitUI;
-    [SerializeField] RectTransform craftUI;
-    [SerializeField] ResultUI resultUI;
-    [SerializeField] RenameUI renameUI;
+    [Header("UI")]
+    [SerializeField] public RectTransform rect;
+    [SerializeField] public UpgradeUI upgradeUI; // Turn into Scroll with Info...
+    [SerializeField] public CombineUI combineUI;
+    [SerializeField] public SplitUI splitUI;
+    [SerializeField] public CraftUI craftUI;
+    [SerializeField] public ResultUI resultUI;
+    [SerializeField] public RenameUI renameUI;
+
+    [Header("Buttons)")]
+    [SerializeField] public Button backBtn;
+    [SerializeField] public Button upgradeBtn;
+    [SerializeField] public Button combineBtn;
+    [SerializeField] public Button splitBtn;
+    [SerializeField] public Button craftBtn;
 
     public void DisplayUpgrades() {
         upgradeUI.gameObject.SetActive(true);
@@ -25,6 +35,9 @@ public class LaboratoryUI : MonoBehaviour {
     }
 
     private void OnEnable() {
+        Reset();
+    }
+    private void OnDisable() {
         Reset();
     }
 
