@@ -46,8 +46,6 @@ public class Player : MonoBehaviour {
         Game.Instance.playerData.OnCollectRadiusChange += OnRadiusChange;
 
         IsRightHanded(true);
-
-        //discoverEffect.
     }
 
     private void Update() {
@@ -76,34 +74,39 @@ public class Player : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.M)) {
             Craftable c = Game.Instance.story.beachUnlockable;
-            for (int i = 0; i < c.GetAtomsForProduction().Length; i++) {
-                Game.Instance.Absorb(c.GetAtomsForProduction()[i].atom, c.GetAtomsForProduction()[i].amo);
-            }
-            Game.Instance.playerData.Craft(c, 1);
+            Game.Instance.playerData.AddCraftable(c);
+            //for (int i = 0; i < c.GetAtomsForProduction().Length; i++) {
+            //    Game.Instance.Absorb(c.GetAtomsForProduction()[i].atom, c.GetAtomsForProduction()[i].amo);
+            //}
+            //Game.Instance.playerData.Craft(c, 1);
 
             c = Game.Instance.story.mineUnlockable;
-            for (int i = 0; i < c.GetAtomsForProduction().Length; i++) {
-                Game.Instance.Absorb(c.GetAtomsForProduction()[i].atom, c.GetAtomsForProduction()[i].amo);
-            }
-            Game.Instance.playerData.Craft(c, 1);
+            Game.Instance.playerData.AddCraftable(c);
+            //for (int i = 0; i < c.GetAtomsForProduction().Length; i++) {
+            //    Game.Instance.Absorb(c.GetAtomsForProduction()[i].atom, c.GetAtomsForProduction()[i].amo);
+            //}
+            //Game.Instance.playerData.Craft(c, 1);
 
             c = Game.Instance.story.oceanUnlockable;
-            for (int i = 0; i < c.GetAtomsForProduction().Length; i++) {
-                Game.Instance.Absorb(c.GetAtomsForProduction()[i].atom, c.GetAtomsForProduction()[i].amo);
-            }
-            Game.Instance.playerData.Craft(c, 1);
+            Game.Instance.playerData.AddCraftable(c);
+            //for (int i = 0; i < c.GetAtomsForProduction().Length; i++) {
+            //    Game.Instance.Absorb(c.GetAtomsForProduction()[i].atom, c.GetAtomsForProduction()[i].amo);
+            //}
+            //Game.Instance.playerData.Craft(c, 1);
 
             c = Game.Instance.story.townUnlockable;
-            for (int i = 0; i < c.GetAtomsForProduction().Length; i++) {
-                Game.Instance.Absorb(c.GetAtomsForProduction()[i].atom, c.GetAtomsForProduction()[i].amo);
-            }
-            Game.Instance.playerData.Craft(c, 1);
+            Game.Instance.playerData.AddCraftable(c);
+            //for (int i = 0; i < c.GetAtomsForProduction().Length; i++) {
+            //    Game.Instance.Absorb(c.GetAtomsForProduction()[i].atom, c.GetAtomsForProduction()[i].amo);
+            //}
+            //Game.Instance.playerData.Craft(c, 1);
 
             c = Game.Instance.story.desertUnlockable;
-            for (int i = 0; i < c.GetAtomsForProduction().Length; i++) {
-                Game.Instance.Absorb(c.GetAtomsForProduction()[i].atom, c.GetAtomsForProduction()[i].amo);
-            }
-            Game.Instance.playerData.Craft(c, 1);
+            Game.Instance.playerData.AddCraftable(c);
+            //for (int i = 0; i < c.GetAtomsForProduction().Length; i++) {
+            //    Game.Instance.Absorb(c.GetAtomsForProduction()[i].atom, c.GetAtomsForProduction()[i].amo);
+            //}
+            //Game.Instance.playerData.Craft(c, 1);
         }
     }
 

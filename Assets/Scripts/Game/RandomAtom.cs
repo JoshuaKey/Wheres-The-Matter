@@ -6,18 +6,26 @@ public class RandomAtom : MonoBehaviour {
 
     [SerializeField] public AtomCollector atomCollector;
 
+    [SerializeField] private Atom[] randomAtoms;
+    [SerializeField] private float amo;
+
 	// Use this for initialization
 	void Start () {
-        for (int i = 0; i < 88; i++) {
-            if (UnityEngine.Random.value < .1f) {
-                AtomCollector.AtomRatio ratio = new AtomCollector.AtomRatio();
-                ratio.atom = Game.Instance.gameData.FindAtom(i + 1);
-                ratio.ratio = UnityEngine.Random.value * 100;
+        int index = Random.Range(0, randomAtoms.Length);
 
-                atomCollector.AddAtom(ratio);
-                break;
-            }
+        AtomCollector.AtomRatio atomAmo = new AtomCollector.AtomRatio();
+        atomAmo.atom = randomAtoms[index];
+        atomAmo.ratio = amo;
+
+        atomCollector = atomCollector ?? GetComponent<AtomCollector>();
+
+        if(atomCollector == null) {
+            print("Could not find Atom Collector on " + name);
+            return;
         }
+        
+
+        atomCollector.AddAtom(atomAmo);
     }
 	
 }

@@ -576,6 +576,18 @@ public class PlayerData  {
 
         return result;
     }
+    public void AddCraftable(Craftable c) {
+        int amoOfCraftables;
+        if (!craftables.TryGetValue(c, out amoOfCraftables)) {
+            craftables[c] = 1;
+        } else {
+            craftables[c] = amoOfCraftables + 1;
+        }
+
+        if (OnCraftableProduced != null) {
+            OnCraftableProduced(c, 1);
+        }
+    }
 
     public int Sell(Craftable c, int amo) {
         int amoOfCraftables;

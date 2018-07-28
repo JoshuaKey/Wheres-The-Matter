@@ -68,34 +68,36 @@ MonoBehaviour:
   totalAtomAmo: 2147483647
   atoms:
   - atom: {fileID: 11400000, guid: 7c7d9be9d678f4149ab8d9af49754487, type: 2}
-    ratio: 11.25
-  - atom: {fileID: 11400000, guid: ad47fa45acc9bd943b26f6dbf891a75d, type: 2}
-    ratio: 0.52625
+    ratio: 33.32
+  - atom: {fileID: 11400000, guid: a1f03f54e2df30a4594a900188118c7b, type: 2}
+    ratio: 0.02098
   - atom: {fileID: 11400000, guid: cd16faeb326f0f045b2fb4a9c241d12b, type: 2}
-    ratio: 62.44
-  - atom: {fileID: 11400000, guid: 5342e67613e71f348ab75dac03a3d5df, type: 2}
-    ratio: 19.9
+    ratio: 66.64
   - atom: {fileID: 11400000, guid: 42dcaf28dd60acc48a2c198062baae14, type: 2}
-    ratio: 0.6975
+    ratio: 0.01556
   - atom: {fileID: 11400000, guid: 307678c565737f545884b26f06167e2e, type: 2}
-    ratio: 0.27
-  - atom: {fileID: 11400000, guid: 027cdb000ec525c48aa1abab3f4d1afe, type: 2}
-    ratio: 0.2475
-  - atom: {fileID: 11400000, guid: b1b5ac78b20b51a4c90905f4c12f81eb, type: 2}
-    ratio: 0.144
-  - atom: {fileID: 11400000, guid: c03e8ad0cd76a9d4e84d5faa538b53ec, type: 2}
-    ratio: 0.1
+    ratio: 0.001672
   - atom: {fileID: 11400000, guid: da05f15b5e283b94e80b207a9a00e4a8, type: 2}
-    ratio: 0.05
-  - atom: {fileID: 11400000, guid: 4be102781e84eb5449e1975209d138f4, type: 2}
-    ratio: 0.2335
-  - atom: {fileID: 11400000, guid: 22df63392692a2d4088f2231af4f2d17, type: 2}
-    ratio: 1.5705
+    ratio: 0.000876
   - atom: {fileID: 11400000, guid: 85e016d8587c4a1418ac47405139c052, type: 2}
-    ratio: 1.539
-  - atom: {fileID: 11400000, guid: 4835c7c1cf928414f881db7504257734, type: 2}
-    ratio: 0.63
-  collectionPause: 3
+    ratio: 0.0004
+  - atom: {fileID: 11400000, guid: 22df63392692a2d4088f2231af4f2d17, type: 2}
+    ratio: 0.00038
+  - atom: {fileID: 11400000, guid: 16e9e82e64e3e2842b4bdf6f0221e9e3, type: 2}
+    ratio: 0.000065
+  - atom: {fileID: 11400000, guid: ad47fa45acc9bd943b26f6dbf891a75d, type: 2}
+    ratio: 0.000031
+  - atom: {fileID: 11400000, guid: 275d73f42a744c047ad378dfb4e488a8, type: 2}
+    ratio: 0.000014
+  - atom: {fileID: 11400000, guid: eff6bd9173a7d5646a9aafb70fa48583, type: 2}
+    ratio: 0.000004
+  - atom: {fileID: 11400000, guid: b1b5ac78b20b51a4c90905f4c12f81eb, type: 2}
+    ratio: 0.000004
+  - atom: {fileID: 11400000, guid: 027cdb000ec525c48aa1abab3f4d1afe, type: 2}
+    ratio: 0.000001
+  - atom: {fileID: 11400000, guid: 86e6c0aba26723e4ba6e23cdfce0d27a, type: 2}
+    ratio: 0.000001
+  collectionPause: 0.1
   hasLife: 1
   aliveColor: {r: 1, g: 1, b: 1, a: 1}
   deadColor: {r: 0, g: 0, b: 0, a: 0}

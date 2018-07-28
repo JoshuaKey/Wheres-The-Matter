@@ -56,12 +56,22 @@ public class AtomCollector : MonoBehaviour {
 
             totalRatio += atoms[i].ratio;
         }
-        if(Mathf.Abs(totalRatio - 100.0f) > .001f) {
+        if(100.0f - totalRatio > .001f || totalRatio > 100.0f) {
             print(name + " has Ratio of " + totalRatio);
         }
 
         currAtomAmo = totalAtomAmo;
         currColor = aliveColor;
+
+        int tempAtomAmo = GetSum(currAtoms);
+        if(tempAtomAmo > 0) {
+            currAtomAmo = tempAtomAmo;
+        }
+
+        //if(tempAtomAmo != currAtomAmo) {
+        //    print("Object " + name + " Total Amo (" + totalAtomAmo + ") doesnt equal Curr Amo (" + tempAtomAmo + 
+        //        ")");
+        //}
     }
 
     public void AddAtom(AtomRatio a) {
@@ -75,6 +85,13 @@ public class AtomCollector : MonoBehaviour {
             amo.amo = (int)(ratio * totalAtomAmo);
             currAtoms.Add(amo);
         }
+    }
+    public int GetSum(List<AtomAmo> amo) {
+        int sum = 0;
+        for(int i  = 0; i < amo.Count; i++) {
+            sum += amo[i].amo;
+        }
+        return sum;
     }
 
     public List<AtomAmo> Absorb() {
