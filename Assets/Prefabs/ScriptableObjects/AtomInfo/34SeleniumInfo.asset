@@ -22,9 +22,10 @@ MonoBehaviour:
     Selenium comes from ''Selene'' meaning Moon in Ancient Greek. It was given this
     name because it was discovered shortly after Tellurium meaning ''Earth''.'
   image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
-  placesToBeFound: []
+  placesToBeFound:
+  - Rocks
   origins:
-  - 
+  - Exploding Massive Stars
   isotopes:
   - Se<sup>74</sup> (.86%)
   - Se<sup>76</sup> (9.23%)
@@ -39,4 +40,3 @@ MonoBehaviour:
   density: 4.809
   neutrons: 46
   halfLife: 0
-  isDiscovered: 1

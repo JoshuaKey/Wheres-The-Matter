@@ -18,6 +18,11 @@ public class Achievements : MonoBehaviour {
         int currAmo = data.GetCurrAmo();
         int prevAmo = currAmo - (int)amo;
 
+        if(currAmo == int.MaxValue) {
+            Game.Instance.logSystem.Log(a.GetName() + ": MAX");
+            return;
+        }
+
         bool hasSurpassed = false;
         for (int i = 1000000000; i > 1; i /= 10) {
             if(CheckAtomAmo(currAmo, prevAmo, i, ref hasSurpassed)) {

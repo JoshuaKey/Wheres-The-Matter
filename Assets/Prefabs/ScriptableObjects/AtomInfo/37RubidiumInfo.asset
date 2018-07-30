@@ -20,7 +20,8 @@ MonoBehaviour:
 
     Rubidium comes from ''Rubidius'' meaning Deepest Red in Latin.'
   image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
-  placesToBeFound: []
+  placesToBeFound:
+  - Rocks
   origins:
   - Exploding Massive Stars
   isotopes:
@@ -33,4 +34,3 @@ MonoBehaviour:
   density: 1.53
   neutrons: 48
   halfLife: 0
-  isDiscovered: 1

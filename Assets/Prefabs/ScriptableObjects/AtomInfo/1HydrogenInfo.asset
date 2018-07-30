@@ -15,7 +15,9 @@ MonoBehaviour:
   description: "Hydrogen is the first element and makes up 75% of the universe and
     90% of all atoms. \nMost stars are composed of Hydrogen in the Plasma state."
   image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
-  placesToBeFound: []
+  placesToBeFound:
+  - Water
+  - Living Things
   origins:
   - Big Bang Fusion
   isotopes:
@@ -28,4 +30,3 @@ MonoBehaviour:
   density: 0.000082
   neutrons: 0
   halfLife: 0
-  isDiscovered: 1

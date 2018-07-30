@@ -13,8 +13,8 @@ public struct AtomAmo {
 public struct SerializableAtomData {
     [SerializeField] public int currAmo;
     [SerializeField] public float passiveGain;
-    [SerializeField] public int totalCollected;
-    [SerializeField] public int totalUsed;
+    [SerializeField] public long totalCollected;
+    [SerializeField] public long totalUsed;
     [SerializeField] public bool isDiscovered;
 }
 
@@ -60,8 +60,8 @@ public class AtomData : ScriptableObject, IComparable<AtomData> {
     public Atom GetAtom() { return atom; }
     public int GetCurrAmo() { return data.currAmo; }
     public float GetPassiveGain() { return data.passiveGain; }
-    public int GetTotalCollected() { return data.totalCollected; }
-    public float GetTotalUsed() { return data.totalUsed; }
+    public long GetTotalCollected() { return data.totalCollected; }
+    public long GetTotalUsed() { return data.totalUsed; }
 
     public void SetIsDiscovered(bool value) { data.isDiscovered = value; }
     public bool IsDiscovered() { return data.isDiscovered; }

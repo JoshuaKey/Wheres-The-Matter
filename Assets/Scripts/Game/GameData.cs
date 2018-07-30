@@ -82,6 +82,10 @@ public class GameData  {
                 maxAtom = atom;
             }
         }
+        if(amo + data.GetCurrAmo() < data.GetCurrAmo()) {
+            amo = int.MaxValue - data.GetCurrAmo();
+            if (amo == 0) { return; }
+        } 
 
         data.Gain(amo);
         if (OnAtomAdd != null) {

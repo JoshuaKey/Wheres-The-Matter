@@ -18,7 +18,8 @@ MonoBehaviour:
 
     Zirconium comes from ''Zargun'' meaning Gold colored in Arabic.'
   image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
-  placesToBeFound: []
+  placesToBeFound:
+  - Rocks
   origins:
   - Dying Low Mass Stars
   - Exploding Massive Stars
@@ -35,4 +36,3 @@ MonoBehaviour:
   density: 6.52
   neutrons: 50
   halfLife: 0
-  isDiscovered: 1

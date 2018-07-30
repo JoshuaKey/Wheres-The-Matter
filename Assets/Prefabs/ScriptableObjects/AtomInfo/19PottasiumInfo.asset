@@ -19,7 +19,9 @@ MonoBehaviour:
 
     Its name comes from the English word ''Potash''.'
   image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
-  placesToBeFound: []
+  placesToBeFound:
+  - Living Things
+  - Rocks
   origins:
   - Exploding Massive Star
   - Exploding White Dwarf
@@ -34,4 +36,3 @@ MonoBehaviour:
   density: 0.89
   neutrons: 20
   halfLife: 0
-  isDiscovered: 1

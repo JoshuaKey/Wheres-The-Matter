@@ -201,7 +201,8 @@ public class SplitUI : MonoBehaviour {
                 info.stability *= infoTemp.stability;
             } while (atom.GetAtomicNumber() != 1);
         } else {
-            info = Game.Instance.playerData.EstimateSplit(atomA, (int)atomAAmo.value);
+            int amo = atomAAmo.value < 0 ? int.MaxValue : (int)atomAAmo.value;
+            info = Game.Instance.playerData.EstimateSplit(atomA, amo);
         }
 
         AtomData atomData = Game.Instance.gameData.FindAtomData(info.targetAtom.GetAtomicNumber());

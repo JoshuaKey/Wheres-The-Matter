@@ -18,7 +18,8 @@ MonoBehaviour:
     stable to be discovered. \nHafnium is named after ''Hafnia' the name Latin for
     Copenhagen."
   image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
-  placesToBeFound: []
+  placesToBeFound:
+  - Rocks
   origins:
   - Dying Low Mass Stars
   - Merging Neutron Stars
@@ -36,4 +37,3 @@ MonoBehaviour:
   density: 13.3
   neutrons: 108
   halfLife: 0
-  isDiscovered: 1

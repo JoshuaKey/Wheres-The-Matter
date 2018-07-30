@@ -17,7 +17,8 @@ MonoBehaviour:
 
     Xenon comes from ''Xenos'' meaning Stranger in Ancient Greek'
   image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
-  placesToBeFound: []
+  placesToBeFound:
+  - Air
   origins:
   - Merging Neutron Stars
   - Dying Low Mass Stars
@@ -37,4 +38,3 @@ MonoBehaviour:
   density: 0.005366
   neutrons: 78
   halfLife: 0
-  isDiscovered: 1

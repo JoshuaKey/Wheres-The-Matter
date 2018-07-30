@@ -19,7 +19,8 @@ MonoBehaviour:
 
     Mercury is named after the planet Mercury.'
   image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
-  placesToBeFound: []
+  placesToBeFound:
+  - Some Living Things
   origins:
   - Dying Low Mass Stars
   - Merging Neutron Stars
@@ -38,4 +39,3 @@ MonoBehaviour:
   density: 13.5336
   neutrons: 122
   halfLife: 0
-  isDiscovered: 1

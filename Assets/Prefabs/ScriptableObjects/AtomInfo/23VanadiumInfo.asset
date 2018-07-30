@@ -17,7 +17,8 @@ MonoBehaviour:
     Even more can be toxic.\nVanadium is named after 'Vanadis' the old Norse name
     for the Scandanavian Goddess Freyja."
   image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
-  placesToBeFound: []
+  placesToBeFound:
+  - Rocks
   origins:
   - Exploding White Dwarfs
   - Exploding Massive Stars
@@ -31,4 +32,3 @@ MonoBehaviour:
   density: 6
   neutrons: 28
   halfLife: 0
-  isDiscovered: 1

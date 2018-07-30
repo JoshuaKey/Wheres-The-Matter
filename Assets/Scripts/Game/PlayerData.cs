@@ -61,7 +61,7 @@ public class PlayerData  {
         [SerializeField] private AnimationCurve valueProgression;
 
         public void Init() {
-            data.level = 0;
+            data.level = 1;
             data.value = valueProgression.Evaluate(data.level);
 
             AtomAmo amo = new AtomAmo();
@@ -297,9 +297,12 @@ public class PlayerData  {
         aAmo = Mathf.Min(aAmo, aData.GetCurrAmo());
         bAmo = Mathf.Min(bAmo, bData.GetCurrAmo());
 
+        //aAmo = Mathf.Min(aAmo, int.MaxValue / aInfo.GetNeutrons());
+        //bAmo = Mathf.Min(bAmo, int.MaxValue / bInfo.GetNeutrons());
+
         int maxProtons = aInfo.GetProtons() + bInfo.GetProtons(); 
-        int totalANeutrons = aAmo * aInfo.GetNeutrons();
-        int totalBNeutrons = bAmo * bInfo.GetNeutrons();
+        long totalANeutrons = aAmo * aInfo.GetNeutrons();
+        long totalBNeutrons = bAmo * bInfo.GetNeutrons();
 
         if (Game.Instance.gameData.GetAtomAmount() >= maxProtons) {
             info.targetAtom = Game.Instance.gameData.FindAtom(maxProtons); // Should Correlate to Atomic number
@@ -309,9 +312,10 @@ public class PlayerData  {
         }
         AtomInfo targetInfo = Game.Instance.gameData.FindAtomInfo(maxProtons);
 
-        int minProtons = Mathf.Min(aAmo, bAmo); // Min of Atoms
-        int minNeutrons = (totalANeutrons + totalBNeutrons) / targetInfo.GetNeutrons();
-        info.amo = Mathf.Min(minProtons, minNeutrons);
+        long minProtons = Mathf.Min(aAmo, bAmo); // Min of Atoms
+        long minNeutrons = (totalANeutrons + totalBNeutrons) / targetInfo.GetNeutrons();
+        long amo = minProtons > minNeutrons ? minNeutrons : minProtons;
+        info.amo = amo > int.MaxValue ? int.MaxValue : (int)amo;
 
         // 119 / 10 -> 11.9% Speed
         // 1 - (11.9 / 12)  -> .008333 About 1 / 12
@@ -415,8 +419,10 @@ public class PlayerData  {
 
         AtomInfo aInfo = Game.Instance.gameData.FindAtomInfo(a.GetAtomicNumber());
 
+        //aAmo = Mathf.Min(aAmo, int.MaxValue / aInfo.GetNeutrons());
+
         int halfProtons = aInfo.GetProtons() / 2;
-        int totalNeutrons = aInfo.GetNeutrons() * aAmo;
+        long totalNeutrons = aInfo.GetNeutrons() * 1L * aAmo;
 
         // Target
         info.targetAtom = Game.Instance.gameData.FindAtom(halfProtons); // Should Correlate to Atomic number
@@ -424,9 +430,11 @@ public class PlayerData  {
 
         // Max Amount to Be Made
         if(info.targetAtom.GetAtomicNumber() == 1) { // Hydrogen
-            info.amo = aInfo.GetProtons() * aAmo / targetInfo.GetProtons(); // Proton Based
+            long protons = aInfo.GetProtons() * aAmo;
+            info.amo = (int)(protons / targetInfo.GetProtons()); // Proton Based
         } else {
-            info.amo = totalNeutrons / targetInfo.GetNeutrons(); // Neutron Based
+            long amo = totalNeutrons / targetInfo.GetNeutrons();
+            info.amo = amo > int.MaxValue ? int.MaxValue : (int)amo; // Neutron Based
         }
         
         // Success
@@ -663,13 +671,13 @@ public class PlayerData  {
         }
     }
     public void Reset() {
-        radiusUpgrade.data.level = 0;
-        speedUpgrade.data.level = 0;
-        efficiencyUpgrade.data.level = 0;
-        weightUpgrade.data.level = 0;
-        accelerationUpgrade.data.level = 0;
-        stabilityUpgrade.data.level = 0;
-        timeUpgrade.data.level = 0;
+        radiusUpgrade.data.level = 1;
+        speedUpgrade.data.level = 1;
+        efficiencyUpgrade.data.level = 1;
+        weightUpgrade.data.level = 1;
+        accelerationUpgrade.data.level = 1;
+        stabilityUpgrade.data.level = 1;
+        timeUpgrade.data.level = 1;
 
         radiusUpgrade.Update();
         if (OnCollectRadiusChange != null) {

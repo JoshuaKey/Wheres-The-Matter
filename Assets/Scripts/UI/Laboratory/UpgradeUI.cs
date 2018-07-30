@@ -186,19 +186,22 @@ public class UpgradeUI : MonoBehaviour {
             + " " + Game.Instance.playerData.GetMeasurementAbbr(type);//nextValue;
 
         bool canCraft = true;
-        for(int i = 0; i < atomsNeeded.Count; i++) {
+        upgradeAtomName.text = "";
+        upgradeAtomNeed.text = "";
+        upgradeAtomHave.text = "";
+        for (int i = 0; i < atomsNeeded.Count; i++) {
             AtomAmo cost = atomsNeeded[i];
             if(cost.atom == null) { continue; }
             
             int amoHave = Game.Instance.gameData.FindAtomData(cost.atom.GetAtomicNumber()).GetCurrAmo();
             if (amoHave >= cost.amo) {
-                upgradeAtomName.text = cost.atom.GetName() + "\n";
-                upgradeAtomNeed.text = cost.amo + "\n";
-                upgradeAtomHave.text = amoHave + "\n";
+                upgradeAtomName.text += cost.atom.GetName() + "\n";
+                upgradeAtomNeed.text += cost.amo + "\n";
+                upgradeAtomHave.text += amoHave + "\n";
             } else {
-                upgradeAtomName.text = "<color=#ff8080>" + cost.atom.GetName() + "\n</color>";
-                upgradeAtomNeed.text = "<color=#ff8080>" + cost.amo + "\n</color>";
-                upgradeAtomHave.text = "<color=#ff8080>" + amoHave + "\n</color>";
+                upgradeAtomName.text += "<color=#ff8080>" + cost.atom.GetName() + "\n</color>";
+                upgradeAtomNeed.text += "<color=#ff8080>" + cost.amo + "\n</color>";
+                upgradeAtomHave.text += "<color=#ff8080>" + amoHave + "\n</color>";
                 canCraft = false;
             }
         }

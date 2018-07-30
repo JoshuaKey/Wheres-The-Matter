@@ -17,7 +17,9 @@ MonoBehaviour:
     below the Adam's apple, functioning. \nIodine comes from 'Iodes' meaning Violet
     in Ancient Greek."
   image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
-  placesToBeFound: []
+  placesToBeFound:
+  - Living Things
+  - Air
   origins:
   - Merging Neutron Stars
   - Dying Low MAss Stars
@@ -30,4 +32,3 @@ MonoBehaviour:
   density: 4.933
   neutrons: 74
   halfLife: 0
-  isDiscovered: 1

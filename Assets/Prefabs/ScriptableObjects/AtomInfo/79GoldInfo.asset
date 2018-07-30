@@ -18,7 +18,9 @@ MonoBehaviour:
 
     The atomic symbol, Au, comes from ''Aurum'' meaning Gold in Latin. '
   image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
-  placesToBeFound: []
+  placesToBeFound:
+  - Rocks
+  - Building Material
   origins:
   - Merging Neutron Stars
   - Dying Low Mass Stars
@@ -31,4 +33,3 @@ MonoBehaviour:
   density: 19.3
   neutrons: 118
   halfLife: 0
-  isDiscovered: 1

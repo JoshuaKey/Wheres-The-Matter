@@ -20,7 +20,8 @@ MonoBehaviour:
     Nickel is a shortened version of the German word ''Kupfernickel'' meaning Devil''s
     Nickel or St Nicholas'' Copper.'
   image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
-  placesToBeFound: []
+  placesToBeFound:
+  - Rocks
   origins:
   - Exploding White Dwarfs
   - Exploding Massive Stars
@@ -37,4 +38,3 @@ MonoBehaviour:
   density: 8.9
   neutrons: 30
   halfLife: 0
-  isDiscovered: 1

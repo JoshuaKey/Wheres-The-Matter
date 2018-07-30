@@ -19,7 +19,10 @@ MonoBehaviour:
     Calcium comes from ''Calx'' meaning Lime in Ancient Greek.'
   image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
   placesToBeFound:
-  - Beach
+  - Living Things
+  - Rocks
+  - Water
+  - Sand
   origins:
   - Exploding Massive Stars
   - Exploding White Dwarfs
@@ -37,4 +40,3 @@ MonoBehaviour:
   density: 1.54
   neutrons: 20
   halfLife: 0
-  isDiscovered: 1

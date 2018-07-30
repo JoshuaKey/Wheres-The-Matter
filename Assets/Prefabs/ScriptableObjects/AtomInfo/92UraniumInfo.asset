@@ -21,7 +21,9 @@ MonoBehaviour:
 
     Uranium is named after the planet Uranus.'
   image: {fileID: 21300000, guid: 610314c74f081ab4ea60f9541b5067a8, type: 3}
-  placesToBeFound: []
+  placesToBeFound:
+  - Factories
+  - Rocks
   origins:
   - Merging Neutron Stars
   isotopes:
@@ -35,4 +37,3 @@ MonoBehaviour:
   density: 19.1
   neutrons: 142
   halfLife: 4.468e+9
-  isDiscovered: 0
