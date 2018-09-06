@@ -11,11 +11,16 @@ public class MainMenu_AtomEffect : MonoBehaviour {
     bool completion = false;
 
     public void Check() {
+
         if (completion) { return; }
 
         for (int i = 0; i < rects.Length; i++) {
             var sizeDelta = rects[i].sizeDelta;
-            if (sizeDelta.x < 100) {
+            var scale = rects[i].localScale;
+            //if (sizeDelta.x < 100) {
+            //    return;
+            //}
+            if (scale.x < 2) {
                 return;
             }
         }
@@ -42,6 +47,9 @@ public class MainMenu_AtomEffect : MonoBehaviour {
             yield return new WaitForSeconds(timeWait);
             timeWait *= .95f;
         }
+
+        // ACHIEVEMENT
+        // SECRET UI
 
     }
 }

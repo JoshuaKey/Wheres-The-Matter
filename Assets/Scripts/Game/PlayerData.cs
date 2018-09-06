@@ -628,13 +628,13 @@ public class PlayerData  {
             case 2:
                 goto case 1;
             case 1:
-                radiusUpgrade.data.level = 2;
+                radiusUpgrade.data.level = 3;
                 speedUpgrade.data.level = speedUpgrade.GetMaxLevel() / 2;
-                efficiencyUpgrade.data.level = efficiencyUpgrade.GetMaxLevel() / 2;
-                weightUpgrade.data.level = 0;
-                accelerationUpgrade.data.level = 0;
-                stabilityUpgrade.data.level = 0;
-                timeUpgrade.data.level = 0;
+                efficiencyUpgrade.data.level = 17;
+                weightUpgrade.data.level = 1;
+                accelerationUpgrade.data.level = 1;
+                stabilityUpgrade.data.level = 1;
+                timeUpgrade.data.level = 1;
 
                 radiusUpgrade.Update();
                 if (OnCollectRadiusChange != null) {
@@ -666,7 +666,31 @@ public class PlayerData  {
                 }
                 break;
             default:
-                Reset();
+                radiusUpgrade.Init();
+                speedUpgrade.Init();
+                efficiencyUpgrade.Init();
+                accelerationUpgrade.Init();
+                stabilityUpgrade.Init();
+                timeUpgrade.Init();
+
+                if (OnCollectRadiusChange != null) {
+                    OnCollectRadiusChange(radiusUpgrade.GetValue());
+                }
+                if (OnCollectSpeedChange != null) {
+                    OnCollectSpeedChange(speedUpgrade.GetValue());
+                }
+                if (OnCollectEfficiencyChange != null) {
+                    OnCollectEfficiencyChange(efficiencyUpgrade.GetValue());
+                }
+                if (OnParticleSpeedChange != null) {
+                    OnParticleSpeedChange(accelerationUpgrade.GetValue());
+                }
+                if (OnParticleStabilityChange != null) {
+                    OnParticleStabilityChange(stabilityUpgrade.GetValue());
+                }
+                if (OnTimeDilationChange != null) {
+                    OnTimeDilationChange(timeUpgrade.GetValue());
+                }
                 break;
         }
     }

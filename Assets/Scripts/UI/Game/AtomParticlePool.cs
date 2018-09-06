@@ -46,7 +46,7 @@ public class AtomParticlePool : MonoBehaviour {
                 StopCoroutine(AtomExplosion());
                 this.enabled = true;
                 this.gameObject.SetActive(true);
-                for (int i = 0; i < 50; i++) {
+                for (int i = 0; i < 50 && i < particleMaxAmo; i++) {
                     atomParticles[i].gameObject.SetActive(false);
                 }
                 break;

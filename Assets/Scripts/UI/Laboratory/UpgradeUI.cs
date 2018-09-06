@@ -180,10 +180,16 @@ public class UpgradeUI : MonoBehaviour {
 
         upgradeName.text = Game.Instance.playerData.GetName(type);
         upgradeDesc.text = Game.Instance.playerData.GetDescription(type);
-        upgradeCurrValue.text = "Curr Value: " + System.Math.Round(Game.Instance.playerData.GetValue(type), 3)
-            + " " + Game.Instance.playerData.GetMeasurementAbbr(type);//currValue;
-        upgradeNextValue.text = "Next Value: " + System.Math.Round(Game.Instance.playerData.GetNextValue(type), 3)
-            + " " + Game.Instance.playerData.GetMeasurementAbbr(type);//nextValue;
+        double currValue = System.Math.Round(Game.Instance.playerData.GetValue(type), 3);
+        double nextValue = System.Math.Round(Game.Instance.playerData.GetNextValue(type), 3);
+        if(type == PlayerData.UpgradeType.Collect_Efficiency) {
+            currValue *= 100;
+            nextValue *= 100;
+        }
+        upgradeCurrValue.text = "Curr Value: " + currValue + " " + 
+            Game.Instance.playerData.GetMeasurementAbbr(type);//currValue;
+        upgradeNextValue.text = "Next Value: " + nextValue + " " + 
+            Game.Instance.playerData.GetMeasurementAbbr(type);//nextValue;
 
         bool canCraft = true;
         upgradeAtomName.text = "";

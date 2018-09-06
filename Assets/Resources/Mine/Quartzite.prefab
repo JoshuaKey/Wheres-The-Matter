@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212577725947456778}
   - component: {fileID: 65104845010242872}
   - component: {fileID: 114561085153887942}
+  - component: {fileID: 210055749137517284}
   m_Layer: 8
   m_Name: Quartzite
   m_TagString: Untagged
@@ -37,7 +38,7 @@ Transform:
   m_GameObject: {fileID: 1092421833651156}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3, y: 2, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -92,6 +93,16 @@ MonoBehaviour:
   nextCollectionTime: 0
   currColor: {r: 0, g: 0, b: 0, a: 0}
   isFlashing: 0
+--- !u!210 &210055749137517284
+SortingGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1092421833651156}
+  m_Enabled: 1
+  m_SortingLayerID: 1433007565
+  m_SortingLayer: 1
+  m_SortingOrder: 0
 --- !u!212 &212577725947456778
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -127,7 +138,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1d7903217c6a6f64dad975c405a5dad7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da2d16e7881479b4ab6caafc5e54490b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

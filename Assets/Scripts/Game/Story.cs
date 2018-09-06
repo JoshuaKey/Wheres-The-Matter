@@ -102,14 +102,16 @@ public class Story : MonoBehaviour {
         StopAllCoroutines();
         //ProgressStory();
 
-        mapUI.UnlockArea(World.AreaType.MINE, Game.Instance.playerData.GetCraftableAmount(mineUnlockable) > 0);
-        mapUI.UnlockArea(World.AreaType.BEACH, Game.Instance.playerData.GetCraftableAmount(beachUnlockable) > 0);
-        mapUI.UnlockArea(World.AreaType.DESERT, Game.Instance.playerData.GetCraftableAmount(desertUnlockable) > 0);
-        mapUI.UnlockArea(World.AreaType.OCEAN, Game.Instance.playerData.GetCraftableAmount(oceanUnlockable) > 0);
-        mapUI.UnlockArea(World.AreaType.TOWN, Game.Instance.playerData.GetCraftableAmount(townUnlockable) > 0);   
+        //mapUI.UnlockArea(World.AreaType.MINE, Game.Instance.playerData.GetCraftableAmount(mineUnlockable) > 0);
+        //mapUI.UnlockArea(World.AreaType.BEACH, Game.Instance.playerData.GetCraftableAmount(beachUnlockable) > 0);
+        //mapUI.UnlockArea(World.AreaType.DESERT, Game.Instance.playerData.GetCraftableAmount(desertUnlockable) > 0);
+        //mapUI.UnlockArea(World.AreaType.OCEAN, Game.Instance.playerData.GetCraftableAmount(oceanUnlockable) > 0);
+        //mapUI.UnlockArea(World.AreaType.TOWN, Game.Instance.playerData.GetCraftableAmount(townUnlockable) > 0);   
     }
 
     public void CheckMap(Craftable c, float amo) {
+        return;
+
         if(c == mineUnlockable) {
             Game.Instance.logSystem.Log("Discovered Mine");
             mapUI.UnlockArea(World.AreaType.MINE, Game.Instance.playerData.GetCraftableAmount(c) > 0);
@@ -177,7 +179,9 @@ public class Story : MonoBehaviour {
     private void Chapter0() {
         StartCoroutine(Chain(
             Do(() => {
-                AudioManager.Instance.PlayMusic(music);
+                if (AudioManager.Instance.GetMusic() != music || !AudioManager.Instance.IsMusicPlaying()) {
+                    AudioManager.Instance.PlayMusic(music);
+                }
 
                 // Disable UI
                 Game.Instance.background.cozyImage.sprite = introImage;
@@ -306,6 +310,7 @@ public class Story : MonoBehaviour {
                 Game.Instance.laboratoryCanvas.craftBtn.interactable = true;
 
                 Game.Instance.saveCanvas.backBtn.gameObject.SetActive(false);
+                Game.Instance.settingCanvas.backBtn.gameObject.SetActive(false);
 
                 Game.Instance.laboratoryCanvas.craftUI.Story();
                 Game.Instance.playerData.Story();
@@ -349,7 +354,7 @@ public class Story : MonoBehaviour {
                 Game.Instance.menuCanvas.labBtn.interactable = true;
                 Game.Instance.menuCanvas.exitBtn.interactable = true;
                 Game.Instance.menuCanvas.saveBtn.interactable = true;
-                //Game.Instance.menuCanvas.settingBtn.interactable = true;
+                Game.Instance.menuCanvas.settingBtn.interactable = true;
 
                 Game.Instance.laboratoryCanvas.backBtn.gameObject.SetActive(true);
                 Game.Instance.laboratoryCanvas.upgradeBtn.interactable = false;
@@ -358,6 +363,7 @@ public class Story : MonoBehaviour {
                 Game.Instance.laboratoryCanvas.craftBtn.interactable = true;
 
                 Game.Instance.saveCanvas.backBtn.gameObject.SetActive(true);
+                Game.Instance.settingCanvas.backBtn.gameObject.SetActive(true);
                 Game.Instance.playerData.Story();
             }),
             Wait(() => {
@@ -428,7 +434,7 @@ public class Story : MonoBehaviour {
                 Game.Instance.particlePool.Story();
             }),
             Wait(() => {
-                return Game.Instance.playerData.GetUpgradeLevel(PlayerData.UpgradeType.Collect_Weight) > 0;
+                return Game.Instance.playerData.GetUpgradeLevel(PlayerData.UpgradeType.Collect_Weight) > 1;
             }),
             Wait(() => {
                 return !Game.Instance.laboratoryCanvas.resultUI.gameObject.activeInHierarchy;

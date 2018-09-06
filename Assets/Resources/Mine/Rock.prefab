@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 65845146602493550}
   - component: {fileID: 114991961241381790}
   - component: {fileID: 114091038724651862}
+  - component: {fileID: 210770528215555158}
   m_Layer: 8
   m_Name: Rock
   m_TagString: Untagged
@@ -38,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1490439292951434}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3, y: 2, z: 1}
+  m_LocalScale: {x: 2, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -67,6 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   atomCollector: {fileID: 114991961241381790}
+  spriteRenderer: {fileID: 212421445623913940}
   randomAtoms:
   - {fileID: 11400000, guid: 1b362f2fe9317de43ab00593873b1038, type: 2}
   - {fileID: 11400000, guid: ce003a71bfdb83a41ad1e12fc95837f5, type: 2}
@@ -74,6 +76,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c1044473522a40140adb097a57309518, type: 2}
   - {fileID: 11400000, guid: 5a3832bacb37e67429e2274588e83b8b, type: 2}
   - {fileID: 11400000, guid: e215ba178a5065f4fa0d945f942dda34, type: 2}
+  randomColors:
+  - {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
+  - {r: 1, g: 0.7073516, b: 0.2688679, a: 1}
+  - {r: 1, g: 0.82795906, b: 0.023584902, a: 1}
+  - {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
+  - {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 1}
+  - {r: 0.24951048, g: 0.8396226, b: 0.2595124, a: 1}
   amo: 20
 --- !u!114 &114991961241381790
 MonoBehaviour:
@@ -117,6 +126,16 @@ MonoBehaviour:
   nextCollectionTime: 0
   currColor: {r: 0, g: 0, b: 0, a: 0}
   isFlashing: 0
+--- !u!210 &210770528215555158
+SortingGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1490439292951434}
+  m_Enabled: 1
+  m_SortingLayerID: 1433007565
+  m_SortingLayer: 1
+  m_SortingOrder: 0
 --- !u!212 &212421445623913940
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -152,7 +171,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1d7903217c6a6f64dad975c405a5dad7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8566d97cfa0a7a74eb2357ddfcd8e789, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212164499585696186}
   - component: {fileID: 65336761163624464}
   - component: {fileID: 114096100884323554}
+  - component: {fileID: 210453772635150918}
   m_Layer: 8
   m_Name: MineBackground
   m_TagString: Untagged
@@ -186,6 +187,16 @@ MonoBehaviour:
   nextCollectionTime: 0
   currColor: {r: 0, g: 0, b: 0, a: 0}
   isFlashing: 0
+--- !u!210 &210453772635150918
+SortingGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1840821451380994}
+  m_Enabled: 1
+  m_SortingLayerID: 1845508065
+  m_SortingLayer: -1
+  m_SortingOrder: 0
 --- !u!212 &212164499585696186
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -218,11 +229,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1845508065
-  m_SortingLayer: -1
-  m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 6496338381d9e7348b91aef133b7b746, type: 3}
-  m_Color: {r: 0.4716981, g: 0.24141318, b: 0, a: 1}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 48ca79c3c64cc0f469ca595d8c3b31a0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2

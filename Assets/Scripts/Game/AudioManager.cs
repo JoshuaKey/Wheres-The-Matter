@@ -19,7 +19,14 @@ public class AudioManager : MonoBehaviour {
     private List<AudioSource> soundSources = new List<AudioSource>();
 
     private void Awake() {
-        Instance = this;
+        if(Instance == null) {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        } else {
+            Destroy(this.gameObject);
+            return;
+        }
+
 
         musicSource.outputAudioMixerGroup = musicGroup;
 

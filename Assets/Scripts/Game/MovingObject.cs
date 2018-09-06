@@ -51,8 +51,8 @@ public class MovingObject : MonoBehaviour {
         transform.Translate(direction * speed * Time.deltaTime);
 
         //obj.GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(obj.transform.position.y * 100f) * -1;
-        spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
-
+        //spriteRenderer.sortingOrder = Mathf.RoundToInt(transform.position.y * 100f) * -1;
+        //System.Diagnostics.Process.Start("Unity.exe");
         World world = Game.Instance.world;
 
         var newChunkIndex = world.GetChunkIndex(transform.position);

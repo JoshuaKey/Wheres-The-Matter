@@ -127,7 +127,7 @@ public class Chunk : MonoBehaviour {
             pos.y += height * size;
             obj.transform.position = pos;
 
-            obj.GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(obj.transform.position.y * 100f) * -1;
+            //obj.GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(obj.transform.position.y * 100f) * -1;
         }
 
         Random.state = randState;

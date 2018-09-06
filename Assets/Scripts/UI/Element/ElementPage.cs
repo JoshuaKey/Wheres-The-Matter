@@ -60,7 +60,7 @@ public class ElementPage : MonoBehaviour {
 
         // Data
         currAmoText.text = "Current Amo: " + data.GetCurrAmo();
-        passiveGainText.text = "Passive Gain: " + data.GetPassiveGain(); // What to do with this???
+        passiveGainText.text = "";// "Passive Gain: " + data.GetPassiveGain(); // What to do with this???
         totalCollectedText.text = "Total Atoms: " + data.GetTotalCollected();
         totalUsedText.text = "Total Used: " + data.GetTotalUsed();
 

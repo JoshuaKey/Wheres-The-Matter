@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c11d006d638f30418634d8ed1a2eabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalAtomAmo: 0
+  totalAtomAmo: 2147483647
   atoms:
   - atom: {fileID: 11400000, guid: 5342e67613e71f348ab75dac03a3d5df, type: 2}
     ratio: 78.00858
@@ -88,12 +88,17 @@ MonoBehaviour:
     ratio: 0.0000087
   - atom: {fileID: 11400000, guid: 615e554566f648749a3fb9191fecac8a, type: 2}
     ratio: 0.000001
-  collectionPause: 5
+  collectionPause: 1
   hasLife: 0
   aliveColor: {r: 1, g: 1, b: 1, a: 1}
   deadColor: {r: 0, g: 0, b: 0, a: 0}
   canFlash: 0
   flashAlphaMultiple: 0.6
+  currAtoms: []
+  currAtomAmo: 0
+  nextCollectionTime: 0
+  currColor: {r: 0, g: 0, b: 0, a: 0}
+  isFlashing: 0
 --- !u!114 &114629445844122160
 MonoBehaviour:
   m_ObjectHideFlags: 1

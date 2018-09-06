@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212264936268947312}
   - component: {fileID: 65363912655098088}
   - component: {fileID: 114501145444770144}
+  - component: {fileID: 210006083692844586}
   m_Layer: 8
   m_Name: Stone
   m_TagString: Untagged
@@ -94,6 +95,16 @@ MonoBehaviour:
   nextCollectionTime: 0
   currColor: {r: 0, g: 0, b: 0, a: 0}
   isFlashing: 0
+--- !u!210 &210006083692844586
+SortingGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1778797524674878}
+  m_Enabled: 1
+  m_SortingLayerID: 1433007565
+  m_SortingLayer: 1
+  m_SortingOrder: 0
 --- !u!212 &212264936268947312
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212162536610182006}
   - component: {fileID: 65259904867907400}
   - component: {fileID: 114227253729137408}
+  - component: {fileID: 210004189220262344}
   m_Layer: 8
   m_Name: Tree
   m_TagString: Untagged
@@ -98,6 +99,16 @@ MonoBehaviour:
   nextCollectionTime: 0
   currColor: {r: 0, g: 0, b: 0, a: 0}
   isFlashing: 0
+--- !u!210 &210004189220262344
+SortingGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1866588258277272}
+  m_Enabled: 1
+  m_SortingLayerID: 1433007565
+  m_SortingLayer: 1
+  m_SortingOrder: 0
 --- !u!212 &212162536610182006
 SpriteRenderer:
   m_ObjectHideFlags: 1

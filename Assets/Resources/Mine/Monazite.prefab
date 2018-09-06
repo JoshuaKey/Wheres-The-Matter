@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212584680442208780}
   - component: {fileID: 65778372364451270}
   - component: {fileID: 114979827237272724}
+  - component: {fileID: 210510846539950702}
   m_Layer: 8
   m_Name: Monazite
   m_TagString: Untagged
@@ -37,7 +38,7 @@ Transform:
   m_GameObject: {fileID: 1182741944988200}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3, y: 2, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -106,6 +107,16 @@ MonoBehaviour:
   nextCollectionTime: 0
   currColor: {r: 0, g: 0, b: 0, a: 0}
   isFlashing: 0
+--- !u!210 &210510846539950702
+SortingGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1182741944988200}
+  m_Enabled: 1
+  m_SortingLayerID: 1433007565
+  m_SortingLayer: 1
+  m_SortingOrder: 0
 --- !u!212 &212584680442208780
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -141,7 +152,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1d7903217c6a6f64dad975c405a5dad7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fe27eef208be4b64e93f44e9dd0f18ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

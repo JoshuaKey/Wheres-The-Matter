@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 65766044978701344}
   - component: {fileID: 114256835418585554}
   - component: {fileID: 114297318012913878}
+  - component: {fileID: 210730358043229508}
   m_Layer: 8
   m_Name: Pig
   m_TagString: Untagged
@@ -139,6 +140,16 @@ MonoBehaviour:
   nextCollectionTime: 0
   currColor: {r: 0, g: 0, b: 0, a: 0}
   isFlashing: 0
+--- !u!210 &210730358043229508
+SortingGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1686093542978738}
+  m_Enabled: 1
+  m_SortingLayerID: 1433007565
+  m_SortingLayer: 1
+  m_SortingOrder: 0
 --- !u!212 &212322617634196796
 SpriteRenderer:
   m_ObjectHideFlags: 1

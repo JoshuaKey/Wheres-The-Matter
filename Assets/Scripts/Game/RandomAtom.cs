@@ -5,8 +5,10 @@ using UnityEngine;
 public class RandomAtom : MonoBehaviour {
 
     [SerializeField] public AtomCollector atomCollector;
+    [SerializeField] public SpriteRenderer spriteRenderer;
 
     [SerializeField] private Atom[] randomAtoms;
+    [SerializeField] private Color[] randomColors;
     [SerializeField] private float amo;
 
 	// Use this for initialization
@@ -18,12 +20,18 @@ public class RandomAtom : MonoBehaviour {
         atomAmo.ratio = amo;
 
         atomCollector = atomCollector ?? GetComponent<AtomCollector>();
+        spriteRenderer = spriteRenderer ?? GetComponent<SpriteRenderer>();
 
         if(atomCollector == null) {
             print("Could not find Atom Collector on " + name);
             return;
         }
-        
+
+        if (randomColors.Length > index) {
+            spriteRenderer.color = randomColors[index];
+            atomCollector.aliveColor = randomColors[index];
+        }
+
 
         atomCollector.AddAtom(atomAmo);
     }

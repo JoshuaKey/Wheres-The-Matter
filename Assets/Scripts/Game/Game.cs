@@ -31,7 +31,7 @@ public class Game : MonoBehaviour {
     [SerializeField] public MapUI mapCanvas;
     [SerializeField] public LaboratoryUI laboratoryCanvas;
     [SerializeField] public SaveUI saveCanvas;
-    [SerializeField] public Canvas settingCanvas;
+    [SerializeField] public SettingsUI settingCanvas;
 
     [Header("UI")]
     [SerializeField] public Background background;
@@ -52,19 +52,19 @@ public class Game : MonoBehaviour {
     }
 
     private void Start() {
-        string loadFile = PlayerPrefs.GetString("loadFile");
-        if(loadFile != null && loadFile != "") {
-            Load(loadFile);
-            PlayerPrefs.SetString("loadFile", "");
-            return;
-        }
+        //string loadFile = PlayerPrefs.GetString("loadFile");
+        //if(loadFile != null && loadFile != "") {
+        //    Load(loadFile);
+        //    PlayerPrefs.SetString("loadFile", "");
+        //    return;
+        //}
 
         gameData.Init();
         playerData.Init();
         world.Init(player.transform.position, (int)System.DateTime.Now.Ticks, World.AreaType.FOREST);
 
         DisplayGame();
-        PlayAreaMusic();
+        //PlayAreaMusic();
 
         gameData.OnAtomDiscover += (x, y) => {
             if(Game.Instance.currCanvas == gameCanvas.rect) {
@@ -164,6 +164,7 @@ public class Game : MonoBehaviour {
         laboratoryCanvas.gameObject.SetActive(false);
         saveCanvas.gameObject.SetActive(false);
         menu.gameObject.SetActive(false);
+        settingCanvas.gameObject.SetActive(false);
 
         player.CanCollect(true);
         player.CanMove(true);
@@ -181,6 +182,7 @@ public class Game : MonoBehaviour {
         laboratoryCanvas.gameObject.SetActive(false);
         saveCanvas.gameObject.SetActive(false);
         menu.gameObject.SetActive(false);
+        settingCanvas.gameObject.SetActive(false);
 
         player.CanCollect(true);
         player.CanMove(false);
@@ -199,6 +201,7 @@ public class Game : MonoBehaviour {
         gameCanvas.gameObject.SetActive(false);
         saveCanvas.gameObject.SetActive(false);
         menu.gameObject.SetActive(false);
+        settingCanvas.gameObject.SetActive(false);
 
         player.CanCollect(false);
         player.CanMove(false);
@@ -218,6 +221,7 @@ public class Game : MonoBehaviour {
         laboratoryCanvas.gameObject.SetActive(false);
         saveCanvas.gameObject.SetActive(false);
         menu.gameObject.SetActive(false);
+        settingCanvas.gameObject.SetActive(false);
 
         player.CanCollect(false);
         player.CanMove(false);
@@ -237,6 +241,7 @@ public class Game : MonoBehaviour {
         laboratoryCanvas.gameObject.SetActive(true);
         saveCanvas.gameObject.SetActive(false);
         menu.gameObject.SetActive(false);
+        settingCanvas.gameObject.SetActive(false);
 
         player.CanCollect(false);
         player.CanMove(false);
@@ -254,6 +259,7 @@ public class Game : MonoBehaviour {
         laboratoryCanvas.gameObject.SetActive(false);
         saveCanvas.gameObject.SetActive(true);
         menu.gameObject.SetActive(false);
+        settingCanvas.gameObject.SetActive(false);
 
         player.CanCollect(false);
         player.CanMove(false);
@@ -264,7 +270,21 @@ public class Game : MonoBehaviour {
     }
 
     public void DisplaySettings() {
-        print("No Settings");
+        //currCanvas = settingCanvas.rect;
+
+        elementCanvas.gameObject.SetActive(false);
+        mapCanvas.gameObject.SetActive(false);
+        laboratoryCanvas.gameObject.SetActive(false);
+        saveCanvas.gameObject.SetActive(false);
+        menu.gameObject.SetActive(false);
+        settingCanvas.gameObject.SetActive(true);
+
+        player.CanCollect(false);
+        player.CanMove(false);
+        world.gameObject.SetActive(false);
+        room.gameObject.SetActive(false);
+        gameCanvas.gameObject.SetActive(true);
+        background.gameObject.SetActive(false);
     }
 
     public void DisplayBackground() {
@@ -274,6 +294,7 @@ public class Game : MonoBehaviour {
         gameCanvas.gameObject.SetActive(false);
         saveCanvas.gameObject.SetActive(false);
         menu.gameObject.SetActive(false);
+        settingCanvas.gameObject.SetActive(false);
 
         player.CanCollect(false);
         player.CanEscape(false);

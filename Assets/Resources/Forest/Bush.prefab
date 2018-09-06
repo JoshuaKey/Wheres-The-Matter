@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212275864179170182}
   - component: {fileID: 65837991791013736}
   - component: {fileID: 114186987278980738}
+  - component: {fileID: 210673608873541618}
   m_Layer: 8
   m_Name: Bush
   m_TagString: Untagged
@@ -98,6 +99,16 @@ MonoBehaviour:
   nextCollectionTime: 0
   currColor: {r: 0, g: 0, b: 0, a: 0}
   isFlashing: 0
+--- !u!210 &210673608873541618
+SortingGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1105045519144820}
+  m_Enabled: 1
+  m_SortingLayerID: 1433007565
+  m_SortingLayer: 1
+  m_SortingOrder: 0
 --- !u!212 &212275864179170182
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212649826448982538}
   - component: {fileID: 65690299305789470}
   - component: {fileID: 114381988229994710}
+  - component: {fileID: 210356056098999266}
   m_Layer: 8
   m_Name: OceanBackground
   m_TagString: Untagged
@@ -108,6 +109,16 @@ MonoBehaviour:
   nextCollectionTime: 0
   currColor: {r: 0, g: 0, b: 0, a: 0}
   isFlashing: 0
+--- !u!210 &210356056098999266
+SortingGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1005960424298762}
+  m_Enabled: 1
+  m_SortingLayerID: 1845508065
+  m_SortingLayer: -1
+  m_SortingOrder: 0
 --- !u!212 &212649826448982538
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -140,11 +151,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1845508065
-  m_SortingLayer: -1
-  m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 6496338381d9e7348b91aef133b7b746, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.99077415, a: 1}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 21c2168e53ca5674096005ab989ea91b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2

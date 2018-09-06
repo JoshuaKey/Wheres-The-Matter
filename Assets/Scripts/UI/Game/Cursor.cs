@@ -13,6 +13,8 @@ public class Cursor : MonoBehaviour {
     [SerializeField] private RectTransform thisRect;
     [SerializeField] private Camera mainCamera;
 
+    static public float cursorSpeed = 1.0f; // Where the flip do I store this???
+
     // Use this for initialization
     public void Start () {
         UnityEngine.Cursor.visible = false;

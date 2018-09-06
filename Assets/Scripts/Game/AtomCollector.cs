@@ -43,6 +43,8 @@ public class AtomCollector : MonoBehaviour {
     private void Start() {
         renderer = GetComponent<SpriteRenderer>();
 
+        aliveColor = renderer.color;
+
         this.gameObject.layer = LayerMask.NameToLayer("AtomCollector");
 
         AtomAmo amo = new AtomAmo();
@@ -112,8 +114,8 @@ public class AtomCollector : MonoBehaviour {
             AtomInfo info = Game.Instance.gameData.FindAtomInfo(atomAmo.atom.GetAtomicNumber());
             if (info.GetProtons() + info.GetNeutrons() > weightLimit) { continue; }
 
-            int maxAmo = efficiencyAmo / info.GetProtons();
-            if(maxAmo < 2) { maxAmo = 2; }
+            int maxAmo = efficiencyAmo;/// info.GetProtons();
+            if (maxAmo < 2) { maxAmo = 2; }
 
             int randAmo = UnityEngine.Random.Range(0, maxAmo);
             if(randAmo == 0) { continue; }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour {
 
@@ -32,6 +33,8 @@ public class Player : MonoBehaviour {
     [SerializeField] private bool canMove = true;
     [SerializeField] private float lastCollectTime;
     [SerializeField] private bool isShaking;
+
+    static public bool isRightHanded = true; // Where the flip do I store this???
 
     // Use this for initialization
     void Start () {

@@ -8,7 +8,7 @@ public class MainMenuUI : MonoBehaviour {
 
     [SerializeField] int currScene;
     [SerializeField] int gameScene;
-    //[SerializeField] SettingsUI settingUI;
+    [SerializeField] SettingsUI settingsUI;
 
     [Header("Scene Stuff")]
     [SerializeField] RectTransform menuScreen;
@@ -16,14 +16,22 @@ public class MainMenuUI : MonoBehaviour {
     [SerializeField] RectTransform loadingScreen;
     [SerializeField] TextMeshProUGUI percentText;
 
+    [Header("Cursor")]
+    [SerializeField] Cursor cursor;
+
     private AsyncOperation operation;
     private float timePercent;
 
     private void Start() {
-        UnityEngine.Cursor.visible = true;
+        UnityEngine.Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Confined;
 
         saveUI.saveRect.gameObject.SetActive(false);
         StartCoroutine(LoadScene(gameScene, currScene)); // Takes a while to build...
+    }
+
+    private void Update() {
+        cursor.UpdatePosition();
     }
 
     public void NewGame() {
@@ -43,10 +51,10 @@ public class MainMenuUI : MonoBehaviour {
         saveUI.gameObject.SetActive(false);
     }
     public void DisplaySettings() {
-        print("No Settings UI");
+        settingsUI.gameObject.SetActive(true);
     }
     public void HideSettings() {
-        print("No Settings UI");
+        settingsUI.gameObject.SetActive(false);
     }
 
     public void Exit() {
